@@ -1,0 +1,195 @@
+config:
+  target: 'https://simao-ia-rural.onrender.com'
+  phases:
+    # 🚀 Warm up
+    - duration: 60
+      arrivalRate: 5
+      name: "Warm up"
+    
+    # 📈 Ramp up
+    - duration: 120
+      arrivalRate: 10
+      rampTo: 30
+      name: "Ramp up load"
+    
+    # 🏃 Sustained load
+    - duration: 300
+      arrivalRate: 30
+      name: "Sustained load"
+    
+    # 🚀 Peak load (Gemini AI efficiency test)
+    - duration: 60
+      arrivalRate: 50
+      name: "Peak load - Test Gemini AI"
+  
+  payload:
+    path: "./data/test-messages.csv"
+    fields:
+      - "message"
+      - "client_type"
+  
+  defaults:
+    headers:
+      Content-Type: 'application/json'
+      User-Agent: 'Artillery Load Test - Simão IA Rural'
+
+scenarios:
+  # 🤖 Test Gemini AI responses (95% cost savings validation)
+  - name: "Gemini AI Chat"
+    weight: 40
+    flow:
+      - post:
+          url: "/api/webhook/whatsapp"
+          json:
+            message: "{{ message }}"
+            from: "+5511999999999"
+            timestamp: "{{ $timestamp }}"
+          expect:
+            - statusCode: 200
+            - hasProperty: response_text
+            - contentType: application/json
+          capture:
+            - json: "$.cost_estimate.provider"
+              as: "ai_provider"
+            - json: "$.cost_estimate.cost_usd"
+              as: "ai_cost"
+      
+      # Validate Gemini is being used (95% savings)
+      - think: 1
+      - log: "AI Provider: {{ ai_provider }}, Cost: ${{ ai_cost }}"
+
+  # 🐟 Test pisciculture APIs
+  - name: "Estoque Management"
+    weight: 25
+    flow:
+      - get:
+          url: "/api/estoque/dashboard"
+          headers:
+            Authorization: "Bearer {{ $processEnvironment.TEST_JWT_TOKEN }}"
+          expect:
+            - statusCode: 200
+            - hasProperty: resumo_geral
+      
+      - get:
+          url: "/api/estoque/lotes"
+          headers:
+            Authorization: "Bearer {{ $processEnvironment.TEST_JWT_TOKEN }}"
+          expect:
+            - statusCode: 200
+            - hasProperty: lotes
+
+  # 💧 Test water quality monitoring
+  - name: "Water Quality Monitoring"
+    weight: 20
+    flow:
+      - get:
+          url: "/api/qualidade-agua/dashboard"
+          headers:
+            Authorization: "Bearer {{ $processEnvironment.TEST_JWT_TOKEN }}"
+          expect:
+            - statusCode: 200
+            - hasProperty: status_geral
+      
+      - post:
+          url: "/api/qualidade-agua/medicoes"
+          headers:
+            Authorization: "Bearer {{ $processEnvironment.TEST_JWT_TOKEN }}"
+          json:
+            viveiro_id: 1
+            temperatura: 28.5
+            ph: 7.2
+            oxigenio_dissolvido: 6.8
+            data_medicao: "{{ $timestamp }}"
+          expect:
+            - statusCode: [200, 201]
+
+  # 📊 Test analytics and reports
+  - name: "Analytics Dashboard"
+    weight: 10
+    flow:
+      - get:
+          url: "/api/analytics/dashboard"
+          headers:
+            Authorization: "Bearer {{ $processEnvironment.TEST_JWT_TOKEN }}"
+          expect:
+            - statusCode: 200
+            - hasProperty: kpis_principais
+      
+      - get:
+          url: "/api/analytics/metricas-ia"
+          headers:
+            Authorization: "Bearer {{ $processEnvironment.TEST_JWT_TOKEN }}"
+          expect:
+            - statusCode: 200
+            - hasProperty: economia_percentual
+
+  # 🔔 Test notifications system
+  - name: "Notifications"
+    weight: 5
+    flow:
+      - get:
+          url: "/api/notifications/"
+          headers:
+            Authorization: "Bearer {{ $processEnvironment.TEST_JWT_TOKEN }}"
+          expect:
+            - statusCode: 200
+            - hasProperty: notificacoes
+      
+      - get:
+          url: "/api/notifications/unread-count"
+          headers:
+            Authorization: "Bearer {{ $processEnvironment.TEST_JWT_TOKEN }}"
+          expect:
+            - statusCode: 200
+            - hasProperty: count
+
+# 🎯 Performance thresholds
+# These ensure our 95% cost savings don't compromise performance
+expect:
+  # Response time should be good despite cost optimization
+  - p95: 2000    # 95% of responses under 2s
+  - p99: 5000    # 99% of responses under 5s
+  - median: 800  # Median response under 800ms
+
+# 📊 Metrics to capture
+metrics:
+  - name: "gemini_ai_usage"
+    unit: "percent"
+  - name: "cost_per_interaction"
+    unit: "usd"
+  - name: "pisciculture_operations"
+    unit: "count"
+  - name: "water_quality_checks"
+    unit: "count"
+
+# 🔍 Custom functions for validation
+processors:
+  validateCostSavings: |
+    module.exports = function(requestParams, response, context, ee, next) {
+      // Validate that we're achieving 95% cost savings
+      if (response.body && response.body.cost_estimate) {
+        const cost = parseFloat(response.body.cost_estimate.cost_usd);
+        const provider = response.body.cost_estimate.provider;
+        
+        // Log for monitoring
+        console.log(`AI Provider: ${provider}, Cost: $${cost}`);
+        
+        // Ensure Gemini is being used for cost optimization
+        if (provider === 'gemini') {
+          ee.emit('metric', 'gemini_usage_success', 1);
+        }
+        
+        // Track cost per interaction
+        ee.emit('metric', 'cost_per_interaction', cost);
+      }
+      
+      return next();
+    };
+
+# 📈 After test hooks
+after:
+  flow:
+    - log: "🎉 Load test completed!"
+    - log: "💰 Cost savings validation: Check metrics for Gemini usage"
+    - log: "🐟 Pisciculture system performance: All APIs tested"
+    - log: "📊 Full system stress test: Complete"

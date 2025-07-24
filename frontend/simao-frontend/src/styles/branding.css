@@ -1,0 +1,250 @@
+/* Simão IA Piscicultura - Branding Colors */
+:root {
+  /* Cores principais do Simão */
+  --simao-primary: #0e0385;
+  --simao-secondary: #e4c645;
+  --simao-primary-light: #1e13a5;
+  --simao-primary-dark: #0a0265;
+  --simao-secondary-light: #f0d55a;
+  --simao-secondary-dark: #d4b330;
+  
+  /* Cores de apoio */
+  --simao-success: #10b981;
+  --simao-warning: #f59e0b;
+  --simao-error: #ef4444;
+  --simao-info: #3b82f6;
+  
+  /* Tons de cinza */
+  --simao-gray-50: #f9fafb;
+  --simao-gray-100: #f3f4f6;
+  --simao-gray-200: #e5e7eb;
+  --simao-gray-300: #d1d5db;
+  --simao-gray-400: #9ca3af;
+  --simao-gray-500: #6b7280;
+  --simao-gray-600: #4b5563;
+  --simao-gray-700: #374151;
+  --simao-gray-800: #1f2937;
+  --simao-gray-900: #111827;
+}
+
+/* Aplicar cores do Simão aos componentes */
+.bg-primary {
+  background-color: var(--simao-primary) !important;
+}
+
+.bg-secondary {
+  background-color: var(--simao-secondary) !important;
+}
+
+.text-primary {
+  color: var(--simao-primary) !important;
+}
+
+.text-secondary {
+  color: var(--simao-secondary) !important;
+}
+
+.border-primary {
+  border-color: var(--simao-primary) !important;
+}
+
+.border-secondary {
+  border-color: var(--simao-secondary) !important;
+}
+
+/* Botões personalizados */
+.btn-simao-primary {
+  background-color: var(--simao-primary);
+  color: white;
+  border: 1px solid var(--simao-primary);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-simao-primary:hover {
+  background-color: var(--simao-primary-dark);
+  border-color: var(--simao-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(14, 3, 133, 0.3);
+}
+
+.btn-simao-secondary {
+  background-color: var(--simao-secondary);
+  color: var(--simao-primary);
+  border: 1px solid var(--simao-secondary);
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-simao-secondary:hover {
+  background-color: var(--simao-secondary-dark);
+  border-color: var(--simao-secondary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(228, 198, 69, 0.3);
+}
+
+/* Cards com branding */
+.card-simao {
+  border: 1px solid var(--simao-gray-200);
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.card-simao:hover {
+  box-shadow: 0 4px 20px rgba(14, 3, 133, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Sidebar personalizada */
+.sidebar-simao {
+  background: linear-gradient(180deg, var(--simao-primary) 0%, var(--simao-primary-dark) 100%);
+  color: white;
+}
+
+.sidebar-simao .nav-item {
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.2s ease-in-out;
+}
+
+.sidebar-simao .nav-item:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-simao .nav-item.active {
+  color: var(--simao-secondary);
+  background-color: rgba(228, 198, 69, 0.2);
+  border-right: 3px solid var(--simao-secondary);
+}
+
+/* Header personalizado */
+.header-simao {
+  background: white;
+  border-bottom: 1px solid var(--simao-gray-200);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Badges personalizados */
+.badge-novo {
+  background-color: var(--simao-info);
+  color: white;
+}
+
+.badge-em-andamento {
+  background-color: var(--simao-warning);
+  color: white;
+}
+
+.badge-qualificado {
+  background-color: #8b5cf6;
+  color: white;
+}
+
+.badge-convertido {
+  background-color: var(--simao-success);
+  color: white;
+}
+
+.badge-perdido {
+  background-color: var(--simao-error);
+  color: white;
+}
+
+/* Kanban columns */
+.kanban-novo {
+  background-color: rgba(59, 130, 246, 0.05);
+  border: 2px dashed rgba(59, 130, 246, 0.2);
+}
+
+.kanban-em-andamento {
+  background-color: rgba(245, 158, 11, 0.05);
+  border: 2px dashed rgba(245, 158, 11, 0.2);
+}
+
+.kanban-qualificado {
+  background-color: rgba(139, 92, 246, 0.05);
+  border: 2px dashed rgba(139, 92, 246, 0.2);
+}
+
+.kanban-convertido {
+  background-color: rgba(16, 185, 129, 0.05);
+  border: 2px dashed rgba(16, 185, 129, 0.2);
+}
+
+.kanban-perdido {
+  background-color: rgba(239, 68, 68, 0.05);
+  border: 2px dashed rgba(239, 68, 68, 0.2);
+}
+
+/* Animações suaves */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Gradientes */
+.gradient-simao {
+  background: linear-gradient(135deg, var(--simao-primary) 0%, var(--simao-secondary) 100%);
+}
+
+.gradient-simao-light {
+  background: linear-gradient(135deg, var(--simao-primary-light) 0%, var(--simao-secondary-light) 100%);
+}
+
+/* Efeitos de hover */
+.hover-lift {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(14, 3, 133, 0.15);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .card-simao {
+    margin: 0.5rem;
+  }
+  
+  .btn-simao-primary,
+  .btn-simao-secondary {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --simao-gray-50: #1f2937;
+    --simao-gray-100: #374151;
+    --simao-gray-200: #4b5563;
+    --simao-gray-300: #6b7280;
+    --simao-gray-400: #9ca3af;
+    --simao-gray-500: #d1d5db;
+    --simao-gray-600: #e5e7eb;
+    --simao-gray-700: #f3f4f6;
+    --simao-gray-800: #f9fafb;
+    --simao-gray-900: #ffffff;
+  }
+}
+
+/* Customização do scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--simao-gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--simao-primary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--simao-primary-dark);
+}
+

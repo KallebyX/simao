@@ -1,0 +1,107 @@
+version: '3.8'
+
+services:
+  # Banco de dados PostgreSQL
+  postgres:
+    image: postgres:15-alpine
+    container_name: simao_postgres
+    environment:
+      POSTGRES_DB: simao_db
+      POSTGRES_USER: simao_user
+      POSTGRES_PASSWORD: simao_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - simao_network
+
+  # Redis para cache
+  redis:
+    image: redis:7-alpine
+    container_name: simao_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - simao_network
+
+  # WPPConnect Server
+  wppconnect:
+    build:
+      context: ./wppconnect
+      dockerfile: Dockerfile
+    container_name: simao_wppconnect
+    environment:
+      - SECRET_KEY=wppconnect_secret_simao_2024
+      - SESSION_NAME=simao_session
+      - WEBHOOK_URL=http://backend:5000/api/webhook
+      - LOG_LEVEL=info
+    ports:
+      - "21465:21465"
+    volumes:
+      - wppconnect_tokens:/app/tokens
+      - wppconnect_downloads:/app/downloads
+    depends_on:
+      - backend
+    networks:
+      - simao_network
+    restart: unless-stopped
+
+  # Backend Flask
+  backend:
+    build:
+      context: ./backend/simao_backend
+      dockerfile: Dockerfile
+    container_name: simao_backend
+    environment:
+      - FLASK_ENV=development
+      - SECRET_KEY=dev_secret_key_simao_2024
+      - JWT_SECRET_KEY=jwt_secret_key_simao_2024
+      - DATABASE_URL=postgresql://simao_user:simao_password@postgres:5432/simao_db
+      - REDIS_URL=redis://redis:6379/0
+      - WPPCONNECT_URL=http://wppconnect:21465
+      - WPPCONNECT_SECRET_KEY=wppconnect_secret_simao_2024
+      - WPPCONNECT_SESSION=simao_session
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - CORS_ORIGINS=http://localhost:3000,http://localhost:5173
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./backend/simao_backend:/app
+    networks:
+      - simao_network
+    restart: unless-stopped
+
+  # Frontend React (para desenvolvimento)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: simao_frontend
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000/api
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - simao_network
+
+volumes:
+  postgres_data:
+  redis_data:
+  wppconnect_tokens:
+  wppconnect_downloads:
+
+networks:
+  simao_network:
+    driver: bridge
+

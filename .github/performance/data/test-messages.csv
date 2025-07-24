@@ -1,0 +1,52 @@
+message,client_type
+"Olá, preciso de informações sobre alevinos de tilápia",piscicultor_iniciante
+"Bom dia! Quero comprar 5000 alevinos de tambaqui",piscicultor_experiente
+"Qual o preço do quilo da tilápia hoje?",comprador
+"Preciso de ajuda com a qualidade da água do meu viveiro",piscicultor_problema
+"Meus peixes estão morrendo, o que fazer?",emergencia
+"Quero começar na piscicultura, por onde começar?",iniciante_total
+"Tenho um viveiro de 10x20m, quantos alevinos posso colocar?",calculo_densidade
+"Qual a melhor ração para tilápia de 200g?",nutricao
+"Como sei se a água está boa para os peixes?",qualidade_agua
+"Quanto tempo demora para a tilápia atingir 800g?",tempo_engorda
+"Preciso de uma análise completa do meu sistema",consultoria
+"Meu pH está em 9.5, isso é ruim?",parametro_critico
+"Qual a temperatura ideal para tambaqui?",parametros_especies
+"Como fazer biometria dos peixes?",manejo
+"Preciso vender 200kg de tilápia urgente",venda_urgente
+"Vocês fazem entrega em São Paulo?",logistica
+"Qual o lucro médio na piscicultura?",financeiro
+"Meus peixes não estão crescendo, por que?",problema_crescimento
+"Como montar um sistema de recirculação?",sistema_avancado
+"Preciso de financiamento para ampliar",credito
+"Qual espécie é mais rentável hoje?",comparacao_especies
+"Como prevenir doenças nos peixes?",prevencao_doencas
+"Meu oxigênio está baixo, o que fazer?",oxigenio_baixo
+"Quero automatizar meu sistema",automacao
+"Como calcular a conversão alimentar?",metricas
+"Preciso de um plano de negócios completo",business_plan
+"Qual a densidade ideal para tilápia?",densidade_otima
+"Como preparar o viveiro para novos alevinos?",preparacao_viveiro
+"Minha amônia está alta, socorro!",amonia_alta
+"Quero diversificar com outras espécies",diversificacao
+"Como fazer o controle de qualidade?",controle_qualidade
+"Preciso calcular meu custo de produção",custos
+"Qual a melhor época para despesca?",despesca
+"Como armazenar os peixes após a captura?",pos_captura
+"Quero vender direto ao consumidor",venda_direta
+"Como conseguir certificações?",certificacao
+"Meu sistema está com algas, o que fazer?",problema_algas
+"Preciso de equipamentos de aeração",equipamentos
+"Como fazer análise da água em casa?",analise_caseira
+"Quero participar de cooperativa",cooperativismo
+"Como exportar meus peixes?",exportacao
+"Preciso treinar meus funcionários",capacitacao
+"Qual a margem de lucro ideal?",margem_lucro
+"Como lidar com a sazonalidade?",sazonalidade
+"Quero implementar aquaponia",aquaponia
+"Como calcular o retorno do investimento?",roi
+"Preciso de licenças ambientais",licenciamento
+"Meu viveiro rachou, como consertar?",manutencao
+"Como melhorar a conversão alimentar?",eficiencia_racao
+"Quero instalar energia solar",sustentabilidade
+"Como fazer marketing dos meus peixes?",marketing
