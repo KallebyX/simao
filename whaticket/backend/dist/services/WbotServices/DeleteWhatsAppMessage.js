@@ -28,7 +28,6 @@ const DeleteWhatsAppMessage = async (messageId, companyId) => {
     const { ticket } = message;
     if (!message.isPrivate) {
         const messageToDelete = await (0, GetWbotMessage_1.default)(ticket, messageId);
-        // ALTERAÇÃO PARA BAILEYS 5.0
         try {
             const wbot = await (0, GetTicketWbot_1.default)(ticket);
             const menssageDelete = messageToDelete;
@@ -48,3 +47,4 @@ const DeleteWhatsAppMessage = async (messageId, companyId) => {
     return message;
 };
 exports.default = DeleteWhatsAppMessage;
+//# sourceMappingURL=DeleteWhatsAppMessage.js.map

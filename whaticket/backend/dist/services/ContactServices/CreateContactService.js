@@ -44,7 +44,6 @@ const CreateContactService = async ({ name, number, email = "", acceptAudioMessa
             }
         });
         const contactWallets = [];
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         wallets.forEach((wallet) => {
             contactWallets.push({
                 walletId: !wallet.id ? wallet : wallet.id,
@@ -57,3 +56,4 @@ const CreateContactService = async ({ name, number, email = "", acceptAudioMessa
     return contact;
 };
 exports.default = CreateContactService;
+//# sourceMappingURL=CreateContactService.js.map

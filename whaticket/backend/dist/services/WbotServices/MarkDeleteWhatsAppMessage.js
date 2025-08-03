@@ -52,7 +52,6 @@ const MarkDeleteWhatsAppMessage = async (from, timestamp, msgId, companyId) => {
                 await (0, UpdateTicketService_1.default)({ ticketData: { lastMessage: "🚫 _Mensagem Apagada_" }, ticketId: ticket.id, companyId });
                 const io = (0, socket_1.getIO)();
                 io.of(String(companyId))
-                    // .to(messageToUpdate.ticketId.toString())
                     .emit(`appMessage-${messageToUpdate}`, {
                     action: "update",
                     message: messageToUpdate
@@ -67,3 +66,4 @@ const MarkDeleteWhatsAppMessage = async (from, timestamp, msgId, companyId) => {
     ;
 };
 exports.default = MarkDeleteWhatsAppMessage;
+//# sourceMappingURL=MarkDeleteWhatsAppMessage.js.map

@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Tickets", "whatsappId");
     }
 };
+//# sourceMappingURL=20200906155658-add-whatsapp-field-to-tickets.js.map

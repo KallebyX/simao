@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Users", "allHistoric");
     }
 };
+//# sourceMappingURL=20231016214537-add-allHistoric-users.js.map

@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "name");
     }
 };
+//# sourceMappingURL=20200904220257-add-name-to-whatsapp.js.map

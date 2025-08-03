@@ -11,9 +11,7 @@ const User_1 = __importDefault(require("../../models/User"));
 const Contact_1 = __importDefault(require("../../models/Contact"));
 const Queue_1 = __importDefault(require("../../models/Queue"));
 const TicketsQueuesService = async ({ dateStart, dateEnd, status, userId, queuesIds, companyId, showAll }) => {
-    let whereCondition = {
-    // [Op.or]: [{ userId }, { status: "pending" }]
-    };
+    let whereCondition = {};
     const includeCondition = [
         {
             model: User_1.default,
@@ -36,7 +34,6 @@ const TicketsQueuesService = async ({ dateStart, dateEnd, status, userId, queues
         }
     ];
     const isExistsQueues = await Queue_1.default.count({ where: { companyId } });
-    // eslint-disable-next-line eqeqeq
     if (isExistsQueues) {
         const queues = await UserQueue_1.default.findAll({
             where: {
@@ -61,7 +58,6 @@ const TicketsQueuesService = async ({ dateStart, dateEnd, status, userId, queues
             }
         };
     }
-    // eslint-disable-next-line eqeqeq
     if (showAll == "true") {
         whereCondition = {};
     }
@@ -94,3 +90,4 @@ const TicketsQueuesService = async ({ dateStart, dateEnd, status, userId, queues
     return tickets;
 };
 exports.default = TicketsQueuesService;
+//# sourceMappingURL=TicketsQueuesService.js.map

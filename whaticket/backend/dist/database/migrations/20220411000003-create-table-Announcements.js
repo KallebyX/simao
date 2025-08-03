@@ -55,3 +55,4 @@ module.exports = {
         return queryInterface.dropTable("Announcements");
     }
 };
+//# sourceMappingURL=20220411000003-create-table-Announcements.js.map

@@ -15,6 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Company_1 = __importDefault(require("./Company"));
 let Setting = class Setting extends sequelize_typescript_1.Model {
+    id;
+    key;
+    value;
+    createdAt;
+    updatedAt;
+    companyId;
+    company;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -51,3 +58,4 @@ Setting = __decorate([
     sequelize_typescript_1.Table
 ], Setting);
 exports.default = Setting;
+//# sourceMappingURL=Setting.js.map

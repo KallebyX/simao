@@ -40,8 +40,8 @@ const DashTicketsQueue = async ({ startDate, endDate, companyId, userId, userPro
             userId
         },
         type: sequelize_1.QueryTypes.SELECT
-        // logging: console.log
     });
     return data;
 };
 exports.default = DashTicketsQueue;
+//# sourceMappingURL=DashTicketsQueue.js.map

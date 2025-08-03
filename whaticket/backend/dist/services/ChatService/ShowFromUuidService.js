@@ -13,3 +13,4 @@ const ShowFromUuidService = async (uuid) => {
     return record;
 };
 exports.default = ShowFromUuidService;
+//# sourceMappingURL=ShowFromUuidService.js.map

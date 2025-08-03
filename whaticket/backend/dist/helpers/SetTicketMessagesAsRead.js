@@ -11,13 +11,10 @@ const GetTicketWbot_1 = __importDefault(require("./GetTicketWbot"));
 const ShowWhatsAppService_1 = __importDefault(require("../services/WhatsappService/ShowWhatsAppService"));
 const SetTicketMessagesAsRead = async (ticket) => {
     if (ticket.whatsappId) {
-        // console.log("SETTING MESSAGES AS READ", ticket.whatsappId)
         const whatsapp = await (0, ShowWhatsAppService_1.default)(ticket.whatsappId, ticket.companyId);
         if (["open", "group"].includes(ticket.status) && whatsapp && whatsapp.status === 'CONNECTED' && ticket.unreadMessages > 0) {
             try {
                 const wbot = await (0, GetTicketWbot_1.default)(ticket);
-                // no baileys temos que marcar cada mensagem como lida
-                // não o chat inteiro como é feito no legacy
                 const getJsonMessage = await Message_1.default.findAll({
                     where: {
                         ticketId: ticket.id,
@@ -44,7 +41,6 @@ const SetTicketMessagesAsRead = async (ticket) => {
                 await cache_1.default.set(`contacts:${ticket.contactId}:unreads`, "0");
                 const io = (0, socket_1.getIO)();
                 io.of(ticket.companyId.toString())
-                    // .to(ticket.status).to("notification")
                     .emit(`company-${ticket.companyId}-ticket`, {
                     action: "updateUnread",
                     ticketId: ticket.id
@@ -57,3 +53,4 @@ const SetTicketMessagesAsRead = async (ticket) => {
     }
 };
 exports.default = SetTicketMessagesAsRead;
+//# sourceMappingURL=SetTicketMessagesAsRead.js.map

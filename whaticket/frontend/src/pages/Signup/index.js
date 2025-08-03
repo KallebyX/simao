@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from "react";
-import qs from 'query-string'
-
+import qs from 'query-string';
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
-import usePlans from "../../hooks/usePlans";
 import { Link as RouterLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Formik, Form, Field } from "formik";
 import Avatar from "@material-ui/core/Avatar";
-import { versionSystem } from "../../../package.json";
-import { nomeEmpresa } from "../../../package.json";
 import Button from "@material-ui/core/Button";
 import {
     IconButton,
     InputAdornment,
-  } from "@material-ui/core";
-  import Visibility from "@material-ui/icons/Visibility";
-  import VisibilityOff from "@material-ui/icons/VisibilityOff";
+} from "@material-ui/core";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
@@ -32,15 +28,17 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
 import { i18n } from "../../translate/i18n";
-
 import { openApi } from "../../services/api";
 import toastError from "../../errors/toastError";
 import moment from "moment";
 import logo from "../../assets/logo.png";
 import bk from "../../assets/bk.jpg";
 import ReactInputMask from 'react-input-mask';
+import packageInfo from "../../../package.json";
+import usePlans from "../../hooks/usePlans";
+
+const { versionSystem, nomeEmpresa } = packageInfo;
 
 const Copyright = () => {
     return (

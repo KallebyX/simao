@@ -12,12 +12,7 @@ const UpdateServiceCampaignSettings = async (data) => {
         throw new AppError_1.default("ERR_NO_CAMPAIGN_FOUND", 404);
     }
     await record.update(data);
-    // await record.reload({
-    //   include: [
-    //     { model: ContactList },
-    //     { model: Whatsapp, attributes: ["id", "name"] }
-    //   ]
-    // });
     return record;
 };
 exports.default = UpdateServiceCampaignSettings;
+//# sourceMappingURL=UpdateServiceCampaignSettings.js.map

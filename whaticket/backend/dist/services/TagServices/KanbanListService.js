@@ -13,7 +13,7 @@ const KanbanListService = async ({ companyId }) => {
         order: [["id", "ASC"]],
         raw: true,
     });
-    //console.log(tags);
     return tags;
 };
 exports.default = KanbanListService;
+//# sourceMappingURL=KanbanListService.js.map

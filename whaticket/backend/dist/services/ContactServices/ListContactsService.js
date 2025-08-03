@@ -12,7 +12,6 @@ const remove_accents_1 = __importDefault(require("remove-accents"));
 const ListContactsService = async ({ searchParam = "", pageNumber = "1", companyId, tagsIds, isGroup, userId }) => {
     let whereCondition;
     if (searchParam) {
-        // console.log("searchParam", searchParam)
         const sanitizedSearchParam = (0, remove_accents_1.default)(searchParam.toLocaleLowerCase().trim());
         whereCondition = {
             ...whereCondition,
@@ -28,24 +27,14 @@ const ListContactsService = async ({ searchParam = "", pageNumber = "1", company
         ...whereCondition,
         companyId
     };
-    // const user = await ShowUserService(userId, companyId);
-    // console.log(user)
-    // if (user.whatsappId) {
-    //   whereCondition = {
-    //     ...whereCondition,
-    //     whatsappId: user.whatsappId
-    //   };
-    // }
     if (Array.isArray(tagsIds) && tagsIds.length > 0) {
         const contactTagFilter = [];
-        // for (let tag of tags) {
         const contactTags = await ContactTag_1.default.findAll({
             where: { tagId: { [sequelize_1.Op.in]: tagsIds } }
         });
         if (contactTags) {
             contactTagFilter.push(contactTags.map(t => t.contactId));
         }
-        // }
         const contactTagsIntersection = (0, lodash_1.intersection)(...contactTagFilter);
         whereCondition = {
             ...whereCondition,
@@ -68,27 +57,13 @@ const ListContactsService = async ({ searchParam = "", pageNumber = "1", company
         attributes: ["id", "name", "number", "email", "isGroup", "urlPicture", "active", "companyId", "channel"],
         limit,
         include: [
-            // {
-            //   model: Ticket,
-            //   as: "tickets",
-            //   attributes: ["id", "status", "createdAt", "updatedAt"],
-            //   limit: 1,
-            //   order: [["updatedAt", "DESC"]]
-            // },   
             {
                 model: Tag_1.default,
                 as: "tags",
                 attributes: ["id", "name"]
-                //include: ["tags"]
             },
-            // {
-            //   model: Whatsapp,
-            //   as: "whatsapp",
-            //   attributes: ["id", "name", "expiresTicket", "groupAsTicket"]
-            // },
         ],
         offset,
-        // subQuery: false,
         order: [["name", "ASC"]]
     });
     const hasMore = count > offset + contacts.length;
@@ -99,3 +74,4 @@ const ListContactsService = async ({ searchParam = "", pageNumber = "1", company
     };
 };
 exports.default = ListContactsService;
+//# sourceMappingURL=ListContactsService.js.map

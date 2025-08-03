@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Tickets", "isActiveDemand");
     }
 };
+//# sourceMappingURL=20231121143411-add-isActiveDemand-to-tickets.js.map

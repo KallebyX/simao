@@ -96,7 +96,6 @@ const ListTicketsService = async ({ searchParam = "", pageNumber = "1", queueIds
             ticketsIds = await Ticket_1.default.findAll({
                 where: {
                     userId: { [sequelize_1.Op.or]: [user.id, null] },
-                    // queueId: { [Op.or]: [queueIds, null] },
                     status: "pending",
                     companyId
                 },
@@ -105,7 +104,6 @@ const ListTicketsService = async ({ searchParam = "", pageNumber = "1", queueIds
         if (ticketsIds) {
             TicketsUserFilter.push(ticketsIds.map(t => t.id));
         }
-        // }
         const ticketsIntersection = (0, lodash_1.intersection)(...TicketsUserFilter);
         whereCondition = {
             ...whereCondition,
@@ -136,7 +134,6 @@ const ListTicketsService = async ({ searchParam = "", pageNumber = "1", queueIds
                             status: "pending"
                         }
                     ],
-                    // queueId: { [Op.in] : queueIds},
                     status: "pending"
                 },
             });
@@ -144,7 +141,6 @@ const ListTicketsService = async ({ searchParam = "", pageNumber = "1", queueIds
         if (ticketsIds) {
             TicketsUserFilter.push(ticketsIds.map(t => t.id));
         }
-        // }
         const ticketsIntersection = (0, lodash_1.intersection)(...TicketsUserFilter);
         whereCondition = {
             ...whereCondition,
@@ -251,14 +247,12 @@ const ListTicketsService = async ({ searchParam = "", pageNumber = "1", queueIds
                 whereCondition2 = {
                     ...whereCondition2,
                     queueId: queueIds,
-                    // [Op.or]: [{ userId }, { status: ["pending", "closed", "group"] }],
                 };
             }
             else if (showAll === "true" && user.profile === "admin") {
                 whereCondition2 = {
                     companyId,
                     queueId: { [sequelize_1.Op.or]: [queueIds, null] },
-                    // status: ["pending", "closed", "group"]
                 };
             }
             latestTickets = await Ticket_1.default.findAll({
@@ -272,30 +266,6 @@ const ListTicketsService = async ({ searchParam = "", pageNumber = "1", queueIds
             ...whereCondition,
             id: ticketIds
         };
-        // if (date) {
-        //   whereCondition = {
-        //     createdAt: {
-        //       [Op.between]: [+startOfDay(parseISO(date)), +endOfDay(parseISO(date))]
-        //     }
-        //   };
-        // }
-        // if (dateStart && dateEnd) {
-        //   whereCondition = {
-        //     updatedAt: {
-        //       [Op.between]: [+startOfDay(parseISO(dateStart)), +endOfDay(parseISO(dateEnd))]
-        //     }
-        //   };
-        // }
-        // if (updatedAt) {
-        //   whereCondition = {
-        //     updatedAt: {
-        //       [Op.between]: [
-        //         +startOfDay(parseISO(updatedAt)),
-        //         +endOfDay(parseISO(updatedAt))
-        //       ]
-        //     }
-        //   };
-        // }
         if (searchParam) {
             const sanitizedSearchParam = (0, remove_accents_1.default)(searchParam.toLocaleLowerCase().trim());
             if (searchOnMessages === "true") {
@@ -307,7 +277,6 @@ const ListTicketsService = async ({ searchParam = "", pageNumber = "1", queueIds
                         attributes: ["id", "body"],
                         where: {
                             body: (0, sequelize_1.where)((0, sequelize_1.fn)("LOWER", (0, sequelize_1.fn)('unaccent', (0, sequelize_1.col)("body"))), "LIKE", `%${sanitizedSearchParam}%`),
-                            // ticketId: 
                         },
                         required: false,
                         duplicating: false
@@ -334,27 +303,18 @@ const ListTicketsService = async ({ searchParam = "", pageNumber = "1", queueIds
                             "$contact.name$": (0, sequelize_1.where)((0, sequelize_1.fn)("LOWER", (0, sequelize_1.fn)("unaccent", (0, sequelize_1.col)("contact.name"))), "LIKE", `%${sanitizedSearchParam}%`)
                         },
                         { "$contact.number$": { [sequelize_1.Op.like]: `%${sanitizedSearchParam}%` } },
-                        // {
-                        //   "$message.body$": where(
-                        //     fn("LOWER", fn("unaccent", col("body"))),
-                        //     "LIKE",
-                        //     `%${sanitizedSearchParam}%`
-                        //   )
-                        // }
                     ]
                 };
             }
         }
         if (Array.isArray(tags) && tags.length > 0) {
             const contactTagFilter = [];
-            // for (let tag of tags) {
             const contactTags = await ContactTag_1.default.findAll({
                 where: { tagId: tags }
             });
             if (contactTags) {
                 contactTagFilter.push(contactTags.map(t => t.contactId));
             }
-            // }
             const contactsIntersection = (0, lodash_1.intersection)(...contactTagFilter);
             whereCondition = {
                 ...whereCondition,
@@ -381,7 +341,6 @@ const ListTicketsService = async ({ searchParam = "", pageNumber = "1", queueIds
         }
     }
     else if (withUnreadMessages === "true") {
-        // console.log(showNotificationPendingValue)
         whereCondition = {
             [sequelize_1.Op.or]: [
                 {
@@ -432,3 +391,4 @@ const ListTicketsService = async ({ searchParam = "", pageNumber = "1", queueIds
     };
 };
 exports.default = ListTicketsService;
+//# sourceMappingURL=ListTicketsService.js.map

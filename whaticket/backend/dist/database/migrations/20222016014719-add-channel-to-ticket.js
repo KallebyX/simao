@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Tickets", "channel");
     }
 };
+//# sourceMappingURL=20222016014719-add-channel-to-ticket.js.map

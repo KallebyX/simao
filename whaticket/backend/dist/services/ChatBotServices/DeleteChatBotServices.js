@@ -9,3 +9,4 @@ const DeleteChatBotServices = async (chatbotId) => {
     await chatbot.destroy();
 };
 exports.default = DeleteChatBotServices;
+//# sourceMappingURL=DeleteChatBotServices.js.map

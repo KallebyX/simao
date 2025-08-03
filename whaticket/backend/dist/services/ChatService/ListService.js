@@ -36,3 +36,4 @@ const ListService = async ({ ownerId, pageNumber = "1" }) => {
     };
 };
 exports.default = ListService;
+//# sourceMappingURL=ListService.js.map

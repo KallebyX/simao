@@ -34,3 +34,4 @@ module.exports = {
         ]);
     }
 };
+//# sourceMappingURL=20220512000001-create-Indexes.js.map

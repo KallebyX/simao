@@ -26,3 +26,4 @@ const FindOrCreateATicketTrakingService = async ({ ticketId, companyId, whatsapp
     return newRecord;
 };
 exports.default = FindOrCreateATicketTrakingService;
+//# sourceMappingURL=FindOrCreateATicketTrakingService.js.map

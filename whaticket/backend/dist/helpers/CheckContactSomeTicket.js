@@ -14,3 +14,4 @@ const CheckContactSomeTickets = async (contactId, companyId, whatsappId) => {
     }
 };
 exports.default = CheckContactSomeTickets;
+//# sourceMappingURL=CheckContactSomeTicket.js.map

@@ -56,3 +56,4 @@ module.exports = {
         return queryInterface.dropTable("Messages");
     }
 };
+//# sourceMappingURL=20200717151645-create-messages.js.map

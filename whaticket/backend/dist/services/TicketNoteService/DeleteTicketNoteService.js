@@ -15,3 +15,4 @@ const DeleteTicketNoteService = async (id) => {
     await ticketnote.destroy();
 };
 exports.default = DeleteTicketNoteService;
+//# sourceMappingURL=DeleteTicketNoteService.js.map

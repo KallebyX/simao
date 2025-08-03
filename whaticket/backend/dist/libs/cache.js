@@ -9,6 +9,9 @@ const hmac_sha512_1 = __importDefault(require("crypto-js/hmac-sha512"));
 const enc_base64_1 = __importDefault(require("crypto-js/enc-base64"));
 const redis_1 = require("../config/redis");
 class CacheSingleton {
+    redis;
+    keys;
+    static instance;
     constructor(redisInstance) {
         this.redis = redisInstance;
         this.set = util_1.default.promisify(this.redis.set).bind(this.redis);
@@ -71,3 +74,4 @@ class CacheSingleton {
 }
 const redisInstance = new ioredis_1.default(redis_1.REDIS_URI_CONNECTION);
 exports.default = CacheSingleton.getInstance(redisInstance);
+//# sourceMappingURL=cache.js.map

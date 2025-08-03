@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Plans", "useInternalChat");
     }
 };
+//# sourceMappingURL=20230106164900-add-useInternalChat-Plans.js.map

@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Companies", "planId");
     }
 };
+//# sourceMappingURL=20210109192523-add-column-planId-to-Companies.js.map

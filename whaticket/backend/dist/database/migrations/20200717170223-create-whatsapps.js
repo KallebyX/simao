@@ -39,3 +39,4 @@ module.exports = {
         return queryInterface.dropTable("Whatsapps");
     }
 };
+//# sourceMappingURL=20200717170223-create-whatsapps.js.map

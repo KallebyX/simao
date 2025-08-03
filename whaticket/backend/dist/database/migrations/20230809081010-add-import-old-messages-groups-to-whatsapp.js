@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "importOldMessagesGroups");
     }
 };
+//# sourceMappingURL=20230809081010-add-import-old-messages-groups-to-whatsapp.js.map

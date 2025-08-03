@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "companyId");
     }
 };
+//# sourceMappingURL=20210109192520-add-column-companyId-to-Whatsapps-table.js.map

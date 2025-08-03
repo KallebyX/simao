@@ -7,7 +7,6 @@ const date_fns_1 = require("date-fns");
 const sequelize_1 = require("sequelize");
 const Contact_1 = __importDefault(require("../../models/Contact"));
 const Tag_1 = __importDefault(require("../../models/Tag"));
-// import ContactWallet from "../../models/ContactWallet";
 const dddsPorEstado = [
     { estado: "AC", ddds: ["68"] },
     { estado: "AL", ddds: ["82"] },
@@ -82,28 +81,8 @@ const ListContactsService = async ({ startDate, endDate, companyId, tags, wallet
             }
         ];
     }
-    // if (wallets) {
-    //   includeCondition.push({
-    //     model: ContactWallet,
-    //     // as: "wallets",
-    //     where: {
-    //       walletId: wallets
-    //     },
-    //     required: true
-    //   });
-    // } else if (profile !== "admin") {
-    //   includeCondition.push({
-    //     model: ContactWallet,
-    //     // as: "wallet",
-    //     where: {
-    //       walletId: userId
-    //     },
-    //     required: true
-    //   });
-    // }
     if (ddds) {
         let dddsFilter = [];
-        // eslint-disable-next-line consistent-return
         ddds.forEach((el) => {
             if (el) {
                 const d = dddsPorEstado.find((ddd) => ddd.estado === el)?.ddds;
@@ -128,3 +107,4 @@ const ListContactsService = async ({ startDate, endDate, companyId, tags, wallet
     return { contacts };
 };
 exports.default = ListContactsService;
+//# sourceMappingURL=ContactsReportService.js.map

@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Users", "online");
     }
 };
+//# sourceMappingURL=20210109192532-add-column-online-to-Users-table.js.map

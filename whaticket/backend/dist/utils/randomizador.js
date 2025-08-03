@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.randomizarCaminho = void 0;
+exports.randomizarCaminho = randomizarCaminho;
 function randomizarCaminho(chance) {
-    const chanceA = chance; // 20% de chance para o caminho A
+    const chanceA = chance;
     const max = 1;
     const min = 0;
-    const numeroAleatorio = Math.random() * (max - min) + min; // Gere um número aleatório entre 0 e 1
+    const numeroAleatorio = Math.random() * (max - min) + min;
     if (numeroAleatorio < chanceA) {
         return "A";
     }
@@ -13,4 +13,4 @@ function randomizarCaminho(chance) {
         return "B";
     }
 }
-exports.randomizarCaminho = randomizarCaminho;
+//# sourceMappingURL=randomizador.js.map

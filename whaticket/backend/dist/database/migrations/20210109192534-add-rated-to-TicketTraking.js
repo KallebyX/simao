@@ -22,3 +22,4 @@ module.exports = {
         ]);
     }
 };
+//# sourceMappingURL=20210109192534-add-rated-to-TicketTraking.js.map

@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Plans", "useKanban");
     }
 };
+//# sourceMappingURL=20230831093000-add-useKanban-Plans.js.map

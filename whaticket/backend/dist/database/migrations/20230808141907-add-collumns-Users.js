@@ -27,3 +27,4 @@ module.exports = {
         ]);
     }
 };
+//# sourceMappingURL=20230808141907-add-collumns-Users.js.map

@@ -15,13 +15,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -35,13 +45,10 @@ const messageRoutes = (0, express_1.Router)();
 const upload = (0, multer_1.default)(upload_1.default);
 messageRoutes.get("/messages/:ticketId", isAuth_1.default, MessageController.index);
 messageRoutes.post("/messages/:ticketId", isAuth_1.default, upload.array("medias"), MessageController.store);
-// messageRoutes.post("/forwardmessage",isAuth,MessageController.forwardmessage);
 messageRoutes.delete("/messages/:messageId", isAuth_1.default, MessageController.remove);
 messageRoutes.post("/messages/edit/:messageId", isAuth_1.default, MessageController.edit);
 messageRoutes.get("/messages-allMe", isAuth_1.default, MessageController.allMe);
-// Nova rota para transcrição
 messageRoutes.get("/messages/transcribeAudio/:fileName", isAuth_1.default, MessageController.transcribeAudioMessage);
-// Adicionando novas rotas para novas funções
 messageRoutes.post("/messages/lista/:ticketId", isAuth_1.default, MessageController.sendListMessage);
 messageRoutes.post("/messages/copy/:ticketId", isAuth_1.default, MessageController.sendCopyMessage);
 messageRoutes.post("/messages/call/:ticketId", isAuth_1.default, MessageController.sendCALLMessage);
@@ -49,3 +56,4 @@ messageRoutes.post("/messages/url/:ticketId", isAuth_1.default, MessageControlle
 messageRoutes.post("/messages/PIX/:ticketId", isAuth_1.default, MessageController.sendPIXMessage);
 messageRoutes.post('/message/forward', isAuth_1.default, MessageController.forwardMessage);
 exports.default = messageRoutes;
+//# sourceMappingURL=messageRoutes.js.map

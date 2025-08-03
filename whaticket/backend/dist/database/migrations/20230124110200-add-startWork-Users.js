@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Users", "startWork");
     }
 };
+//# sourceMappingURL=20230124110200-add-startWork-Users.js.map

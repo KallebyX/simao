@@ -13,3 +13,4 @@ module.exports = {
         });
     }
 };
+//# sourceMappingURL=20210109192528-change-column-message-to-quick-messages-table.js.map

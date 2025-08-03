@@ -33,3 +33,4 @@ module.exports = {
             queryInterface.removeColumn("Schedules", "statusTicket");
     }
 };
+//# sourceMappingURL=20231019113637-add-columns-Schedules.js.map

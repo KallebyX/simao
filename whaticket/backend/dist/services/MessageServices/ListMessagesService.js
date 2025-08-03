@@ -63,12 +63,10 @@ const ListMessagesService = async ({ pageNumber = "1", ticketId, companyId, queu
     if (ticketIds) {
         ticketsFilter.push(ticketIds.map(t => t.id));
     }
-    // }
     const tickets = (0, lodash_1.intersection)(...ticketsFilter);
     if (!tickets) {
         throw new AppError_1.default("ERR_NO_TICKET_FOUND", 404);
     }
-    // await setMessagesAsRead(ticket);
     const limit = 20;
     const offset = limit * (+pageNumber - 1);
     const { count, rows: messages } = await Message_1.default.findAndCountAll({
@@ -121,3 +119,4 @@ const ListMessagesService = async ({ pageNumber = "1", ticketId, companyId, queu
     };
 };
 exports.default = ListMessagesService;
+//# sourceMappingURL=ListMessagesService.js.map

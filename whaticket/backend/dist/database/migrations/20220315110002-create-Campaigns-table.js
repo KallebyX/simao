@@ -124,3 +124,4 @@ module.exports = {
         return queryInterface.dropTable("Campaigns");
     }
 };
+//# sourceMappingURL=20220315110002-create-Campaigns-table.js.map

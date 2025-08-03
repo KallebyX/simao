@@ -13,3 +13,4 @@ const isSuper = async (req, res, next) => {
     return next();
 };
 exports.default = isSuper;
+//# sourceMappingURL=isSuper.js.map

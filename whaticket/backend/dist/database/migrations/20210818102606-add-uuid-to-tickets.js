@@ -8,7 +8,6 @@ module.exports = {
             queryInterface.addColumn("Tickets", "uuid", {
                 type: sequelize_1.DataTypes.UUID,
                 allowNull: true,
-                //defaultValue: Sequelize.literal('uuid_generate_v4()')
                 defaultValue: require('sequelize').UUIDV4,
             })
         ]);
@@ -17,3 +16,4 @@ module.exports = {
         return queryInterface.removeColumn("Tickets", "uuid");
     }
 };
+//# sourceMappingURL=20210818102606-add-uuid-to-tickets.js.map

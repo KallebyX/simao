@@ -13,3 +13,4 @@ const ShowTicketNoteService = async (id) => {
     return ticketNote;
 };
 exports.default = ShowTicketNoteService;
+//# sourceMappingURL=ShowTicketNoteService.js.map

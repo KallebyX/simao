@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Messages", "fromMe");
     }
 };
+//# sourceMappingURL=20200730153545-add-fromMe-to-messages.js.map

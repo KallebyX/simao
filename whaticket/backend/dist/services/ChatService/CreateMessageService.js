@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = CreateMessageService;
 const Chat_1 = __importDefault(require("../../models/Chat"));
 const ChatMessage_1 = __importDefault(require("../../models/ChatMessage"));
 const ChatUser_1 = __importDefault(require("../../models/ChatUser"));
@@ -38,4 +39,4 @@ async function CreateMessageService({ senderId, chatId, message }) {
     }
     return newMessage;
 }
-exports.default = CreateMessageService;
+//# sourceMappingURL=CreateMessageService.js.map

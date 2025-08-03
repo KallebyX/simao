@@ -16,3 +16,4 @@ const DeleteWebHookService = async (id) => {
     return webhook;
 };
 exports.default = DeleteWebHookService;
+//# sourceMappingURL=DeleteWebHookService.js.map

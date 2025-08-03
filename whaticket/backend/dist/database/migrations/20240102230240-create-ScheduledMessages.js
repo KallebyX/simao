@@ -77,3 +77,4 @@ module.exports = {
         await queryInterface.dropTable('ScheduledMessages');
     }
 };
+//# sourceMappingURL=20240102230240-create-ScheduledMessages.js.map

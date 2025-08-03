@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = UpdateService;
 const Chat_1 = __importDefault(require("../../models/Chat"));
 const ChatUser_1 = __importDefault(require("../../models/ChatUser"));
 const User_1 = __importDefault(require("../../models/User"));
@@ -30,4 +31,4 @@ async function UpdateService(data) {
     });
     return record;
 }
-exports.default = UpdateService;
+//# sourceMappingURL=UpdateService.js.map

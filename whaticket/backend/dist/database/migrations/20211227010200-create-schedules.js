@@ -64,3 +64,4 @@ module.exports = {
         return queryInterface.dropTable("Schedules");
     }
 };
+//# sourceMappingURL=20211227010200-create-schedules.js.map

@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Users", "profileImage");
     }
 };
+//# sourceMappingURL=20230825080921-add-profile-image-to-user.js.map

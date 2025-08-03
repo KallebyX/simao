@@ -51,3 +51,4 @@ module.exports = {
         return queryInterface.dropTable("ChatMessages");
     }
 };
+//# sourceMappingURL=20220425000002-create-table-ChatMessages.js.map

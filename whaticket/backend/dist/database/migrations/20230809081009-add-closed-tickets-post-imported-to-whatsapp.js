@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "closedTicketsPostImported");
     }
 };
+//# sourceMappingURL=20230809081009-add-closed-tickets-post-imported-to-whatsapp.js.map

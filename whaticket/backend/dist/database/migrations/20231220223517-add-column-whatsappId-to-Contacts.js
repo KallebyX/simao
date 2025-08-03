@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Contacts", "whatsappId");
     }
 };
+//# sourceMappingURL=20231220223517-add-column-whatsappId-to-Contacts.js.map

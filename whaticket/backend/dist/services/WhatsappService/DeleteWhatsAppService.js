@@ -15,3 +15,4 @@ const DeleteWhatsAppService = async (id) => {
     await whatsapp.destroy();
 };
 exports.default = DeleteWhatsAppService;
+//# sourceMappingURL=DeleteWhatsAppService.js.map

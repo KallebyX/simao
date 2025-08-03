@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("CompaniesSettings", "DirectTicketsToWallets");
     }
 };
+//# sourceMappingURL=20231122223411-add-DirectTicketsToWallets-to-CompaniesSettings.js.map

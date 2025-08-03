@@ -21,3 +21,4 @@ const store = async (req, res) => {
     });
 };
 exports.store = store;
+//# sourceMappingURL=VersionController.js.map

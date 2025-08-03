@@ -21,3 +21,4 @@ module.exports = {
         ]);
     }
 };
+//# sourceMappingURL=20210109192523-add-column-status-and-schedules-to-Companies.js.map

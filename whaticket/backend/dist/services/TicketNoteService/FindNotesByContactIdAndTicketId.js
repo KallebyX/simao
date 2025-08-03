@@ -23,3 +23,4 @@ const FindNotesByContactIdAndTicketId = async ({ contactId, ticketId }) => {
     return notes;
 };
 exports.default = FindNotesByContactIdAndTicketId;
+//# sourceMappingURL=FindNotesByContactIdAndTicketId.js.map

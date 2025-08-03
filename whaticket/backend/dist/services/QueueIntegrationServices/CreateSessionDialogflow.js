@@ -27,3 +27,4 @@ const createDialogflowSessionWithModel = async (model) => {
     return createDialogflowSession(model.id, model.projectName, model.jsonContent);
 };
 exports.createDialogflowSessionWithModel = createDialogflowSessionWithModel;
+//# sourceMappingURL=CreateSessionDialogflow.js.map

@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Plans", "useExternalApi");
     }
 };
+//# sourceMappingURL=20230106164900-add-useExternalApi-Plans.js.map

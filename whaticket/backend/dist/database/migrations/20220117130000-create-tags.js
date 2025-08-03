@@ -39,3 +39,4 @@ module.exports = {
         return queryInterface.dropTable("Tags");
     }
 };
+//# sourceMappingURL=20220117130000-create-tags.js.map

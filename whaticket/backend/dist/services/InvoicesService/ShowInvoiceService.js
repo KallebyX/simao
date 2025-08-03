@@ -13,3 +13,4 @@ const ShowInvoceService = async (Invoiceid) => {
     return invoice;
 };
 exports.default = ShowInvoceService;
+//# sourceMappingURL=ShowInvoiceService.js.map

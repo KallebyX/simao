@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var Message_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Contact_1 = __importDefault(require("./Contact"));
@@ -19,13 +18,41 @@ const Ticket_1 = __importDefault(require("./Ticket"));
 const Company_1 = __importDefault(require("./Company"));
 const Queue_1 = __importDefault(require("./Queue"));
 const TicketTraking_1 = __importDefault(require("./TicketTraking"));
-let Message = Message_1 = class Message extends sequelize_typescript_1.Model {
+let Message = class Message extends sequelize_typescript_1.Model {
+    id;
+    remoteJid;
+    participant;
+    dataJson;
+    ack;
+    read;
+    fromMe;
+    body;
     get mediaUrl() {
         if (this.getDataValue("mediaUrl")) {
             return `${process.env.BACKEND_URL}${process.env.PROXY_PORT ? `:${process.env.PROXY_PORT}` : ""}/public/company${this.companyId}/${this.getDataValue("mediaUrl")}`;
         }
         return null;
     }
+    mediaType;
+    isDeleted;
+    createdAt;
+    updatedAt;
+    quotedMsgId;
+    quotedMsg;
+    ticketId;
+    ticket;
+    ticketTrakingId;
+    ticketTraking;
+    contactId;
+    contact;
+    companyId;
+    company;
+    queueId;
+    queue;
+    wid;
+    isPrivate;
+    isEdited;
+    isForwarded;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -87,12 +114,12 @@ __decorate([
     __metadata("design:type", Date)
 ], Message.prototype, "updatedAt", void 0);
 __decorate([
-    (0, sequelize_typescript_1.ForeignKey)(() => Message_1),
+    (0, sequelize_typescript_1.ForeignKey)(() => Message),
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
 ], Message.prototype, "quotedMsgId", void 0);
 __decorate([
-    (0, sequelize_typescript_1.BelongsTo)(() => Message_1, "quotedMsgId"),
+    (0, sequelize_typescript_1.BelongsTo)(() => Message, "quotedMsgId"),
     __metadata("design:type", Message)
 ], Message.prototype, "quotedMsg", void 0);
 __decorate([
@@ -159,7 +186,8 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Boolean)
 ], Message.prototype, "isForwarded", void 0);
-Message = Message_1 = __decorate([
+Message = __decorate([
     sequelize_typescript_1.Table
 ], Message);
 exports.default = Message;
+//# sourceMappingURL=Message.js.map

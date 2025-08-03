@@ -17,3 +17,4 @@ const ListChatBotService = async () => {
     return chatBot;
 };
 exports.default = ListChatBotService;
+//# sourceMappingURL=ListChatBotServices.js.map

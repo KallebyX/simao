@@ -23,6 +23,28 @@ const ContactWallet_1 = __importDefault(require("./ContactWallet"));
 const User_1 = __importDefault(require("./User"));
 const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 let Contact = class Contact extends sequelize_typescript_1.Model {
+    id;
+    name;
+    number;
+    email;
+    profilePicUrl;
+    isGroup;
+    disableBot;
+    acceptAudioMessage;
+    active;
+    channel;
+    createdAt;
+    updatedAt;
+    tickets;
+    extraInfo;
+    contactTags;
+    tags;
+    companyId;
+    company;
+    schedules;
+    remoteJid;
+    lgpdAcceptedAt;
+    pictureUpdated;
     get urlPicture() {
         if (this.getDataValue("urlPicture")) {
             return this.getDataValue("urlPicture") === 'nopicture.png' ? `${process.env.FRONTEND_URL}/nopicture.png` :
@@ -30,6 +52,10 @@ let Contact = class Contact extends sequelize_typescript_1.Model {
         }
         return null;
     }
+    wallets;
+    contactWallets;
+    whatsappId;
+    whatsapp;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -162,3 +188,4 @@ Contact = __decorate([
     sequelize_typescript_1.Table
 ], Contact);
 exports.default = Contact;
+//# sourceMappingURL=Contact.js.map

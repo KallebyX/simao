@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Plans", "isPublic");
     }
 };
+//# sourceMappingURL=20230915212800-add-public-to-plans.js.map

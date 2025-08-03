@@ -22,3 +22,4 @@ const UpdateOneSettingService = async ({ key, value }) => {
     return setting;
 };
 exports.default = UpdateOneSettingService;
+//# sourceMappingURL=UpdateOneSettingService.js.map

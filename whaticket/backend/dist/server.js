@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
 const http_graceful_shutdown_1 = __importDefault(require("http-graceful-shutdown"));
-const https_1 = __importDefault(require("https")); // Importando https para o servidor
-const fs_1 = __importDefault(require("fs")); // Para ler os arquivos do certificado
+const https_1 = __importDefault(require("https"));
+const fs_1 = __importDefault(require("fs"));
 const app_1 = __importDefault(require("./app"));
 const socket_1 = require("./libs/socket");
 const logger_1 = __importDefault(require("./utils/logger"));
@@ -80,3 +80,4 @@ else {
     (0, socket_1.initIO)(server);
     (0, http_graceful_shutdown_1.default)(server);
 }
+//# sourceMappingURL=server.js.map

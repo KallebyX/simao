@@ -111,13 +111,6 @@ const storeFacebook = async (req, res) => {
     try {
         const { facebookUserId, facebookUserToken, addInstagram } = req.body;
         const { companyId } = req.user;
-        // const company = await ShowCompanyService(companyId)
-        // const plan = await ShowPlanService(company.planId);
-        // if (!plan.useFacebook) {
-        //   return res.status(400).json({
-        //     error: "Você não possui permissão para acessar este recurso!"
-        //   });
-        // }
         const { data } = await (0, graphAPI_1.getPageProfile)(facebookUserId, facebookUserToken);
         if (data.length === 0) {
             return res.status(400).json({
@@ -216,7 +209,6 @@ const show = async (req, res) => {
     const { whatsappId } = req.params;
     const { companyId } = req.user;
     const { session } = req.query;
-    // console.log("SHOWING WHATSAPP", whatsappId)
     const whatsapp = await (0, ShowWhatsAppService_1.default)(whatsappId, companyId, session);
     return res.status(200).json(whatsapp);
 };
@@ -381,8 +373,8 @@ exports.removeAdmin = removeAdmin;
 const showAdmin = async (req, res) => {
     const { whatsappId } = req.params;
     const { companyId } = req.user;
-    // console.log("SHOWING WHATSAPP ADMIN", whatsappId)
     const whatsapp = await (0, ShowWhatsAppServiceAdmin_1.default)(whatsappId);
     return res.status(200).json(whatsapp);
 };
 exports.showAdmin = showAdmin;
+//# sourceMappingURL=WhatsAppController.js.map

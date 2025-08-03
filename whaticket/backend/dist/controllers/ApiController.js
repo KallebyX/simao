@@ -15,13 +15,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -53,6 +63,8 @@ const path_1 = __importDefault(require("path"));
 const FindOrCreateATicketTrakingService_1 = __importDefault(require("../services/TicketServices/FindOrCreateATicketTrakingService"));
 const async_mutex_1 = require("async-mutex");
 class OnWhatsAppDto {
+    jid;
+    exists;
     constructor(jid, exists) {
         this.jid = jid;
         this.exists = exists;
@@ -61,7 +73,6 @@ class OnWhatsAppDto {
 exports.OnWhatsAppDto = OnWhatsAppDto;
 const createContact = async (whatsappId, companyId, newContact, userId, queueId, wbot) => {
     try {
-        // await CheckIsValidContact(newContact, companyId);
         const validNumber = await (0, CheckNumber_1.default)(newContact, companyId, newContact.length > 17);
         const contactData = {
             name: `${validNumber}`,
@@ -76,7 +87,7 @@ const createContact = async (whatsappId, companyId, newContact, userId, queueId,
         const contact = await (0, CreateOrUpdateContactService_1.default)(contactData);
         const settings = await CompaniesSettings_1.default.findOne({
             where: { companyId }
-        }); // return contact;
+        });
         let whatsapp;
         if (whatsappId === undefined) {
             whatsapp = await (0, GetDefaultWhatsApp_1.default)(whatsappId, companyId);
@@ -88,7 +99,6 @@ const createContact = async (whatsappId, companyId, newContact, userId, queueId,
             }
         }
         const mutex = new async_mutex_1.Mutex();
-        // Inclui a busca de ticket aqui, se realmente não achar um ticket, então vai para o findorcreate
         const createTicket = await mutex.runExclusive(async () => {
             const ticket = await (0, FindOrCreateTicketService_1.default)(contact, whatsapp, 0, companyId, queueId, userId, null, whatsapp.channel, null, false, settings, false, false);
             return ticket;
@@ -129,62 +139,6 @@ function createJid(number) {
         ? `${number}@g.us`
         : `${formatBRNumber(number)}@s.whatsapp.net`;
 }
-// export const indexLink = async (req: Request, res: Response): Promise<Response> => {
-//   const newContact: ContactData = req.body;
-//   const { whatsappId }: WhatsappData = req.body;
-//   const { msdelay }: any = req.body;
-//   const url = req.body.url;
-//   const caption = req.body.caption;
-//   const authHeader = req.headers.authorization;
-//   const [, token] = authHeader.split(" ");
-//   const whatsapp = await Whatsapp.findOne({ where: { token } });
-//   const companyId = whatsapp.companyId;
-//   newContact.number = newContact.number.replace("-", "").replace(" ", "");
-//   const schema = Yup.object().shape({
-//     number: Yup.string()
-//       .required()
-//       .matches(/^\d+$/, "Invalid number format. Only numbers is allowed.")
-//   });
-//   try {
-//     await schema.validate(newContact);
-//   } catch (err: any) {
-//     throw new AppError(err.message);
-//   }
-//   const contactAndTicket = await createContact(whatsappId, companyId, newContact.number);
-//   if (!contactAndTicket) {
-//     throw new AppError("Cliente em outro atendimento")
-//   }
-//   await SendWhatsAppMessageLink({ whatsappId, contact: contactAndTicket.contact, url, caption, msdelay });
-//   setTimeout(async () => {
-//     const { dateToClient } = useDate();
-//     const hoje: string = dateToClient(new Date())
-//     const timestamp = moment().format();
-//     const exist = await ApiUsages.findOne({
-//       where: {
-//         dateUsed: hoje,
-//         companyId: companyId
-//       }
-//     });
-//     if (exist) {
-//       await exist.update({
-//         usedPDF: exist.dataValues["usedPDF"] + 1,
-//         UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-//         updatedAt: timestamp
-//       });
-//     } else {
-//       const usage = await ApiUsages.create({
-//         companyId: companyId,
-//         dateUsed: hoje,
-//       });
-//       await usage.update({
-//         usedPDF: usage.dataValues["usedPDF"] + 1,
-//         UsedOnDay: usage.dataValues["UsedOnDay"] + 1,
-//         updatedAt: timestamp
-//       });
-//     }
-//   }, 100);
-//   return res.send({ status: "SUCCESS" });
-// };
 const index = async (req, res) => {
     const newContact = req.body;
     const { whatsappId } = req.body;
@@ -217,7 +171,6 @@ const index = async (req, res) => {
         queue = await (0, ShowQueueService_1.default)(queueId, companyId);
     }
     let bodyMessage;
-    // @ts-ignore: Unreachable code error
     if (sendSignature && !(0, lodash_1.isNil)(user)) {
         bodyMessage = `*${user.name}:*\n${body.trim()}`;
     }
@@ -227,7 +180,6 @@ const index = async (req, res) => {
     if (noRegister) {
         if (medias) {
             try {
-                // console.log(medias)
                 await Promise.all(medias.map(async (media) => {
                     const publicFolder = path_1.default.resolve(__dirname, "..", "..", "public");
                     const filePath = path_1.default.join(publicFolder, `company${companyId}`, media.filename);
@@ -274,7 +226,6 @@ const index = async (req, res) => {
             sentMessage = await (0, SendWhatsAppMessageAPI_1.default)({ body: `\u200e ${bodyMessage}`, whatsappId: whatsapp.id, contact: contactAndTicket.contact, quotedMsg, msdelay });
             await (0, wbotMessageListener_1.verifyMessage)(sentMessage, contactAndTicket, contactAndTicket.contact);
         }
-        // @ts-ignore: Unreachable code error
         if (closeTicket) {
             setTimeout(async () => {
                 await (0, UpdateTicketService_1.default)({
@@ -307,7 +258,6 @@ const index = async (req, res) => {
         if (exist) {
             if (medias) {
                 await Promise.all(medias.map(async (media) => {
-                    // const type = path.extname(media.originalname.replace('/','-'))
                     if (media.mimetype.includes("pdf")) {
                         await exist.update({
                             usedPDF: exist.dataValues["usedPDF"] + 1,
@@ -353,7 +303,6 @@ const index = async (req, res) => {
             });
             if (medias) {
                 await Promise.all(medias.map(async (media) => {
-                    // const type = path.extname(media.originalname.replace('/','-'))
                     if (media.mimetype.includes("pdf")) {
                         await exist.update({
                             usedPDF: exist.dataValues["usedPDF"] + 1,
@@ -513,22 +462,6 @@ const checkNumber = async (req, res) => {
 exports.checkNumber = checkNumber;
 const indexWhatsappsId = async (req, res) => {
     return res.status(200).json('oi');
-    // const { companyId } = req.user;
-    // const whatsapps = await ListWhatsAppsService({ companyId });
-    // let wpp = [];
-    // if (whatsapps.length > 0) {
-    //     whatsapps.forEach(whatsapp => {
-    //         let wppString;
-    //         wppString = {
-    //             id: whatsapp.id,
-    //             name: whatsapp.name,
-    //             status: whatsapp.status,
-    //             isDefault: whatsapp.isDefault,
-    //             number: whatsapp.number
-    //         }
-    //         wpp.push(wppString)
-    //     });
-    // }
-    // return res.status(200).json(wpp);
 };
 exports.indexWhatsappsId = indexWhatsappsId;
+//# sourceMappingURL=ApiController.js.map

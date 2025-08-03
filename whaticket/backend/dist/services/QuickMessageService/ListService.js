@@ -8,28 +8,17 @@ const QuickMessage_1 = __importDefault(require("../../models/QuickMessage"));
 const ListService = async ({ searchParam = "", pageNumber = "1", companyId, userId }) => {
     const sanitizedSearchParam = searchParam.toLocaleLowerCase().trim();
     let whereCondition = {
-        // [Op.or]: [
-        //   {
         shortcode: sequelize_1.Sequelize.where(sequelize_1.Sequelize.fn("LOWER", sequelize_1.Sequelize.col("shortcode")), "LIKE", `%${sanitizedSearchParam}%`)
-        //   },
-        //   {
-        //     message: Sequelize.where(
-        //       Sequelize.fn("LOWER", Sequelize.col("message")),
-        //       "LIKE",
-        //       `%${sanitizedSearchParam}%`
-        //     )
-        //   }
-        // ]
     };
     whereCondition = {
         ...whereCondition,
         companyId,
         [sequelize_1.Op.or]: [
             {
-                visao: true // Se "visao" é verdadeiro, todas as mensagens são visíveis
+                visao: true
             },
             {
-                userId // Se "visao" é falso, apenas as mensagens do usuário atual são visíveis
+                userId
             }
         ]
     };
@@ -49,3 +38,4 @@ const ListService = async ({ searchParam = "", pageNumber = "1", companyId, user
     };
 };
 exports.default = ListService;
+//# sourceMappingURL=ListService.js.map

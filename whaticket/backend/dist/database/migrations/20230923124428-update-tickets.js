@@ -8,3 +8,4 @@ module.exports = {
         await queryInterface.sequelize.query('ALTER TABLE public."Tickets" ADD CONSTRAINT "Tickets_integrationId_fkey" FOREIGN KEY ("integrationId") REFERENCES public."QueueIntegrations"(id) ON DELETE SET NULL ON UPDATE CASCADE;');
     }
 };
+//# sourceMappingURL=20230923124428-update-tickets.js.map

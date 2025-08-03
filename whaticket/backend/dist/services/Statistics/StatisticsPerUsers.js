@@ -38,8 +38,8 @@ const StatisticsPerUser = async ({ startDate, endDate, companyId }) => {
             endDate
         },
         type: sequelize_1.QueryTypes.SELECT
-        // logging: console.log
     });
     return data;
 };
 exports.default = StatisticsPerUser;
+//# sourceMappingURL=StatisticsPerUsers.js.map

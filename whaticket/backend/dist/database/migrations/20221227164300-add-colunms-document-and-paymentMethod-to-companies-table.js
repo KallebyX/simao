@@ -21,3 +21,4 @@ module.exports = {
         ]);
     }
 };
+//# sourceMappingURL=20221227164300-add-colunms-document-and-paymentMethod-to-companies-table.js.map

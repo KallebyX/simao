@@ -12,3 +12,4 @@ whatsappSessionRoutes.put("/whatsappsession/:whatsappId", isAuth_1.default, What
 whatsappSessionRoutes.delete("/whatsappsession/:whatsappId", isAuth_1.default, WhatsAppSessionController_1.default.remove);
 whatsappSessionRoutes.delete("/whatsappsession/admin/:whatsappId", isAuth_1.default, WhatsAppSessionController_1.default.removeadmin);
 exports.default = whatsappSessionRoutes;
+//# sourceMappingURL=whatsappSessionRoutes.js.map

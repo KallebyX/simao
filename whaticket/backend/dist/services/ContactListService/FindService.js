@@ -16,3 +16,4 @@ const FindService = async ({ companyId }) => {
     return notes;
 };
 exports.default = FindService;
+//# sourceMappingURL=FindService.js.map

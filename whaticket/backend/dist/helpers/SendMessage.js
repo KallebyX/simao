@@ -34,3 +34,4 @@ const SendMessage = async (whatsapp, messageData, isGroup = false) => {
     }
 };
 exports.SendMessage = SendMessage;
+//# sourceMappingURL=SendMessage.js.map

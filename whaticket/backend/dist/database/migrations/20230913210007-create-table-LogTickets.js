@@ -51,3 +51,4 @@ module.exports = {
         return queryInterface.dropTable("LogTickets");
     }
 };
+//# sourceMappingURL=20230913210007-create-table-LogTickets.js.map

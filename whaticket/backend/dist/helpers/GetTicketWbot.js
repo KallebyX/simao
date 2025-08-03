@@ -14,3 +14,4 @@ const GetTicketWbot = async (ticket) => {
     return wbot;
 };
 exports.default = GetTicketWbot;
+//# sourceMappingURL=GetTicketWbot.js.map

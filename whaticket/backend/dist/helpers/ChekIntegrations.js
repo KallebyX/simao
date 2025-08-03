@@ -15,3 +15,4 @@ const CheckIntegrations = async (key, companyId) => {
     return integrations.dataValues;
 };
 exports.default = CheckIntegrations;
+//# sourceMappingURL=ChekIntegrations.js.map

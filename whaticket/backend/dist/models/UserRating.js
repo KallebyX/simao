@@ -17,6 +17,16 @@ const Company_1 = __importDefault(require("./Company"));
 const User_1 = __importDefault(require("./User"));
 const Ticket_1 = __importDefault(require("./Ticket"));
 let UserRating = class UserRating extends sequelize_typescript_1.Model {
+    id;
+    ticketId;
+    ticket;
+    companyId;
+    company;
+    userId;
+    user;
+    createdAt;
+    updatedAt;
+    rate;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -67,3 +77,4 @@ UserRating = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "UserRatings" })
 ], UserRating);
 exports.default = UserRating;
+//# sourceMappingURL=UserRating.js.map

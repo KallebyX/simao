@@ -6,3 +6,4 @@ exports.default = {
     refreshSecret: process.env.JWT_REFRESH_SECRET || "myanothersecret",
     refreshExpiresIn: "7d"
 };
+//# sourceMappingURL=auth.js.map

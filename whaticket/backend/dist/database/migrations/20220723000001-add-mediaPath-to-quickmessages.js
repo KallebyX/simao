@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("QuickMessages", "mediaPath");
     }
 };
+//# sourceMappingURL=20220723000001-add-mediaPath-to-quickmessages.js.map

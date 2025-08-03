@@ -16,12 +16,24 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Company_1 = __importDefault(require("./Company"));
 const User_1 = __importDefault(require("./User"));
 let QuickMessage = class QuickMessage extends sequelize_typescript_1.Model {
+    id;
+    shortcode;
+    message;
     get mediaPath() {
         if (this.getDataValue("mediaPath")) {
             return `${process.env.BACKEND_URL}${process.env.PROXY_PORT ? `:${process.env.PROXY_PORT}` : ""}/public/company${this.companyId}/quickMessage/${this.getDataValue("mediaPath")}`;
         }
         return null;
     }
+    mediaName;
+    geral;
+    companyId;
+    userId;
+    company;
+    user;
+    createdAt;
+    updatedAt;
+    visao;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -84,3 +96,4 @@ QuickMessage = __decorate([
     sequelize_typescript_1.Table
 ], QuickMessage);
 exports.default = QuickMessage;
+//# sourceMappingURL=QuickMessage.js.map

@@ -130,3 +130,4 @@ const deleteMedia = async (req, res) => {
     }
 };
 exports.deleteMedia = deleteMedia;
+//# sourceMappingURL=ScheduleController.js.map

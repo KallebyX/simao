@@ -41,3 +41,4 @@ module.exports = {
         return queryInterface.dropTable("Plans");
     }
 };
+//# sourceMappingURL=20210109192522-create-plans-table.js.map

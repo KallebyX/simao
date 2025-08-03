@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("QuickMessages", "visao");
     }
 };
+//# sourceMappingURL=20231105221305-add-visao-to-quickMessages.js.map

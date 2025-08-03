@@ -15,3 +15,4 @@ const DeleteDialogChatBotsServices = async (contactId) => {
     }
 };
 exports.default = DeleteDialogChatBotsServices;
+//# sourceMappingURL=DeleteDialogChatBotsServices.js.map

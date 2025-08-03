@@ -23,3 +23,4 @@ const UpdateWebHookService = async ({ userId, name, companyId, webhookId }) => {
     }
 };
 exports.default = UpdateWebHookService;
+//# sourceMappingURL=UpdateWebHookService.js.map

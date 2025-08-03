@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "facebookUserToken");
     }
 };
+//# sourceMappingURL=20222016014719-add-channel-token.js.map

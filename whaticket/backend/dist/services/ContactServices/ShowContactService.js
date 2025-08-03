@@ -29,3 +29,4 @@ const ShowContactService = async (id, companyId) => {
     return contact;
 };
 exports.default = ShowContactService;
+//# sourceMappingURL=ShowContactService.js.map

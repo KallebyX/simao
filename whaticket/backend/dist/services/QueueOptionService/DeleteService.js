@@ -9,3 +9,4 @@ const DeleteService = async (queueOptionId) => {
     await queueOption.destroy();
 };
 exports.default = DeleteService;
+//# sourceMappingURL=DeleteService.js.map

@@ -20,6 +20,39 @@ const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 const User_1 = __importDefault(require("./User"));
 const Queue_1 = __importDefault(require("./Queue"));
 let Campaign = class Campaign extends sequelize_typescript_1.Model {
+    id;
+    name;
+    message1;
+    message2;
+    message3;
+    message4;
+    message5;
+    confirmationMessage1;
+    confirmationMessage2;
+    confirmationMessage3;
+    confirmationMessage4;
+    confirmationMessage5;
+    status;
+    confirmation;
+    mediaPath;
+    mediaName;
+    scheduledAt;
+    completedAt;
+    createdAt;
+    updatedAt;
+    companyId;
+    company;
+    contactListId;
+    contactList;
+    whatsappId;
+    whatsapp;
+    shipping;
+    userId;
+    user;
+    queueId;
+    queue;
+    statusTicket;
+    openTicket;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -164,3 +197,4 @@ Campaign = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "Campaigns" })
 ], Campaign);
 exports.default = Campaign;
+//# sourceMappingURL=Campaign.js.map

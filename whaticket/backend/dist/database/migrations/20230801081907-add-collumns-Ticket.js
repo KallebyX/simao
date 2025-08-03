@@ -27,3 +27,4 @@ module.exports = {
         ]);
     }
 };
+//# sourceMappingURL=20230801081907-add-collumns-Ticket.js.map

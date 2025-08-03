@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Tags", "kanban");
     }
 };
+//# sourceMappingURL=20230723301001-add-kanban-to-Tags.js.map

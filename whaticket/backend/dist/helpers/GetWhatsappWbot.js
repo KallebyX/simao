@@ -6,3 +6,4 @@ const GetWhatsappWbot = async (whatsapp) => {
     return wbot;
 };
 exports.default = GetWhatsappWbot;
+//# sourceMappingURL=GetWhatsappWbot.js.map

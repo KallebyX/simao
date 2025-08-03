@@ -18,3 +18,4 @@ module.exports = {
         await queryInterface.removeColumn("Tickets", "lastFlowId");
     }
 };
+//# sourceMappingURL=20230823114236-add-column-flow-and-location.js.map

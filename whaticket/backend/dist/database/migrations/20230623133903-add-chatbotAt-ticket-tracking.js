@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("TicketTraking", "chatbotAt");
     }
 };
+//# sourceMappingURL=20230623133903-add-chatbotAt-ticket-tracking.js.map

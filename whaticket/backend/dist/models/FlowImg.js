@@ -12,7 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FlowImgModel = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 let FlowImgModel = class FlowImgModel extends sequelize_typescript_1.Model {
+    id;
+    companyId;
+    userId;
+    name;
+    createdAt;
+    updatedAt;
 };
+exports.FlowImgModel = FlowImgModel;
 __decorate([
     sequelize_typescript_1.PrimaryKey,
     sequelize_typescript_1.AutoIncrement,
@@ -39,9 +46,9 @@ __decorate([
     sequelize_typescript_1.UpdatedAt,
     __metadata("design:type", Date)
 ], FlowImgModel.prototype, "updatedAt", void 0);
-FlowImgModel = __decorate([
+exports.FlowImgModel = FlowImgModel = __decorate([
     (0, sequelize_typescript_1.Table)({
         tableName: "FlowImgs"
     })
 ], FlowImgModel);
-exports.FlowImgModel = FlowImgModel;
+//# sourceMappingURL=FlowImg.js.map

@@ -83,3 +83,4 @@ module.exports = {
         return queryInterface.dropTable("Invoices");
     }
 };
+//# sourceMappingURL=20230119000003-create-invoices.js.map

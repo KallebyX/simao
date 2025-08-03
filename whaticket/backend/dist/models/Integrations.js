@@ -16,6 +16,25 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Queue_1 = __importDefault(require("./Queue"));
 const Company_1 = __importDefault(require("./Company"));
 let Integrations = class Integrations extends sequelize_typescript_1.Model {
+    id;
+    companyId;
+    type;
+    name;
+    projectName;
+    jsonContent;
+    isActive;
+    urlN8N;
+    language;
+    createdAt;
+    updatedAt;
+    dataValues;
+    token;
+    foneContact;
+    userLogin;
+    passLogin;
+    initialCurrentMonth;
+    queues;
+    company;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -100,3 +119,4 @@ Integrations = __decorate([
     sequelize_typescript_1.Table
 ], Integrations);
 exports.default = Integrations;
+//# sourceMappingURL=Integrations.js.map

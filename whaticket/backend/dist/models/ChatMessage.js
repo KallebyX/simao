@@ -16,6 +16,16 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const User_1 = __importDefault(require("./User"));
 const Chat_1 = __importDefault(require("./Chat"));
 let ChatMessage = class ChatMessage extends sequelize_typescript_1.Model {
+    id;
+    chatId;
+    senderId;
+    message;
+    mediaPath;
+    mediaName;
+    createdAt;
+    updatedAt;
+    chat;
+    sender;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -65,3 +75,4 @@ ChatMessage = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "ChatMessages" })
 ], ChatMessage);
 exports.default = ChatMessage;
+//# sourceMappingURL=ChatMessage.js.map

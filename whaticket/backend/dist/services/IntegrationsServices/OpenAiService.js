@@ -24,14 +24,12 @@ const sanitizeName = (name) => {
     return sanitized.substring(0, 60);
 };
 const handleOpenAi = async (openAiSettings, msg, wbot, ticket, contact, mediaSent, ticketTraking) => {
-    // REGRA PARA DESABILITAR O BOT PARA ALGUM CONTATO
     if (contact.disableBot) {
         return;
     }
     const bodyMessage = (0, wbotMessageListener_1.getBodyMessage)(msg);
     if (!bodyMessage)
         return;
-    // console.log("GETTING WHATSAPP HANDLE OPENAI", ticket.whatsappId, ticket.id)
     if (!openAiSettings)
         return;
     if (msg.messageStubType)
@@ -41,9 +39,6 @@ const handleOpenAi = async (openAiSettings, msg, wbot, ticket, contact, mediaSen
     const openAiIndex = sessionsOpenAi.findIndex(s => s.id === ticket.id);
     if (openAiIndex === -1) {
         console.log("OpenAiService", openAiSettings.apiKey);
-        // const configuration = new Configuration({
-        //   apiKey: prompt.apiKey
-        // });
         openai = new openai_1.default({
             apiKey: openAiSettings.apiKey
         });
@@ -186,3 +181,4 @@ const handleOpenAi = async (openAiSettings, msg, wbot, ticket, contact, mediaSen
     messagesOpenAi = [];
 };
 exports.handleOpenAi = handleOpenAi;
+//# sourceMappingURL=OpenAiService.js.map

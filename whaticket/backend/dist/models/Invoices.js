@@ -15,6 +15,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Company_1 = __importDefault(require("./Company"));
 let Invoices = class Invoices extends sequelize_typescript_1.Model {
+    id;
+    companyId;
+    dueDate;
+    detail;
+    status;
+    value;
+    users;
+    connections;
+    queues;
+    useWhatsapp;
+    useFacebook;
+    useInstagram;
+    useCampaigns;
+    useSchedules;
+    useInternalChat;
+    useExternalApi;
+    createdAt;
+    updatedAt;
+    linkInvoice;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -99,3 +118,4 @@ Invoices = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "Invoices" })
 ], Invoices);
 exports.default = Invoices;
+//# sourceMappingURL=Invoices.js.map

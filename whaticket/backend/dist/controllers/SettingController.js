@@ -16,9 +16,6 @@ const UpdateOneSettingService_1 = __importDefault(require("../services/SettingSe
 const GetPublicSettingService_1 = __importDefault(require("../services/SettingServices/GetPublicSettingService"));
 const index = async (req, res) => {
     const { companyId } = req.user;
-    // if (req.user.profile !== "admin") {
-    //   throw new AppError("ERR_NO_PERMISSION", 403);
-    // }
     const settings = await (0, ListSettingsService_1.default)({ companyId });
     return res.status(200).json(settings);
 };
@@ -130,3 +127,4 @@ const storePrivateFile = async (req, res) => {
     return res.status(200).json(setting.value);
 };
 exports.storePrivateFile = storePrivateFile;
+//# sourceMappingURL=SettingController.js.map

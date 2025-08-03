@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Companies", "lastLogin");
     }
 };
+//# sourceMappingURL=20230123155600-add-colunms-lastLogin-to-companies-table.js.map

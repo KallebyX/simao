@@ -3,7 +3,7 @@
 const _ = require('lodash');
 const utils = require('./utils');
 const scripts = require('./scripts');
-const debuglog = require('debuglog')('bull');
+const debuglog = require('util').debuglog('bull');
 const errors = require('./errors');
 const backoffs = require('./backoffs');
 
@@ -57,6 +57,7 @@ const Job = function(queue, name, data, opts) {
   this.attemptsMade = 0;
 
   this.toKey = _.bind(queue.toKey, queue);
+  this.debounceId = this.opts.debounce ? this.opts.debounce.id : undefined;
 };
 
 function setDefaultOpts(opts) {
@@ -82,7 +83,8 @@ function addJob(queue, client, job) {
   return scripts.addJob(client, queue, jobData, {
     lifo: opts.lifo,
     customJobId: opts.jobId,
-    priority: opts.priority
+    priority: opts.priority,
+    debounce: opts.debounce
   });
 }
 
@@ -159,13 +161,13 @@ Job.prototype.progress = function(progress) {
   return scripts.updateProgress(this, progress);
 };
 
-Job.prototype.update = function(data) {
+Job.prototype.update = async function(data) {
   this.data = data;
-  return this.queue.client.hset(
-    this.queue.toKey(this.id),
-    'data',
-    JSON.stringify(data)
-  );
+  const code = await scripts.updateData(this, data);
+
+  if (code < 0) {
+    throw scripts.finishedErrors(code, this.id, 'updateData');
+  }
 };
 
 Job.prototype.toJSON = function() {
@@ -182,6 +184,7 @@ Job.prototype.toJSON = function() {
     failedReason: this.failedReason,
     stacktrace: this.stacktrace || null,
     returnvalue: this.returnvalue || null,
+    debounceId: this.debounceId || null,
     finishedOn: this.finishedOn || null,
     processedOn: this.processedOn || null
   };
@@ -339,7 +342,7 @@ Job.prototype.moveToFailed = async function(err, ignoreLock) {
   const results = await multi.exec();
   const code = _.last(results)[1];
   if (code < 0) {
-    throw scripts.finishedErrors(code, this.id, command);
+    throw scripts.finishedErrors(code, this.id, command, 'active');
   }
 };
 
@@ -394,8 +397,7 @@ Job.prototype.retry = function() {
  *
  */
 Job.prototype.log = function(logRow) {
-  const logsKey = this.toKey(this.id) + ':logs';
-  return this.queue.client.rpush(logsKey, logRow);
+  return scripts.addLog(this.queue, this.id, logRow);
 };
 
 Job.prototype.isCompleted = function() {
@@ -583,19 +585,22 @@ Job.prototype._isInList = function(list) {
 Job.prototype._saveAttempt = function(multi, err) {
   this.attemptsMade++;
 
-  const params = {
-    attemptsMade: this.attemptsMade
-  };
+  this.stacktrace = this.stacktrace || [];
 
-  if (this.opts.stackTraceLimit) {
-    this.stacktrace = this.stacktrace.slice(0, this.opts.stackTraceLimit - 1);
+  if (err && err.stack) {
+    this.stacktrace.push(err.stack);
+    if (this.opts.stackTraceLimit) {
+      this.stacktrace = this.stacktrace.slice(-this.opts.stackTraceLimit);
+    }
   }
 
-  this.stacktrace.push(err.stack);
-  params.stacktrace = JSON.stringify(this.stacktrace);
-  params.failedReason = err.message;
+  const args = scripts.saveStacktraceArgs(
+    this,
+    JSON.stringify(this.stacktrace),
+    err && err.message,
+  );
 
-  multi.hmset(this.queue.toKey(this.id), params);
+  multi.saveStacktrace(args);
 };
 
 Job.fromJSON = function(queue, json, jobId) {
@@ -637,6 +642,10 @@ Job.fromJSON = function(queue, json, jobId) {
 
   if (typeof json.returnvalue === 'string') {
     job.returnvalue = getReturnValue(json.returnvalue);
+  }
+
+  if (json.deid) {
+    job.debounceId = json.deid;
   }
 
   return job;

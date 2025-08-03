@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Plans", "amount");
     }
 };
+//# sourceMappingURL=20210109192523-add-column-amount-to-Plan.js.map

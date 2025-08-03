@@ -119,3 +119,4 @@ const ShowTicketService = async (id, companyId) => {
     return ticket;
 };
 exports.default = ShowTicketService;
+//# sourceMappingURL=ShowTicketService.js.map

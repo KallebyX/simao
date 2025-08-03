@@ -40,3 +40,4 @@ module.exports = {
         return queryInterface.dropTable("FlowDefaults");
     }
 };
+//# sourceMappingURL=20230922214345-create-table-flow-default.js.map

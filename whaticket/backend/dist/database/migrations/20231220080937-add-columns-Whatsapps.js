@@ -25,3 +25,4 @@ module.exports = {
             queryInterface.removeColumn("Whatsapps", "collectiveVacationStart");
     }
 };
+//# sourceMappingURL=20231220080937-add-columns-Whatsapps.js.map

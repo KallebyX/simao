@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Contacts", "companyId");
     }
 };
+//# sourceMappingURL=20210109192517-add-column-companyId-to-Contacts-table.js.map

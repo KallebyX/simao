@@ -24,3 +24,4 @@ const ShowFileService = async (id, companyId) => {
     return fileList;
 };
 exports.default = ShowFileService;
+//# sourceMappingURL=ShowService.js.map

@@ -26,3 +26,4 @@ module.exports = {
             queryInterface.removeColumn("Campaigns", "statusTicket");
     }
 };
+//# sourceMappingURL=20231019113637-add-columns-Campaign.js.map

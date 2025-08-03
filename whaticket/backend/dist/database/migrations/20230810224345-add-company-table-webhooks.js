@@ -13,3 +13,4 @@ module.exports = {
         await queryInterface.removeColumn("Webhooks", "company_id");
     }
 };
+//# sourceMappingURL=20230810224345-add-company-table-webhooks.js.map

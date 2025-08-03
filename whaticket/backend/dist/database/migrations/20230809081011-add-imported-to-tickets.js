@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Tickets", "imported");
     }
 };
+//# sourceMappingURL=20230809081011-add-imported-to-tickets.js.map

@@ -57,3 +57,4 @@ module.exports = {
         return queryInterface.dropTable("Subscriptions");
     }
 };
+//# sourceMappingURL=20230119000002-create-subscriptions.js.map

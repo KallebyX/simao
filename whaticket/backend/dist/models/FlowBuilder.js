@@ -12,7 +12,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FlowBuilderModel = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 let FlowBuilderModel = class FlowBuilderModel extends sequelize_typescript_1.Model {
+    id;
+    user_id;
+    name;
+    company_id;
+    active;
+    flow;
+    variables;
+    createdAt;
+    updatedAt;
 };
+exports.FlowBuilderModel = FlowBuilderModel;
 __decorate([
     sequelize_typescript_1.PrimaryKey,
     sequelize_typescript_1.AutoIncrement,
@@ -51,9 +61,9 @@ __decorate([
     sequelize_typescript_1.UpdatedAt,
     __metadata("design:type", Date)
 ], FlowBuilderModel.prototype, "updatedAt", void 0);
-FlowBuilderModel = __decorate([
+exports.FlowBuilderModel = FlowBuilderModel = __decorate([
     (0, sequelize_typescript_1.Table)({
         tableName: "FlowBuilders"
     })
 ], FlowBuilderModel);
-exports.FlowBuilderModel = FlowBuilderModel;
+//# sourceMappingURL=FlowBuilder.js.map

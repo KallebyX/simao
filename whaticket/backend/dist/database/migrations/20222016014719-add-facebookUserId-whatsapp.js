@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "facebookUserId");
     }
 };
+//# sourceMappingURL=20222016014719-add-facebookUserId-whatsapp.js.map

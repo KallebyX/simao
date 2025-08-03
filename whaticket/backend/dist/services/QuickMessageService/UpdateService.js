@@ -17,7 +17,6 @@ const UpdateService = async (data) => {
     await record.update({
         shortcode,
         message,
-        // userId,
         geral,
         mediaPath,
         visao
@@ -25,3 +24,4 @@ const UpdateService = async (data) => {
     return record;
 };
 exports.default = UpdateService;
+//# sourceMappingURL=UpdateService.js.map

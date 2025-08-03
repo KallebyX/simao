@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Contacts", "acceptAudioMessage");
     }
 };
+//# sourceMappingURL=20221123155118-add-acceptAudioMessages-to-contact.js.map

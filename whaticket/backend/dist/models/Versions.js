@@ -11,6 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 let Version = class Version extends sequelize_typescript_1.Model {
+    id;
+    versionFrontend;
+    versionBackend;
+    createdAt;
+    updatedAt;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -40,3 +45,4 @@ Version = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "Versions" })
 ], Version);
 exports.default = Version;
+//# sourceMappingURL=Versions.js.map

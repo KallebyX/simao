@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Users", "defaultTicketsManagerWidth");
     }
 };
+//# sourceMappingURL=20231229214537-add-defaultTicketsManagerWidth-Users.js.map

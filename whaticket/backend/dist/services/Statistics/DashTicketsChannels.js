@@ -38,8 +38,8 @@ const DashTicketsChannels = async ({ startDate, endDate, companyId, userId, user
             userId
         },
         type: sequelize_1.QueryTypes.SELECT
-        // logging: console.log
     });
     return data;
 };
 exports.default = DashTicketsChannels;
+//# sourceMappingURL=DashTicketsChannels.js.map

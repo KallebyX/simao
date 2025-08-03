@@ -94,3 +94,4 @@ const remove = async (req, res) => {
     return res.status(200).send();
 };
 exports.remove = remove;
+//# sourceMappingURL=QueueController.js.map

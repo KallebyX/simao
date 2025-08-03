@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "tokenMeta");
     }
 };
+//# sourceMappingURL=20222016014719-add-channel-tokenUser.js.map

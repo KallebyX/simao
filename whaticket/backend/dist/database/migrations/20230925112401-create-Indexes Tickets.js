@@ -14,3 +14,4 @@ module.exports = {
         ]);
     }
 };
+//# sourceMappingURL=20230925112401-create-Indexes%20Tickets.js.map

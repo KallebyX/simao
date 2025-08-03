@@ -121,3 +121,4 @@ const list = async (req, res) => {
     return res.json(ratings);
 };
 exports.list = list;
+//# sourceMappingURL=FilesController.js.map

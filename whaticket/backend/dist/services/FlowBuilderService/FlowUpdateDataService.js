@@ -19,3 +19,4 @@ const FlowUpdateDataService = async ({ companyId, bodyData }) => {
     }
 };
 exports.default = FlowUpdateDataService;
+//# sourceMappingURL=FlowUpdateDataService.js.map

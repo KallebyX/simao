@@ -54,7 +54,6 @@ const store = async (req, res) => {
     if (process.env.DEMO === "ON") {
         throw new AppError_1.default("ERR_NO_PERMISSION", 403);
     }
-    // const companyUser = bodyCompanyId || userCompanyId;
     const companyUser = userCompanyId;
     if (!companyUser) {
         const dataNowMoreTwoDays = new Date();
@@ -145,44 +144,6 @@ const store = async (req, res) => {
     }
 };
 exports.store = store;
-// export const store = async (req: Request, res: Response): Promise<Response> => {
-//   const {
-//     email,
-//     password,
-//     name,
-//     profile,
-//     companyId: bodyCompanyId,
-//     queueIds
-//   } = req.body;
-//   let userCompanyId: number | null = null;
-//   if (req.user !== undefined) {
-//     const { companyId: cId } = req.user;
-//     userCompanyId = cId;
-//   }
-//   if (
-//     req.url === "/signup" &&
-//     (await CheckSettingsHelper("userCreation")) === "disabled"
-//   ) {
-//     throw new AppError("ERR_USER_CREATION_DISABLED", 403);
-//   } else if (req.url !== "/signup" && req.user.profile !== "admin") {
-//     throw new AppError("ERR_NO_PERMISSION", 403);
-//   }
-//   const user = await CreateUserService({
-//     email,
-//     password,
-//     name,
-//     profile,
-//     companyId: bodyCompanyId || userCompanyId,
-//     queueIds
-//   });
-//   const io = getIO();
-//   io.of(String(companyId))
-//  .emit(`company-${userCompanyId}-user`, {
-//     action: "create",
-//     user
-//   });
-//   return res.status(200).json(user);
-// };
 const show = async (req, res) => {
     const { userId } = req.params;
     const { companyId } = req.user;
@@ -197,9 +158,6 @@ const showEmail = async (req, res) => {
 };
 exports.showEmail = showEmail;
 const update = async (req, res) => {
-    // if (req.user.profile !== "admin") {
-    //   throw new AppError("ERR_NO_PERMISSION", 403);
-    // }
     if (process.env.DEMO === "ON") {
         throw new AppError_1.default("ERR_NO_PERMISSION", 403);
     }
@@ -294,3 +252,4 @@ const toggleChangeWidht = async (req, res) => {
     return res.status(200).json(user);
 };
 exports.toggleChangeWidht = toggleChangeWidht;
+//# sourceMappingURL=UserController.js.map

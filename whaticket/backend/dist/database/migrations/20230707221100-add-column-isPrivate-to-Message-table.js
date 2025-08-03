@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Messages", "isPrivate");
     }
 };
+//# sourceMappingURL=20230707221100-add-column-isPrivate-to-Message-table.js.map

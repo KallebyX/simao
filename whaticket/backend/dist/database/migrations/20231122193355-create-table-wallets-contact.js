@@ -45,3 +45,4 @@ module.exports = {
         return queryInterface.dropTable("ContactWallets");
     }
 };
+//# sourceMappingURL=20231122193355-create-table-wallets-contact.js.map

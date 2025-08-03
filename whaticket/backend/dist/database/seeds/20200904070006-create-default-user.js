@@ -28,3 +28,4 @@ module.exports = {
         return queryInterface.bulkDelete("Users", { id: 1 });
     }
 };
+//# sourceMappingURL=20200904070006-create-default-user.js.map

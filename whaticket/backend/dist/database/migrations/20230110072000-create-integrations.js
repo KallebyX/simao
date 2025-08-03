@@ -63,3 +63,4 @@ module.exports = {
         return queryInterface.dropTable("Integrations");
     }
 };
+//# sourceMappingURL=20230110072000-create-integrations.js.map

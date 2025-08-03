@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Messages", "ticketTrakingId");
     }
 };
+//# sourceMappingURL=20230626141100-add-column-ticketTrakingId-to-Messages-table.js.map

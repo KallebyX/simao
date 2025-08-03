@@ -26,3 +26,4 @@ const CreateService = async (data, companyId) => {
     return settings;
 };
 exports.default = CreateService;
+//# sourceMappingURL=CreateService.js.map

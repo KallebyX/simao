@@ -21,3 +21,4 @@ const FindService = async ({ ownerId, companyId }) => {
     return chats;
 };
 exports.default = FindService;
+//# sourceMappingURL=FindService.js.map

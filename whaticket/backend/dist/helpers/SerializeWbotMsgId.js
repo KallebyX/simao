@@ -5,3 +5,4 @@ const SerializeWbotMsgId = (ticket, message) => {
     return serializedMsgId;
 };
 exports.default = SerializeWbotMsgId;
+//# sourceMappingURL=SerializeWbotMsgId.js.map

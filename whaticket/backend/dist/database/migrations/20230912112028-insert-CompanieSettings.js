@@ -73,3 +73,4 @@ module.exports = {
         await queryInterface.sequelize.query('DELETE FROM "CompaniesSettings" WHERE "companyId" <> 1');
     }
 };
+//# sourceMappingURL=20230912112028-insert-CompanieSettings.js.map

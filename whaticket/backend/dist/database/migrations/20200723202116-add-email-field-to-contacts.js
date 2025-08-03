@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Contacts", "email");
     }
 };
+//# sourceMappingURL=20200723202116-add-email-field-to-contacts.js.map

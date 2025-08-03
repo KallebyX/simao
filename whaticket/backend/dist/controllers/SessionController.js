@@ -65,3 +65,4 @@ const remove = async (req, res) => {
     return res.send();
 };
 exports.remove = remove;
+//# sourceMappingURL=SessionController.js.map

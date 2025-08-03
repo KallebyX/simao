@@ -27,3 +27,4 @@ module.exports = {
         return queryInterface.dropTable("Settings");
     }
 };
+//# sourceMappingURL=20200903215941-create-settings.js.map

@@ -43,25 +43,6 @@ const ListUsersService = async ({ searchParam = "", pageNumber = "1", companyId 
                 model: Company_1.default,
                 as: "company",
                 attributes: ["id", "name", "dueDate", "document"],
-                // include: [
-                //   {
-                //     model: Plan, as: "plan",
-                //     attributes: ["id",
-                //       "name",
-                //       "amount",
-                //       "useWhatsapp",
-                //       "useFacebook",
-                //       "useInstagram",
-                //       "useCampaigns",
-                //       "useSchedules",
-                //       "useInternalChat",
-                //       "useExternalApi",
-                //       "useIntegrations",
-                //       "useOpenAi",
-                //       "useKanban"
-                //     ]
-                //   },
-                // ]
             }
         ]
     });
@@ -74,3 +55,4 @@ const ListUsersService = async ({ searchParam = "", pageNumber = "1", companyId 
     };
 };
 exports.default = ListUsersService;
+//# sourceMappingURL=ListUsersService.js.map

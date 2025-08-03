@@ -25,3 +25,4 @@ module.exports = {
         await queryInterface.removeColumn("Webhooks", "requestAll");
     }
 };
+//# sourceMappingURL=20230731224345-add-active-table-webhooks.js.map

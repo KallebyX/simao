@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Users", "profile");
     }
 };
+//# sourceMappingURL=20200901235509-add-profile-column-to-users.js.map

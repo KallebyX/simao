@@ -15,13 +15,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -40,22 +50,16 @@ var axios = require('axios');
 const ListWhatsAppsService_1 = __importDefault(require("../services/WhatsappService/ListWhatsAppsService"));
 const StartWhatsAppSession_1 = require("../services/WbotServices/StartWhatsAppSession");
 const Sentry = __importStar(require("@sentry/node"));
-// const app = express();
 const index = async (req, res) => {
     const gerencianet = new gn_api_sdk_typescript_1.default(Gn_1.default);
     return res.json(gerencianet.getSubscriptions());
 };
 exports.index = index;
 const createSubscription = async (req, res) => {
-    //let mercadopagoURL;
     let stripeURL;
     let pix;
     let qrcode;
     let asaasURL;
-    // let key_STRIPE_PRIVATE = process.env.STRIPE_PRIVATE;
-    // let key_MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN;
-    // let key_GERENCIANET_PIX_KEY = process.env.GERENCIANET_PIX_KEY;
-    // let key_ASAAS_TOKEN = process.env.ASAAS_TOKEN;
     let key_STRIPE_PRIVATE = null;
     let key_MP_ACCESS_TOKEN = null;
     let key_GERENCIANET_PIX_KEY = null;
@@ -117,15 +121,12 @@ const createSubscription = async (req, res) => {
             };
             try {
                 const response = await mercadopago.preferences.create(preference);
-                //console.log("mercres", response);
                 let mercadopagoURLb = response.body.init_point;
-                //console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                //console.log(mercadopagoURLb);
-                return mercadopagoURLb; // Retorna o valor para uso externo
+                return mercadopagoURLb;
             }
             catch (error) {
                 console.log(error);
-                return null; // Em caso de erro, retorna null ou um valor padrão adequado
+                return null;
             }
         }
     }
@@ -142,9 +143,7 @@ const createSubscription = async (req, res) => {
             data: {
                 "name": `#Fatura:${invoiceId}`,
                 "description": `#Fatura:${invoiceId}`,
-                //"endDate": "2021-02-05",
                 "value": price.toLocaleString("pt-br", { minimumFractionDigits: 2 }).replace(",", "."),
-                //"value": "50",
                 "billingType": "UNDEFINED",
                 "chargeType": "DETACHED",
                 "dueDateLimitDays": 1,
@@ -158,15 +157,12 @@ const createSubscription = async (req, res) => {
                 const response = await axios.request(optionsGetAsaas);
                 asaasURL = response.data.url;
                 console.log('asaasURL:', asaasURL);
-                // Handle the response here
-                // You can proceed with the rest of your code that depends on asaasURL
             }
             catch (error) {
                 console.error('Error:', error);
             }
         }
     }
-    //console.log(asaasURL);
     if (key_STRIPE_PRIVATE) {
         const stripe = new stripe_1.default(key_STRIPE_PRIVATE, {
             apiVersion: '2022-11-15',
@@ -180,7 +176,7 @@ const createSubscription = async (req, res) => {
                         product_data: {
                             name: `#Fatura:${invoiceId}`,
                         },
-                        unit_amount: price.toLocaleString("pt-br", { minimumFractionDigits: 2 }).replace(",", "").replace(".", ""), // Replace with the actual amount in cents
+                        unit_amount: price.toLocaleString("pt-br", { minimumFractionDigits: 2 }).replace(",", "").replace(".", ""),
                     },
                     quantity: 1,
                 },
@@ -194,7 +190,6 @@ const createSubscription = async (req, res) => {
             id: invoiceId,
             stripe_id: sessionStripe.id
         });
-        //console.log(sessionStripe);
         stripeURL = sessionStripe.url;
     }
     if (key_GERENCIANET_PIX_KEY) {
@@ -216,7 +211,6 @@ const createSubscription = async (req, res) => {
         }
         catch (error) {
             console.log(error);
-            //throw new AppError("Validation fails", 400);
         }
     }
     const updateCompany = await Company_1.default.findOne();
@@ -271,8 +265,6 @@ exports.createWebhook = createWebhook;
 const webhook = async (req, res) => {
     const { type } = req.params;
     const { evento } = req.body;
-    //console.log(req.body);
-    //console.log(req.params);
     if (evento === "teste_webhook") {
         return res.json({ ok: true });
     }
@@ -333,8 +325,6 @@ exports.webhook = webhook;
 const stripewebhook = async (req, res) => {
     const { type } = req.params;
     const { evento } = req.body;
-    //console.log(req.body);
-    //console.log(req.params);
     if (req.body.data.object.id) {
         if (req.body.type === "checkout.session.completed") {
             const stripe_id = req.body.data.object.id;
@@ -383,8 +373,6 @@ const stripewebhook = async (req, res) => {
 };
 exports.stripewebhook = stripewebhook;
 const mercadopagowebhook = async (req, res) => {
-    //console.log(req.body);
-    //console.log(req.params);
     let key_MP_ACCESS_TOKEN = null;
     try {
         const buscacompanyId = 1;
@@ -400,9 +388,6 @@ const mercadopagowebhook = async (req, res) => {
     mercadopago.configure({
         access_token: key_MP_ACCESS_TOKEN,
     });
-    //console.log("*********************************");
-    //console.log(req.body.id);
-    //console.log("*********************************");
     if (req.body.action === "payment.updated") {
         try {
             const payment = await mercadopago.payment.get(req.body.data.id);
@@ -469,3 +454,4 @@ const asaaswebhook = async (req, res) => {
     res.status(200).json(req.body);
 };
 exports.asaaswebhook = asaaswebhook;
+//# sourceMappingURL=SubscriptionController.js.map

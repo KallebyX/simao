@@ -17,6 +17,16 @@ const Ticket_1 = __importDefault(require("./Ticket"));
 const User_1 = __importDefault(require("./User"));
 const Queue_1 = __importDefault(require("./Queue"));
 let LogTicket = class LogTicket extends sequelize_typescript_1.Model {
+    id;
+    type;
+    createdAt;
+    updatedAt;
+    ticketId;
+    ticket;
+    userId;
+    user;
+    queueId;
+    queue;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -71,3 +81,4 @@ LogTicket = __decorate([
     sequelize_typescript_1.Table
 ], LogTicket);
 exports.default = LogTicket;
+//# sourceMappingURL=LogTicket.js.map

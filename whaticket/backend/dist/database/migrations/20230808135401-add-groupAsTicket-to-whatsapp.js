@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "groupAsTicket");
     }
 };
+//# sourceMappingURL=20230808135401-add-groupAsTicket-to-whatsapp.js.map

@@ -9,3 +9,4 @@ const CreateService = async (queueOptionData) => {
     return queueOption;
 };
 exports.default = CreateService;
+//# sourceMappingURL=CreateService.js.map

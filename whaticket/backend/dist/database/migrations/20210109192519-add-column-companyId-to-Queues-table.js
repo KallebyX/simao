@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Queues", "companyId");
     }
 };
+//# sourceMappingURL=20210109192519-add-column-companyId-to-Queues-table.js.map

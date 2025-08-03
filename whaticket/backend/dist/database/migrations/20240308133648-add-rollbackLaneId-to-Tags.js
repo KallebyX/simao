@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Tags", "rollbackLaneId");
     }
 };
+//# sourceMappingURL=20240308133648-add-rollbackLaneId-to-Tags.js.map

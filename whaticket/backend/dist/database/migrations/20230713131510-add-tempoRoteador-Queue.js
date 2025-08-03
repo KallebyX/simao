@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Queues", "tempoRoteador");
     }
 };
+//# sourceMappingURL=20230713131510-add-tempoRoteador-Queue.js.map

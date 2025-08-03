@@ -15,3 +15,4 @@ const SyncTags = async ({ tags, contactId }) => {
     return contact;
 };
 exports.default = SyncTags;
+//# sourceMappingURL=SyncTagsService.js.map

@@ -36,3 +36,4 @@ module.exports = {
         return queryInterface.dropTable("Baileys");
     }
 };
+//# sourceMappingURL=20220221014721-create-baileys.js.map

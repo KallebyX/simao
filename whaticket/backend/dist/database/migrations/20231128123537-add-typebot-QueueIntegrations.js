@@ -31,3 +31,4 @@ module.exports = {
             queryInterface.removeColumn("QueueIntegrations", "typebotUnknownMessage");
     }
 };
+//# sourceMappingURL=20231128123537-add-typebot-QueueIntegrations.js.map

@@ -22,3 +22,4 @@ module.exports = {
             queryInterface.removeColumn("Companies", "updatedAtFolder");
     }
 };
+//# sourceMappingURL=20240311125600-add-colunms-folderSize-to-companies-table.js.map

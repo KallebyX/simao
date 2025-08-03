@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Users", "allTicket");
     }
 };
+//# sourceMappingURL=20230726203900-add-allTickets-user.js.map

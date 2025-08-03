@@ -17,3 +17,4 @@ const UpdateService = async (data) => {
     return record;
 };
 exports.default = UpdateService;
+//# sourceMappingURL=UpdateService.js.map

@@ -25,3 +25,4 @@ const ShowPromptService = async ({ promptId, companyId }) => {
     return prompt;
 };
 exports.default = ShowPromptService;
+//# sourceMappingURL=ShowPromptService.js.map

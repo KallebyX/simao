@@ -74,3 +74,4 @@ const ShowUserService = async (id, companyId) => {
     return user;
 };
 exports.default = ShowUserService;
+//# sourceMappingURL=ShowUserService.js.map

@@ -46,3 +46,4 @@ const SendWhatsAppMediaImage = async ({ ticket, url, caption, msdelay }) => {
     }
 };
 exports.default = SendWhatsAppMediaImage;
+//# sourceMappingURL=SendWhatsappMediaImage.js.map

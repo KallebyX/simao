@@ -22,20 +22,51 @@ const QuickMessage_1 = __importDefault(require("./QuickMessage"));
 const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 const Chatbot_1 = __importDefault(require("./Chatbot"));
 let User = class User extends sequelize_typescript_1.Model {
-    constructor() {
-        super(...arguments);
-        this.checkPassword = async (password) => {
-            return (0, bcryptjs_1.compare)(password, this.getDataValue("passwordHash"));
-        };
-    }
+    id;
+    name;
+    email;
+    password;
+    passwordHash;
+    tokenVersion;
+    profile;
+    profileImage;
+    whatsappId;
+    whatsapp;
+    super;
+    online;
+    startWork;
+    endWork;
+    color;
+    allTicket;
+    allowGroup;
+    defaultTheme;
+    defaultMenu;
+    farewellMessage;
+    createdAt;
+    updatedAt;
+    companyId;
+    company;
+    tickets;
+    queues;
+    quickMessages;
+    static hashPassword = async (instance) => {
+        if (instance.password) {
+            instance.passwordHash = await (0, bcryptjs_1.hash)(instance.password, 8);
+        }
+    };
+    checkPassword = async (password) => {
+        return (0, bcryptjs_1.compare)(password, this.getDataValue("passwordHash"));
+    };
+    allHistoric;
+    chatbot;
+    allUserChat;
+    userClosePendingTicket;
+    showDashboard;
+    defaultTicketsManagerWidth;
+    allowRealTime;
+    allowConnections;
     static async updateChatbotsUsersReferences(user) {
-        // Atualizar os registros na tabela Chatbots onde optQueueId é igual ao ID da fila que será excluída
         await Chatbot_1.default.update({ optUserId: null }, { where: { optUserId: user.id } });
-    }
-};
-User.hashPassword = async (instance) => {
-    if (instance.password) {
-        instance.passwordHash = await (0, bcryptjs_1.hash)(instance.password, 8);
     }
 };
 __decorate([
@@ -223,3 +254,4 @@ User = __decorate([
     sequelize_typescript_1.Table
 ], User);
 exports.default = User;
+//# sourceMappingURL=User.js.map

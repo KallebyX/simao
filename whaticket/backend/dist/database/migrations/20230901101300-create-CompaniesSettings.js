@@ -1,10 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * @TercioSantos-0 |
- * migração/CompaniesSettings |
- * @descrição:migração tabela para configurações das empresas
- */
 const sequelize_1 = require("sequelize");
 module.exports = {
     up: (queryInterface) => {
@@ -120,3 +115,4 @@ module.exports = {
         return queryInterface.dropTable("CompaniesSettings");
     }
 };
+//# sourceMappingURL=20230901101300-create-CompaniesSettings.js.map

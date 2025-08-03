@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        // Verifica se os índices já existem antes de tentar criá-los
         const indexNamesTicketTraking = await queryInterface.showIndex('TicketTraking');
         const indexNamesMessages = await queryInterface.showIndex('Messages');
         const indexNamesLogTickets = await queryInterface.showIndex('LogTickets');
@@ -38,7 +37,6 @@ module.exports = {
         }
     },
     down: async (queryInterface, Sequelize) => {
-        // Remoção dos índices criados
         await queryInterface.removeIndex('TicketTraking', 'idx_TicketTraking_ticket_id');
         await queryInterface.removeIndex('TicketTraking', 'idx_TicketTraking_company_id');
         await queryInterface.removeIndex('Messages', 'idx_Messages_contact_id');
@@ -50,3 +48,4 @@ module.exports = {
         await queryInterface.removeIndex('TicketTags', 'idx_TicketTags_tag_id');
     }
 };
+//# sourceMappingURL=20240610083535-create-index.js.map

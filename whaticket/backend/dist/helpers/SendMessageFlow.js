@@ -24,3 +24,4 @@ const SendMessageFlow = async (whatsapp, messageData, isFlow = false, isRecord =
     }
 };
 exports.SendMessageFlow = SendMessageFlow;
+//# sourceMappingURL=SendMessageFlow.js.map

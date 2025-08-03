@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("DialogChatBots", "queueId");
     }
 };
+//# sourceMappingURL=20212016014719-add-queueId-dialog.js.map

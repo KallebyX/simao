@@ -56,7 +56,25 @@ import { WebhookModel } from "../models/Webhook";
 // eslint-disable-next-line
 const dbConfig = require("../config/database");
 
-const sequelize = new Sequelize(dbConfig);
+// Pegar a configuração do ambiente atual
+const config = dbConfig[process.env.NODE_ENV || 'development'];
+
+const sequelize = new Sequelize(
+  config.database,
+  config.username,
+  config.password,
+  {
+    host: config.host,
+    port: config.port,
+    dialect: config.dialect,
+    timezone: config.timezone,
+    logging: config.logging,
+    pool: config.pool,
+    define: config.define,
+    retry: config.retry,
+    dialectOptions: config.options
+  }
+);
 
 const models = [
   Company,

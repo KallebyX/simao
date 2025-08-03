@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "retries");
     }
 };
+//# sourceMappingURL=20201026215410-add-retries-to-whatsapps.js.map

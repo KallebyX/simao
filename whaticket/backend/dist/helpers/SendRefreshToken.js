@@ -5,3 +5,4 @@ const SendRefreshToken = (res, token) => {
     res.cookie("jrt", token, { httpOnly: true });
 };
 exports.SendRefreshToken = SendRefreshToken;
+//# sourceMappingURL=SendRefreshToken.js.map

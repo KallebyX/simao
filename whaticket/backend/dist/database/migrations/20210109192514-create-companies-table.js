@@ -37,3 +37,4 @@ module.exports = {
         return queryInterface.dropTable("Companies");
     }
 };
+//# sourceMappingURL=20210109192514-create-companies-table.js.map

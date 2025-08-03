@@ -12,10 +12,6 @@ const isAuth = async (req, res, next) => {
     if (!authHeader) {
         throw new AppError_1.default("ERR_SESSION_EXPIRED", 401);
     }
-    // const check = await verifyHelper();
-    // if (!check) {
-    //   throw new AppError("ERR_SYSTEM_INVALID", 401);
-    // }
     const [, token] = authHeader.split(" ");
     try {
         const decoded = (0, jsonwebtoken_1.verify)(token, auth_1.default.secret);
@@ -38,3 +34,4 @@ const isAuth = async (req, res, next) => {
     return next();
 };
 exports.default = isAuth;
+//# sourceMappingURL=isAuth.js.map

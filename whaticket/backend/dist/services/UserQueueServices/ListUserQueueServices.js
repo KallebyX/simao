@@ -21,3 +21,4 @@ const ListUserQueueServices = async (queueId) => {
     return userQueue;
 };
 exports.default = ListUserQueueServices;
+//# sourceMappingURL=ListUserQueueServices.js.map

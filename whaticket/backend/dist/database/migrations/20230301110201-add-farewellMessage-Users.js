@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Users", "farewellMessage");
     }
 };
+//# sourceMappingURL=20230301110201-add-farewellMessage-Users.js.map

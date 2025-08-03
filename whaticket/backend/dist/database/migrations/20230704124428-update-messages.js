@@ -59,3 +59,4 @@ module.exports = {
         await queryInterface.sequelize.query('ALTER TABLE "Messages" ADD CONSTRAINT "Messages_pkey" PRIMARY KEY (id)');
     }
 };
+//# sourceMappingURL=20230704124428-update-messages.js.map

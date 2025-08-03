@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "ratingMessage");
     }
 };
+//# sourceMappingURL=20230724192535-add-column-ratingMessage-to-whatsapp.js.map

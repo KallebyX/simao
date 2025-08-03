@@ -30,3 +30,4 @@ const SimpleListService = async ({ name, companyId }) => {
     return contacts;
 };
 exports.default = SimpleListService;
+//# sourceMappingURL=SimpleListService.js.map

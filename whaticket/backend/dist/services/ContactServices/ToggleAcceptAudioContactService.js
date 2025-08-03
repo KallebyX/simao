@@ -37,3 +37,4 @@ const ToggleUseQueuesContactService = async ({ contactId }) => {
     return contact;
 };
 exports.default = ToggleUseQueuesContactService;
+//# sourceMappingURL=ToggleAcceptAudioContactService.js.map

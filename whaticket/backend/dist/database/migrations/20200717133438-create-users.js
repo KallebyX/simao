@@ -37,3 +37,4 @@ module.exports = {
         return queryInterface.dropTable("Users");
     }
 };
+//# sourceMappingURL=20200717133438-create-users.js.map

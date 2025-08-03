@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Messages", "remoteJid");
     }
 };
+//# sourceMappingURL=20220221014718-add-remoteJid-messages.js.map

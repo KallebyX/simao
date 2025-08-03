@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("TicketTraking", "closedAt");
     }
 };
+//# sourceMappingURL=20230505221007-add-closedAt-TicketTraking.js.map

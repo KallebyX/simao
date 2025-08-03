@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("QueueIntegrations", "urlN8N");
     }
 };
+//# sourceMappingURL=20230603212337-add-urlN8N-QueueIntegrations.js.map

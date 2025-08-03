@@ -24,10 +24,53 @@ const Tag_1 = __importDefault(require("./Tag"));
 const TicketTag_1 = __importDefault(require("./TicketTag"));
 const QueueIntegrations_1 = __importDefault(require("./QueueIntegrations"));
 let Ticket = class Ticket extends sequelize_typescript_1.Model {
+    id;
+    status;
+    unreadMessages;
+    flowWebhook;
+    lastFlowId;
+    hashFlowId;
+    flowStopped;
+    dataWebhook;
     ;
+    lastMessage;
+    isGroup;
+    createdAt;
+    updatedAt;
+    userId;
+    user;
+    contactId;
+    contact;
+    whatsappId;
+    whatsapp;
+    queueId;
+    queue;
+    isBot;
+    messages;
+    ticketTags;
+    tags;
+    companyId;
+    company;
+    uuid;
+    channel;
+    amountUsedBotQueues;
+    amountUsedBotQueuesNPS;
     static setUUID(ticket) {
         ticket.uuid = (0, uuid_1.v4)();
     }
+    fromMe;
+    sendInactiveMessage;
+    lgpdSendMessageAt;
+    lgpdAcceptedAt;
+    imported;
+    isOutOfHour;
+    useIntegration;
+    integrationId;
+    queueIntegration;
+    isActiveDemand;
+    typebotSessionId;
+    typebotStatus;
+    typebotSessionTime;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -232,3 +275,4 @@ Ticket = __decorate([
     sequelize_typescript_1.Table
 ], Ticket);
 exports.default = Ticket;
+//# sourceMappingURL=Ticket.js.map

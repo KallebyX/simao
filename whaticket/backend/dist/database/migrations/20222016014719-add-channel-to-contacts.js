@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Contacts", "channel");
     }
 };
+//# sourceMappingURL=20222016014719-add-channel-to-contacts.js.map

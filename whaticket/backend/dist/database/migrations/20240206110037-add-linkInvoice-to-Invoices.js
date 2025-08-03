@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Invoices", "linkInvoice");
     }
 };
+//# sourceMappingURL=20240206110037-add-linkInvoice-to-Invoices.js.map

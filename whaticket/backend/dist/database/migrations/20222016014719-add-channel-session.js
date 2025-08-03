@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "channel");
     }
 };
+//# sourceMappingURL=20222016014719-add-channel-session.js.map

@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Schedules", "mediaPath");
     }
 };
+//# sourceMappingURL=20231117000001-add-mediaPath-to-schedules.js.map

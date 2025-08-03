@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("QuickMessages", "mediaName");
     }
 };
+//# sourceMappingURL=20220723000002-add-mediaName-to-quickemessages.js.map

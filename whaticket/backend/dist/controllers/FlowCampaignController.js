@@ -9,7 +9,6 @@ const FlowsCampaignGetDataService_1 = __importDefault(require("../services/FlowC
 const GetFlowsCampaignDataService_1 = __importDefault(require("../services/FlowCampaignService/GetFlowsCampaignDataService"));
 const DeleteFlowCampaignService_1 = __importDefault(require("../services/FlowCampaignService/DeleteFlowCampaignService"));
 const UpdateFlowCampaignService_1 = __importDefault(require("../services/FlowCampaignService/UpdateFlowCampaignService"));
-// import { handleMessage } from "../services/FacebookServices/facebookMessageListener";
 const createFlowCampaign = async (req, res) => {
     const { name, flowId, phrase, whatsappId } = req.body;
     const userId = parseInt(req.user.id);
@@ -60,3 +59,4 @@ const deleteFlowCampaign = async (req, res) => {
     return res.status(200).json(flow);
 };
 exports.deleteFlowCampaign = deleteFlowCampaign;
+//# sourceMappingURL=FlowCampaignController.js.map

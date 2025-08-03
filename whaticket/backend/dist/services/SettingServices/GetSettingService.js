@@ -16,3 +16,4 @@ const GetSettingService = async ({ key }) => {
     return setting;
 };
 exports.default = GetSettingService;
+//# sourceMappingURL=GetSettingService.js.map

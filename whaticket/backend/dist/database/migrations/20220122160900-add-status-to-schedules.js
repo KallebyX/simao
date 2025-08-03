@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Schedules", "status");
     }
 };
+//# sourceMappingURL=20220122160900-add-status-to-schedules.js.map

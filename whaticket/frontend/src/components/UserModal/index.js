@@ -33,7 +33,8 @@ import TabPanel from "../TabPanel";
 import AvatarUploader from "../AvatarUpload";
 
 const backendUrl = getBackendUrl();
-const path = require('path');
+// Substituindo path.basename() por split('/').pop()
+const getBasename = (filepath) => filepath ? filepath.split('/').pop() : '';
 
 const useStyles = makeStyles(theme => ({
 	root: {

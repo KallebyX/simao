@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "allowGroup");
     }
 };
+//# sourceMappingURL=20230411131007-add-allowGroup-whatsapp.js.map

@@ -16,6 +16,25 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Queue_1 = __importDefault(require("./Queue"));
 const Company_1 = __importDefault(require("./Company"));
 let Prompt = class Prompt extends sequelize_typescript_1.Model {
+    id;
+    name;
+    prompt;
+    apiKey;
+    maxMessages;
+    maxTokens;
+    temperature;
+    promptTokens;
+    completionTokens;
+    totalTokens;
+    voice;
+    voiceKey;
+    voiceRegion;
+    queueId;
+    queue;
+    companyId;
+    company;
+    createdAt;
+    updatedAt;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -108,3 +127,4 @@ Prompt = __decorate([
     sequelize_typescript_1.Table
 ], Prompt);
 exports.default = Prompt;
+//# sourceMappingURL=Prompt.js.map

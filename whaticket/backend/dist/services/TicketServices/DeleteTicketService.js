@@ -16,3 +16,4 @@ const DeleteTicketService = async (id, userId, companyId) => {
     return ticket;
 };
 exports.default = DeleteTicketService;
+//# sourceMappingURL=DeleteTicketService.js.map

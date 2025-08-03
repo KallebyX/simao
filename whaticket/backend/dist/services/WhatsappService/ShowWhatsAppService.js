@@ -50,3 +50,4 @@ const ShowWhatsAppService = async (id, companyId, session) => {
     return whatsapp;
 };
 exports.default = ShowWhatsAppService;
+//# sourceMappingURL=ShowWhatsAppService.js.map

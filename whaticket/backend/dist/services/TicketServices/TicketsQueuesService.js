@@ -11,9 +11,7 @@ const Contact_1 = __importDefault(require("../../models/Contact"));
 const Queue_1 = __importDefault(require("../../models/Queue"));
 const lodash_1 = require("lodash");
 const TicketsQueuesService = async ({ dateStart, dateEnd, status, userId, queuesIds, companyId, showAll, profile }) => {
-    let whereCondition = {
-    // [Op.or]: [{ userId }, { status: "pending" }]
-    };
+    let whereCondition = {};
     const includeCondition = [
         {
             model: Contact_1.default,
@@ -30,33 +28,6 @@ const TicketsQueuesService = async ({ dateStart, dateEnd, status, userId, queues
             as: "queue"
         }
     ];
-    // const isExistsQueues = await Queue.count({ where: { companyId } });
-    // // eslint-disable-next-line eqeqeq
-    // if (isExistsQueues) {
-    //   const queues = await UserQueue.findAll({
-    //     where: {
-    //       userId
-    //     }
-    //   });
-    //   let queuesIdsUser = queues.map(q => q.queueId);
-    //   if (queuesIds) {
-    //     const newArray: number[] = [];
-    //     queuesIds.forEach(i => {
-    //       const idx = queuesIdsUser.indexOf(+i);
-    //       if (idx) {
-    //         newArray.push(+i);
-    //       }
-    //     });
-    //     queuesIdsUser = newArray;
-    //   }
-    //   whereCondition = {
-    //     ...whereCondition,
-    //     queueId: {
-    //       [Op.in]: queuesIdsUser
-    //     }
-    //   };
-    // }
-    // eslint-disable-next-line eqeqeq
     if (status) {
         const maxTicketsFilter = [];
         const maxTicketIds = await Ticket_1.default.findAll({
@@ -69,7 +40,6 @@ const TicketsQueuesService = async ({ dateStart, dateEnd, status, userId, queues
         if (maxTicketIds) {
             maxTicketsFilter.push(maxTicketIds.map(t => t.id));
         }
-        // }
         const contactsIntersection = (0, lodash_1.intersection)(...maxTicketsFilter);
         whereCondition = {
             ...whereCondition,
@@ -98,9 +68,6 @@ const TicketsQueuesService = async ({ dateStart, dateEnd, status, userId, queues
     const tickets = await Ticket_1.default.findAll({
         where: {
             ...whereCondition,
-            // queueId: {
-            //   [Op.in]: queuesIdsUser
-            // },
             companyId
         },
         include: includeCondition,
@@ -109,3 +76,4 @@ const TicketsQueuesService = async ({ dateStart, dateEnd, status, userId, queues
     return tickets;
 };
 exports.default = TicketsQueuesService;
+//# sourceMappingURL=TicketsQueuesService.js.map

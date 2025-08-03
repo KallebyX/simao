@@ -33,3 +33,4 @@ const ListQueueIntegrationService = async ({ searchParam = "", pageNumber = "1",
     };
 };
 exports.default = ListQueueIntegrationService;
+//# sourceMappingURL=ListQueueIntegrationService.js.map

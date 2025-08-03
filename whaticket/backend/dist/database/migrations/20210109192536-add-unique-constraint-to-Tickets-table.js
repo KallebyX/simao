@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeConstraint("Tickets", "contactid_companyid_whatsappid_unique");
     }
 };
+//# sourceMappingURL=20210109192536-add-unique-constraint-to-Tickets-table.js.map

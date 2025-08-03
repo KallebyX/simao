@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "provider");
     }
 };
+//# sourceMappingURL=20220221014717-add-provider-whatsapp.js.map

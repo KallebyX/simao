@@ -23,3 +23,4 @@ const SimpleListService = async ({ companyId }) => {
     return users;
 };
 exports.default = SimpleListService;
+//# sourceMappingURL=SimpleListService.js.map

@@ -19,3 +19,4 @@ const GetMessageRangeService = async ({ companyId, startDate, lastDate }) => {
     return messages;
 };
 exports.default = GetMessageRangeService;
+//# sourceMappingURL=GetMessageRangeService.js.map

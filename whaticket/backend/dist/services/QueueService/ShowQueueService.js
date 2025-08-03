@@ -35,3 +35,4 @@ const ShowQueueService = async (queueId, companyId) => {
     return queue;
 };
 exports.default = ShowQueueService;
+//# sourceMappingURL=ShowQueueService.js.map

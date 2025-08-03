@@ -36,3 +36,4 @@ module.exports = {
         return queryInterface.dropTable("FlowAudios");
     }
 };
+//# sourceMappingURL=20230901214345-create-table-audios-flow.js.map

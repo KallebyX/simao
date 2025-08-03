@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Plans", "useWhatsapp");
     }
 };
+//# sourceMappingURL=20230105164900-add-useWhatsapp-Plans.js.map

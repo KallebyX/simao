@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Contacts", "disableBot");
     }
 };
+//# sourceMappingURL=20230403193000-add-disable-bot-column-to-contacts.js.map

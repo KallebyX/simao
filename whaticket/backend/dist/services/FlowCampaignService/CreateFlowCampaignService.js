@@ -19,3 +19,4 @@ const CreateFlowCampaignService = async ({ userId, name, companyId, phrase, what
     }
 };
 exports.default = CreateFlowCampaignService;
+//# sourceMappingURL=CreateFlowCampaignService.js.map

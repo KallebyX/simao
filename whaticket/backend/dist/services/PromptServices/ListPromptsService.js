@@ -38,3 +38,4 @@ const ListPromptsService = async ({ searchParam = "", pageNumber = "1", companyI
     };
 };
 exports.default = ListPromptsService;
+//# sourceMappingURL=ListPromptsService.js.map

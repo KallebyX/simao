@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("QuickMessages", "geral");
     }
 };
+//# sourceMappingURL=20220723000003-add-geral-to-quickmessages.js.map

@@ -15,3 +15,4 @@ const UpdateDeletedUserOpenTicketsStatus = async (tickets, companyId) => {
     });
 };
 exports.default = UpdateDeletedUserOpenTicketsStatus;
+//# sourceMappingURL=UpdateDeletedUserOpenTicketsStatus.js.map

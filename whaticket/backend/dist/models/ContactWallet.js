@@ -17,6 +17,15 @@ const Contact_1 = __importDefault(require("./Contact"));
 const Company_1 = __importDefault(require("./Company"));
 const User_1 = __importDefault(require("./User"));
 let ContactWallet = class ContactWallet extends sequelize_typescript_1.Model {
+    id;
+    contactId;
+    contact;
+    walletId;
+    wallet;
+    companyId;
+    company;
+    createdAt;
+    updatedAt;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -63,3 +72,4 @@ ContactWallet = __decorate([
     sequelize_typescript_1.Table
 ], ContactWallet);
 exports.default = ContactWallet;
+//# sourceMappingURL=ContactWallet.js.map

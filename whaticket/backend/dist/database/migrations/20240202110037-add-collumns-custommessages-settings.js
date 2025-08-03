@@ -31,3 +31,4 @@ module.exports = {
             queryInterface.removeColumn("CompaniesSettings", "sendQueuePositionMessage");
     }
 };
+//# sourceMappingURL=20240202110037-add-collumns-custommessages-settings.js.map

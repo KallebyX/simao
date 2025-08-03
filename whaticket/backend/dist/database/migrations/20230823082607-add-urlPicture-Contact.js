@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Contacts", "urlPicture");
     }
 };
+//# sourceMappingURL=20230823082607-add-urlPicture-Contact.js.map

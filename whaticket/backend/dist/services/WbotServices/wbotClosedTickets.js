@@ -33,8 +33,8 @@ const closeTicket = async (ticket, body) => {
 };
 const handleOpenTickets = async (companyId, whatsapp) => {
     const currentTime = new Date();
-    const brazilTimeZoneOffset = -3 * 60; // Fuso horário do Brasil é UTC-3
-    const currentTimeBrazil = new Date(currentTime.getTime() + brazilTimeZoneOffset * 60000); // Adiciona o offset ao tempo atual
+    const brazilTimeZoneOffset = -3 * 60;
+    const currentTimeBrazil = new Date(currentTime.getTime() + brazilTimeZoneOffset * 60000);
     let timeInactiveMessage = Number(whatsapp.timeInactiveMessage || 0);
     let expiresTime = Number(whatsapp.expiresTicket || 0);
     if (!(0, lodash_1.isNil)(expiresTime) && expiresTime > 0) {
@@ -73,7 +73,7 @@ const handleOpenTickets = async (companyId, whatsapp) => {
                     }
                 }));
             }
-            expiresTime += timeInactiveMessage; // Adicionando o tempo de inatividade ao tempo de expiração
+            expiresTime += timeInactiveMessage;
         }
         let whereCondition;
         whereCondition = {
@@ -115,7 +115,6 @@ const handleOpenTickets = async (companyId, whatsapp) => {
                     const sentMessage = await (0, SendWhatsAppMessage_1.default)({ body: bodyExpiresMessageInactive, ticket: ticket });
                     await (0, wbotMessageListener_1.verifyMessage)(sentMessage, ticket, ticket.contact);
                 }
-                // Como o campo sendInactiveMessage foi atualizado, podemos garantir que a mensagem foi enviada
                 await closeTicket(ticket, bodyExpiresMessageInactive);
                 await ticketTraking.update({
                     finishedAt: new Date(),
@@ -123,7 +122,6 @@ const handleOpenTickets = async (companyId, whatsapp) => {
                     whatsappId: ticket.whatsappId,
                     userId: ticket.userId,
                 });
-                // console.log("emitiu socket 144", ticket.id)
                 const io = (0, socket_1.getIO)();
                 io.of(companyId.toString()).emit(`company-${companyId}-ticket`, {
                     action: "delete",
@@ -187,7 +185,6 @@ const ClosedAllOpenTickets = async (companyId) => {
                 status: "CONNECTED"
             }
         });
-        // Agora você pode iterar sobre as instâncias de Whatsapp diretamente
         if (whatsapps.length > 0) {
             for (const whatsapp of whatsapps) {
                 if (whatsapp.expiresTicket) {
@@ -204,3 +201,4 @@ const ClosedAllOpenTickets = async (companyId) => {
     }
 };
 exports.ClosedAllOpenTickets = ClosedAllOpenTickets;
+//# sourceMappingURL=wbotClosedTickets.js.map

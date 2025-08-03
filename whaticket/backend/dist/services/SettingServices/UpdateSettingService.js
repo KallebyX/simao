@@ -27,3 +27,4 @@ const UpdateSettingService = async ({ key, value, companyId }) => {
     return setting;
 };
 exports.default = UpdateSettingService;
+//# sourceMappingURL=UpdateSettingService.js.map

@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("QueueIntegrations", "companyId");
     }
 };
+//# sourceMappingURL=20230711094417-add-column-companyId-to-QueueIntegrations-table.js.map

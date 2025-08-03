@@ -39,3 +39,4 @@ module.exports = {
         return queryInterface.dropTable("Files");
     }
 };
+//# sourceMappingURL=20230714113901-create-Files.js.map

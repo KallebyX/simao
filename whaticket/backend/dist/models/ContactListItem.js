@@ -16,6 +16,18 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Company_1 = __importDefault(require("./Company"));
 const ContactList_1 = __importDefault(require("./ContactList"));
 let ContactListItem = class ContactListItem extends sequelize_typescript_1.Model {
+    id;
+    name;
+    number;
+    email;
+    isWhatsappValid;
+    createdAt;
+    updatedAt;
+    companyId;
+    company;
+    contactListId;
+    contactList;
+    isGroup;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -77,3 +89,4 @@ ContactListItem = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "ContactListItems" })
 ], ContactListItem);
 exports.default = ContactListItem;
+//# sourceMappingURL=ContactListItem.js.map

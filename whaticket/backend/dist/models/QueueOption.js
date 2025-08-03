@@ -11,11 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var QueueOption_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Queue_1 = __importDefault(require("./Queue"));
-let QueueOption = QueueOption_1 = class QueueOption extends sequelize_typescript_1.Model {
+let QueueOption = class QueueOption extends sequelize_typescript_1.Model {
+    id;
+    title;
+    message;
+    option;
+    queueId;
+    parentId;
+    createdAt;
+    updatedAt;
+    queue;
+    parent;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -43,7 +52,7 @@ __decorate([
     __metadata("design:type", Number)
 ], QueueOption.prototype, "queueId", void 0);
 __decorate([
-    (0, sequelize_typescript_1.ForeignKey)(() => QueueOption_1),
+    (0, sequelize_typescript_1.ForeignKey)(() => QueueOption),
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], QueueOption.prototype, "parentId", void 0);
@@ -60,10 +69,11 @@ __decorate([
     __metadata("design:type", Queue_1.default)
 ], QueueOption.prototype, "queue", void 0);
 __decorate([
-    (0, sequelize_typescript_1.BelongsTo)(() => QueueOption_1, { foreignKey: 'parentId' }),
+    (0, sequelize_typescript_1.BelongsTo)(() => QueueOption, { foreignKey: 'parentId' }),
     __metadata("design:type", QueueOption)
 ], QueueOption.prototype, "parent", void 0);
-QueueOption = QueueOption_1 = __decorate([
+QueueOption = __decorate([
     sequelize_typescript_1.Table
 ], QueueOption);
 exports.default = QueueOption;
+//# sourceMappingURL=QueueOption.js.map

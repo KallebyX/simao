@@ -43,3 +43,4 @@ const ShowWhatsAppServiceAdmin = async (id, session) => {
     return whatsapp;
 };
 exports.default = ShowWhatsAppServiceAdmin;
+//# sourceMappingURL=ShowWhatsAppServiceAdmin.js.map

@@ -9,7 +9,7 @@ const GetDefaultWhatsAppByUser = async (userId) => {
     if (user === null || !user.whatsapp) {
         return null;
     }
-    // logger.info(`Found whatsapp linked to user '${user.name}' is '${user.whatsapp.name}'.`);
     return user.whatsapp;
 };
 exports.default = GetDefaultWhatsAppByUser;
+//# sourceMappingURL=GetDefaultWhatsAppByUser.js.map

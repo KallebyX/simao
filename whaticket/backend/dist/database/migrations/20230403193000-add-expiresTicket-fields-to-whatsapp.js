@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "expiresTicket");
     }
 };
+//# sourceMappingURL=20230403193000-add-expiresTicket-fields-to-whatsapp.js.map

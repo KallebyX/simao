@@ -10,3 +10,4 @@ const UpdateService = async (queueOptionId, queueOptionData) => {
     return queueOption;
 };
 exports.default = UpdateService;
+//# sourceMappingURL=UpdateService.js.map

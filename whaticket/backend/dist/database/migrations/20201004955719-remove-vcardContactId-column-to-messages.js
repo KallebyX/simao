@@ -14,3 +14,4 @@ module.exports = {
         });
     }
 };
+//# sourceMappingURL=20201004955719-remove-vcardContactId-column-to-messages.js.map

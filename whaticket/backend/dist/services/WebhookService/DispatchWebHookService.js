@@ -53,3 +53,4 @@ const DispatchWebHookService = async ({ companyId, hashId, data, req }) => {
     }
 };
 exports.default = DispatchWebHookService;
+//# sourceMappingURL=DispatchWebHookService.js.map

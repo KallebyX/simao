@@ -60,3 +60,4 @@ const DashTicketsPerUsersDetail = async ({ startDate, endDate, companyId, userId
     return data;
 };
 exports.default = DashTicketsPerUsersDetail;
+//# sourceMappingURL=DashTicketsPerUsersDetail.js.map

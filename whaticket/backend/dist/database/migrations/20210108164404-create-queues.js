@@ -37,3 +37,4 @@ module.exports = {
         return queryInterface.dropTable("Queues");
     }
 };
+//# sourceMappingURL=20210108164404-create-queues.js.map

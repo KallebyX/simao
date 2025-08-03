@@ -40,3 +40,4 @@ module.exports = {
         return queryInterface.dropTable("Helps");
     }
 };
+//# sourceMappingURL=20210109192529-create-helps.js.map

@@ -49,3 +49,4 @@ module.exports = {
         return queryInterface.dropTable("QueueOptions");
     }
 };
+//# sourceMappingURL=20211205164404-create-queue-options.js.map

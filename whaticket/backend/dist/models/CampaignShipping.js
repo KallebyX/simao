@@ -16,6 +16,21 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Campaign_1 = __importDefault(require("./Campaign"));
 const ContactListItem_1 = __importDefault(require("./ContactListItem"));
 let CampaignShipping = class CampaignShipping extends sequelize_typescript_1.Model {
+    id;
+    jobId;
+    number;
+    message;
+    confirmationMessage;
+    confirmation;
+    contactId;
+    campaignId;
+    confirmationRequestedAt;
+    confirmedAt;
+    deliveredAt;
+    createdAt;
+    updatedAt;
+    contact;
+    campaign;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -85,3 +100,4 @@ CampaignShipping = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "CampaignShipping" })
 ], CampaignShipping);
 exports.default = CampaignShipping;
+//# sourceMappingURL=CampaignShipping.js.map

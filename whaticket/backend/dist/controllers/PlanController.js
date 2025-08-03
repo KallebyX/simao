@@ -15,13 +15,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -30,7 +40,6 @@ exports.remove = exports.update = exports.show = exports.store = exports.list = 
 const jsonwebtoken_1 = require("jsonwebtoken");
 const auth_1 = __importDefault(require("../config/auth"));
 const Yup = __importStar(require("yup"));
-// import { getIO } from "../libs/socket";
 const AppError_1 = __importDefault(require("../errors/AppError"));
 const Plan_1 = __importDefault(require("../models/Plan"));
 const ListPlansService_1 = __importDefault(require("../services/PlanService/ListPlansService"));
@@ -87,12 +96,6 @@ const store = async (req, res) => {
         throw new AppError_1.default(err.message);
     }
     const plan = await (0, CreatePlanService_1.default)(newPlan);
-    // const io = getIO();
-    // io.of(companyId.toString())
-    // .emit("plan", {
-    //   action: "create",
-    //   plan
-    // });
     return res.status(200).json(plan);
 };
 exports.store = store;
@@ -129,23 +132,7 @@ const update = async (req, res) => {
     catch (err) {
         throw new AppError_1.default(err.message);
     }
-    const { id,
-    //   name,
-    //   users,
-    //   connections,
-    //   queues,
-    //   amount,
-    //   useWhatsapp,
-    //   useFacebook,
-    //   useInstagram,
-    //   useCampaigns,
-    //   useSchedules,
-    //   useInternalChat,
-    //   useExternalApi,
-    //   useKanban,
-    //   useOpenAi,
-    //   useIntegrations
-     } = planData;
+    const { id, } = planData;
     const authHeader = req.headers.authorization;
     const [, token] = authHeader.split(" ");
     const decoded = (0, jsonwebtoken_1.verify)(token, auth_1.default.secret);
@@ -154,35 +141,12 @@ const update = async (req, res) => {
     const company = await Company_1.default.findByPk(companyId);
     const PlanCompany = company.planId;
     if (requestUser.super === true) {
-        const plan = await (0, UpdatePlanService_1.default)(planData
-        // id,
-        // name,
-        // users,
-        // connections,
-        // queues,
-        // amount,
-        // useWhatsapp,
-        // useFacebook,
-        // useInstagram,
-        // useCampaigns,
-        // useSchedules,
-        // useInternalChat,
-        // useExternalApi,
-        // useKanban,
-        // useOpenAi,
-        // useIntegrations
-        );
+        const plan = await (0, UpdatePlanService_1.default)(planData);
         return res.status(200).json(plan);
     }
     else if (PlanCompany.toString() !== id) {
         return res.status(400).json({ error: "Você não possui permissão para acessar este recurso!" });
     }
-    // const io = getIO();
-    // io.of(companyId.toString())
-    // .emit("plan", {
-    //   action: "update",
-    //   plan
-    // });
 };
 exports.update = update;
 const remove = async (req, res) => {
@@ -201,3 +165,4 @@ const remove = async (req, res) => {
     }
 };
 exports.remove = remove;
+//# sourceMappingURL=PlanController.js.map

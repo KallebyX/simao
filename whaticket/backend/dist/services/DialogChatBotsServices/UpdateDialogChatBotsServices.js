@@ -25,3 +25,4 @@ const UpdateDialogChatBotsServices = async ({ quickAnswerData, quickAnswerId }) 
     return quickAnswer;
 };
 exports.default = UpdateDialogChatBotsServices;
+//# sourceMappingURL=UpdateDialogChatBotsServices.js.map

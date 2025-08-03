@@ -16,6 +16,10 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Queue_1 = __importDefault(require("./Queue"));
 const User_1 = __importDefault(require("./User"));
 let UserQueue = class UserQueue extends sequelize_typescript_1.Model {
+    userId;
+    queueId;
+    createdAt;
+    updatedAt;
 };
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => User_1.default),
@@ -39,3 +43,4 @@ UserQueue = __decorate([
     sequelize_typescript_1.Table
 ], UserQueue);
 exports.default = UserQueue;
+//# sourceMappingURL=UserQueue.js.map

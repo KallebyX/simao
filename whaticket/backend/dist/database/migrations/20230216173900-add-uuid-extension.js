@@ -10,3 +10,4 @@ module.exports = {
         return queryInterface.sequelize.query('DROP EXTENSION IF EXISTS "uuid-ossp"');
     }
 };
+//# sourceMappingURL=20230216173900-add-uuid-extension.js.map

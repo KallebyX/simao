@@ -19,3 +19,4 @@ module.exports = {
             queryInterface.removeColumn("QueueIntegrations", "typebotRestartMessage");
     }
 };
+//# sourceMappingURL=20231218160937-add-columns-QueueIntegrations.js.map

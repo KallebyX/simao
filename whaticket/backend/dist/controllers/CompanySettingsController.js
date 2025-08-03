@@ -46,3 +46,4 @@ const update = async (req, res) => {
     return res.status(200).json({ response: true, result: result });
 };
 exports.update = update;
+//# sourceMappingURL=CompanySettingsController.js.map

@@ -22,3 +22,4 @@ module.exports = {
         return queryInterface.removeColumn("Tickets", "chatbot");
     }
 };
+//# sourceMappingURL=20211212125704-add-chatbot-to-tickets.js.map

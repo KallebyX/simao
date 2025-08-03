@@ -15,13 +15,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -44,7 +54,6 @@ whatsappRoutes.get("/whatsapp/:whatsappId", isAuth_1.default, WhatsAppController
 whatsappRoutes.put("/whatsapp/:whatsappId", isAuth_1.default, WhatsAppController.update);
 whatsappRoutes.delete("/whatsapp/:whatsappId", isAuth_1.default, WhatsAppController.remove);
 whatsappRoutes.post("/closedimported/:whatsappId", isAuth_1.default, WhatsAppController.closedTickets);
-//restart
 whatsappRoutes.post("/whatsapp-restart/", isAuth_1.default, WhatsAppController.restart);
 whatsappRoutes.post("/whatsapp/:whatsappId/media-upload", isAuth_1.default, upload.array("file"), uploadMediaAttachment_1.mediaUpload);
 whatsappRoutes.delete("/whatsapp/:whatsappId/media-upload", isAuth_1.default, uploadMediaAttachment_2.deleteMedia);
@@ -52,3 +61,4 @@ whatsappRoutes.delete("/whatsapp-admin/:whatsappId", isAuth_1.default, WhatsAppC
 whatsappRoutes.put("/whatsapp-admin/:whatsappId", isAuth_1.default, WhatsAppController.updateAdmin);
 whatsappRoutes.get("/whatsapp-admin/:whatsappId", isAuth_1.default, WhatsAppController.showAdmin);
 exports.default = whatsappRoutes;
+//# sourceMappingURL=whatsappRoutes.js.map

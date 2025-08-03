@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const dbConfig = require("../../config/database");
 const sequelize = new sequelize_typescript_1.Sequelize(dbConfig);
 const ListMessagesServiceAll = async ({ companyId, fromMe, dateStart, dateEnd }) => {
@@ -36,3 +35,4 @@ const ListMessagesServiceAll = async ({ companyId, fromMe, dateStart, dateEnd })
     };
 };
 exports.default = ListMessagesServiceAll;
+//# sourceMappingURL=ListMessagesServiceAll.js.map

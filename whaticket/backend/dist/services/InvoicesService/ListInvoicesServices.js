@@ -29,3 +29,4 @@ const ListInvoicesServices = async ({ searchParam = "", pageNumber = "1" }) => {
     };
 };
 exports.default = ListInvoicesServices;
+//# sourceMappingURL=ListInvoicesServices.js.map

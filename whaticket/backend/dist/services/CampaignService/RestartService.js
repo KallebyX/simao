@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RestartService = void 0;
+exports.RestartService = RestartService;
 const Campaign_1 = __importDefault(require("../../models/Campaign"));
 const queues_1 = require("../../queues");
 async function RestartService(id) {
@@ -14,4 +14,4 @@ async function RestartService(id) {
         delay: 3000
     });
 }
-exports.RestartService = RestartService;
+//# sourceMappingURL=RestartService.js.map

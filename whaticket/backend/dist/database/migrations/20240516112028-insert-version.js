@@ -9,3 +9,4 @@ module.exports = {
         await queryInterface.sequelize.query('DELETE FROM "Versions"');
     }
 };
+//# sourceMappingURL=20240516112028-insert-version.js.map

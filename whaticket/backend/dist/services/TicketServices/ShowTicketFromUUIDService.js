@@ -91,3 +91,4 @@ const ShowTicketUUIDService = async (uuid, companyId) => {
     return ticket;
 };
 exports.default = ShowTicketUUIDService;
+//# sourceMappingURL=ShowTicketFromUUIDService.js.map

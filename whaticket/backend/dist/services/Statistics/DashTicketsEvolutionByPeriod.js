@@ -52,8 +52,8 @@ const DashTicketsEvolutionByPeriod = async ({ startDate, endDate, companyId, use
             userId
         },
         type: sequelize_1.QueryTypes.SELECT
-        // logging: console.log
     });
     return data;
 };
 exports.default = DashTicketsEvolutionByPeriod;
+//# sourceMappingURL=DashTicketsEvolutionByPeriod.js.map

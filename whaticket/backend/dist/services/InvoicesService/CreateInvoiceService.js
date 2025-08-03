@@ -11,3 +11,4 @@ const CreateInvoiceService = async (invoiceData) => {
     return invoice;
 };
 exports.default = CreateInvoiceService;
+//# sourceMappingURL=CreateInvoiceService.js.map

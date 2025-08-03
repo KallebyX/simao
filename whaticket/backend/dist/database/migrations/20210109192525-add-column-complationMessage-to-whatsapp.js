@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "complationMessage");
     }
 };
+//# sourceMappingURL=20210109192525-add-column-complationMessage-to-whatsapp.js.map

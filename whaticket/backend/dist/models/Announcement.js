@@ -15,12 +15,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Company_1 = __importDefault(require("./Company"));
 let Announcement = class Announcement extends sequelize_typescript_1.Model {
+    id;
+    priority;
+    title;
+    text;
     get mediaPath() {
         if (this.getDataValue("mediaPath")) {
             return `${process.env.BACKEND_URL}${process.env.PROXY_PORT ? `:${process.env.PROXY_PORT}` : ""}/public/announcements/${this.getDataValue("mediaPath")}`;
         }
         return null;
     }
+    mediaName;
+    companyId;
+    status;
+    createdAt;
+    updatedAt;
+    company;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -74,3 +84,4 @@ Announcement = __decorate([
     sequelize_typescript_1.Table
 ], Announcement);
 exports.default = Announcement;
+//# sourceMappingURL=Announcement.js.map

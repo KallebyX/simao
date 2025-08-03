@@ -54,3 +54,4 @@ module.exports = {
         return queryInterface.dropTable("Partners");
     }
 };
+//# sourceMappingURL=20232010133900-create-Partners-table.js.map

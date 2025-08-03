@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Queues", "orderQueue");
     }
 };
+//# sourceMappingURL=20230628134807-add-orderQueue-Queue.js.map

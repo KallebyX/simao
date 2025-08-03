@@ -3,14 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ImportContacts = void 0;
+exports.ImportContacts = ImportContacts;
 const lodash_1 = require("lodash");
 const xlsx_1 = __importDefault(require("xlsx"));
 const lodash_2 = require("lodash");
 const ContactListItem_1 = __importDefault(require("../../models/ContactListItem"));
 const CheckNumber_1 = __importDefault(require("../WbotServices/CheckNumber"));
 const logger_1 = __importDefault(require("../../utils/logger"));
-// import CheckContactNumber from "../WbotServices/CheckNumber";
 async function ImportContacts(contactListId, companyId, file) {
     const workbook = xlsx_1.default.readFile(file?.path);
     const worksheet = (0, lodash_1.head)(Object.values(workbook.Sheets));
@@ -69,4 +68,4 @@ async function ImportContacts(contactListId, companyId, file) {
     }
     return contactList;
 }
-exports.ImportContacts = ImportContacts;
+//# sourceMappingURL=ImportContacts.js.map

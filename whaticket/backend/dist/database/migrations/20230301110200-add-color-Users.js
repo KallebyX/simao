@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Users", "color");
     }
 };
+//# sourceMappingURL=20230301110200-add-color-Users.js.map

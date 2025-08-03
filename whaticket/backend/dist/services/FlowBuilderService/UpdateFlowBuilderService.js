@@ -24,3 +24,4 @@ const UpdateFlowBuilderService = async ({ companyId, name, flowId }) => {
     }
 };
 exports.default = UpdateFlowBuilderService;
+//# sourceMappingURL=UpdateFlowBuilderService.js.map

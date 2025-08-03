@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../../database"));
 const VerifyCurrentSchedule = async (companyId, queueId, whatsappId) => {
-    // @ts-ignore: Unreachable code error
     if (Number(whatsappId) > 0 && Number(queueId === 0)) {
         const sql = `
         select
@@ -55,7 +54,6 @@ const VerifyCurrentSchedule = async (companyId, queueId, whatsappId) => {
         });
         return result;
     }
-    // @ts-ignore: Unreachable code error
     else if (Number(queueId) === 0 && Number(whatsappId) === 0) {
         const sql = `
         select
@@ -153,3 +151,4 @@ const VerifyCurrentSchedule = async (companyId, queueId, whatsappId) => {
     }
 };
 exports.default = VerifyCurrentSchedule;
+//# sourceMappingURL=VerifyCurrentSchedule.js.map

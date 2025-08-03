@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Schedules", "openTicket");
     }
 };
+//# sourceMappingURL=20231114113637-add-openTicket-Schedules.js.map

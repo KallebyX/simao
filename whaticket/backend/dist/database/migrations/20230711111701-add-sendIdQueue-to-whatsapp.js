@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "sendIdQueue");
     }
 };
+//# sourceMappingURL=20230711111701-add-sendIdQueue-to-whatsapp.js.map

@@ -14,7 +14,6 @@ const User_1 = __importDefault(require("../models/User"));
 const store = async (req, res) => {
     const { whatsappId } = req.params;
     const { companyId } = req.user;
-    // console.log("STARTING SESSION", whatsappId)
     const whatsapp = await (0, ShowWhatsAppService_1.default)(whatsappId, companyId);
     await (0, StartWhatsAppSession_1.StartWhatsAppSession)(whatsapp, companyId);
     return res.status(200).json({ message: "Starting session." });
@@ -22,11 +21,6 @@ const store = async (req, res) => {
 const update = async (req, res) => {
     const { whatsappId } = req.params;
     const { companyId } = req.user;
-    // const { whatsapp } = await UpdateWhatsAppService({
-    //   whatsappId,
-    //   companyId,
-    //   whatsappData: { session: "", requestQR: true }
-    // });
     const whatsapp = await Whatsapp_1.default.findOne({ where: { id: whatsappId, companyId } });
     await whatsapp.update({ session: "" });
     if (whatsapp.channel === "whatsapp") {
@@ -66,3 +60,4 @@ const removeadmin = async (req, res) => {
     return res.status(200).json({ message: "Session disconnected." });
 };
 exports.default = { store, remove, update, removeadmin };
+//# sourceMappingURL=WhatsAppSessionController.js.map

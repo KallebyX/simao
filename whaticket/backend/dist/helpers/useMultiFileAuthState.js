@@ -68,3 +68,4 @@ const useMultiFileAuthState = async (whatsapp) => {
     };
 };
 exports.useMultiFileAuthState = useMultiFileAuthState;
+//# sourceMappingURL=useMultiFileAuthState.js.map

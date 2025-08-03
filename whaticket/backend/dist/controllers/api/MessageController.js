@@ -11,3 +11,4 @@ const show = async (req, res) => {
     return res.status(200).json(messages);
 };
 exports.show = show;
+//# sourceMappingURL=MessageController.js.map

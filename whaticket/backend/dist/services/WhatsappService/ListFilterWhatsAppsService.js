@@ -18,3 +18,4 @@ const ListFilterWhatsAppsService = async ({ session, companyId, channel = "whats
     return whatsapps;
 };
 exports.default = ListFilterWhatsAppsService;
+//# sourceMappingURL=ListFilterWhatsAppsService.js.map

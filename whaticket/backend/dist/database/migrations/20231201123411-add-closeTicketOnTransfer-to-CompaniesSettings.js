@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("CompaniesSettings", "closeTicketOnTransfer");
     }
 };
+//# sourceMappingURL=20231201123411-add-closeTicketOnTransfer-to-CompaniesSettings.js.map

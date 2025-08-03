@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeConstraint("Contacts", "number_companyid_unique");
     }
 };
+//# sourceMappingURL=20230708192530-add-unique-constraint-to-Contacts-table.js.map

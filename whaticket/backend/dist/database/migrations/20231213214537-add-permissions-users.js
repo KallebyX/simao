@@ -19,3 +19,4 @@ module.exports = {
             queryInterface.removeColumn("Users", "showDashboard");
     }
 };
+//# sourceMappingURL=20231213214537-add-permissions-users.js.map

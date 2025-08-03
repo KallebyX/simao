@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.randomString = void 0;
+exports.randomString = randomString;
 function randomString(len, charSet) {
     charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var randomString = '';
@@ -10,4 +10,4 @@ function randomString(len, charSet) {
     }
     return randomString;
 }
-exports.randomString = randomString;
+//# sourceMappingURL=randomCode.js.map

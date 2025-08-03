@@ -37,12 +37,8 @@ const BlockUnblockContactService = async ({ contactId, companyId, active }) => {
     if (!contact) {
         throw new AppError_1.default("ERR_NO_CONTACT_FOUND", 404);
     }
-    // console.log('active', active)
-    // console.log('companyId', companyId)
-    // console.log('contact.number', contact.number)
     if (active) {
         try {
-            //const whatsappCompany = await GetDefaultWhatsApp(Number(companyId))
             const whatsappCompany = null;
             const wbot = (0, wbot_1.getWbot)(whatsappCompany.id);
             const jid = createJid(contact.number);
@@ -55,7 +51,6 @@ const BlockUnblockContactService = async ({ contactId, companyId, active }) => {
     }
     if (!active) {
         try {
-            //const whatsappCompany = await GetDefaultWhatsApp(Number(companyId))
             const whatsappCompany = null;
             const wbot = (0, wbot_1.getWbot)(whatsappCompany.id);
             const jid = createJid(contact.number);
@@ -69,3 +64,4 @@ const BlockUnblockContactService = async ({ contactId, companyId, active }) => {
     return contact;
 };
 exports.default = BlockUnblockContactService;
+//# sourceMappingURL=BlockUnblockContactService.js.map

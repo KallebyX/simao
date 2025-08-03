@@ -29,3 +29,4 @@ const GetPublicSettingService = async ({ key }) => {
     return setting?.value;
 };
 exports.default = GetPublicSettingService;
+//# sourceMappingURL=GetPublicSettingService.js.map

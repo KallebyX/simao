@@ -15,3 +15,4 @@ const DeleteService = async (id) => {
     await record.destroy();
 };
 exports.default = DeleteService;
+//# sourceMappingURL=DeleteService.js.map

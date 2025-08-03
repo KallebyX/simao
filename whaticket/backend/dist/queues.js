@@ -15,18 +15,31 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.startQueueProcess = exports.randomValue = exports.parseToMilliseconds = exports.messageQueue = exports.queueMonitor = exports.campaignQueue = exports.sendScheduledMessages = exports.scheduleMonitor = exports.userMonitor = void 0;
+exports.messageQueue = exports.queueMonitor = exports.campaignQueue = exports.sendScheduledMessages = exports.scheduleMonitor = exports.userMonitor = void 0;
+exports.parseToMilliseconds = parseToMilliseconds;
+exports.randomValue = randomValue;
+exports.startQueueProcess = startQueueProcess;
 const Sentry = __importStar(require("@sentry/node"));
 const bull_1 = __importDefault(require("bull"));
 const SendMessage_1 = require("./helpers/SendMessage");
@@ -149,11 +162,6 @@ async function handleSendScheduledMessage(job) {
         }
         if (!whatsapp)
             whatsapp = await (0, GetDefaultWhatsApp_1.default)(whatsapp.id, schedule.companyId);
-        // const settings = await CompaniesSettings.findOne({
-        //   where: {
-        //     companyId: schedule.companyId
-        //   }
-        // })
         let filePath = null;
         if (schedule.mediaPath) {
             filePath = path_1.default.resolve("public", `company${schedule.companyId}`, schedule.mediaPath);
@@ -178,7 +186,6 @@ async function handleSendScheduledMessage(job) {
                 });
             ticket = await (0, ShowTicketService_1.default)(ticket.id, schedule.companyId);
             let bodyMessage;
-            // @ts-ignore: Unreachable code error
             if (schedule.assinar && !(0, lodash_1.isNil)(schedule.userId)) {
                 bodyMessage = `*${schedule?.user?.name}:*\n${schedule.body.trim()}`;
             }
@@ -197,18 +204,6 @@ async function handleSendScheduledMessage(job) {
             else {
                 await (0, wbotMessageListener_1.verifyMessage)(sentMessage, ticket, ticket.contact, null, true, false);
             }
-            // if (ticket) {
-            //   await UpdateTicketService({
-            //     ticketData: {
-            //       sendFarewellMessage: false,
-            //       status: schedule.statusTicket,
-            //       userId: schedule.ticketUserId || null,
-            //       queueId: schedule.queueId || null
-            //     },
-            //     ticketId: ticket.id,
-            //     companyId: ticket.companyId
-            //   })
-            // }
         }
         else {
             await (0, SendMessage_1.SendMessage)(whatsapp, {
@@ -238,7 +233,7 @@ async function handleSendScheduledMessage(job) {
             }
             function isDiaUtil(date) {
                 const dayOfWeek = date.day();
-                return dayOfWeek >= 1 && dayOfWeek <= 5; // 1 é segunda-feira, 5 é sexta-feira
+                return dayOfWeek >= 1 && dayOfWeek <= 5;
             }
             function proximoDiaUtil(date) {
                 let proximoDia = date.clone();
@@ -247,7 +242,6 @@ async function handleSendScheduledMessage(job) {
                 } while (!isDiaUtil(proximoDia));
                 return proximoDia;
             }
-            // Função para encontrar o dia útil anterior
             function diaUtilAnterior(date) {
                 let diaAnterior = date.clone();
                 do {
@@ -258,8 +252,7 @@ async function handleSendScheduledMessage(job) {
             const dataExistente = new Date(schedule.sendAt);
             const hora = dataExistente.getHours();
             const fusoHorario = dataExistente.getTimezoneOffset();
-            // Realizar a soma da data com base no intervalo e valor do intervalo
-            let novaData = new Date(dataExistente); // Clone da data existente para não modificar a original
+            let novaData = new Date(dataExistente);
             console.log(unidadeIntervalo);
             if (unidadeIntervalo !== "minuts") {
                 novaData.setDate(novaData.getDate() + schedule.valorIntervalo * (unidadeIntervalo === 'days' ? 1 : unidadeIntervalo === 'weeks' ? 7 : 30));
@@ -279,7 +272,7 @@ async function handleSendScheduledMessage(job) {
             await scheduleRecord?.update({
                 status: "PENDENTE",
                 contadorEnvio: schedule.contadorEnvio + 1,
-                sendAt: new Date(novaData.toISOString().slice(0, 19).replace('T', ' ')) // Mantendo o formato de hora
+                sendAt: new Date(novaData.toISOString().slice(0, 19).replace('T', ' '))
             });
         }
         else {
@@ -302,7 +295,6 @@ async function handleSendScheduledMessage(job) {
 }
 async function handleVerifyCampaigns(job) {
     if (isProcessing) {
-        // logger.warn('A campaign verification process is already running.');
         return;
     }
     isProcessing = true;
@@ -359,11 +351,6 @@ async function getCampaign(id) {
                 as: "whatsapp",
                 attributes: ["id", "name"]
             },
-            // {
-            //   model: CampaignShipping,
-            //   as: "shipping",
-            //   include: [{ model: ContactListItem, as: "contact" }]
-            // }
         ]
     });
 }
@@ -405,13 +392,12 @@ async function getSettings(campaign) {
     }
     catch (error) {
         console.log(error);
-        throw error; // rejeita a Promise com o erro original
+        throw error;
     }
 }
 function parseToMilliseconds(seconds) {
     return seconds * 1000;
 }
-exports.parseToMilliseconds = parseToMilliseconds;
 async function sleep(seconds) {
     logger_1.default.info(`Sleep de ${seconds} segundos iniciado: ${(0, moment_1.default)().format("HH:mm:ss")}`);
     return new Promise(resolve => {
@@ -532,45 +518,9 @@ const checkTime = async () => {
     exports.messageQueue.pause();
     return false;
 };
-// const checkerLimitToday = async (whatsappId: number) => {
-//   try {
-//     const setting = await SettingMessage.findOne({
-//       where: { whatsappId: whatsappId }
-//     });
-//     const lastUpdate = moment(setting.dateStart);
-//     const now = moment();
-//     const passou = now.isAfter(lastUpdate, "day");
-//     if (setting.sendToday <= setting.limit) {
-//       await setting.update({
-//         dateStart: moment().format()
-//       });
-//       return true;
-//     }
-//     const zerar = true
-//     if(passou) {
-//       await setting.update({
-//         sendToday: 0,
-//         dateStart: moment().format()
-//       });
-//       setting.reload();
-//     }
-//     setting.reload();
-//     logger.info(`Enviada hoje ${setting.sendToday} limite ${setting.limit}`);
-//     // sendMassMessage.clean(0, "delayed");
-//     // sendMassMessage.clean(0, "wait");
-//     // sendMassMessage.clean(0, "active");
-//     // sendMassMessage.clean(0, "completed");
-//     // sendMassMessage.clean(0, "failed");
-//     // sendMassMessage.pause();
-//     return false;
-//   } catch (error) {
-//     logger.error("conexão não tem configuração de envio.");
-//   }
-// };
 function randomValue(min, max) {
     return Math.floor(Math.random() * max) + min;
 }
-exports.randomValue = randomValue;
 async function verifyAndFinalizeCampaign(campaign) {
     const { companyId, contacts } = campaign.contactList;
     const count1 = contacts.length;
@@ -607,26 +557,20 @@ async function handleProcessCampaign(job) {
                     variables: settings.variables,
                     isGroup: contact.isGroup
                 }));
-                // const baseDelay = job.data.delay || 0;
                 const longerIntervalAfter = parseToMilliseconds(settings.longerIntervalAfter);
                 const greaterInterval = parseToMilliseconds(settings.greaterInterval);
                 const messageInterval = settings.messageInterval;
                 let baseDelay = campaign.scheduledAt;
-                // const isOpen = await checkTime();
-                // const isFds = await checkerWeek();
                 const queuePromises = [];
                 for (let i = 0; i < contactData.length; i++) {
                     baseDelay = (0, date_fns_1.addSeconds)(baseDelay, i > longerIntervalAfter ? greaterInterval : messageInterval);
                     const { contactId, campaignId, variables } = contactData[i];
                     const delay = calculateDelay(i, baseDelay, longerIntervalAfter, greaterInterval, messageInterval);
-                    // if (isOpen || !isFds) {
                     const queuePromise = exports.campaignQueue.add("PrepareContact", { contactId, campaignId, variables, delay }, { removeOnComplete: true });
                     queuePromises.push(queuePromise);
                     logger_1.default.info(`Registro enviado pra fila de disparo: Campanha=${campaign.id};Contato=${contacts[i].name};delay=${delay}`);
-                    // }
                 }
                 await Promise.all(queuePromises);
-                // await campaign.update({ status: "EM_ANDAMENTO" });
             }
         }
     }
@@ -784,18 +728,6 @@ async function handleDispatchCampaign(job) {
                             await (0, wbotMessageListener_1.verifyMediaMessage)(sentMessage, ticket, ticket.contact, null, false, true, wbot);
                         }
                     }
-                    // if (campaign?.statusTicket === 'closed') {
-                    //   await ticket.update({
-                    //     status: "closed"
-                    //   })
-                    //   const io = getIO();
-                    //   io.of(String(ticket.companyId))
-                    //     // .to(ticket.id.toString())
-                    //     .emit(`company-${ticket.companyId}-ticket`, {
-                    //       action: "delete",
-                    //       ticketId: ticket.id
-                    //     });
-                    // }
                 }
                 await campaignShipping.update({ deliveredAt: (0, moment_1.default)() });
             }
@@ -855,7 +787,6 @@ async function handleLoginStatus(job) {
     });
 }
 async function handleResumeTicketsOutOfHour(job) {
-    // logger.info("Buscando atendimentos perdidos nas filas");
     try {
         const companies = await Company_1.default.findAll({
             attributes: ['id', 'name'],
@@ -884,7 +815,6 @@ async function handleResumeTicketsOutOfHour(job) {
                     if (moveQueue > 0) {
                         if (!isNaN(idQueue) && Number.isInteger(idQueue) && !isNaN(timeQueue) && Number.isInteger(timeQueue)) {
                             const tempoPassado = (0, moment_1.default)().subtract(timeQueue, "minutes").utc().format();
-                            // const tempoAgora = moment().utc().format();
                             const { count, rows: tickets } = await Ticket_1.default.findAndCountAll({
                                 attributes: ["id"],
                                 where: {
@@ -895,7 +825,6 @@ async function handleResumeTicketsOutOfHour(job) {
                                     updatedAt: {
                                         [sequelize_1.Op.lt]: tempoPassado
                                     },
-                                    // isOutOfHour: false
                                 },
                                 include: [
                                     {
@@ -924,17 +853,11 @@ async function handleResumeTicketsOutOfHour(job) {
                                     await ticket.reload();
                                     const io = (0, socket_1.getIO)();
                                     io.of(String(companyId))
-                                        // .to("notification")
-                                        // .to(ticket.id.toString())
                                         .emit(`company-${companyId}-ticket`, {
                                         action: "update",
                                         ticket,
                                         ticketId: ticket.id
                                     });
-                                    // io.to("pending").emit(`company-${companyId}-ticket`, {
-                                    //   action: "update",
-                                    //   ticket,
-                                    // });
                                     logger_1.default.info(`Atendimento Perdido: ${ticket.id} - Empresa: ${companyId}`);
                                 });
                             }
@@ -955,7 +878,6 @@ async function handleResumeTicketsOutOfHour(job) {
 }
 ;
 async function handleVerifyQueue(job) {
-    // logger.info("Buscando atendimentos perdidos nas filas");
     try {
         const companies = await Company_1.default.findAll({
             attributes: ['id', 'name'],
@@ -981,7 +903,6 @@ async function handleVerifyQueue(job) {
                     if (moveQueue > 0) {
                         if (!isNaN(idQueue) && Number.isInteger(idQueue) && !isNaN(timeQueue) && Number.isInteger(timeQueue)) {
                             const tempoPassado = (0, moment_1.default)().subtract(timeQueue, "minutes").utc().format();
-                            // const tempoAgora = moment().utc().format();
                             const { count, rows: tickets } = await Ticket_1.default.findAndCountAll({
                                 attributes: ["id"],
                                 where: {
@@ -992,7 +913,6 @@ async function handleVerifyQueue(job) {
                                     updatedAt: {
                                         [sequelize_1.Op.lt]: tempoPassado
                                     },
-                                    // isOutOfHour: false
                                 },
                                 include: [
                                     {
@@ -1027,17 +947,11 @@ async function handleVerifyQueue(job) {
                                     await ticket.reload();
                                     const io = (0, socket_1.getIO)();
                                     io.of(String(companyId))
-                                        // .to("notification")
-                                        // .to(ticket.id.toString())
                                         .emit(`company-${companyId}-ticket`, {
                                         action: "update",
                                         ticket,
                                         ticketId: ticket.id
                                     });
-                                    // io.to("pending").emit(`company-${companyId}-ticket`, {
-                                    //   action: "update",
-                                    //   ticket,
-                                    // });
                                     logger_1.default.info(`Atendimento Perdido: ${ticket.id} - Empresa: ${companyId}`);
                                 });
                             }
@@ -1058,7 +972,6 @@ async function handleVerifyQueue(job) {
 }
 ;
 async function handleRandomUser() {
-    // logger.info("Iniciando a randomização dos atendimentos...");
     const jobR = new CronJob('0 */2 * * * *', async () => {
         try {
             const companies = await Company_1.default.findAll({
@@ -1089,12 +1002,10 @@ async function handleRandomUser() {
                                 queueId: q.id,
                             },
                         });
-                        //logger.info(`Localizado: ${count} filas para randomização.`);
                         const getRandomUserId = (userIds) => {
                             const randomIndex = Math.floor(Math.random() * userIds.length);
                             return userIds[randomIndex];
                         };
-                        // Function to fetch the User record by userId
                         const findUserById = async (userId, companyId) => {
                             try {
                                 const user = await User_1.default.findOne({
@@ -1108,12 +1019,10 @@ async function handleRandomUser() {
                                         return user.id;
                                     }
                                     else {
-                                        // logger.info("USER OFFLINE");
                                         return 0;
                                     }
                                 }
                                 else {
-                                    // logger.info("ADMIN");
                                     return 0;
                                 }
                             }
@@ -1127,14 +1036,12 @@ async function handleRandomUser() {
                             for (const ticket of tickets) {
                                 const { queueId, userId } = ticket;
                                 const tempoRoteador = q.tempoRoteador;
-                                // Find all UserQueue records with the specific queueId
                                 const userQueues = await UserQueue_1.default.findAll({
                                     where: {
                                         queueId: queueId,
                                     },
                                 });
                                 const contact = await (0, ShowContactService_1.default)(ticket.contactId, ticket.companyId);
-                                // Extract the userIds from the UserQueue records
                                 const userIds = userQueues.map((userQueue) => userQueue.userId);
                                 const tempoPassadoB = (0, moment_1.default)().subtract(tempoRoteador, "minutes").utc().toDate();
                                 const updatedAtV = new Date(ticket.updatedAt);
@@ -1145,12 +1052,8 @@ async function handleRandomUser() {
                                 });
                                 const sendGreetingMessageOneQueues = settings.sendGreetingMessageOneQueues === "enabled" || false;
                                 if (!userId) {
-                                    // ticket.userId is null, randomly select one of the provided userIds
                                     const randomUserId = getRandomUserId(userIds);
                                     if (randomUserId !== undefined && await findUserById(randomUserId, ticket.companyId) > 0) {
-                                        // Update the ticket with the randomly selected userId
-                                        //ticket.userId = randomUserId;
-                                        //ticket.save();
                                         if (sendGreetingMessageOneQueues) {
                                             const ticketToSend = await (0, ShowTicketService_1.default)(ticket.id, ticket.companyId);
                                             await (0, SendWhatsAppMessage_1.default)({ body: `\u200e *Assistente Virtual*:\nAguarde enquanto localizamos um atendente... Você será atendido em breve!`, ticket: ticketToSend });
@@ -1160,24 +1063,17 @@ async function handleRandomUser() {
                                             ticketId: ticket.id,
                                             companyId: ticket.companyId,
                                         });
-                                        //await ticket.reload();
                                         logger_1.default.info(`Ticket ID ${ticket.id} atualizado para UserId ${randomUserId} - ${ticket.updatedAt}`);
                                     }
                                     else {
-                                        //logger.info(`Ticket ID ${ticket.id} NOT updated with UserId ${randomUserId} - ${ticket.updatedAt}`);            
                                     }
                                 }
                                 else if (userIds.includes(userId)) {
                                     if (tempoPassadoB > updatedAtV) {
-                                        // ticket.userId is present and is in userIds, exclude it from random selection
                                         const availableUserIds = userIds.filter((id) => id !== userId);
                                         if (availableUserIds.length > 0) {
-                                            // Randomly select one of the remaining userIds
                                             const randomUserId = getRandomUserId(availableUserIds);
                                             if (randomUserId !== undefined && await findUserById(randomUserId, ticket.companyId) > 0) {
-                                                // Update the ticket with the randomly selected userId
-                                                //ticket.userId = randomUserId;
-                                                //ticket.save();
                                                 if (sendGreetingMessageOneQueues) {
                                                     const ticketToSend = await (0, ShowTicketService_1.default)(ticket.id, ticket.companyId);
                                                     await (0, SendWhatsAppMessage_1.default)({ body: "*Assistente Virtual*:\nAguarde enquanto localizamos um atendente... Você será atendido em breve!", ticket: ticketToSend });
@@ -1191,7 +1087,6 @@ async function handleRandomUser() {
                                                 logger_1.default.info(`Ticket ID ${ticket.id} atualizado para UserId ${randomUserId} - ${ticket.updatedAt}`);
                                             }
                                             else {
-                                                //logger.info(`Ticket ID ${ticket.id} NOT updated with UserId ${randomUserId} - ${ticket.updatedAt}`);            
                                             }
                                         }
                                     }
@@ -1305,7 +1200,6 @@ async function handleCloseTicketsAutomatic() {
 }
 async function handleWhatsapp() {
     const jobW = new CronJob('* 15 3 * * *', async () => {
-        //*Whatsapp
         (0, GetWhatsapp_1.GetWhatsapp)();
         jobW.stop();
     }, null, false, 'America/Sao_Paulo');
@@ -1325,12 +1219,10 @@ async function handleInvoiceCreate() {
             const diff = (0, moment_1.default)(vencimento, "DD/MM/yyyy").diff((0, moment_1.default)(hoje, "DD/MM/yyyy"));
             const dias = moment_1.default.duration(diff).asDays();
             if (status === true) {
-                //logger.info(`EMPRESA: ${c.id} está ATIVA com vencimento em: ${vencimento} | ${dias}`);
-                //Verifico se a empresa está a mais de 10 dias sem pagamento
                 if (dias <= -3) {
                     logger_1.default.info(`EMPRESA: ${c.id} está VENCIDA A MAIS DE 3 DIAS... INATIVANDO... ${dias}`);
                     c.status = false;
-                    await c.save(); // Save the updated company record
+                    await c.save();
                     logger_1.default.info(`EMPRESA: ${c.id} foi INATIVADA.`);
                     logger_1.default.info(`EMPRESA: ${c.id} Desativando conexões com o WhatsApp...`);
                     try {
@@ -1350,19 +1242,16 @@ async function handleInvoiceCreate() {
                         }
                     }
                     catch (error) {
-                        // Lidar com erros, se houver
                         console.error('Erro ao buscar os IDs de WhatsApp:', error);
                         throw error;
                     }
                 }
-                else { // ELSE if(dias <= -3){
+                else {
                     const plan = await Plan_1.default.findByPk(c.planId);
                     const sql = `SELECT * FROM "Invoices" WHERE "companyId" = ${c.id} AND "status" = 'open';`;
                     const openInvoices = await database_1.default.query(sql, { type: sequelize_1.QueryTypes.SELECT });
                     const existingInvoice = openInvoices.find(invoice => (0, moment_1.default)(invoice.dueDate).format("DD/MM/yyyy") === vencimento);
                     if (existingInvoice) {
-                        // Due date already exists, no action needed
-                        //logger.info(`Fatura Existente`);
                     }
                     else if (openInvoices.length > 0) {
                         const updateSql = `UPDATE "Invoices" SET "dueDate" = '${date}' WHERE "id" = ${openInvoices[0].id};`;
@@ -1375,12 +1264,10 @@ async function handleInvoiceCreate() {
             VALUES (${c.id}, '${date}', '${plan.name}', 'open', ${valuePlan}, ${plan.users}, ${plan.connections}, ${plan.queues}, '${timestamp}', '${timestamp}');`;
                         const invoiceInsert = await database_1.default.query(sql, { type: sequelize_1.QueryTypes.INSERT });
                         logger_1.default.info(`Fatura Gerada para o cliente: ${c.id}`);
-                        // Rest of the code for sending email
                     }
-                } // if(dias <= -6){
+                }
             }
-            else { // ELSE if(status === true){
-                //logger.info(`EMPRESA: ${c.id} está INATIVA`);
+            else {
             }
         });
     });
@@ -1419,4 +1306,4 @@ async function startQueueProcess() {
         removeOnComplete: true
     });
 }
-exports.startQueueProcess = startQueueProcess;
+//# sourceMappingURL=queues.js.map

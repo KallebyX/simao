@@ -14,7 +14,6 @@ const UpdateContactWalletsService = async ({ wallets, contactId, companyId }) =>
         }
     });
     const contactWallets = [];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     wallets.forEach((wallet) => {
         contactWallets.push({
             walletId: !wallet.id ? wallet : wallet.id,
@@ -41,3 +40,4 @@ const UpdateContactWalletsService = async ({ wallets, contactId, companyId }) =>
     return contact;
 };
 exports.default = UpdateContactWalletsService;
+//# sourceMappingURL=UpdateContactWalletsService.js.map

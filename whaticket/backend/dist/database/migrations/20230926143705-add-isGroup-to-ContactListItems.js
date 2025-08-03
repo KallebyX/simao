@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("ContactListItems", "isGroup");
     }
 };
+//# sourceMappingURL=20230926143705-add-isGroup-to-ContactListItems.js.map

@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const AppError_1 = __importDefault(require("../../errors/AppError"));
 const GetTicketWbot_1 = __importDefault(require("../../helpers/GetTicketWbot"));
 const Message_1 = __importDefault(require("../../models/Message"));
-// import OldMessage from "../../models/OldMessage";
 const Ticket_1 = __importDefault(require("../../models/Ticket"));
 const EditWhatsAppMessage = async ({ messageId, body, }) => {
     const message = await Message_1.default.findByPk(messageId, {
@@ -29,7 +28,6 @@ const EditWhatsAppMessage = async ({ messageId, body, }) => {
             text: body,
             edit: msg.key,
         }, {});
-        // await OldMessage.upsert(oldMessage);
         await message.update({ body, isEdited: true });
         await ticket.update({ lastMessage: body });
         await ticket.reload();
@@ -41,3 +39,4 @@ const EditWhatsAppMessage = async ({ messageId, body, }) => {
     }
 };
 exports.default = EditWhatsAppMessage;
+//# sourceMappingURL=EditWhatsAppMessage.js.map

@@ -12,3 +12,4 @@ module.exports = {
         await queryInterface.removeColumn("Tickets", "hashFlowId");
     }
 };
+//# sourceMappingURL=20230823134236-add-column-hashflow.js.map

@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "statusImportMessages");
     }
 };
+//# sourceMappingURL=20230809081008-add-status-import-to-whatsapp.js.map

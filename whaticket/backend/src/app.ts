@@ -17,11 +17,13 @@ import routes from "./routes";
 import logger from "./utils/logger";
 import { messageQueue, sendScheduledMessages } from "./queues";
 import BullQueue from "./libs/queue"
-import BullBoard from 'bull-board';
+import { createBullBoard } from '@bull-board/api';
+import { BullAdapter } from '@bull-board/api/bullAdapter';
+import { ExpressAdapter } from '@bull-board/express';
 import basicAuth from 'basic-auth';
 
 // Função de middleware para autenticação básica
-export const isBullAuth = (req, res, next) => {
+export const isBullAuth = (req: Request, res: Response, next: NextFunction) => {
   const user = basicAuth(req);
 
   if (!user || user.name !== process.env.BULL_USER || user.pass !== process.env.BULL_PASS) {
@@ -49,8 +51,15 @@ const allowedOrigins = [process.env.FRONTEND_URL];
 
 // Configuração do BullBoard
 if (String(process.env.BULL_BOARD).toLocaleLowerCase() === 'true' && process.env.REDIS_URI_ACK !== '') {
-  BullBoard.setQueues(BullQueue.queues.map(queue => queue && queue.bull));
-  app.use('/admin/queues', isBullAuth, BullBoard.UI);
+  const serverAdapter = new ExpressAdapter();
+  serverAdapter.setBasePath('/admin/queues');
+  
+  createBullBoard({
+    queues: BullQueue.queues.map(queue => new BullAdapter(queue.bull)),
+    serverAdapter: serverAdapter,
+  });
+  
+  app.use('/admin/queues', isBullAuth, serverAdapter.getRouter());
 }
 
 // Middlewares

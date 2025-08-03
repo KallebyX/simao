@@ -15,6 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 let Baileys = class Baileys extends sequelize_typescript_1.Model {
+    id;
+    contacts;
+    chats;
+    createdAt;
+    updatedAt;
+    whatsappId;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -49,3 +55,4 @@ Baileys = __decorate([
     sequelize_typescript_1.Table
 ], Baileys);
 exports.default = Baileys;
+//# sourceMappingURL=Baileys.js.map

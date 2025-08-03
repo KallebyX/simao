@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Tickets", "typebotStatus");
     }
 };
+//# sourceMappingURL=20231207085011-add-typebotStatus-to-tickets.js.map

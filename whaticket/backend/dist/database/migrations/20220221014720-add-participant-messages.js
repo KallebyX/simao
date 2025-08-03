@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Messages", "participant");
     }
 };
+//# sourceMappingURL=20220221014720-add-participant-messages.js.map

@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Queues", "ativarRoteador");
     }
 };
+//# sourceMappingURL=20230716229907-add-ativaRoteador-Queue.js.map

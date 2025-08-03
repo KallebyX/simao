@@ -22,7 +22,6 @@ const authState = async (whatsapp) => {
             console.log(error);
         }
     };
-    // const getSessionDatabase = await whatsappById(whatsapp.id);
     if (whatsapp.session && whatsapp.session !== null) {
         const result = JSON.parse(whatsapp.session, baileys_1.BufferJSON.reviver);
         creds = result.creds;
@@ -50,7 +49,6 @@ const authState = async (whatsapp) => {
                     }, {});
                 },
                 set: (data) => {
-                    // eslint-disable-next-line no-restricted-syntax, guard-for-in
                     for (const i in data) {
                         const key = KEY_MAP[i];
                         keys[key] = keys[key] || {};
@@ -64,3 +62,4 @@ const authState = async (whatsapp) => {
     };
 };
 exports.default = authState;
+//# sourceMappingURL=authState.js.map

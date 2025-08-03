@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Chatbots", "queueType");
     }
 };
+//# sourceMappingURL=20230517221007-add-queueType-Chatbots.js.map

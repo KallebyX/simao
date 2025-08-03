@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Messages", "contactId");
     }
 };
+//# sourceMappingURL=20201004150008-add-contactId-column-to-messages.js.map

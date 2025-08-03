@@ -20,6 +20,27 @@ const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 const Message_1 = __importDefault(require("./Message"));
 const Queue_1 = __importDefault(require("./Queue"));
 let TicketTraking = class TicketTraking extends sequelize_typescript_1.Model {
+    id;
+    ticketId;
+    ticket;
+    companyId;
+    company;
+    whatsappId;
+    whatsapp;
+    userId;
+    rated;
+    user;
+    createdAt;
+    updatedAt;
+    startedAt;
+    queuedAt;
+    closedAt;
+    finishedAt;
+    ratingAt;
+    chatbotAt;
+    queueId;
+    queue;
+    message;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -118,3 +139,4 @@ TicketTraking = __decorate([
     })
 ], TicketTraking);
 exports.default = TicketTraking;
+//# sourceMappingURL=TicketTraking.js.map

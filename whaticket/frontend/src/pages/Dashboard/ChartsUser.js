@@ -10,9 +10,6 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import brLocale from 'date-fns/locale/pt-BR';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { Button, Grid, TextField } from '@material-ui/core';
 import Typography from "@material-ui/core/Typography";
 import api from '../../services/api';
@@ -119,25 +116,24 @@ export const ChatsUser = () => {
 
             <Grid container spacing={2}>
                 <Grid item>
-                    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={brLocale}>
-                        <DatePicker
-                            value={initialDate}
-                            onChange={(newValue) => { setInitialDate(newValue) }}
-                            label={i18n.t("dashboard.date.initialDate")}
-                            renderInput={(params) => <TextField fullWidth {...params} sx={{ width: '20ch' }} />}
-
-                        />
-                    </LocalizationProvider>
+                    <TextField
+                        type="date"
+                        label={i18n.t("dashboard.date.initialDate")}
+                        value={format(initialDate, 'yyyy-MM-dd')}
+                        onChange={(e) => setInitialDate(new Date(e.target.value))}
+                        InputLabelProps={{ shrink: true }}
+                        style={{ width: '20ch' }}
+                    />
                 </Grid>
                 <Grid item>
-                    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={brLocale}>
-                        <DatePicker
-                            value={finalDate}
-                            onChange={(newValue) => { setFinalDate(newValue) }}
-                            label={i18n.t("dashboard.date.finalDate")}
-                            renderInput={(params) => <TextField fullWidth {...params} sx={{ width: '20ch' }} />}
-                        />
-                    </LocalizationProvider>
+                    <TextField
+                        type="date"
+                        label={i18n.t("dashboard.date.finalDate")}
+                        value={format(finalDate, 'yyyy-MM-dd')}
+                        onChange={(e) => setFinalDate(new Date(e.target.value))}
+                        InputLabelProps={{ shrink: true }}
+                        style={{ width: '20ch' }}
+                    />
                 </Grid>
                 <Grid item>
                     <Button style={{ backgroundColor: theme.palette.primary.main, top: '10px' }} onClick={handleGetTicketsInformation} variant='contained'>Filtrar</Button>

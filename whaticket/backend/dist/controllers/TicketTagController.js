@@ -16,7 +16,6 @@ const store = async (req, res) => {
         const ticket = await (0, ShowTicketService_1.default)(ticketId, companyId);
         const io = (0, socket_1.getIO)();
         io.of(String(companyId))
-            // .to(ticket.status)
             .emit(`company-${companyId}-ticket`, {
             action: "update",
             ticket
@@ -28,45 +27,24 @@ const store = async (req, res) => {
     }
 };
 exports.store = store;
-/*
-export const remove = async (req: Request, res: Response): Promise<Response> => {
-  const { ticketId } = req.params;
-
-  console.log("remove");
-  console.log(req.params);
-
-  try {
-    await TicketTag.destroy({ where: { ticketId } });
-    return res.status(200).json({ message: 'Ticket tags removed successfully.' });
-  } catch (error) {
-    return res.status(500).json({ error: 'Failed to remove ticket tags.' });
-  }
-};
-*/
 const remove = async (req, res) => {
     const { ticketId } = req.params;
     const { companyId } = req.user;
-    //console.log("remove");
-    //console.log(req.params);
     try {
-        // Retrieve tagIds associated with the provided ticketId from TicketTags
         const ticketTags = await TicketTag_1.default.findAll({ where: { ticketId } });
         const tagIds = ticketTags.map((ticketTag) => ticketTag.tagId);
-        // Find the tagIds with kanban = 1 in the Tags table
         const tagsWithKanbanOne = await Tag_1.default.findAll({
             where: {
                 id: tagIds,
                 kanban: 1,
             },
         });
-        // Remove the tagIds with kanban = 1 from TicketTags
         const tagIdsWithKanbanOne = tagsWithKanbanOne.map((tag) => tag.id);
         if (tagIdsWithKanbanOne)
             await TicketTag_1.default.destroy({ where: { ticketId, tagId: tagIdsWithKanbanOne } });
         const ticket = await (0, ShowTicketService_1.default)(ticketId, companyId);
         const io = (0, socket_1.getIO)();
         io.of(String(companyId))
-            // .to(ticket.status)
             .emit(`company-${companyId}-ticket`, {
             action: "update",
             ticket
@@ -78,3 +56,4 @@ const remove = async (req, res) => {
     }
 };
 exports.remove = remove;
+//# sourceMappingURL=TicketTagController.js.map

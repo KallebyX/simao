@@ -71,3 +71,4 @@ const remove = async (req, res) => {
     return res.status(200).json({ message: "Schedule deleted" });
 };
 exports.remove = remove;
+//# sourceMappingURL=ScheduledMessagesController.js.map

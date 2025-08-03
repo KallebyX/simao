@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Schedules", "mediaName");
     }
 };
+//# sourceMappingURL=20231117000001-add-mediaName-to-schedules.js.map

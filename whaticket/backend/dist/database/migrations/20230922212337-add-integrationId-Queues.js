@@ -21,3 +21,4 @@ module.exports = {
             queryInterface.removeColumn("Whatsapps", "integrationId");
     }
 };
+//# sourceMappingURL=20230922212337-add-integrationId-Queues.js.map

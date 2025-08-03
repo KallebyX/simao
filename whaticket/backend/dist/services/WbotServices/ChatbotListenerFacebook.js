@@ -50,7 +50,6 @@ const sendDialog = async (choosenQueue, contact, ticket) => {
             : options;
         if (options.length > 0) {
             const body = `\u200e${choosenQueue.greetingMessage}\n\n${optionsBack}`;
-            // const sendOption = await sendMessage(wbot, contact, ticket, body);
             const sendOption = await (0, graphAPI_1.sendText)(contact.number, (0, Mustache_1.default)(body, ticket), ticket.whatsapp.facebookUserToken);
             return sendOption;
         }
@@ -80,7 +79,6 @@ const backToMainMenu = async (wbot, contact, ticket) => {
         ticketId: ticket.id,
         companyId: ticket.companyId
     });
-    // console.log("GETTING WHATSAPP BACK TO MAIN MENU", ticket.whatsappId, wbot.id)
     const { queues, greetingMessage } = await (0, ShowWhatsAppService_1.default)(wbot.id, ticket.companyId);
     let options = "";
     queues.forEach((option, index) => {
@@ -107,7 +105,7 @@ const sayChatbot = async (queueId, wbot, ticket, contact, msg) => {
         if (!choosenQueue?.greetingMessage) {
             await (0, DeleteDialogChatBotsServices_1.default)(contact.id);
             return;
-        } // nao tem mensagem de boas vindas
+        }
         if (choosenQueue) {
             if (choosenQueue.isAgent) {
                 const getUserByName = await User_1.default.findOne({
@@ -139,7 +137,7 @@ const sayChatbot = async (queueId, wbot, ticket, contact, msg) => {
         if (!choosenQueue.greetingMessage) {
             await (0, DeleteDialogChatBotsServices_1.default)(contact.id);
             return;
-        } // nao tem mensagem de boas vindas
+        }
         if (choosenQueue) {
             if (choosenQueue.isAgent) {
                 const getUserByName = await User_1.default.findOne({
@@ -164,3 +162,4 @@ const sayChatbot = async (queueId, wbot, ticket, contact, msg) => {
     }
 };
 exports.sayChatbot = sayChatbot;
+//# sourceMappingURL=ChatbotListenerFacebook.js.map

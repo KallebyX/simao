@@ -47,3 +47,4 @@ const UpdateChatBotServices = async (chatBotId, chatbotData) => {
     return chatbot;
 };
 exports.default = UpdateChatBotServices;
+//# sourceMappingURL=UpdateChatBotServices.js.map

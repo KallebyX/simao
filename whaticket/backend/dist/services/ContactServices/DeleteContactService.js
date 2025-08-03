@@ -15,3 +15,4 @@ const DeleteContactService = async (id) => {
     await contact.destroy();
 };
 exports.default = DeleteContactService;
+//# sourceMappingURL=DeleteContactService.js.map

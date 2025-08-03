@@ -14,3 +14,4 @@ const ListService = async ({ companyId }) => {
     return records;
 };
 exports.default = ListService;
+//# sourceMappingURL=ListService.js.map

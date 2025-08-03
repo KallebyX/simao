@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Messages", "queueId");
     }
 };
+//# sourceMappingURL=20220404000000-add-column-queueId-to-Messages-table.js.map

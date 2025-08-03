@@ -49,3 +49,4 @@ module.exports = {
         return queryInterface.dropTable("FlowCampaigns");
     }
 };
+//# sourceMappingURL=20230904214345-create-table-campaign-flow.js.map

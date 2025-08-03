@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("QuickMessages", "userId");
     }
 };
+//# sourceMappingURL=20220115114088-add-column-userId-to-QuickMessages-table.js.map

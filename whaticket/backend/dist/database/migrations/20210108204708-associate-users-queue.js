@@ -26,3 +26,4 @@ module.exports = {
         return queryInterface.dropTable("UserQueues");
     }
 };
+//# sourceMappingURL=20210108204708-associate-users-queue.js.map

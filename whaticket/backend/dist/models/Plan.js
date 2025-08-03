@@ -11,6 +11,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 let Plan = class Plan extends sequelize_typescript_1.Model {
+    id;
+    name;
+    users;
+    connections;
+    queues;
+    amount;
+    useWhatsapp;
+    useFacebook;
+    useInstagram;
+    useCampaigns;
+    useSchedules;
+    useInternalChat;
+    useExternalApi;
+    createdAt;
+    updatedAt;
+    useKanban;
+    trial;
+    trialDays;
+    recurrence;
+    useOpenAi;
+    useIntegrations;
+    isPublic;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -109,3 +131,4 @@ Plan = __decorate([
     sequelize_typescript_1.Table
 ], Plan);
 exports.default = Plan;
+//# sourceMappingURL=Plan.js.map

@@ -156,3 +156,4 @@ const messages = async (req, res) => {
     return res.json({ records, count, hasMore });
 };
 exports.messages = messages;
+//# sourceMappingURL=ChatController.js.map

@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const FlowBuilder_1 = require("../../models/FlowBuilder");
 const FlowsGetDataService = async ({ companyId, idFlow }) => {
     try {
-        // Realiza a consulta com paginação usando findAndCountAll
         const { count, rows } = await FlowBuilder_1.FlowBuilderModel.findAndCountAll({
             where: {
                 company_id: companyId,
@@ -20,3 +19,4 @@ const FlowsGetDataService = async ({ companyId, idFlow }) => {
     }
 };
 exports.default = FlowsGetDataService;
+//# sourceMappingURL=FlowsGetDataService.js.map

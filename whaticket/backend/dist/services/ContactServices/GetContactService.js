@@ -24,3 +24,4 @@ const GetContactService = async ({ name, number, companyId }) => {
     return numberExists;
 };
 exports.default = GetContactService;
+//# sourceMappingURL=GetContactService.js.map

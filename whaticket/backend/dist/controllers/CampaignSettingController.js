@@ -28,38 +28,4 @@ const store = async (req, res) => {
     return res.status(200).json(record);
 };
 exports.store = store;
-/*
-export const update = async (
-  req: Request,
-  res: Response
-): Promise<Response> => {
-  const data = req.body as StoreData;
-  const { companyId } = req.user;
-
-  const schema = Yup.object().shape({
-    name: Yup.string().required()
-  });
-
-  try {
-    await schema.validate(data);
-  } catch (err: any) {
-    throw new AppError(err.message);
-  }
-
-  const { id } = req.params;
-
-  const record = await UpdateServiceCampaignSettings({
-    ...data,
-    id
-  });
-
-  const io = getIO();
-  io.of(String(companyId))
-  .emit(`company-${companyId}-campaign`, {
-    action: "update",
-    record
-  });
-
-  return res.status(200).json(record);
-};
-*/
+//# sourceMappingURL=CampaignSettingController.js.map

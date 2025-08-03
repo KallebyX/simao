@@ -32,3 +32,4 @@ module.exports = {
         return queryInterface.dropTable("ContactTags");
     }
 };
+//# sourceMappingURL=20230630150600-create-associate-contacttags.js.map

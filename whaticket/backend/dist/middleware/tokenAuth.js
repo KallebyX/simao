@@ -27,3 +27,4 @@ const isAuthApi = async (req, res, next) => {
     return next();
 };
 exports.default = isAuthApi;
+//# sourceMappingURL=tokenAuth.js.map

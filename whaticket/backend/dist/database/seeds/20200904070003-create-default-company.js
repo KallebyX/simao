@@ -46,3 +46,4 @@ module.exports = {
         });
     }
 };
+//# sourceMappingURL=20200904070003-create-default-company.js.map

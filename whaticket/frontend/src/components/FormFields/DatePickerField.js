@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useField } from 'formik';
 import Grid from '@material-ui/core/Grid';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker
-} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+import TextField from '@material-ui/core/TextField';
 
 export default function DatePickerField(props) {
   const [field, meta, helper] = useField(props);
@@ -13,20 +9,23 @@ export default function DatePickerField(props) {
   const { setValue } = helper;
   const isError = touched && error && true;
   const { value } = field;
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState('');
 
   useEffect(() => {
     if (value) {
       const date = new Date(value);
-      setSelectedDate(date);
+      const dateString = date.toISOString().split('T')[0];
+      setSelectedDate(dateString);
     }
   }, [value]);
 
-  function _onChange(date) {
+  function _onChange(event) {
+    const date = event.target.value;
+    setSelectedDate(date);
     if (date) {
-      setSelectedDate(date);
       try {
-        const ISODateString = date.toISOString();
+        const dateObj = new Date(date);
+        const ISODateString = dateObj.toISOString();
         setValue(ISODateString);
       } catch (error) {
         setValue(date);
@@ -38,17 +37,16 @@ export default function DatePickerField(props) {
 
   return (
     <Grid container>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <KeyboardDatePicker
-          {...field}
-          {...props}
-          value={selectedDate}
-          onChange={_onChange}
-          error={isError}
-          invalidDateMessage={isError && error}
-          helperText={isError && error}
-        />
-      </MuiPickersUtilsProvider>
+      <TextField
+        {...props}
+        type="date"
+        value={selectedDate}
+        onChange={_onChange}
+        error={isError}
+        helperText={isError && error}
+        InputLabelProps={{ shrink: true }}
+        fullWidth
+      />
     </Grid>
   );
 }

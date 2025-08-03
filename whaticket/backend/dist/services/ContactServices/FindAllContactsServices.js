@@ -21,3 +21,4 @@ const FindAllContactService = async ({ companyId }) => {
     return contacts;
 };
 exports.default = FindAllContactService;
+//# sourceMappingURL=FindAllContactsServices.js.map

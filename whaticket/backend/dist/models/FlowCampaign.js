@@ -16,7 +16,19 @@ exports.FlowCampaignModel = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 let FlowCampaignModel = class FlowCampaignModel extends sequelize_typescript_1.Model {
+    id;
+    companyId;
+    userId;
+    name;
+    flowId;
+    phrase;
+    whatsappId;
+    whatsapp;
+    status;
+    createdAt;
+    updatedAt;
 };
+exports.FlowCampaignModel = FlowCampaignModel;
 __decorate([
     sequelize_typescript_1.PrimaryKey,
     sequelize_typescript_1.AutoIncrement,
@@ -64,9 +76,9 @@ __decorate([
     sequelize_typescript_1.UpdatedAt,
     __metadata("design:type", Date)
 ], FlowCampaignModel.prototype, "updatedAt", void 0);
-FlowCampaignModel = __decorate([
+exports.FlowCampaignModel = FlowCampaignModel = __decorate([
     (0, sequelize_typescript_1.Table)({
         tableName: "FlowCampaigns"
     })
 ], FlowCampaignModel);
-exports.FlowCampaignModel = FlowCampaignModel;
+//# sourceMappingURL=FlowCampaign.js.map

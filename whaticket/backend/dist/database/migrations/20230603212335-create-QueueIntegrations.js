@@ -46,3 +46,4 @@ module.exports = {
         return queryInterface.dropTable("QueueIntegrations");
     }
 };
+//# sourceMappingURL=20230603212335-create-QueueIntegrations.js.map

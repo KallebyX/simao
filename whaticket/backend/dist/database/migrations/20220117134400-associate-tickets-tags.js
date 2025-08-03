@@ -32,3 +32,4 @@ module.exports = {
         return queryInterface.dropTable("TicketTags");
     }
 };
+//# sourceMappingURL=20220117134400-associate-tickets-tags.js.map

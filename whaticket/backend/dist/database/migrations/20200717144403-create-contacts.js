@@ -35,3 +35,4 @@ module.exports = {
         return queryInterface.dropTable("Contacts");
     }
 };
+//# sourceMappingURL=20200717144403-create-contacts.js.map

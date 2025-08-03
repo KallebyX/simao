@@ -41,3 +41,4 @@ module.exports = {
         ]);
     }
 };
+//# sourceMappingURL=20230724111007-add-collumns-whatsapp.js.map

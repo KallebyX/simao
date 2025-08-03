@@ -15,3 +15,4 @@ const DeleteCompanyService = async (id) => {
     await company.destroy();
 };
 exports.default = DeleteCompanyService;
+//# sourceMappingURL=DeleteCompanyService.js.map

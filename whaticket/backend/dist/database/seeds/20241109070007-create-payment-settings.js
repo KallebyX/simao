@@ -69,3 +69,4 @@ module.exports = {
         return queryInterface.bulkDelete("Settings", {});
     }
 };
+//# sourceMappingURL=20241109070007-create-payment-settings.js.map

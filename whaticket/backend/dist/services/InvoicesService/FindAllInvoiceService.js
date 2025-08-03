@@ -14,3 +14,4 @@ const FindAllPlanService = async (companyId) => {
     return invoice;
 };
 exports.default = FindAllPlanService;
+//# sourceMappingURL=FindAllInvoiceService.js.map

@@ -36,3 +36,4 @@ const SendWhatsAppMessageLink = async ({ whatsappId, contact, url, caption, msde
     }
 };
 exports.default = SendWhatsAppMessageLink;
+//# sourceMappingURL=SendWhatsAppMessageLink.js.map

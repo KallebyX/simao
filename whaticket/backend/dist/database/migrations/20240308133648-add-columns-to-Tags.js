@@ -23,3 +23,4 @@ module.exports = {
             queryInterface.removeColumn("Tags", "greetingMessageLane");
     }
 };
+//# sourceMappingURL=20240308133648-add-columns-to-Tags.js.map

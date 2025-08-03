@@ -52,3 +52,4 @@ const TicketsDayService = async ({ initialDate, finalDate, companyId }) => {
     return { data, count };
 };
 exports.TicketsDayService = TicketsDayService;
+//# sourceMappingURL=TicketsDayService.js.map

@@ -28,3 +28,4 @@ const ListService = async ({ searchParam, pageNumber = "1", companyId }) => {
     };
 };
 exports.default = ListService;
+//# sourceMappingURL=ListService.js.map

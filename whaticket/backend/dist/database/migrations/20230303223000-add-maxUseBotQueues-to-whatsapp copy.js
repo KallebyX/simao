@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "maxUseBotQueues");
     }
 };
+//# sourceMappingURL=20230303223000-add-maxUseBotQueues-to-whatsapp%20copy.js.map

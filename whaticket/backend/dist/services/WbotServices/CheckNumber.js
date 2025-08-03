@@ -29,3 +29,4 @@ const CheckContactNumber = async (number, companyId, isGroup = false) => {
     return isGroup ? number.split("@")[0] : isNumberExit[0].jid.split("@")[0];
 };
 exports.default = CheckContactNumber;
+//# sourceMappingURL=CheckNumber.js.map

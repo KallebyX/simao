@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Contacts", "lgpdAcceptedAt");
     }
 };
+//# sourceMappingURL=20230731331007-add-lgpdAccept-Contact.js.map

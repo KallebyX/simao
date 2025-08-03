@@ -14,3 +14,4 @@ const CreateDialogChatBotsServices = async ({ awaiting, contactId, chatbotId, qu
     return quickAnswer;
 };
 exports.default = CreateDialogChatBotsServices;
+//# sourceMappingURL=CreateDialogChatBotsServices.js.map

@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Chatbots", "isAgent");
     }
 };
+//# sourceMappingURL=20222016014719-add-isAgent-chatbot.js.map

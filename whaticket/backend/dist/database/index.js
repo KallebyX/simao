@@ -57,9 +57,19 @@ const FlowAudio_1 = require("../models/FlowAudio");
 const FlowCampaign_1 = require("../models/FlowCampaign");
 const FlowImg_1 = require("../models/FlowImg");
 const Webhook_1 = require("../models/Webhook");
-// eslint-disable-next-line
 const dbConfig = require("../config/database");
-const sequelize = new sequelize_typescript_1.Sequelize(dbConfig);
+const config = dbConfig[process.env.NODE_ENV || 'development'];
+const sequelize = new sequelize_typescript_1.Sequelize(config.database, config.username, config.password, {
+    host: config.host,
+    port: config.port,
+    dialect: config.dialect,
+    timezone: config.timezone,
+    logging: config.logging,
+    pool: config.pool,
+    define: config.define,
+    retry: config.retry,
+    dialectOptions: config.options
+});
 const models = [
     Company_1.default,
     User_1.default,
@@ -117,3 +127,4 @@ const models = [
 ];
 sequelize.addModels(models);
 exports.default = sequelize;
+//# sourceMappingURL=index.js.map

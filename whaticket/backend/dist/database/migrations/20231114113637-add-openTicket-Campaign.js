@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Campaigns", "openTicket");
     }
 };
+//# sourceMappingURL=20231114113637-add-openTicket-Campaign.js.map

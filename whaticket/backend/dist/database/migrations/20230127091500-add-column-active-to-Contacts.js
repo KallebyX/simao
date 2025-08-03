@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Contacts", "active");
     }
 };
+//# sourceMappingURL=20230127091500-add-column-active-to-Contacts.js.map

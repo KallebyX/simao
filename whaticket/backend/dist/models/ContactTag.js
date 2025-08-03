@@ -16,6 +16,12 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Tag_1 = __importDefault(require("./Tag"));
 const Contact_1 = __importDefault(require("./Contact"));
 let ContactTag = class ContactTag extends sequelize_typescript_1.Model {
+    contactId;
+    tagId;
+    contact;
+    tags;
+    createdAt;
+    updatedAt;
 };
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => Contact_1.default),
@@ -49,3 +55,4 @@ ContactTag = __decorate([
     })
 ], ContactTag);
 exports.default = ContactTag;
+//# sourceMappingURL=ContactTag.js.map

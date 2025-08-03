@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Settings", "companyId");
     }
 };
+//# sourceMappingURL=20210109192515-add-column-companyId-to-Settings-table.js.map

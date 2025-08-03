@@ -15,13 +15,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -35,13 +45,11 @@ const InvoicesController = __importStar(require("../../controllers/InvoicesContr
 const UserController = __importStar(require("../../controllers/UserController"));
 const isAuthCompany_1 = __importDefault(require("../../middleware/isAuthCompany"));
 const apiCompanyRoutes = express_1.default.Router();
-// PLANS
 apiCompanyRoutes.get("/plans", isAuthCompany_1.default, PlanController.index);
 apiCompanyRoutes.get("/plans/:id", isAuthCompany_1.default, PlanController.show);
 apiCompanyRoutes.post("/plans", isAuthCompany_1.default, PlanController.store);
 apiCompanyRoutes.put("/plans/:id", isAuthCompany_1.default, PlanController.update);
 apiCompanyRoutes.delete("/plans/:id", isAuthCompany_1.default, PlanController.remove);
-// COMPANY
 apiCompanyRoutes.get("/companies", isAuthCompany_1.default, CompanyController.index);
 apiCompanyRoutes.get("/companies/:id", isAuthCompany_1.default, CompanyController.show);
 apiCompanyRoutes.get("/companiesEmail/:email", isAuthCompany_1.default, CompanyController.showEmail);
@@ -49,7 +57,6 @@ apiCompanyRoutes.post("/companies", isAuthCompany_1.default, CompanyController.s
 apiCompanyRoutes.put("/companies/:id", isAuthCompany_1.default, CompanyController.update);
 apiCompanyRoutes.put("/companies/:id/schedules", isAuthCompany_1.default, CompanyController.updateSchedules);
 apiCompanyRoutes.delete("/companies/:id", isAuthCompany_1.default, CompanyController.remove);
-// HELP
 apiCompanyRoutes.get("/helps", isAuthCompany_1.default, HelpController.index);
 apiCompanyRoutes.get("/helps/:id", isAuthCompany_1.default, HelpController.show);
 apiCompanyRoutes.post("/helps", isAuthCompany_1.default, HelpController.store);
@@ -60,18 +67,12 @@ apiCompanyRoutes.get("/partners/:id", isAuthCompany_1.default, PartnerController
 apiCompanyRoutes.post("/partners", isAuthCompany_1.default, PartnerController.store);
 apiCompanyRoutes.put("/partners/:id", isAuthCompany_1.default, PartnerController.update);
 apiCompanyRoutes.delete("/partners/:id", isAuthCompany_1.default, PartnerController.remove);
-// INVOICES
 apiCompanyRoutes.get("/invoices", isAuthCompany_1.default, InvoicesController.index);
 apiCompanyRoutes.get("/invoices/:id", isAuthCompany_1.default, InvoicesController.show);
 apiCompanyRoutes.get("/invoicesCompany/:companyId", isAuthCompany_1.default, InvoicesController.list);
 apiCompanyRoutes.post("/invoices", isAuthCompany_1.default, InvoicesController.store);
 apiCompanyRoutes.put("/invoices/:id", isAuthCompany_1.default, InvoicesController.update);
 apiCompanyRoutes.delete("/invoices/:id", isAuthCompany_1.default, InvoicesController.remove);
-// COMPANY
-// apiCompanyRoutes.get("/users", isAuthCompany, UserController.index);
-// apiCompanyRoutes.get("/users/:userId", isAuthCompany, UserController.show);
 apiCompanyRoutes.get("/users/:email", isAuthCompany_1.default, UserController.showEmail);
-// apiCompanyRoutes.post("/users", isAuthCompany, UserController.store);
-// apiCompanyRoutes.put("/users/:userId", isAuthCompany, UserController.update);
-// apiCompanyRoutes.delete("/users/:userId", isAuthCompany, UserController.remove);
 exports.default = apiCompanyRoutes;
+//# sourceMappingURL=apiCompanyRoutes.js.map

@@ -16,3 +16,4 @@ const UploadImgFlowBuilderService = async ({ userId, name, companyId }) => {
     }
 };
 exports.default = UploadImgFlowBuilderService;
+//# sourceMappingURL=UploadImgFlowBuilderService.js.map

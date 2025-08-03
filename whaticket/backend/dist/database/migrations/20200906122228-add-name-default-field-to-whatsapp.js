@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "default");
     }
 };
+//# sourceMappingURL=20200906122228-add-name-default-field-to-whatsapp.js.map

@@ -54,3 +54,4 @@ module.exports = {
         return queryInterface.dropTable("ContactListItems");
     }
 };
+//# sourceMappingURL=20220315110001-create-ContactListItems-table.js.map

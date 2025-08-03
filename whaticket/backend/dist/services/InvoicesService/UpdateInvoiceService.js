@@ -17,3 +17,4 @@ const UpdateInvoiceService = async (InvoiceData) => {
     return invoice;
 };
 exports.default = UpdateInvoiceService;
+//# sourceMappingURL=UpdateInvoiceService.js.map

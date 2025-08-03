@@ -13,3 +13,4 @@ const ShowService = async (id) => {
     return record;
 };
 exports.default = ShowService;
+//# sourceMappingURL=ShowService.js.map

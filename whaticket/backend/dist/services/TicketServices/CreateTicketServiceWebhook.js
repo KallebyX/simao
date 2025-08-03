@@ -52,3 +52,4 @@ const CreateTicketServiceWebhook = async ({ contactId, status, userId, queueId, 
     return ticket;
 };
 exports.default = CreateTicketServiceWebhook;
+//# sourceMappingURL=CreateTicketServiceWebhook.js.map

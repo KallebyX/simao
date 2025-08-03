@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "farewellMessage");
     }
 };
+//# sourceMappingURL=20220220014719-add-farewellMessage-to-whatsapp.js.map

@@ -36,3 +36,4 @@ module.exports = {
         return queryInterface.dropTable("FlowImgs");
     }
 };
+//# sourceMappingURL=20230829214345-create-table-imgs-flow.js.map

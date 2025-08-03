@@ -17,3 +17,4 @@ const FindAllCompanyService = async () => {
     return companies;
 };
 exports.default = FindAllCompanyService;
+//# sourceMappingURL=FindAllCompaniesService.js.map

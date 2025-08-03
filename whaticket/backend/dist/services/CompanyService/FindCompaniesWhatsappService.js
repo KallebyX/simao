@@ -16,3 +16,4 @@ const FindCompaniesWhatsappService = async (id) => {
     return companies;
 };
 exports.default = FindCompaniesWhatsappService;
+//# sourceMappingURL=FindCompaniesWhatsappService.js.map

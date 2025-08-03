@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("QueueIntegrations", "typebotDelayMessage");
     }
 };
+//# sourceMappingURL=20231207080337-add-typebotDelayMessage-QueueIntegrations.js.map

@@ -44,3 +44,4 @@ module.exports = {
         return queryInterface.bulkDelete("Settings", null, {});
     }
 };
+//# sourceMappingURL=20200904070004-create-default-settings.js.map

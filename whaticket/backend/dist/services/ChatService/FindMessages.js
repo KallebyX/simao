@@ -35,3 +35,4 @@ const FindMessages = async ({ chatId, ownerId, pageNumber = "1" }) => {
     };
 };
 exports.default = FindMessages;
+//# sourceMappingURL=FindMessages.js.map

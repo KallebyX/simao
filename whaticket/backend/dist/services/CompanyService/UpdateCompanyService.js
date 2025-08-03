@@ -30,7 +30,6 @@ const UpdateCompanyService = async (companyData) => {
     if (!plan) {
         throw new Error("Plano Não Encontrado.");
     }
-    // 5. Atualizar a única invoice com status "open" existente, baseada no companyId.
     const openInvoice = openInvoices[0];
     const valuePlan = plan.amount.replace(",", ".");
     if (openInvoice) {
@@ -95,3 +94,4 @@ const UpdateCompanyService = async (companyData) => {
     return company;
 };
 exports.default = UpdateCompanyService;
+//# sourceMappingURL=UpdateCompanyService.js.map

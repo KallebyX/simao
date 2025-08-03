@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Users", "companyId");
     }
 };
+//# sourceMappingURL=20210109192516-add-column-companyId-to-Users-table.js.map

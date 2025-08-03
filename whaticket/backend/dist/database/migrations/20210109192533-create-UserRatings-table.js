@@ -44,3 +44,4 @@ module.exports = {
         return queryInterface.dropTable("UserRatings");
     }
 };
+//# sourceMappingURL=20210109192533-create-UserRatings-table.js.map

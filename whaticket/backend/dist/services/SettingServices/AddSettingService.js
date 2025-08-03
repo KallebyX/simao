@@ -20,3 +20,4 @@ const AddSettingService = async () => {
     }
 };
 exports.default = AddSettingService;
+//# sourceMappingURL=AddSettingService.js.map

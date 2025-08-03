@@ -15,13 +15,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -181,11 +191,6 @@ const ActionsWebhookService = async (whatsappId, idFlowDb, companyId, nodes, con
                     number: numberClient,
                     body: msg.body
                 });
-                //TESTE BOTÃO
-                //await SendMessageFlow(whatsapp, {
-                //  number: numberClient,
-                //  body: msg.body
-                //} )
                 await intervalWhats("1");
             }
             console.log("273");
@@ -302,7 +307,6 @@ const ActionsWebhookService = async (whatsappId, idFlowDb, companyId, nodes, con
                             isGroup: false
                         }
                     });
-                    // Lógica para enviar posição da fila de atendimento
                     const qtd = count.count === 0 ? 1 : count.count;
                     const msgFila = `${settings.sendQueuePositionMessage} *${qtd}*`;
                     const ticketDetails = await (0, ShowTicketService_1.default)(ticket.id, companyId);
@@ -380,7 +384,6 @@ const ActionsWebhookService = async (whatsappId, idFlowDb, companyId, nodes, con
                             ticket: ticketInt,
                             isRecord: nodeSelected.data.elements.filter(item => item.number === elementNowSelected)[0].record
                         });
-                        //fs.unlinkSync(mediaDirectory.split('.')[0] + 'A.mp3');
                         await intervalWhats("1");
                     }
                     if (elementNowSelected.includes("video")) {
@@ -395,7 +398,6 @@ const ActionsWebhookService = async (whatsappId, idFlowDb, companyId, nodes, con
                             media: mediaDirectory,
                             ticket: ticketInt
                         });
-                        //fs.unlinkSync(mediaDirectory.split('.')[0] + 'A.mp3');
                         await intervalWhats("1");
                     }
                 }
@@ -428,11 +430,6 @@ const ActionsWebhookService = async (whatsappId, idFlowDb, companyId, nodes, con
                     else {
                         execFn = undefined;
                     }
-                    // execFn =
-                    //   connectStatic
-                    //     .filter(confil => confil.source === next)
-                    //     .filter(filt2 => filt2.sourceHandle === "a" + pressKey)[0]?.target ??
-                    //   undefined;
                     if (execFn === undefined) {
                         break;
                     }
@@ -477,12 +474,6 @@ const ActionsWebhookService = async (whatsappId, idFlowDb, companyId, nodes, con
                         fromMe: true,
                         read: true
                     };
-                    //await CreateMessageService({ messageData: messageData, companyId });
-                    //await SendWhatsAppMessage({ body: bodyFor, ticket: ticketDetails, quotedMsg: null })
-                    // await SendMessage(whatsapp, {
-                    //   number: numberClient,
-                    //   body: msg.body
-                    // });
                     await (0, SendWhatsAppMediaFlow_1.typeSimulation)(ticket, "composing");
                     await (0, SendWhatsAppMessage_1.default)({
                         body: msg.body,
@@ -593,8 +584,6 @@ const ActionsWebhookService = async (whatsappId, idFlowDb, companyId, nodes, con
             });
             if (ticket.status === "closed") {
                 io.of(String(companyId))
-                    // .to(oldStatus)
-                    // .to(ticketId.toString())
                     .emit(`company-${ticket.companyId}-ticket`, {
                     action: "delete",
                     ticketId: ticket.id
@@ -633,7 +622,6 @@ const constructJsonLine = (line, json) => {
     return valor;
 };
 function removerNaoLetrasNumeros(texto) {
-    // Substitui todos os caracteres que não são letras ou números por vazio
     return texto.replace(/[^a-zA-Z0-9]/g, "");
 }
 const sendMessageWhats = async (whatsId, msg, req) => {
@@ -670,3 +658,4 @@ const replaceMessagesOld = (message, details, dataWebhook, dataNoWebhook) => {
         return message;
     }
 };
+//# sourceMappingURL=ActionsWebhookService.js.map

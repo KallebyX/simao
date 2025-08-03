@@ -35,3 +35,4 @@ const TicketsAttendance = async ({ initialDate, finalDate, companyId }) => {
     return { data };
 };
 exports.TicketsAttendance = TicketsAttendance;
+//# sourceMappingURL=TicketsAttendance.js.map

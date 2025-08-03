@@ -44,3 +44,4 @@ module.exports = {
         return queryInterface.bulkDelete("CompaniesSettings", { companyId: 1 });
     }
 };
+//# sourceMappingURL=20230901093700-create-default-companiessettings.js.map

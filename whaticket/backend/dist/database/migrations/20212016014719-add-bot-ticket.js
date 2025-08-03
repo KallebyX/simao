@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Tickets", "isBot");
     }
 };
+//# sourceMappingURL=20212016014719-add-bot-ticket.js.map

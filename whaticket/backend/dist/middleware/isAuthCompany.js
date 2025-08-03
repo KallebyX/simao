@@ -25,3 +25,4 @@ const isAuthCompany = async (req, res, next) => {
     return next();
 };
 exports.default = isAuthCompany;
+//# sourceMappingURL=isAuthCompany.js.map

@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Companies", "dueDate");
     }
 };
+//# sourceMappingURL=20220406000000-add-column-dueDate-to-Companies.js.map

@@ -5,3 +5,4 @@ const AssociateWhatsappQueue = async (whatsapp, queueIds) => {
     await whatsapp.reload();
 };
 exports.default = AssociateWhatsappQueue;
+//# sourceMappingURL=AssociateWhatsappQueue.js.map

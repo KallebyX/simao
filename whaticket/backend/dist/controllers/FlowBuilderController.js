@@ -15,7 +15,6 @@ const UploadImgFlowBuilderService_1 = __importDefault(require("../services/FlowB
 const UploadAudioFlowBuilderService_1 = __importDefault(require("../services/FlowBuilderService/UploadAudioFlowBuilderService"));
 const DuplicateFlowBuilderService_1 = __importDefault(require("../services/FlowBuilderService/DuplicateFlowBuilderService"));
 const UploadAllFlowBuilderService_1 = __importDefault(require("../services/FlowBuilderService/UploadAllFlowBuilderService"));
-// import { handleMessage } from "../services/FacebookServices/facebookMessageListener";
 const createFlow = async (req, res) => {
     const { name } = req.body;
     const userId = parseInt(req.user.id);
@@ -150,3 +149,4 @@ const FlowUploadAll = async (req, res) => {
     return res.status(200).json(items);
 };
 exports.FlowUploadAll = FlowUploadAll;
+//# sourceMappingURL=FlowBuilderController.js.map

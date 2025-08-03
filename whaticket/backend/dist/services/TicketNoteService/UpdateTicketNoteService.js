@@ -17,3 +17,4 @@ const UpdateTicketNoteService = async (ticketNoteData) => {
     return ticketNote;
 };
 exports.default = UpdateTicketNoteService;
+//# sourceMappingURL=UpdateTicketNoteService.js.map

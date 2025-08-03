@@ -9,3 +9,4 @@ const DeletePromptService = async (promptId, companyId) => {
     await prompt.destroy();
 };
 exports.default = DeletePromptService;
+//# sourceMappingURL=DeletePromptService.js.map

@@ -23,3 +23,4 @@ const FindService = async ({ companyId, contactListId }) => {
     return notes;
 };
 exports.default = FindService;
+//# sourceMappingURL=FindService.js.map

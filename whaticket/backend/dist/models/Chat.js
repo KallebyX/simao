@@ -19,6 +19,18 @@ const ChatUser_1 = __importDefault(require("./ChatUser"));
 const Company_1 = __importDefault(require("./Company"));
 const User_1 = __importDefault(require("./User"));
 let Chat = class Chat extends sequelize_typescript_1.Model {
+    id;
+    uuid;
+    title;
+    ownerId;
+    lastMessage;
+    companyId;
+    createdAt;
+    updatedAt;
+    company;
+    owner;
+    users;
+    messages;
     static setUUID(chat) {
         chat.uuid = (0, uuid_1.v4)();
     }
@@ -86,3 +98,4 @@ Chat = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "Chats" })
 ], Chat);
 exports.default = Chat;
+//# sourceMappingURL=Chat.js.map

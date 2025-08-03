@@ -7,9 +7,6 @@ const UploadAllFlowBuilderService = async ({ userId, medias, companyId }) => {
         let itemsNewNames = [];
         for (let i = 0; medias.length > i; i++) {
             let nameFile = medias[i].filename;
-            //if (medias[i].filename.split(".").length === 1) {
-            //  nameFile = medias[i].filename + "." + medias[i].mimetype.split("/")[1];
-            //}
             itemsNewNames = [...itemsNewNames, nameFile];
             if (medias[i].mimetype.split("/")[1] === "png" ||
                 medias[i].mimetype.split("/")[1] === "jpg" ||
@@ -42,3 +39,4 @@ const UploadAllFlowBuilderService = async ({ userId, medias, companyId }) => {
     }
 };
 exports.default = UploadAllFlowBuilderService;
+//# sourceMappingURL=UploadAllFlowBuilderService.js.map

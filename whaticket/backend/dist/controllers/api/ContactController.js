@@ -17,3 +17,4 @@ const count = async (req, res) => {
     return res.json({ count: contacts.length });
 };
 exports.count = count;
+//# sourceMappingURL=ContactController.js.map

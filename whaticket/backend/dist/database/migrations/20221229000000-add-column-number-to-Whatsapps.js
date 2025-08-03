@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "number");
     }
 };
+//# sourceMappingURL=20221229000000-add-column-number-to-Whatsapps.js.map

@@ -19,6 +19,22 @@ const TicketTag_1 = __importDefault(require("./TicketTag"));
 const Contact_1 = __importDefault(require("./Contact"));
 const ContactTag_1 = __importDefault(require("./ContactTag"));
 let Tag = class Tag extends sequelize_typescript_1.Model {
+    id;
+    name;
+    color;
+    kanban;
+    ticketTags;
+    tickets;
+    contacts;
+    contactTags;
+    companyId;
+    company;
+    createdAt;
+    updatedAt;
+    timeLane;
+    nextLaneId;
+    greetingMessageLane;
+    rollbackLaneId;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -91,3 +107,4 @@ Tag = __decorate([
     sequelize_typescript_1.Table
 ], Tag);
 exports.default = Tag;
+//# sourceMappingURL=Tag.js.map

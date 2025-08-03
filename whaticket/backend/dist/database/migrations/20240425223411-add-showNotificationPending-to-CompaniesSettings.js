@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("CompaniesSettings", "showNotificationPending");
     }
 };
+//# sourceMappingURL=20240425223411-add-showNotificationPending-to-CompaniesSettings.js.map

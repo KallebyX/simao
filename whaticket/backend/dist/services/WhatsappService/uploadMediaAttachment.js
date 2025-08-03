@@ -42,3 +42,4 @@ const deleteMedia = async (req, res) => {
     }
 };
 exports.deleteMedia = deleteMedia;
+//# sourceMappingURL=uploadMediaAttachment.js.map

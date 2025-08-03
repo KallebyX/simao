@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-// Adicionar a coluna flowBuilderId na tabela Whatsapp
 module.exports = {
     up: (queryInterface) => {
         return queryInterface.addColumn("FlowCampaigns", "whatsappId", {
@@ -16,7 +15,7 @@ module.exports = {
         });
     },
     down: (queryInterface) => {
-        // Remover a coluna flowBuilderId da tabela Whatsapp
         queryInterface.removeColumn("FlowCampaigns", "whatsappId");
     }
 };
+//# sourceMappingURL=20240719174849-add-column-whatsappId-to-flowCampaigns.js.map

@@ -11,6 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 let ScheduledMessagesEnvio = class ScheduledMessagesEnvio extends sequelize_typescript_1.Model {
+    id;
+    createdAt;
+    updatedAt;
+    mediaPath;
+    mediaName;
+    mensagem;
+    companyId;
+    data_envio;
+    scheduledmessages;
+    key;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -58,3 +68,4 @@ ScheduledMessagesEnvio = __decorate([
     sequelize_typescript_1.Table
 ], ScheduledMessagesEnvio);
 exports.default = ScheduledMessagesEnvio;
+//# sourceMappingURL=ScheduledMessagesEnvio.js.map

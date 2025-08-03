@@ -9,3 +9,4 @@ const FindAllTicketNotesService = async () => {
     return ticketNote;
 };
 exports.default = FindAllTicketNotesService;
+//# sourceMappingURL=FindAllTicketNotesService.js.map

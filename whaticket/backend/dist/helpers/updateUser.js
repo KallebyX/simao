@@ -12,7 +12,6 @@ const updateUser = async (userId, companyId) => {
     let update = null;
     update = { updatedAt: new Date() };
     if (!user.online) {
-        // console.log("updateUser", user.online, update)
         update = { ...update, online: true };
         await user.update(update);
         await user.reload();
@@ -28,3 +27,4 @@ const updateUser = async (userId, companyId) => {
     }
 };
 exports.updateUser = updateUser;
+//# sourceMappingURL=updateUser.js.map

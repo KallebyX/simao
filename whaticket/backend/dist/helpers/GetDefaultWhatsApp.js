@@ -47,3 +47,4 @@ const GetDefaultWhatsApp = async (whatsappId, companyId = null, userId) => {
     return connection;
 };
 exports.default = GetDefaultWhatsApp;
+//# sourceMappingURL=GetDefaultWhatsApp.js.map

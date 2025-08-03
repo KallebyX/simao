@@ -41,3 +41,4 @@ module.exports = {
         return queryInterface.dropTable("FlowBuilders");
     }
 };
+//# sourceMappingURL=20230802214345-create-table-flowbuilder.js.map

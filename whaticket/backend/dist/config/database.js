@@ -1,10 +1,8 @@
 require("../bootstrap");
-// são paulo timezone
 module.exports = {
     define: {
         charset: "utf8mb4",
         collate: "utf8mb4_bin"
-        // freezeTableName: true
     },
     options: {
         requestTimeout: 600000,
@@ -36,3 +34,4 @@ module.exports = {
     password: process.env.DB_PASS,
     logging: process.env.NODE_ENV === "development" ? console.log : false
 };
+//# sourceMappingURL=database.js.map

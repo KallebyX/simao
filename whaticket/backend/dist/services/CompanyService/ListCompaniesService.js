@@ -26,3 +26,4 @@ const ListCompaniesService = async ({ searchParam = "", pageNumber = "1" }) => {
     };
 };
 exports.default = ListCompaniesService;
+//# sourceMappingURL=ListCompaniesService.js.map

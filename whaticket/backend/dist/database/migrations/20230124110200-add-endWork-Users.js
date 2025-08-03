@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Users", "endWork");
     }
 };
+//# sourceMappingURL=20230124110200-add-endWork-Users.js.map

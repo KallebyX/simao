@@ -12,7 +12,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FlowDefaultModel = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 let FlowDefaultModel = class FlowDefaultModel extends sequelize_typescript_1.Model {
+    id;
+    companyId;
+    userId;
+    flowIdWelcome;
+    flowIdNotPhrase;
+    createdAt;
+    updatedAt;
 };
+exports.FlowDefaultModel = FlowDefaultModel;
 __decorate([
     sequelize_typescript_1.PrimaryKey,
     sequelize_typescript_1.AutoIncrement,
@@ -43,9 +51,9 @@ __decorate([
     sequelize_typescript_1.UpdatedAt,
     __metadata("design:type", Date)
 ], FlowDefaultModel.prototype, "updatedAt", void 0);
-FlowDefaultModel = __decorate([
+exports.FlowDefaultModel = FlowDefaultModel = __decorate([
     (0, sequelize_typescript_1.Table)({
         tableName: "FlowDefaults"
     })
 ], FlowDefaultModel);
-exports.FlowDefaultModel = FlowDefaultModel;
+//# sourceMappingURL=FlowDefault.js.map

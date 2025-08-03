@@ -64,12 +64,7 @@ const updateTicketByRemoteJid = async (remoteJid, queue, user, statusText, unrea
         const oldUserId = ticket.user?.id;
         await ticket.update({ status: statusText, queueId: queue, userId: user, unreadMessages: unread });
         const io = (0, socket_1.getIO)();
-        // io.to(oldStatus).emit(`company-${ticket.companyId}-ticket`, {
-        //   action: "delete",
-        //   ticketId: ticket.id
-        // });
         io.of(ticket.companyId.toString())
-            // .to(ticket.id.toString())
             .emit(`company-${ticket.companyId}-ticket`, {
             action: "update",
             ticket
@@ -78,3 +73,4 @@ const updateTicketByRemoteJid = async (remoteJid, queue, user, statusText, unrea
     return;
 };
 exports.updateTicketByRemoteJid = updateTicketByRemoteJid;
+//# sourceMappingURL=UpdateTicketByRemoteJid.js.map

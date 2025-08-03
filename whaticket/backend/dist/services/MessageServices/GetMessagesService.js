@@ -15,3 +15,4 @@ const GetMessageService = async ({ id }) => {
     return messageExists;
 };
 exports.default = GetMessageService;
+//# sourceMappingURL=GetMessagesService.js.map

@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.webHook = exports.index = void 0;
 const Whatsapp_1 = __importDefault(require("../models/Whatsapp"));
 const facebookMessageListener_1 = require("../services/FacebookServices/facebookMessageListener");
-// import { handleMessage } from "../services/FacebookServices/facebookMessageListener";
 const index = async (req, res) => {
     const VERIFY_TOKEN = process.env.VERIFY_TOKEN || "whaticket";
     const mode = req.query["hub.mode"];
@@ -62,3 +61,4 @@ const webHook = async (req, res) => {
     }
 };
 exports.webHook = webHook;
+//# sourceMappingURL=WebHookController.js.map

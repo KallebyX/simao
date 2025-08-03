@@ -6,10 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SerializeUser = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const SerializeUser = async (user) => {
-    // Gera um token de 32 bytes
     const generateToken = (userId) => {
-        // Gerar o token com base no userId e sua chave secreta
-        const token = jsonwebtoken_1.default.sign({ userId }, process.env.JWT_SECRET, { expiresIn: "1h" }); // Você pode definir o tempo de expiração conforme necessário
+        const token = jsonwebtoken_1.default.sign({ userId }, process.env.JWT_SECRET, { expiresIn: "1h" });
         return token;
     };
     return {
@@ -40,3 +38,4 @@ const SerializeUser = async (user) => {
     };
 };
 exports.SerializeUser = SerializeUser;
+//# sourceMappingURL=SerializeUser.js.map

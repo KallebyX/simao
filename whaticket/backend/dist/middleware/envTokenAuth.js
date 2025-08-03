@@ -22,3 +22,4 @@ const envTokenAuth = (req, res, next) => {
     throw new AppError_1.default("Token inválido", 403);
 };
 exports.default = envTokenAuth;
+//# sourceMappingURL=envTokenAuth.js.map

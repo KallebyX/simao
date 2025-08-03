@@ -12,14 +12,42 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * @TercioSantos-0 |
- * model/CompaniesSettings |
- * @descrição:modelo para tratar as configurações das empresas
- */
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Company_1 = __importDefault(require("./Company"));
 let CompaniesSettings = class CompaniesSettings extends sequelize_typescript_1.Model {
+    id;
+    companyId;
+    company;
+    hoursCloseTicketsAuto;
+    chatBotType;
+    acceptCallWhatsapp;
+    userRandom;
+    sendGreetingMessageOneQueues;
+    sendSignMessage;
+    sendFarewellWaitingTicket;
+    userRating;
+    sendGreetingAccepted;
+    CheckMsgIsGroup;
+    sendQueuePosition;
+    scheduleType;
+    acceptAudioMessageContact;
+    sendMsgTransfTicket;
+    enableLGPD;
+    requiredTag;
+    lgpdDeleteMessage;
+    lgpdHideNumber;
+    lgpdConsent;
+    lgpdLink;
+    lgpdMessage;
+    createdAt;
+    updatedAt;
+    DirectTicketsToWallets;
+    closeTicketOnTransfer;
+    transferMessage;
+    greetingAcceptedMessage;
+    AcceptCallWhatsappMessage;
+    sendQueuePositionMessage;
+    showNotificationPending;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -162,3 +190,4 @@ CompaniesSettings = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "CompaniesSettings" })
 ], CompaniesSettings);
 exports.default = CompaniesSettings;
+//# sourceMappingURL=CompaniesSettings.js.map

@@ -12,3 +12,4 @@ module.exports = {
         await queryInterface.removeColumn("Tickets", "dataWebhook");
     }
 };
+//# sourceMappingURL=20230823124236-add-column-data.js.map

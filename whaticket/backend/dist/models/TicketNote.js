@@ -17,6 +17,16 @@ const Contact_1 = __importDefault(require("./Contact"));
 const User_1 = __importDefault(require("./User"));
 const Ticket_1 = __importDefault(require("./Ticket"));
 let TicketNote = class TicketNote extends sequelize_typescript_1.Model {
+    id;
+    note;
+    userId;
+    user;
+    contactId;
+    contact;
+    ticketId;
+    ticket;
+    createdAt;
+    updatedAt;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -67,3 +77,4 @@ TicketNote = __decorate([
     sequelize_typescript_1.Table
 ], TicketNote);
 exports.default = TicketNote;
+//# sourceMappingURL=TicketNote.js.map

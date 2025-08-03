@@ -17,3 +17,4 @@ module.exports = {
             queryInterface.removeColumn("Plans", "useIntegrations");
     }
 };
+//# sourceMappingURL=20231127113000-add-columns-Plans.js.map

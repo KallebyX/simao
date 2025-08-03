@@ -95,3 +95,4 @@ routes.use(statisticsRoutes_1.default);
 routes.use(companySettingsRoutes_1.default);
 routes.use(ScheduledMessagesRoutes_1.default);
 exports.default = routes;
+//# sourceMappingURL=index.js.map

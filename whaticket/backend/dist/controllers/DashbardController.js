@@ -44,3 +44,4 @@ const DashTicketsQueues = async (req, res) => {
     return res.status(200).json(tickets);
 };
 exports.DashTicketsQueues = DashTicketsQueues;
+//# sourceMappingURL=DashbardController.js.map

@@ -14,3 +14,4 @@ module.exports = {
         ]);
     }
 };
+//# sourceMappingURL=20240323220001-create-companyId-Index-Message.js.map

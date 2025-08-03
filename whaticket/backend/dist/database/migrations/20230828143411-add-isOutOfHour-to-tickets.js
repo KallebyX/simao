@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Tickets", "isOutOfHour");
     }
 };
+//# sourceMappingURL=20230828143411-add-isOutOfHour-to-tickets.js.map

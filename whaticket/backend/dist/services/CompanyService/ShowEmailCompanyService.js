@@ -16,3 +16,4 @@ const ShowEmailCompanyService = async (email) => {
     return company;
 };
 exports.default = ShowEmailCompanyService;
+//# sourceMappingURL=ShowEmailCompanyService.js.map

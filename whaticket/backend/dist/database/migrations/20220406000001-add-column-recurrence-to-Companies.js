@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Companies", "recurrence");
     }
 };
+//# sourceMappingURL=20220406000001-add-column-recurrence-to-Companies.js.map

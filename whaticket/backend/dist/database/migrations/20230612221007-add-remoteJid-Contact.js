@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Contacts", "remoteJid");
     }
 };
+//# sourceMappingURL=20230612221007-add-remoteJid-Contact.js.map

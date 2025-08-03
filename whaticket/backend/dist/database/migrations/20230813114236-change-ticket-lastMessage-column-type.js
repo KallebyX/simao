@@ -15,3 +15,4 @@ module.exports = {
         });
     }
 };
+//# sourceMappingURL=20230813114236-change-ticket-lastMessage-column-type.js.map

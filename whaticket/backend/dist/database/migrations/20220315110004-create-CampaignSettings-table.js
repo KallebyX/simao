@@ -39,3 +39,4 @@ module.exports = {
         return queryInterface.dropTable("CampaignSettings");
     }
 };
+//# sourceMappingURL=20220315110004-create-CampaignSettings-table.js.map

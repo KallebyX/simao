@@ -16,3 +16,4 @@ const UpdateSchedulesService = async ({ id, schedules }) => {
     return company;
 };
 exports.default = UpdateSchedulesService;
+//# sourceMappingURL=UpdateSchedulesService.js.map

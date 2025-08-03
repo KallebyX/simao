@@ -32,3 +32,4 @@ module.exports = {
         return queryInterface.dropTable("Versions");
     }
 };
+//# sourceMappingURL=20240515221400-create-Versions.js.map

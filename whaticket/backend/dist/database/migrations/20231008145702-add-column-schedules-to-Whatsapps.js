@@ -16,3 +16,4 @@ module.exports = {
         ]);
     }
 };
+//# sourceMappingURL=20231008145702-add-column-schedules-to-Whatsapps.js.map

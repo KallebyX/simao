@@ -11,6 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 let Subscriptions = class Subscriptions extends sequelize_typescript_1.Model {
+    id;
+    isActive;
+    userPriceCents;
+    whatsPriceCents;
+    lastInvoiceUrl;
+    lastPlanChange;
+    expiresAt;
+    providerSubscriptionId;
+    companyId;
+    createdAt;
+    updatedAt;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -68,3 +79,4 @@ Subscriptions = __decorate([
     sequelize_typescript_1.Table
 ], Subscriptions);
 exports.default = Subscriptions;
+//# sourceMappingURL=Subscriptions.js.map

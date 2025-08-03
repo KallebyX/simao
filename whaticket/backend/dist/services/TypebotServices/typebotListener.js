@@ -82,7 +82,6 @@ const typebotListener = async ({ wbot, msg, ticket, typebot }) => {
         }
         if (!status)
             return;
-        //let body = getConversationMessage(msg);
         if (body.toLocaleLowerCase().trim() !== typebotKeywordFinish.toLocaleLowerCase().trim() && body.toLocaleLowerCase().trim() !== typebotKeywordRestart.toLocaleLowerCase().trim()) {
             let requestContinue;
             let messages;
@@ -245,7 +244,6 @@ const typebotListener = async ({ wbot, msg, ticket, typebot }) => {
                             }
                         }
                         await wbot.presenceSubscribe(msg.key.remoteJid);
-                        //await delay(2000)
                         await wbot.sendPresenceUpdate('composing', msg.key.remoteJid);
                         await (0, baileys_1.delay)(typebotDelayMessage);
                         await wbot.sendPresenceUpdate('paused', msg.key.remoteJid);
@@ -253,7 +251,6 @@ const typebotListener = async ({ wbot, msg, ticket, typebot }) => {
                     }
                     if (message.type === 'audio') {
                         await wbot.presenceSubscribe(msg.key.remoteJid);
-                        //await delay(2000)
                         await wbot.sendPresenceUpdate('composing', msg.key.remoteJid);
                         await (0, baileys_1.delay)(typebotDelayMessage);
                         await wbot.sendPresenceUpdate('paused', msg.key.remoteJid);
@@ -268,7 +265,6 @@ const typebotListener = async ({ wbot, msg, ticket, typebot }) => {
                     }
                     if (message.type === 'image') {
                         await wbot.presenceSubscribe(msg.key.remoteJid);
-                        //await delay(2000)
                         await wbot.sendPresenceUpdate('composing', msg.key.remoteJid);
                         await (0, baileys_1.delay)(typebotDelayMessage);
                         await wbot.sendPresenceUpdate('paused', msg.key.remoteJid);
@@ -281,7 +277,6 @@ const typebotListener = async ({ wbot, msg, ticket, typebot }) => {
                     }
                     if (message.type === 'video') {
                         await wbot.presenceSubscribe(msg.key.remoteJid);
-                        //await delay(2000)
                         await wbot.sendPresenceUpdate('composing', msg.key.remoteJid);
                         await (0, baileys_1.delay)(typebotDelayMessage);
                         await wbot.sendPresenceUpdate('paused', msg.key.remoteJid);
@@ -302,7 +297,6 @@ const typebotListener = async ({ wbot, msg, ticket, typebot }) => {
                         }
                     }
                 }
-                //console.log(386, { messages, input, clientSideActions})
             }
         }
         console.log(373, "typebotListener", JSON.stringify(dataStart, null, 4));
@@ -341,3 +335,4 @@ const typebotListener = async ({ wbot, msg, ticket, typebot }) => {
     }
 };
 exports.default = typebotListener;
+//# sourceMappingURL=typebotListener.js.map

@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Messages", "isDeleted");
     }
 };
+//# sourceMappingURL=20200927220708-add-isDeleted-column-to-messages.js.map

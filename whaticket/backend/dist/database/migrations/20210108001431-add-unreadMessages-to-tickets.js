@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Tickets", "unreadMessages");
     }
 };
+//# sourceMappingURL=20210108001431-add-unreadMessages-to-tickets.js.map

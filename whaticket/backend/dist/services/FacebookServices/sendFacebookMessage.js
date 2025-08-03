@@ -19,3 +19,4 @@ const sendFacebookMessage = async ({ body, ticket, quotedMsg }) => {
     }
 };
 exports.default = sendFacebookMessage;
+//# sourceMappingURL=sendFacebookMessage.js.map

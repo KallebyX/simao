@@ -25,3 +25,4 @@ const CreateFlowBuilderService = async ({ userId, name, companyId }) => {
     }
 };
 exports.default = CreateFlowBuilderService;
+//# sourceMappingURL=CreateFlowBuilderService.js.map

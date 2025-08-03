@@ -38,3 +38,4 @@ module.exports = {
         return queryInterface.dropTable("QuickMessages");
     }
 };
+//# sourceMappingURL=20210109192524-create-quick-messages.js.map

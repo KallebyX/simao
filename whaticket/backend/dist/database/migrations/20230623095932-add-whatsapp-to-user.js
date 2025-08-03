@@ -15,3 +15,4 @@ module.exports = {
         return queryInterface.removeColumn("Users", "whatsappId");
     }
 };
+//# sourceMappingURL=20230623095932-add-whatsapp-to-user.js.map

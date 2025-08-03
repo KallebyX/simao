@@ -26,3 +26,4 @@ module.exports = {
         ];
     }
 };
+//# sourceMappingURL=20231020125000-add-columns-Plans.js.map

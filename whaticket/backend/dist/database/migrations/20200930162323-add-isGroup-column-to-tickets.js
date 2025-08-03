@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Tickets", "isGroup");
     }
 };
+//# sourceMappingURL=20200930162323-add-isGroup-column-to-tickets.js.map

@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Messages", "quotedMsgId");
     }
 };
+//# sourceMappingURL=20201028124427-add-quoted-msg-to-messages.js.map

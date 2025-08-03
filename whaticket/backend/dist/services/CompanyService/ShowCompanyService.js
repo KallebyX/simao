@@ -15,3 +15,4 @@ const ShowCompanyService = async (id) => {
     return company;
 };
 exports.default = ShowCompanyService;
+//# sourceMappingURL=ShowCompanyService.js.map

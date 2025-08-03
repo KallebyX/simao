@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Messages", "companyId");
     }
 };
+//# sourceMappingURL=20210109192518-add-column-companyId-to-Messages-table.js.map

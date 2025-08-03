@@ -19,3 +19,4 @@ module.exports = {
             queryInterface.removeColumn("Users", "allowConnections");
     }
 };
+//# sourceMappingURL=20240422214537-add-permissions-users.js.map

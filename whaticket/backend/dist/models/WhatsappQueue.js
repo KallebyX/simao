@@ -16,6 +16,11 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Queue_1 = __importDefault(require("./Queue"));
 const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 let WhatsappQueue = class WhatsappQueue extends sequelize_typescript_1.Model {
+    whatsappId;
+    queueId;
+    createdAt;
+    updatedAt;
+    queue;
 };
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => Whatsapp_1.default),
@@ -43,3 +48,4 @@ WhatsappQueue = __decorate([
     sequelize_typescript_1.Table
 ], WhatsappQueue);
 exports.default = WhatsappQueue;
+//# sourceMappingURL=WhatsappQueue.js.map

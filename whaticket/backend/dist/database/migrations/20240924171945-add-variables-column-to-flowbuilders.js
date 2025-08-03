@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn('FlowBuilders', 'variables');
     }
 };
+//# sourceMappingURL=20240924171945-add-variables-column-to-flowbuilders.js.map

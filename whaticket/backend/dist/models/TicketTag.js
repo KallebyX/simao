@@ -16,6 +16,12 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Tag_1 = __importDefault(require("./Tag"));
 const Ticket_1 = __importDefault(require("./Ticket"));
 let TicketTag = class TicketTag extends sequelize_typescript_1.Model {
+    ticketId;
+    tagId;
+    createdAt;
+    updatedAt;
+    ticket;
+    tag;
 };
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => Ticket_1.default),
@@ -49,3 +55,4 @@ TicketTag = __decorate([
     })
 ], TicketTag);
 exports.default = TicketTag;
+//# sourceMappingURL=TicketTag.js.map

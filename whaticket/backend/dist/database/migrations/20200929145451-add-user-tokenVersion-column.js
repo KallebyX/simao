@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Users", "tokenVersion");
     }
 };
+//# sourceMappingURL=20200929145451-add-user-tokenVersion-column.js.map

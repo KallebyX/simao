@@ -40,3 +40,4 @@ const remove = async (req, res) => {
     return res.status(200).json({ message: "Option Delected" });
 };
 exports.remove = remove;
+//# sourceMappingURL=QueueOptionController.js.map

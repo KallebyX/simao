@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("FilesOptions", "mediaType");
     }
 };
+//# sourceMappingURL=20230824082607-add-mediaType-FilesOptions.js.map

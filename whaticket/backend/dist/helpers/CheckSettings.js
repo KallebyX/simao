@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CheckCompanySetting = exports.CheckSettings1 = void 0;
 const Setting_1 = __importDefault(require("../models/Setting"));
 const AppError_1 = __importDefault(require("../errors/AppError"));
-//será usado por agora somente para userCreation
 const CheckSettings = async (key) => {
     const setting = await Setting_1.default.findOne({
         where: { key }
@@ -45,3 +44,4 @@ const CheckCompanySetting = async (companyId, key, defaultValue = null) => {
 };
 exports.CheckCompanySetting = CheckCompanySetting;
 exports.default = CheckSettings;
+//# sourceMappingURL=CheckSettings.js.map

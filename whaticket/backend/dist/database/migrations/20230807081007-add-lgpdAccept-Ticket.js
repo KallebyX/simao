@@ -19,3 +19,4 @@ module.exports = {
             queryInterface.removeColumn("Tickets", "lgpdSendMessageAt");
     }
 };
+//# sourceMappingURL=20230807081007-add-lgpdAccept-Ticket.js.map

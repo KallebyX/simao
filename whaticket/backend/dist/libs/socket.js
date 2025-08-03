@@ -30,30 +30,22 @@ const initIO = (httpServer) => {
     const workspaces = io.of(/^\/\w+$/);
     workspaces.on("connection", socket => {
         const { userId } = socket.handshake.query;
-        // logger.info(`Client connected namespace ${socket.nsp.name}`);
-        // console.log(`namespace ${socket.nsp.name}`, "UserId Socket", userId)
         socket.on("joinChatBox", (ticketId) => {
-            // logger.info(`A client joined a ticket channel namespace ${socket.nsp.name}`);
             socket.join(ticketId);
         });
         socket.on("joinNotification", () => {
-            // logger.info(`A client joined notification channel namespace ${socket.nsp.name}`);
             socket.join("notification");
         });
         socket.on("joinTickets", (status) => {
-            // logger.info(`A client joined to ${status} channel namespace ${socket.nsp.name}`);
             socket.join(status);
         });
         socket.on("joinTicketsLeave", (status) => {
-            // logger.info(`A client leave to ${status} tickets channel.`);
             socket.leave(status);
         });
         socket.on("joinChatBoxLeave", (ticketId) => {
-            // logger.info(`A client leave ticket channel ${ticketId} namespace ${socket.nsp.name}`);
             socket.leave(ticketId);
         });
         socket.on("disconnect", () => {
-            // logger.info(`Client disconnected namespace ${socket.nsp.name}`);
         });
     });
     return io;
@@ -66,3 +58,4 @@ const getIO = () => {
     return io;
 };
 exports.getIO = getIO;
+//# sourceMappingURL=socket.js.map

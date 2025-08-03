@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Queues", "fileListId");
     }
 };
+//# sourceMappingURL=20230924212337-add-fileListId-Queues.js.map

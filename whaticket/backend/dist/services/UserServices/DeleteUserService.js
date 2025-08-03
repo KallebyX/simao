@@ -22,3 +22,4 @@ const DeleteUserService = async (id, companyId) => {
     await user.destroy();
 };
 exports.default = DeleteUserService;
+//# sourceMappingURL=DeleteUserService.js.map

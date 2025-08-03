@@ -18,7 +18,6 @@ const CreateTicketService = async ({ contactId, status, userId, queueId, company
     let whatsapp;
     let defaultWhatsapp;
     if (whatsappId !== "undefined" && whatsappId !== null && whatsappId !== "") {
-        // console.log("GETTING WHATSAPP CREATE TICKETSERVICE", whatsappId)
         whatsapp = await (0, ShowWhatsAppService_1.default)(whatsappId, companyId);
     }
     defaultWhatsapp = await (0, GetDefaultWhatsAppByUser_1.default)(userId);
@@ -27,7 +26,6 @@ const CreateTicketService = async ({ contactId, status, userId, queueId, company
     }
     if (!defaultWhatsapp)
         defaultWhatsapp = await (0, GetDefaultWhatsApp_1.default)(whatsapp.id, companyId);
-    // console.log("defaultWhatsapp", defaultWhatsapp.id, defaultWhatsapp.channel)
     await (0, CheckContactOpenTickets_1.default)(contactId, defaultWhatsapp.id, companyId);
     const { isGroup } = await (0, ShowContactService_1.default)(contactId, companyId);
     let ticket = await Ticket_1.default.create({
@@ -42,18 +40,11 @@ const CreateTicketService = async ({ contactId, status, userId, queueId, company
         status: isGroup ? "group" : "open",
         isActiveDemand: true
     });
-    // await Ticket.update(
-    //   { companyId, queueId, userId, status: isGroup? "group": "open", isBot: true },
-    //   { where: { id } }
-    // );
     ticket = await (0, ShowTicketService_1.default)(ticket.id, companyId);
     if (!ticket) {
         throw new AppError_1.default("ERR_CREATING_TICKET");
     }
     io.of(String(companyId))
-        // .to(ticket.status)
-        // .to("notification")
-        // .to(ticket.id.toString())
         .emit(`company-${companyId}-ticket`, {
         action: "update",
         ticket
@@ -67,3 +58,4 @@ const CreateTicketService = async ({ contactId, status, userId, queueId, company
     return ticket;
 };
 exports.default = CreateTicketService;
+//# sourceMappingURL=CreateTicketService.js.map

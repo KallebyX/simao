@@ -30,3 +30,4 @@ const CreateWebHookService = async ({ userId, name, companyId }) => {
     }
 };
 exports.default = CreateWebHookService;
+//# sourceMappingURL=CreateWebHookService.js.map

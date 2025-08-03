@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Webhook_1 = require("../../models/Webhook");
 const GetWebHookService = async ({ companyId, hashId }) => {
     try {
-        // Realiza a consulta com paginação usando findAndCountAll
         const { count, rows } = await Webhook_1.WebhookModel.findAndCountAll({
             where: {
                 company_id: companyId,
@@ -20,3 +19,4 @@ const GetWebHookService = async ({ companyId, hashId }) => {
     }
 };
 exports.default = GetWebHookService;
+//# sourceMappingURL=GetWebHookService.js.map

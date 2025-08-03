@@ -8,9 +8,6 @@ const path_1 = __importDefault(require("path"));
 const form_data_1 = __importDefault(require("form-data"));
 const axios_1 = __importDefault(require("axios"));
 const Setting_1 = __importDefault(require("../../models/Setting"));
-// const configuration = new Configuration({
-//   apiKey: process.env.OPENAI_API_KEY,
-// });
 async function fetchOpenAIToken() {
     let key_OPENAI_TOKEN = null;
     try {
@@ -26,7 +23,6 @@ async function fetchOpenAIToken() {
         return null;
     }
 }
-// const openai = new OpenAI({ apiKey: OpenaiKEY });
 const TranscribeAudioMessageToText = async (fileName, companyId) => {
     const token = await fetchOpenAIToken();
     const publicFolder = path_1.default.resolve(__dirname, "..", "..", "..", "public");
@@ -56,3 +52,4 @@ const TranscribeAudioMessageToText = async (fileName, companyId) => {
     }
 };
 exports.default = TranscribeAudioMessageToText;
+//# sourceMappingURL=TranscribeAudioMessageService.js.map

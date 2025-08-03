@@ -37,3 +37,4 @@ module.exports = {
             queryInterface.removeColumn("Schedules", "assinar");
     }
 };
+//# sourceMappingURL=20240212113637-add-recorrencia-Schedules.js.map

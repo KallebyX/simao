@@ -15,3 +15,4 @@ const DeletePlanService = async (id) => {
     await plan.destroy();
 };
 exports.default = DeletePlanService;
+//# sourceMappingURL=DeletePlanService.js.map

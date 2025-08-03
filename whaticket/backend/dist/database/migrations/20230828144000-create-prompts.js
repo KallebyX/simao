@@ -96,3 +96,4 @@ module.exports = {
         return queryInterface.dropTable("Prompts");
     }
 };
+//# sourceMappingURL=20230828144000-create-prompts.js.map

@@ -26,3 +26,4 @@ module.exports = {
         return queryInterface.dropTable("WhatsappQueues");
     }
 };
+//# sourceMappingURL=20210108174594-associate-whatsapp-queue.js.map

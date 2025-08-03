@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "importRecentMessages");
     }
 };
+//# sourceMappingURL=20230809081007-add-import-recent-messages-to-whatsapp.js.map

@@ -20,6 +20,37 @@ const User_1 = __importDefault(require("./User"));
 const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 const Queue_1 = __importDefault(require("./Queue"));
 let Schedule = class Schedule extends sequelize_typescript_1.Model {
+    id;
+    body;
+    sendAt;
+    sentAt;
+    contactId;
+    ticketId;
+    userId;
+    companyId;
+    status;
+    createdAt;
+    updatedAt;
+    contact;
+    ticket;
+    user;
+    company;
+    ticketUserId;
+    ticketUser;
+    queueId;
+    queue;
+    statusTicket;
+    openTicket;
+    mediaPath;
+    mediaName;
+    whatsappId;
+    whatsapp;
+    intervalo;
+    valorIntervalo;
+    enviarQuantasVezes;
+    tipoDias;
+    contadorEnvio;
+    assinar;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -159,3 +190,4 @@ Schedule = __decorate([
     sequelize_typescript_1.Table
 ], Schedule);
 exports.default = Schedule;
+//# sourceMappingURL=Schedule.js.map

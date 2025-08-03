@@ -27,3 +27,4 @@ const GetWbotMessage = async (ticket, messageId) => {
 };
 exports.GetWbotMessage = GetWbotMessage;
 exports.default = exports.GetWbotMessage;
+//# sourceMappingURL=GetWbotMessage.js.map

@@ -43,3 +43,4 @@ module.exports = {
         return queryInterface.dropTable("Chatbots");
     }
 };
+//# sourceMappingURL=20211017014719-create-chatbots.js.map

@@ -39,3 +39,4 @@ module.exports = {
         return queryInterface.dropTable("ContactCustomFields");
     }
 };
+//# sourceMappingURL=20200723200315-create-contacts-custom-fields.js.map

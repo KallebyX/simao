@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Messages", "isEdited");
     }
 };
+//# sourceMappingURL=20230717113705-add-isEdited-to-messages.js.map

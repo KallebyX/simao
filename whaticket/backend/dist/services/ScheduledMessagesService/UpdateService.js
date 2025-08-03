@@ -33,3 +33,4 @@ const UpdateUserService = async ({ scheduleData, id, mediaPath, mediaName, }) =>
     return schedule;
 };
 exports.default = UpdateUserService;
+//# sourceMappingURL=UpdateService.js.map

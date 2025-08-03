@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "outOfHoursMessage");
     }
 };
+//# sourceMappingURL=20210109192526-add-column-outOfHoursMessage-to-whatsapp%20.js.map

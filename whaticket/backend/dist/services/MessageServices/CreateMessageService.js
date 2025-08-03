@@ -66,11 +66,7 @@ const CreateMessageService = async ({ messageData, companyId }) => {
     }
     const io = (0, socket_1.getIO)();
     if (!messageData?.ticketImported) {
-        // console.log("emitiu socket 96", message.ticketId)
         io.of(String(companyId))
-            // .to(message.ticketId.toString())
-            // .to(message.ticket.status)
-            // .to("notification")
             .emit(`company-${companyId}-appMessage`, {
             action: "create",
             message,
@@ -81,3 +77,4 @@ const CreateMessageService = async ({ messageData, companyId }) => {
     return message;
 };
 exports.default = CreateMessageService;
+//# sourceMappingURL=CreateMessageService.js.map

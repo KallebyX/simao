@@ -7,7 +7,6 @@ exports.getFlows = exports.updateFlow = exports.createFlowDefault = void 0;
 const CreateFlowDefaultService_1 = __importDefault(require("../services/FlowDefaultService/CreateFlowDefaultService"));
 const UpdateFlowDefaultService_1 = __importDefault(require("../services/FlowDefaultService/UpdateFlowDefaultService"));
 const FlowsDefaultGetDataService_1 = __importDefault(require("../services/FlowDefaultService/FlowsDefaultGetDataService"));
-// import { handleMessage } from "../services/FacebookServices/facebookMessageListener";
 const createFlowDefault = async (req, res) => {
     const { flowIdWelcome, flowIdPhrase } = req.body;
     const userId = parseInt(req.user.id);
@@ -36,3 +35,4 @@ const getFlows = async (req, res) => {
     return res.status(200).json(flows);
 };
 exports.getFlows = getFlows;
+//# sourceMappingURL=FlowDefaultController.js.map

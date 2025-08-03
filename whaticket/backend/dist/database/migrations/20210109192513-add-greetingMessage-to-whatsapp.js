@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "greetingMessage");
     }
 };
+//# sourceMappingURL=20210109192513-add-greetingMessage-to-whatsapp.js.map

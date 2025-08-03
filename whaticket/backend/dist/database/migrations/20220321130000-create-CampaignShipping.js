@@ -70,3 +70,4 @@ module.exports = {
         return queryInterface.dropTable("CampaignShipping");
     }
 };
+//# sourceMappingURL=20220321130000-create-CampaignShipping.js.map

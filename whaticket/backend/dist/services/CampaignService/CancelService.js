@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CancelService = void 0;
+exports.CancelService = CancelService;
 const sequelize_1 = require("sequelize");
 const Campaign_1 = __importDefault(require("../../models/Campaign"));
 const CampaignShipping_1 = __importDefault(require("../../models/CampaignShipping"));
@@ -27,4 +27,4 @@ async function CancelService(id) {
     }
     await Promise.all(promises);
 }
-exports.CancelService = CancelService;
+//# sourceMappingURL=CancelService.js.map

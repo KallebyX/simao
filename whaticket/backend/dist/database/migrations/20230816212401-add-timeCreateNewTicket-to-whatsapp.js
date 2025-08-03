@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "timeCreateNewTicket");
     }
 };
+//# sourceMappingURL=20230816212401-add-timeCreateNewTicket-to-whatsapp.js.map

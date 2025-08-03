@@ -5,6 +5,14 @@
 'use strict';
 
 const _ = require('lodash');
+const msgpackr = require('msgpackr');
+
+const packer = new msgpackr.Packr({
+  useRecords: false,
+  encodeUndefinedAsNil: true
+});
+
+const pack = packer.pack;
 
 const scripts = {
   isJobInList(client, listKey, jobId) {
@@ -29,13 +37,16 @@ const scripts = {
       _.isUndefined(opts.customJobId) ? '' : opts.customJobId,
       job.name,
       job.data,
-      job.opts,
+      pack(job.opts),
       job.timestamp,
       job.delay,
       job.delay ? job.timestamp + job.delay : 0,
       opts.priority || 0,
       opts.lifo ? 'RPUSH' : 'LPUSH',
-      queue.token
+      queue.token,
+      job.debounceId ? `${queueKeys.de}:${job.debounceId}` : null,
+      opts.debounce ? opts.debounce.id : null,
+      opts.debounce ? opts.debounce.ttl : null,
     ];
     keys = keys.concat(args);
     return client.addJob(keys);
@@ -57,6 +68,42 @@ const scripts = {
     );
 
     return queue.client.pause(keys.concat([pause ? 'paused' : 'resumed']));
+  },
+
+  async addLog(queue, jobId, logRow, keepLogs) {
+    const client = await queue.client;
+
+    const keys = [queue.toKey(jobId), queue.toKey(jobId) + ':logs'];
+
+    const result = await client.addLog(
+      keys.concat([jobId, logRow, keepLogs ? keepLogs : ''])
+    );
+
+    if (result < 0) {
+      throw scripts.finishedErrors(result, jobId, 'addLog');
+    }
+
+    return result;
+  },
+
+  getCountsPerPriorityArgs(queue, priorities) {
+    const keys = [
+      queue.keys.wait,
+      queue.keys.paused,
+      queue.keys['meta-paused'],
+      queue.keys.priority
+    ];
+
+    const args = priorities;
+
+    return keys.concat(args);
+  },
+
+  async getCountsPerPriority(queue, priorities) {
+    const client = await queue.client;
+    const args = this.getCountsPerPriorityArgs(queue, priorities);
+
+    return client.getCountsPerPriority(args);
   },
 
   moveToActive(queue, jobId) {
@@ -101,9 +148,56 @@ const scripts = {
         progressJson,
         JSON.stringify({ jobId: job.id, progress })
       ])
-      .then(() => {
+      .then(code => {
+        if (code < 0) {
+          throw scripts.finishedErrors(code, job.id, 'updateProgress');
+        }
         queue.emit('progress', job, progress);
       });
+  },
+
+  updateData(job, data) {
+    const queue = job.queue;
+    const keys = [job.id].map(name => {
+      return queue.toKey(name);
+    });
+    const dataJson = JSON.stringify(data);
+
+    return queue.client.updateData(keys, [dataJson]);
+  },
+
+  saveStacktraceArgs(
+    job,
+    stacktrace,
+    failedReason
+  ) {
+    const queue = job.queue;
+
+    const keys = [queue.toKey(job.id)];
+
+    return keys.concat([stacktrace, failedReason, job.attemptsMade]);
+  },
+
+  retryJobsArgs(queue, count) {
+    const keys = [
+      queue.toKey(''),
+      queue.toKey('failed'),
+      queue.toKey('wait'),
+      queue.toKey('meta-paused'),
+      queue.toKey('paused')
+    ];
+
+    const args = [count];
+
+    return keys.concat(args);
+  },
+
+  async retryJobs(queue, count = 1000) {
+    const client = await queue.client;
+
+    const args = this.retryJobsArgs(queue, count);
+
+    return client.retryJobs(args);
   },
 
   moveToFinishedArgs(
@@ -118,6 +212,8 @@ const scripts = {
     const queue = job.queue;
     const queueKeys = queue.keys;
 
+    const metricsKey = queue.toKey(`metrics:${target}`);
+
     const keys = [
       queueKeys.active,
       queueKeys[target],
@@ -126,14 +222,17 @@ const scripts = {
       queueKeys.priority,
       queueKeys.active + '@' + queue.token,
       queueKeys.delayed,
-      queueKeys.stalled
+      queueKeys.stalled,
+      metricsKey
     ];
 
-    if (typeof shouldRemove === 'boolean') {
-      shouldRemove = shouldRemove ? '1' : '0';
-    } else if (typeof shouldRemove === 'number') {
-      shouldRemove = `${shouldRemove + 1}`;
-    }
+    const keepJobs = pack(
+      typeof shouldRemove === 'object'
+        ? shouldRemove
+        : typeof shouldRemove === 'number'
+        ? { count: shouldRemove }
+        : { count: shouldRemove ? 0 : -1 }
+    );
 
     const args = [
       job.id,
@@ -141,12 +240,13 @@ const scripts = {
       propVal,
       _.isUndefined(val) ? 'null' : val,
       ignoreLock ? '0' : queue.token,
-      shouldRemove,
+      keepJobs,
       JSON.stringify({ jobId: job.id, val: val }),
       notFetch || queue.paused || queue.closing || queue.limiter ? 0 : 1,
       queueKeys[''],
       queue.settings.lockDuration,
-      queue.token
+      queue.token,
+      queue.metrics && queue.metrics.maxDataPoints
     ];
 
     return keys.concat(args);
@@ -173,7 +273,7 @@ const scripts = {
     );
     return job.queue.client.moveToFinished(args).then(result => {
       if (result < 0) {
-        throw scripts.finishedErrors(result, job.id, 'finished');
+        throw scripts.finishedErrors(result, job.id, 'finished', 'active');
       } else if (result) {
         return raw2jobData(result);
       }
@@ -181,12 +281,20 @@ const scripts = {
     });
   },
 
-  finishedErrors(code, jobId, command) {
+  finishedErrors(code, jobId, command, state) {
     switch (code) {
       case -1:
         return new Error('Missing key for job ' + jobId + ' ' + command);
       case -2:
         return new Error('Missing lock for job ' + jobId + ' ' + command);
+      case -3:
+        return new Error(
+          `Job ${jobId} is not in the ${state} state. ${command}`
+        );
+      case -6:
+        return new Error(
+          `Lock mismatch for job ${jobId}. Cmd ${command} from ${state}`
+        );
     }
   },
 
@@ -255,7 +363,7 @@ const scripts = {
       timestamp = timestamp * 0x1000 + (jobId & 0xfff);
     }
 
-    const keys = _.map(['active', 'delayed', jobId], name => {
+    const keys = _.map(['active', 'delayed', jobId, 'stalled'], name => {
       return queue.toKey(name);
     });
     return keys.concat([
@@ -296,7 +404,8 @@ const scripts = {
       queue.keys.priority,
       queue.toKey(jobId),
       queue.toKey(`${jobId}:logs`),
-      queue.keys.limiter
+      queue.keys.limiter,
+      queue.toKey(''),
     ];
     return queue.client.removeJob(keys.concat([jobId, queue.token]));
   },
@@ -326,17 +435,13 @@ const scripts = {
     return allRemoved;
   },
 
-  extendLock(
-    queue,
-    jobId,
-    duration,
-  ) {
+  extendLock(queue, jobId, duration) {
     return queue.client.extendLock([
       queue.toKey(jobId) + ':lock',
       queue.keys.stalled,
       queue.token,
       duration,
-      jobId,
+      jobId
     ]);
   },
 
@@ -378,6 +483,7 @@ const scripts = {
       queue.keys.delayed,
       queue.keys.wait,
       queue.keys.paused,
+      queue.keys['meta-paused'],
       queue.keys.priority
     ];
 
@@ -429,9 +535,12 @@ const scripts = {
     const queue = job.queue;
     const jobId = job.id;
 
-    const keys = _.map(['active', 'wait', jobId], name => {
-      return queue.toKey(name);
-    });
+    const keys = _.map(
+      ['active', 'wait', jobId, 'meta-paused', 'paused', 'stalled', 'priority'],
+      name => {
+        return queue.toKey(name);
+      }
+    );
 
     const pushCmd = (job.opts.lifo ? 'R' : 'L') + 'PUSH';
 
@@ -459,7 +568,9 @@ const scripts = {
       queue.toKey(job.id),
       queue.toKey(job.id) + ':lock',
       queue.toKey(options.state),
-      queue.toKey('wait')
+      queue.toKey('wait'),
+      queue.toKey('meta-paused'),
+      queue.toKey('paused')
     ];
 
     const args = [

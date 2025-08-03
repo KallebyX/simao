@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Tickets", "queueId");
     }
 };
+//# sourceMappingURL=20210108164504-add-queueId-to-tickets.js.map

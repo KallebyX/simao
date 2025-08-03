@@ -21,7 +21,6 @@ const ListService = async ({ companyId, searchParam = "", pageNumber = "1", kanb
                         name: sequelize_1.Sequelize.where(sequelize_1.Sequelize.fn("LOWER", sequelize_1.Sequelize.col("Tag.name")), "LIKE", `%${sanitizedSearchParam}%`)
                     },
                     { color: { [sequelize_1.Op.like]: `%${sanitizedSearchParam}%` } }
-                    // { kanban: { [Op.like]: `%${searchParam}%` } }
                 ]
             };
         }
@@ -30,14 +29,8 @@ const ListService = async ({ companyId, searchParam = "", pageNumber = "1", kanb
             limit,
             include: [
                 {
-                    // model: ContactTag,
-                    // as: "contactTags",
-                    // include: [
-                    //   {
                     model: Contact_1.default,
                     as: "contacts",
-                    //   }
-                    // ]
                 },
             ],
             attributes: [
@@ -63,7 +56,6 @@ const ListService = async ({ companyId, searchParam = "", pageNumber = "1", kanb
                         name: sequelize_1.Sequelize.where(sequelize_1.Sequelize.fn("LOWER", sequelize_1.Sequelize.col("Tag.name")), "LIKE", `%${sanitizedSearchParam}%`)
                     },
                     { color: { [sequelize_1.Op.like]: `%${sanitizedSearchParam}%` } }
-                    // { kanban: { [Op.like]: `%${searchParam}%` } }
                 ]
             };
         }
@@ -73,7 +65,6 @@ const ListService = async ({ companyId, searchParam = "", pageNumber = "1", kanb
                 id: { [sequelize_1.Op.ne]: [tagId] }
             };
         }
-        // console.log(whereCondition)
         const { count, rows: tags } = await Tag_1.default.findAndCountAll({
             where: { ...whereCondition, companyId, kanban },
             limit,
@@ -100,3 +91,4 @@ const ListService = async ({ companyId, searchParam = "", pageNumber = "1", kanb
     }
 };
 exports.default = ListService;
+//# sourceMappingURL=ListService.js.map

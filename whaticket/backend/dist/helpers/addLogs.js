@@ -15,22 +15,31 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addLogs = void 0;
+exports.addLogs = addLogs;
 const fsp = __importStar(require("fs/promises"));
 const path_1 = __importDefault(require("path"));
 const fs = __importStar(require("fs"));
-// const filePath = 'caminho/do/seu/arquivo.txt';
 async function addLogs({ fileName, text, forceNewFile = false }) {
     const logs = path_1.default.resolve(__dirname, "..", "..", "logs");
     const filePath = path_1.default.resolve(logs, fileName);
@@ -53,7 +62,6 @@ async function addLogs({ fileName, text, forceNewFile = false }) {
     }
     catch (err) {
         if (err.code === 'ENOENT') {
-            // O arquivo não existe, então cria e adiciona o texto
             await fsp.writeFile(filePath, `${text} \n`);
             console.log(`Novo Arquivo de log adicionado ${filePath}\n \n ${text}`);
         }
@@ -62,4 +70,4 @@ async function addLogs({ fileName, text, forceNewFile = false }) {
         }
     }
 }
-exports.addLogs = addLogs;
+//# sourceMappingURL=addLogs.js.map

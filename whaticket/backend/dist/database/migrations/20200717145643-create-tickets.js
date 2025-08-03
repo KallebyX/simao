@@ -44,3 +44,4 @@ module.exports = {
         return queryInterface.dropTable("Tickets");
     }
 };
+//# sourceMappingURL=20200717145643-create-tickets.js.map

@@ -28,3 +28,4 @@ const CreateService = async (data) => {
     return record;
 };
 exports.default = CreateService;
+//# sourceMappingURL=CreateService.js.map

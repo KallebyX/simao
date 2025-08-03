@@ -23,8 +23,30 @@ const QueueIntegrations_1 = __importDefault(require("./QueueIntegrations"));
 const Files_1 = __importDefault(require("./Files"));
 const Prompt_1 = __importDefault(require("./Prompt"));
 let Queue = class Queue extends sequelize_typescript_1.Model {
+    id;
+    name;
+    color;
+    greetingMessage;
+    orderQueue;
+    ativarRoteador;
+    tempoRoteador;
+    outOfHoursMessage;
+    schedules;
+    createdAt;
+    updatedAt;
+    companyId;
+    company;
+    whatsapps;
+    users;
+    chatbots;
+    integrationId;
+    queueIntegrations;
+    fileListId;
+    files;
+    closeTicket;
+    prompt;
+    optQueue;
     static async updateChatbotsQueueReferences(queue) {
-        // Atualizar os registros na tabela Chatbots onde optQueueId é igual ao ID da fila que será excluída
         await Chatbot_1.default.update({ optQueueId: null }, { where: { optQueueId: queue.id } });
         await Whatsapp_1.default.update({ sendIdQueue: null, timeSendQueue: 0 }, { where: { sendIdQueue: queue.id, companyId: queue.companyId } });
         await Prompt_1.default.update({ queueId: null }, { where: { queueId: queue.id } });
@@ -147,7 +169,7 @@ __decorate([
         foreignKey: 'optQueueId',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
-        hooks: true // Ativa hooks para esta associação
+        hooks: true
     }),
     __metadata("design:type", Array)
 ], Queue.prototype, "optQueue", void 0);
@@ -161,3 +183,4 @@ Queue = __decorate([
     sequelize_typescript_1.Table
 ], Queue);
 exports.default = Queue;
+//# sourceMappingURL=Queue.js.map

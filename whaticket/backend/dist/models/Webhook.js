@@ -12,7 +12,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WebhookModel = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 let WebhookModel = class WebhookModel extends sequelize_typescript_1.Model {
+    id;
+    user_id;
+    hash_id;
+    company_id;
+    name;
+    active;
+    requestMonth;
+    requestAll;
+    config;
+    createdAt;
+    updatedAt;
 };
+exports.WebhookModel = WebhookModel;
 __decorate([
     sequelize_typescript_1.PrimaryKey,
     sequelize_typescript_1.AutoIncrement,
@@ -59,9 +71,9 @@ __decorate([
     sequelize_typescript_1.UpdatedAt,
     __metadata("design:type", Date)
 ], WebhookModel.prototype, "updatedAt", void 0);
-WebhookModel = __decorate([
+exports.WebhookModel = WebhookModel = __decorate([
     (0, sequelize_typescript_1.Table)({
         tableName: "Webhooks"
     })
 ], WebhookModel);
-exports.WebhookModel = WebhookModel;
+//# sourceMappingURL=Webhook.js.map

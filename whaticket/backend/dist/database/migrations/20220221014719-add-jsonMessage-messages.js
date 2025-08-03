@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Messages", "dataJson");
     }
 };
+//# sourceMappingURL=20220221014719-add-jsonMessage-messages.js.map

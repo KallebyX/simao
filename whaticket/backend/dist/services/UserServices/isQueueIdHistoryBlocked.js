@@ -16,3 +16,4 @@ const isQueueIdHistoryBlocked = async ({ userRequest }) => {
     return user.allHistoric === "enabled";
 };
 exports.default = isQueueIdHistoryBlocked;
+//# sourceMappingURL=isQueueIdHistoryBlocked.js.map

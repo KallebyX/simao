@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Plans", "useCampaigns");
     }
 };
+//# sourceMappingURL=20230106164900-add-useCampaigns-Plans.js.map

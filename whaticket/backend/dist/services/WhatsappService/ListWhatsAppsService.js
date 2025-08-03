@@ -30,3 +30,4 @@ const ListWhatsAppsService = async ({ session, companyId }) => {
     return whatsapps;
 };
 exports.default = ListWhatsAppsService;
+//# sourceMappingURL=ListWhatsAppsService.js.map

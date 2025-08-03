@@ -26,6 +26,35 @@ const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 const CompaniesSettings_1 = __importDefault(require("./CompaniesSettings"));
 const Invoices_1 = __importDefault(require("./Invoices"));
 let Company = class Company extends sequelize_typescript_1.Model {
+    id;
+    name;
+    phone;
+    email;
+    document;
+    paymentMethod;
+    lastLogin;
+    status;
+    dueDate;
+    recurrence;
+    schedules;
+    planId;
+    plan;
+    createdAt;
+    updatedAt;
+    folderSize;
+    numberFileFolder;
+    updatedAtFolder;
+    users;
+    userRatings;
+    queues;
+    whatsapps;
+    messages;
+    contacts;
+    settings;
+    companieSettings;
+    tickets;
+    ticketTrankins;
+    invoices;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -196,3 +225,4 @@ Company = __decorate([
     sequelize_typescript_1.Table
 ], Company);
 exports.default = Company;
+//# sourceMappingURL=Company.js.map

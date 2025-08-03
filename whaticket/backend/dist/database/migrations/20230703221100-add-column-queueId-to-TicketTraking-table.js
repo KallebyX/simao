@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("TicketTraking", "queueId");
     }
 };
+//# sourceMappingURL=20230703221100-add-column-queueId-to-TicketTraking-table.js.map

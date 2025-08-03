@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "timeSendQueue");
     }
 };
+//# sourceMappingURL=20230711111700-add-timeSendQueue-to-whatsapp.js.map

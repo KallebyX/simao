@@ -13,3 +13,4 @@ module.exports = {
         await queryInterface.removeColumn("FlowBuilders", "company_id");
     }
 };
+//# sourceMappingURL=20230810234345-add-company-table-flowbuilder.js.map

@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Messages", "vcardContactId");
     }
 };
+//# sourceMappingURL=20201004155719-add-vcardContactId-column-to-messages.js.map

@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "token");
     }
 };
+//# sourceMappingURL=20210818102609-add-token-to-Whatsapps.js.map

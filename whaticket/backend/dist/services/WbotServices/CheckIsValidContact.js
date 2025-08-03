@@ -24,3 +24,4 @@ const CheckIsValidContact = async (number, companyId) => {
     }
 };
 exports.default = CheckIsValidContact;
+//# sourceMappingURL=CheckIsValidContact.js.map

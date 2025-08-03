@@ -58,7 +58,6 @@ const show = async (req, res) => {
 exports.show = show;
 const update = async (req, res) => {
     const { kanban } = req.body;
-    //console.log(kanban)
     if (req.user.profile !== "admin" && kanban === 1) {
         throw new AppError_1.default("ERR_NO_PERMISSION", 403);
     }
@@ -128,3 +127,4 @@ const removeContactTag = async (req, res) => {
     return res.status(200).json({ message: "Tag deleted" });
 };
 exports.removeContactTag = removeContactTag;
+//# sourceMappingURL=TagController.js.map

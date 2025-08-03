@@ -12,7 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FlowAudioModel = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 let FlowAudioModel = class FlowAudioModel extends sequelize_typescript_1.Model {
+    id;
+    companyId;
+    userId;
+    name;
+    createdAt;
+    updatedAt;
 };
+exports.FlowAudioModel = FlowAudioModel;
 __decorate([
     sequelize_typescript_1.PrimaryKey,
     sequelize_typescript_1.AutoIncrement,
@@ -39,9 +46,9 @@ __decorate([
     sequelize_typescript_1.UpdatedAt,
     __metadata("design:type", Date)
 ], FlowAudioModel.prototype, "updatedAt", void 0);
-FlowAudioModel = __decorate([
+exports.FlowAudioModel = FlowAudioModel = __decorate([
     (0, sequelize_typescript_1.Table)({
         tableName: "FlowAudios"
     })
 ], FlowAudioModel);
-exports.FlowAudioModel = FlowAudioModel;
+//# sourceMappingURL=FlowAudio.js.map

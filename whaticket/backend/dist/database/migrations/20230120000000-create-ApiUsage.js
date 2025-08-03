@@ -60,3 +60,4 @@ module.exports = {
         return queryInterface.dropTable("ApiUsages");
     }
 };
+//# sourceMappingURL=20230120000000-create-ApiUsage.js.map

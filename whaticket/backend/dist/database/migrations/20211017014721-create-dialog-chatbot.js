@@ -41,3 +41,4 @@ module.exports = {
         return queryInterface.dropTable("DialogChatBots");
     }
 };
+//# sourceMappingURL=20211017014721-create-dialog-chatbot.js.map

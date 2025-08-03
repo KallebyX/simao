@@ -12,3 +12,4 @@ module.exports = {
         await queryInterface.removeColumn("Tickets", "flowStopped");
     }
 };
+//# sourceMappingURL=20230905114236-add-column-flow-now.js.map

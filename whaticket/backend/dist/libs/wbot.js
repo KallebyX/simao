@@ -15,18 +15,29 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.initWASocket = exports.msgDB = exports.dataMessages = exports.removeWbot = exports.restartWbot = exports.getWbot = void 0;
+exports.default = msg;
 const Sentry = __importStar(require("@sentry/node"));
 const baileys_1 = __importStar(require("@whiskeysockets/baileys"));
 const Whatsapp_1 = __importDefault(require("../models/Whatsapp"));
@@ -89,7 +100,6 @@ function msg() {
         }
     };
 }
-exports.default = msg;
 const getWbot = (whatsappId) => {
     const sessionIndex = sessions.findIndex(s => s.id === whatsappId);
     if (sessionIndex === -1) {
@@ -148,10 +158,8 @@ const initWASocket = async (whatsapp) => {
                 if (!whatsappUpdate)
                     return;
                 const { id, name, allowGroup, companyId } = whatsappUpdate;
-                // const { version, isLatest } = await fetchLatestWaWebVersion({});
                 const { version, isLatest } = await (0, baileys_1.fetchLatestBaileysVersion)();
                 const versionB = [2, 2410, 1];
-                // logger.info(`using WA v${version.join(".")}, isLatest: ${isLatest}`);
                 logger_1.default.info(`Versão: v${version.join(".")}, isLatest: ${isLatest}`);
                 logger_1.default.info(`Starting session ${name}`);
                 let retriesQrCode = 0;
@@ -164,18 +172,14 @@ const initWASocket = async (whatsapp) => {
                     version,
                     logger: loggerBaileys,
                     printQRInTerminal: false,
-                    // auth: state as AuthenticationState,
                     auth: {
                         creds: state.creds,
-                        /** caching makes the store faster to send/recv messages */
                         keys: (0, baileys_1.makeCacheableSignalKeyStore)(state.keys, logger_1.default),
                     },
                     generateHighQualityLinkPreview: true,
                     linkPreviewImageThumbnailWidth: 192,
-                    // shouldIgnoreJid: jid => isJidBroadcast(jid),
                     shouldIgnoreJid: (jid) => {
-                        //   // const isGroupJid = !allowGroup && isJidGroup(jid)
-                        return (0, baileys_1.isJidBroadcast)(jid) || (!allowGroup && (0, baileys_1.isJidGroup)(jid)); //|| jid.includes('newsletter')
+                        return (0, baileys_1.isJidBroadcast)(jid) || (!allowGroup && (0, baileys_1.isJidGroup)(jid));
                     },
                     browser: baileys_1.Browsers.appropriate("Desktop"),
                     defaultQueryTimeoutMs: undefined,
@@ -186,8 +190,7 @@ const initWASocket = async (whatsapp) => {
                     emitOwnEvents: true,
                     fireInitQueries: true,
                     transactionOpts: { maxCommitRetries: 10, delayBetweenTriesMs: 3000 },
-                    connectTimeoutMs: 25000,
-                    // keepAliveIntervalMs: 60_000,
+                    connectTimeoutMs: 25_000,
                     getMessage: exports.msgDB.get,
                     patchMessageBeforeSending(message) {
                         if (message.deviceSentMessage?.message?.listMessage?.listType === baileys_1.proto.Message.ListMessage.ListType.PRODUCT_LIST) {
@@ -198,12 +201,11 @@ const initWASocket = async (whatsapp) => {
                             message = JSON.parse(JSON.stringify(message));
                             message.listMessage.listType = baileys_1.proto.Message.ListMessage.ListType.SINGLE_SELECT;
                         }
-                        return message; // Adicionei este retorno que estava faltando
+                        return message;
                     }
                 });
                 setTimeout(async () => {
                     const wpp = await Whatsapp_1.default.findByPk(whatsapp.id);
-                    // console.log("Status:::::",wpp.status)
                     if (wpp?.importOldMessages && wpp.status === "CONNECTED") {
                         let dateOldLimit = new Date(wpp.importOldMessages).getTime();
                         let dateRecentLimit = new Date(wpp.importRecentMessages).getTime();
@@ -222,7 +224,6 @@ const initWASocket = async (whatsapp) => {
                             statusImportMessages
                         });
                         wsocket.ev.on("messaging-history.set", async (messageSet) => {
-                            //if(messageSet.isLatest){
                             const statusImportMessages = new Date().getTime();
                             await wpp.update({
                                 statusImportMessages
@@ -280,7 +281,6 @@ const initWASocket = async (whatsapp) => {
                                     action: "update",
                                     session: wpp
                                 });
-                                //console.log(JSON.stringify(wpp, null, 2));
                             }, 500);
                             setTimeout(async () => {
                                 const wpp = await Whatsapp_1.default.findByPk(whatsappId);
@@ -290,14 +290,12 @@ const initWASocket = async (whatsapp) => {
                                         const ultimoStatus = new Date(Math.floor(parseInt(wpp?.statusImportMessages))).getTime();
                                         const dataLimite = +(0, date_fns_1.add)(ultimoStatus, { seconds: +45 }).getTime();
                                         if (dataLimite < new Date().getTime()) {
-                                            //console.log("Pronto para come?ar")
                                             (0, ImportWhatsAppMessageService_1.default)(wpp.id);
                                             wpp.update({
                                                 statusImportMessages: "Running"
                                             });
                                         }
                                         else {
-                                            //console.log("Aguardando inicio")
                                         }
                                     }
                                 }
@@ -406,8 +404,6 @@ const initWASocket = async (whatsapp) => {
                     }
                 });
                 wsocket.ev.on("creds.update", saveCreds);
-                // wsocket.store = store;
-                // store.bind(wsocket.ev);
             })();
         }
         catch (error) {
@@ -418,3 +414,4 @@ const initWASocket = async (whatsapp) => {
     });
 };
 exports.initWASocket = initWASocket;
+//# sourceMappingURL=wbot.js.map

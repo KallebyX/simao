@@ -13,7 +13,7 @@ function configLoader() {
                 duration: 150,
             },
         },
-        // Adicione outras configurações conforme necessário
     };
 }
 exports.default = configLoader;
+//# sourceMappingURL=configLoaderService.js.map

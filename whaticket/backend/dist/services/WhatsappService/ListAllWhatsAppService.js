@@ -22,3 +22,4 @@ const ListAllWhatsAppsService = async ({ session, }) => {
     return whatsapps;
 };
 exports.default = ListAllWhatsAppsService;
+//# sourceMappingURL=ListAllWhatsAppService.js.map

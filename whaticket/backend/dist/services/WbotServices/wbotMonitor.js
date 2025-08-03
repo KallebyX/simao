@@ -15,13 +15,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -54,8 +64,6 @@ const wbotMonitor = async (wbot, whatsapp, companyId) => {
                 if (settings.acceptCallWhatsapp === "enabled") {
                     const sentMessage = await wbot.sendMessage(node.attrs.from, {
                         text: `\u200e ${settings.AcceptCallWhatsappMessage}`,
-                        // text:
-                        // "\u200e *Mensagem Automática:*\n\nAs chamadas de voz e vídeo estão desabilitadas para esse WhatsApp, favor enviar uma mensagem de texto. Obrigado",              
                     });
                     const number = node.attrs.from.split(":")[0].replace(/\D/g, "");
                     const contact = await Contact_1.default.findOne({
@@ -78,7 +86,6 @@ const wbotMonitor = async (wbot, whatsapp, companyId) => {
                             status: "pending"
                         }
                     });
-                    //se não existir o ticket não faz nada.
                     if (!ticket)
                         return;
                     await (0, wbotMessageListener_1.verifyMessage)(sentMessage, ticket, contact);
@@ -110,7 +117,6 @@ const wbotMonitor = async (wbot, whatsapp, companyId) => {
             }
         });
         function cleanStringForJSON(str) {
-            // Remove caracteres de controle, ", \ e '
             return str.replace(/[\x00-\x1F"\\']/g, "");
         }
         wbot.ev.on("contacts.upsert", async (contacts) => {
@@ -158,3 +164,4 @@ const wbotMonitor = async (wbot, whatsapp, companyId) => {
     }
 };
 exports.default = wbotMonitor;
+//# sourceMappingURL=wbotMonitor.js.map

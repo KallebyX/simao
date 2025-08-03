@@ -28,3 +28,4 @@ const ShowLogTicketService = async ({ ticketId, companyId }) => {
     return logs;
 };
 exports.default = ShowLogTicketService;
+//# sourceMappingURL=ShowLogTicketService.js.map

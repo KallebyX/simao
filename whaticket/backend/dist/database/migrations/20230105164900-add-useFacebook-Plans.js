@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Plans", "useFacebook");
     }
 };
+//# sourceMappingURL=20230105164900-add-useFacebook-Plans.js.map

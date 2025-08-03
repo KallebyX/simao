@@ -10,3 +10,4 @@ exports.default = (body, contact) => {
     };
     return mustache_1.default.render(body, view);
 };
+//# sourceMappingURL=Mustache_old.js.map

@@ -90,3 +90,4 @@ const remove = async (req, res) => {
     }
 };
 exports.remove = remove;
+//# sourceMappingURL=PromptController.js.map

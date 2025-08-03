@@ -10,3 +10,4 @@ module.exports = {
         return queryInterface.sequelize.query('DROP EXTENSION IF EXISTS "unaccent"');
     }
 };
+//# sourceMappingURL=20230911113900-add-unaccent-extension.js.map

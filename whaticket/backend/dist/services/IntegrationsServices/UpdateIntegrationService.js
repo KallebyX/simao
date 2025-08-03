@@ -16,3 +16,4 @@ const UpdateIntegrationsService = async ({ integration, companyId, value }) => {
     return integrations;
 };
 exports.default = UpdateIntegrationsService;
+//# sourceMappingURL=UpdateIntegrationService.js.map

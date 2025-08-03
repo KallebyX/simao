@@ -58,3 +58,4 @@ module.exports = {
         return queryInterface.dropTable("TicketTraking");
     }
 };
+//# sourceMappingURL=20210109192531-create-TicketTracking-table.js.map

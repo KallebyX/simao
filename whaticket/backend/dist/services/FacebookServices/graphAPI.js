@@ -212,3 +212,4 @@ const removeApplcation = async (id, token) => {
     }
 };
 exports.removeApplcation = removeApplcation;
+//# sourceMappingURL=graphAPI.js.map

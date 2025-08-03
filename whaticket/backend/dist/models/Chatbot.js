@@ -11,14 +11,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var Chatbot_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Queue_1 = __importDefault(require("./Queue"));
 const User_1 = __importDefault(require("./User"));
 const QueueIntegrations_1 = __importDefault(require("./QueueIntegrations"));
 const Files_1 = __importDefault(require("./Files"));
-let Chatbot = Chatbot_1 = class Chatbot extends sequelize_typescript_1.Model {
+let Chatbot = class Chatbot extends sequelize_typescript_1.Model {
+    id;
+    name;
+    greetingMessage;
+    queueId;
+    queue;
+    chatbotId;
+    isAgent;
+    mainChatbot;
+    options;
+    createdAt;
+    updatedAt;
+    queueType;
+    optQueueId;
+    optQueue;
+    optUserId;
+    user;
+    optIntegrationId;
+    queueIntegrations;
+    optFileId;
+    file;
+    closeTicket;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -45,7 +65,7 @@ __decorate([
     __metadata("design:type", Queue_1.default)
 ], Chatbot.prototype, "queue", void 0);
 __decorate([
-    (0, sequelize_typescript_1.ForeignKey)(() => Chatbot_1),
+    (0, sequelize_typescript_1.ForeignKey)(() => Chatbot),
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], Chatbot.prototype, "chatbotId", void 0);
@@ -54,11 +74,11 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Chatbot.prototype, "isAgent", void 0);
 __decorate([
-    (0, sequelize_typescript_1.BelongsTo)(() => Chatbot_1),
+    (0, sequelize_typescript_1.BelongsTo)(() => Chatbot),
     __metadata("design:type", Chatbot)
 ], Chatbot.prototype, "mainChatbot", void 0);
 __decorate([
-    (0, sequelize_typescript_1.HasMany)(() => Chatbot_1),
+    (0, sequelize_typescript_1.HasMany)(() => Chatbot),
     __metadata("design:type", Array)
 ], Chatbot.prototype, "options", void 0);
 __decorate([
@@ -114,7 +134,8 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Boolean)
 ], Chatbot.prototype, "closeTicket", void 0);
-Chatbot = Chatbot_1 = __decorate([
+Chatbot = __decorate([
     sequelize_typescript_1.Table
 ], Chatbot);
 exports.default = Chatbot;
+//# sourceMappingURL=Chatbot.js.map

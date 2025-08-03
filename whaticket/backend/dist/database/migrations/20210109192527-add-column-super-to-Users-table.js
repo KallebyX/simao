@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Users", "super");
     }
 };
+//# sourceMappingURL=20210109192527-add-column-super-to-Users-table.js.map

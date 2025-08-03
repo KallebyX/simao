@@ -15,6 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Contact_1 = __importDefault(require("./Contact"));
 let ContactCustomField = class ContactCustomField extends sequelize_typescript_1.Model {
+    id;
+    name;
+    value;
+    contactId;
+    contact;
+    createdAt;
+    updatedAt;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -51,3 +58,4 @@ ContactCustomField = __decorate([
     sequelize_typescript_1.Table
 ], ContactCustomField);
 exports.default = ContactCustomField;
+//# sourceMappingURL=ContactCustomField.js.map

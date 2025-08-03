@@ -15,3 +15,4 @@ const DeleteQueueIntegrationService = async (id) => {
     await dialogflow.destroy();
 };
 exports.default = DeleteQueueIntegrationService;
+//# sourceMappingURL=DeleteQueueIntegrationService.js.map

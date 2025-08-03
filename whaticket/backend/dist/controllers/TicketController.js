@@ -154,7 +154,6 @@ const store = async (req, res) => {
     });
     const io = (0, socket_1.getIO)();
     io.of(String(companyId))
-        // .to(ticket.status)
         .emit(`company-${companyId}-ticket`, {
         action: "update",
         ticket
@@ -225,13 +224,9 @@ exports.update = update;
 const remove = async (req, res) => {
     const { ticketId } = req.params;
     const { id: userId, companyId } = req.user;
-    // await ShowTicketService(ticketId, companyId);
     const ticket = await (0, DeleteTicketService_1.default)(ticketId, userId, companyId);
     const io = (0, socket_1.getIO)();
     io.of(String(companyId))
-        // .to(ticket.status)
-        // .to(ticketId)
-        // .to("notification")
         .emit(`company-${companyId}-ticket`, {
         action: "delete",
         ticketId: +ticketId
@@ -261,3 +256,4 @@ const closeAll = async (req, res) => {
     return res.status(200).json();
 };
 exports.closeAll = closeAll;
+//# sourceMappingURL=TicketController.js.map

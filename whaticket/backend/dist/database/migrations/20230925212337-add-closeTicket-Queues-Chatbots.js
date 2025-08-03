@@ -19,3 +19,4 @@ module.exports = {
             queryInterface.removeColumn("Chatbots", "closeTicket");
     }
 };
+//# sourceMappingURL=20230925212337-add-closeTicket-Queues-Chatbots.js.map

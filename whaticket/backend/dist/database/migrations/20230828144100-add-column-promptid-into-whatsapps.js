@@ -21,3 +21,4 @@ module.exports = {
         return queryInterface.removeColumn("Whatsapps", "promptId");
     }
 };
+//# sourceMappingURL=20230828144100-add-column-promptid-into-whatsapps.js.map

@@ -3,12 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ImportContactsService = void 0;
+exports.ImportContactsService = ImportContactsService;
 const lodash_1 = require("lodash");
 const xlsx_1 = __importDefault(require("xlsx"));
 const lodash_2 = require("lodash");
 const Contact_1 = __importDefault(require("../../models/Contact"));
-// import CheckContactNumber from "../WbotServices/CheckNumber";
 async function ImportContactsService(companyId, file) {
     const workbook = xlsx_1.default.readFile(file?.path);
     const worksheet = (0, lodash_1.head)(Object.values(workbook.Sheets));
@@ -48,20 +47,6 @@ async function ImportContactsService(companyId, file) {
             contactList.push(newContact);
         }
     }
-    // Verifica se existe os contatos
-    // if (contactList) {
-    //   for (let newContact of contactList) {
-    //     try {
-    //       const response = await CheckContactNumber(newContact.number, companyId);
-    //       const number = response;
-    //       newContact.number = number;
-    //       console.log('number', number)
-    //       await newContact.save();
-    //     } catch (e) {
-    //       logger.error(`Número de contato inválido: ${newContact.number}`);
-    //     }
-    //   }
-    // }
     return contactList;
 }
-exports.ImportContactsService = ImportContactsService;
+//# sourceMappingURL=ImportContactsService.js.map

@@ -23,3 +23,4 @@ const ListService = async ({ searchParam, companyId }) => {
     return ratings;
 };
 exports.default = ListService;
+//# sourceMappingURL=SimpleListService.js.map

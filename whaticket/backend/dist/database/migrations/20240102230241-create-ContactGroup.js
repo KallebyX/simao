@@ -33,3 +33,4 @@ module.exports = {
         await queryInterface.dropTable('ContactGroups');
     }
 };
+//# sourceMappingURL=20240102230241-create-ContactGroup.js.map

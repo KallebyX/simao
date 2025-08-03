@@ -42,3 +42,4 @@ module.exports = {
         return queryInterface.dropTable("ChatUsers");
     }
 };
+//# sourceMappingURL=20220425000001-create-table-ChatUsers.js.map

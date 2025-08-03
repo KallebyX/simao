@@ -37,3 +37,4 @@ const ShowPlanCompanyService = async (id) => {
     return companies;
 };
 exports.default = ShowPlanCompanyService;
+//# sourceMappingURL=ShowPlanCompanyService.js.map

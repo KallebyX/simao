@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Contacts", "pictureUpdated");
     }
 };
+//# sourceMappingURL=20230902082607-add-pictureUpdate-Contact.js.map

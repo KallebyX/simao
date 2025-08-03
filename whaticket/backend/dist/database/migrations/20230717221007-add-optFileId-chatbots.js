@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Chatbots", "optFileId");
     }
 };
+//# sourceMappingURL=20230717221007-add-optFileId-chatbots.js.map

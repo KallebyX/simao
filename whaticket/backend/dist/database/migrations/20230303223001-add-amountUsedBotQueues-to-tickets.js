@@ -11,3 +11,4 @@ module.exports = {
         return queryInterface.removeColumn("Tickets", "amountUsedBotQueues");
     }
 };
+//# sourceMappingURL=20230303223001-add-amountUsedBotQueues-to-tickets.js.map

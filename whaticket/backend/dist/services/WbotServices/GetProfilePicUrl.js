@@ -18,3 +18,4 @@ const GetProfilePicUrl = async (number, companyId, contact) => {
     return profilePicUrl;
 };
 exports.default = GetProfilePicUrl;
+//# sourceMappingURL=GetProfilePicUrl.js.map

@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("QueueIntegrations", "optIntegrationId");
     }
 };
+//# sourceMappingURL=20230603212337-add-QueueIntegrations-integrationId-Chatbots.js.map

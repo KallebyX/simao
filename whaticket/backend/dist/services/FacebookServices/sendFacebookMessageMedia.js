@@ -37,11 +37,9 @@ exports.sendFacebookMessageMedia = sendFacebookMessageMedia;
 const sendFacebookMessageMediaExternal = async ({ url, ticket, body }) => {
     try {
         const type = "image";
-        // const domain = `${process.env.BACKEND_URL}/public/${media.filename}`
         const sendMessage = await (0, graphAPI_1.sendAttachmentFromUrl)(ticket.contact.number, url, type, ticket.whatsapp.facebookUserToken);
         const randomName = Math.random().toString(36).substring(7);
         await ticket.update({ lastMessage: body || `${randomName}.jpg}` });
-        // fs.unlinkSync(media.path);
         return sendMessage;
     }
     catch (err) {
@@ -52,11 +50,9 @@ exports.sendFacebookMessageMediaExternal = sendFacebookMessageMediaExternal;
 const sendFacebookMessageFileExternal = async ({ url, ticket, body }) => {
     try {
         const type = "file";
-        // const domain = `${process.env.BACKEND_URL}/public/${media.filename}`
         const sendMessage = await (0, graphAPI_1.sendAttachmentFromUrl)(ticket.contact.number, url, type, ticket.whatsapp.facebookUserToken);
         const randomName = Math.random().toString(36).substring(7);
         await ticket.update({ lastMessage: body || `${randomName}.pdf}` });
-        // fs.unlinkSync(media.path);
         return sendMessage;
     }
     catch (err) {
@@ -64,3 +60,4 @@ const sendFacebookMessageFileExternal = async ({ url, ticket, body }) => {
     }
 };
 exports.sendFacebookMessageFileExternal = sendFacebookMessageFileExternal;
+//# sourceMappingURL=sendFacebookMessageMedia.js.map

@@ -47,3 +47,4 @@ module.exports = {
         return queryInterface.dropTable("Plans");
     }
 };
+//# sourceMappingURL=20210109192523-create-ticket-notes.js.map

@@ -12,3 +12,4 @@ module.exports = {
         return queryInterface.removeColumn("Messages", "isForwarded");
     }
 };
+//# sourceMappingURL=20230911143705-add-isForwarded-to-messages.js.map

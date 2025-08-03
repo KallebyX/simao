@@ -22,3 +22,4 @@ const ToggleChangeWidthService = async ({ userId, defaultTicketsManagerWidth }) 
     return user;
 };
 exports.default = ToggleChangeWidthService;
+//# sourceMappingURL=ToggleChangeWidthService.js.map

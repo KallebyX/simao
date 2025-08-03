@@ -15,13 +15,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -62,7 +72,6 @@ const EditWhatsAppMessage_1 = __importDefault(require("../services/MessageServic
 const CheckNumber_1 = __importDefault(require("../services/WbotServices/CheckNumber"));
 const TranscribeAudioMessageService_1 = __importDefault(require("../services/MessageServices/TranscribeAudioMessageService"));
 const baileys_1 = require("@whiskeysockets/baileys");
-// adicionar funções de botões, pix, etc.
 const sendListMessage = async (req, res) => {
     const { ticketId } = req.params;
     const { title, text, buttonText, footer, sections } = req.body;
@@ -247,19 +256,18 @@ const sendURLMessage = async (req, res) => {
             const base64Image = image.split(',')[1];
             const imageMessageContent = await (0, baileys_1.generateWAMessageContent)({
                 image: {
-                    url: `data:image/png;base64,${base64Image}`, // Use a URL data para imagem
+                    url: `data:image/png;base64,${base64Image}`,
                 },
             }, { upload: wbot.waUploadToServer });
-            // Crie a estrutura com o header e a imagem
             copyMessage = {
                 viewOnceMessage: {
                     message: {
                         interactiveMessage: {
                             body: {
-                                text: title || 'Botão copiar', // Título da mensagem
+                                text: title || 'Botão copiar',
                             },
                             footer: {
-                                text: description || 'Botão copiar', // Descrição da mensagem
+                                text: description || 'Botão copiar',
                             },
                             header: {
                                 imageMessage: imageMessageContent,
@@ -414,7 +422,6 @@ const sendPIXMessage = async (req, res) => {
             },
         };
         const newMsg = (0, baileys_1.generateWAMessageFromContent)(number, interactiveMsg, { userJid: botNumber });
-        // Envio da mensagem
         await wbot.relayMessage(number, newMsg.message, { messageId: newMsg.key.id });
         await wbot.upsertMessage(newMsg, 'notify');
         return res.status(200).json({ message: "Mensagem enviada com sucesso", newMsg });
@@ -434,7 +441,6 @@ const generateRandomCode = (length = 11) => {
     }
     return code;
 };
-//Transcrição de Audio
 const transcribeAudioMessage = async (req, res) => {
     const { fileName } = req.params;
     const { companyId } = req.user;
@@ -519,7 +525,6 @@ const store = async (req, res) => {
                         console.log(error);
                     }
                 }
-                //limpar arquivo nao utilizado mais após envio
                 const filePath = path_1.default.resolve("public", `company${companyId}`, media.filename);
                 const fileExists = fs_1.default.existsSync(filePath);
                 if (fileExists && isPrivate === "false") {
@@ -649,14 +654,12 @@ const remove = async (req, res) => {
             }
         });
         io.of(String(companyId))
-            // .to(message.ticketId.toString())
             .emit(`company-${companyId}-appMessage`, {
             action: "delete",
             message
         });
     }
     io.of(String(companyId))
-        // .to(message.ticketId.toString())
         .emit(`company-${companyId}-appMessage`, {
         action: "update",
         message
@@ -740,15 +743,11 @@ const edit = async (req, res) => {
     const { ticket, message } = await (0, EditWhatsAppMessage_1.default)({ messageId, body });
     const io = (0, socket_1.getIO)();
     io.of(String(companyId))
-        // .to(String(ticket.id))
         .emit(`company-${companyId}-appMessage`, {
         action: "update",
         message
     });
     io.of(String(companyId))
-        // .to(ticket.status)
-        // .to("notification")
-        // .to(String(ticket.id))
         .emit(`company-${companyId}-ticket`, {
         action: "update",
         ticket
@@ -805,3 +804,4 @@ const sendMessageFlow = async (whatsappId, body, req, files) => {
     }
 };
 exports.sendMessageFlow = sendMessageFlow;
+//# sourceMappingURL=MessageController.js.map

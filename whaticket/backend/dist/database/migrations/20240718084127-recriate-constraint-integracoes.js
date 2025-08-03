@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        // Verifica se os índices já existem antes de tentar criá-los
         const constraints = await queryInterface.showConstraint('Chatbots');
         if (constraints.some(constraint => constraint.constraintName === 'Chatbots_optIntegrationId_fkey')) {
             await queryInterface.removeConstraint('Chatbots', 'Chatbots_optIntegrationId_fkey');
@@ -18,7 +17,7 @@ module.exports = {
         });
     },
     down: async (queryInterface, Sequelize) => {
-        // Remoção dos índices criados
         await queryInterface.removeConstraint('Chatbots', 'Chatbots_optIntegrationId_fkey');
     }
 };
+//# sourceMappingURL=20240718084127-recriate-constraint-integracoes.js.map

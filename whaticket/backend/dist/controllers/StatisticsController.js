@@ -23,9 +23,6 @@ const DashTicketsQueues = async (req, res) => {
 exports.DashTicketsQueues = DashTicketsQueues;
 const ContactsReport = async (req, res) => {
     const { companyId } = req.user;
-    // if (req.user.profile !== "admin") {
-    //   throw new AppError("ERR_NO_PERMISSION", 403);
-    // }
     const { startDate, endDate, tags, ddds, wallets, searchParam } = req.query;
     const tickets = await (0, ContactsReportService_1.default)({
         startDate,
@@ -41,3 +38,4 @@ const ContactsReport = async (req, res) => {
     return res.status(200).json(tickets);
 };
 exports.ContactsReport = ContactsReport;
+//# sourceMappingURL=StatisticsController.js.map

@@ -20,3 +20,4 @@ module.exports = {
         ]);
     }
 };
+//# sourceMappingURL=20210818102608-add-unique-indexes-to-Queues-table.js.map

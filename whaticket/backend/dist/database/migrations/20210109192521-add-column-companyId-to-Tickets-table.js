@@ -14,3 +14,4 @@ module.exports = {
         return queryInterface.removeColumn("Tickets", "companyId");
     }
 };
+//# sourceMappingURL=20210109192521-add-column-companyId-to-Tickets-table.js.map

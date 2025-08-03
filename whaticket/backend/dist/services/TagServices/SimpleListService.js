@@ -43,3 +43,4 @@ const ListService = async ({ companyId, searchParam, kanban = 0 }) => {
     return tags;
 };
 exports.default = ListService;
+//# sourceMappingURL=SimpleListService.js.map

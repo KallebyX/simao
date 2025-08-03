@@ -40,3 +40,4 @@ module.exports = {
         return queryInterface.dropTable("Webhooks");
     }
 };
+//# sourceMappingURL=20230731214345-create-table-webhooks.js.map

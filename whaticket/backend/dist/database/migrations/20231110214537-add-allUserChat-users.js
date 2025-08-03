@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Users", "allUserChat");
     }
 };
+//# sourceMappingURL=20231110214537-add-allUserChat-users.js.map

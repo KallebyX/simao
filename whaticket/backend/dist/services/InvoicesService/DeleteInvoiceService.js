@@ -15,3 +15,4 @@ const DeleteInvoiceService = async (id) => {
     await invoice.destroy();
 };
 exports.default = DeleteInvoiceService;
+//# sourceMappingURL=DeleteInvoiceService.js.map

@@ -13,3 +13,4 @@ module.exports = {
         return queryInterface.removeColumn("Tickets", "typebotSessionTime");
     }
 };
+//# sourceMappingURL=20240425225011-add-typebotSsessionTime-to-tickets.js.map

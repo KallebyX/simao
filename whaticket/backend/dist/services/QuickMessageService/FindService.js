@@ -12,10 +12,10 @@ const FindService = async ({ companyId, userId }) => {
             companyId,
             [sequelize_1.Op.or]: [
                 {
-                    visao: true // Se "visao" é verdadeiro, todas as mensagens são visíveis
+                    visao: true
                 },
                 {
-                    userId // Se "visao" é falso, apenas as mensagens do usuário atual são visíveis
+                    userId
                 }
             ]
         },
@@ -25,3 +25,4 @@ const FindService = async ({ companyId, userId }) => {
     return notes;
 };
 exports.default = FindService;
+//# sourceMappingURL=FindService.js.map

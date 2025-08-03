@@ -15,3 +15,4 @@ const DeleteService = async (id) => {
     await tag.destroy();
 };
 exports.default = DeleteService;
+//# sourceMappingURL=DeleteService.js.map

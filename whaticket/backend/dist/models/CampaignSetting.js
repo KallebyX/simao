@@ -15,6 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Company_1 = __importDefault(require("./Company"));
 let CampaignSetting = class CampaignSetting extends sequelize_typescript_1.Model {
+    id;
+    key;
+    value;
+    createdAt;
+    updatedAt;
+    companyId;
+    company;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -51,3 +58,4 @@ CampaignSetting = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "CampaignSettings" })
 ], CampaignSetting);
 exports.default = CampaignSetting;
+//# sourceMappingURL=CampaignSetting.js.map

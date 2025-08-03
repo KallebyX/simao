@@ -43,9 +43,6 @@ const AuthUserService = async ({ email, password }) => {
     else {
         throw new AppError_1.default("ERR_INVALID_CREDENTIALS", 401);
     }
-    // if (!(await user.checkPassword(password))) {
-    //   throw new AppError("ERR_INVALID_CREDENTIALS", 401);
-    // }
     const token = (0, CreateTokens_1.createAccessToken)(user);
     const refreshToken = (0, CreateTokens_1.createRefreshToken)(user);
     const serializedUser = await (0, SerializeUser_1.SerializeUser)(user);
@@ -56,3 +53,4 @@ const AuthUserService = async ({ email, password }) => {
     };
 };
 exports.default = AuthUserService;
+//# sourceMappingURL=AuthUserService.js.map
