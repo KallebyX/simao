@@ -1081,7 +1081,8 @@ async function handleResumeTicketsOutOfHour(job) {
 
     companies.map(async c => {
 
-      c.whatsapps.map(async w => {
+      if (c.whatsapps && Array.isArray(c.whatsapps)) {
+        c.whatsapps.map(async w => {
 
         if (w.status === "CONNECTED") {
           var companyId = c.id;
@@ -1162,7 +1163,8 @@ async function handleResumeTicketsOutOfHour(job) {
             }
           }
         }
-      });
+        });
+      }
     });
   } catch (e: any) {
     Sentry.captureException(e);
@@ -1189,7 +1191,8 @@ async function handleVerifyQueue(job) {
 
     companies.map(async c => {
 
-      c.whatsapps.map(async w => {
+      if (c.whatsapps && Array.isArray(c.whatsapps)) {
+        c.whatsapps.map(async w => {
 
         if (w.status === "CONNECTED") {
           var companyId = c.id;
@@ -1277,7 +1280,8 @@ async function handleVerifyQueue(job) {
             }
           }
         }
-      });
+        });
+      }
     });
   } catch (e: any) {
     Sentry.captureException(e);
@@ -1379,7 +1383,7 @@ async function handleRandomUser() {
 
                 let settings = await CompaniesSettings.findOne({
                   where: {
-                    companyId: ticket.companyId
+                    companyId: ticket.companyId || 0
                   }
                 });
                 const sendGreetingMessageOneQueues = settings.sendGreetingMessageOneQueues === "enabled" || false;
@@ -1467,23 +1471,45 @@ async function handleRandomUser() {
 }
 
 async function handleProcessLanes() {
+  let isProcessingLanes = false;
+  
   const job = new CronJob('*/1 * * * *', async () => {
-    const companies = await Company.findAll({
-      include: [
-        {
-          model: Plan,
-          as: "plan",
-          attributes: ["id", "name", "useKanban"],
-          where: {
-            useKanban: true
-          }
-        },
-      ]
-    });
-    companies.map(async c => {
+    if (isProcessingLanes) {
+      logger.warn("Process Lanes -> Previous execution still running, skipping...");
+      return;
+    }
+    
+    isProcessingLanes = true;
+    
+    try {
+      const companies = await Company.findAll({
+        attributes: ['id', 'name', 'status'],
+        include: [
+          {
+            model: Plan,
+            as: "plan",
+            attributes: ["id", "name", "useKanban"],
+            where: {
+              useKanban: true
+            }
+          },
+        ]
+      });
 
-      try {
-        const companyId = c.id;
+      logger.info(`Process Lanes -> Processing ${companies.length} companies with Kanban enabled`);
+
+      for (const company of companies) {
+        try {
+          const companyId = company.get('id') || company.dataValues.id;
+          const companyName = company.get('name') || company.dataValues.name;
+
+          // Validação robusta do companyId
+          if (!companyId || typeof companyId !== 'number' || isNaN(companyId)) {
+            logger.error(`Process Lanes -> Invalid companyId: "${companyId}" for company: ${JSON.stringify(company.dataValues)}`);
+            continue;
+          }
+
+          logger.debug(`Process Lanes -> Processing company ${companyId} (${companyName})`);
 
         const ticketTags = await TicketTag.findAll({
           include: [{
@@ -1492,7 +1518,7 @@ async function handleProcessLanes() {
             where: {
               status: "open",
               fromMe: true,
-              companyId
+              companyId: companyId
             },
             attributes: ["id", "contactId", "updatedAt", "whatsappId"]
           }, {
@@ -1500,7 +1526,7 @@ async function handleProcessLanes() {
             as: "tag",
             attributes: ["id", "timeLane", "nextLaneId", "greetingMessageLane"],
             where: {
-              companyId
+              companyId: companyId
             }
           }]
         })
@@ -1541,34 +1567,67 @@ async function handleProcessLanes() {
         }
       } catch (e: any) {
         Sentry.captureException(e);
-        logger.error("Process Lanes -> Verify: error", e.message);
-        throw e;
+        logger.error(`Process Lanes -> Company ${company.id} error: ${e.message}`);
+        // Continue processing other companies
       }
-
-    });
+    }
+    } catch (e: any) {
+      Sentry.captureException(e);
+      logger.error("Process Lanes -> Global error:", e.message);
+    } finally {
+      isProcessingLanes = false;
+    }
   });
   job.start()
 }
 
 async function handleCloseTicketsAutomatic() {
+  let isProcessingCloseTickets = false;
+  
   const job = new CronJob('*/1 * * * *', async () => {
-    const companies = await Company.findAll({
-      where: {
-        status: true
-      }
-    });
-    companies.map(async c => {
+    if (isProcessingCloseTickets) {
+      logger.warn("ClosedAllOpenTickets -> Previous execution still running, skipping...");
+      return;
+    }
+    
+    isProcessingCloseTickets = true;
+    
+    try {
+      const companies = await Company.findAll({
+        where: {
+          status: true
+        },
+        attributes: ['id', 'name', 'status']
+      });
 
-      try {
-        const companyId = c.id;
-        await ClosedAllOpenTickets(companyId);
-      } catch (e: any) {
-        Sentry.captureException(e);
-        logger.error("ClosedAllOpenTickets -> Verify: error", e.message);
-        throw e;
-      }
+      logger.info(`ClosedAllOpenTickets -> Processing ${companies.length} companies`);
 
-    });
+      for (const company of companies) {
+        try {
+          const companyId = company.get('id') || company.dataValues.id;
+          const companyName = company.get('name') || company.dataValues.name;
+          
+          // Validação robusta do companyId
+          if (!companyId || typeof companyId !== 'number' || isNaN(companyId)) {
+            logger.error(`ClosedAllOpenTickets -> Invalid companyId: "${companyId}" for company: ${JSON.stringify(company.dataValues)}`);
+            continue;
+          }
+
+          logger.debug(`ClosedAllOpenTickets -> Processing company ${companyId} (${companyName})`);
+          await ClosedAllOpenTickets(companyId);
+          
+        } catch (e: any) {
+          Sentry.captureException(e);
+          logger.error(`ClosedAllOpenTickets -> Company ${company.id} error: ${e.message}`);
+          // Continue processing other companies
+        }
+      }
+    } catch (e: any) {
+      Sentry.captureException(e);
+      logger.error("ClosedAllOpenTickets -> Global error:", e.message);
+    } finally {
+      isProcessingCloseTickets = false;
+    }
   });
   job.start()
 }

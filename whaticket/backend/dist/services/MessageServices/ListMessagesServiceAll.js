@@ -3,7 +3,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const dbConfig = require("../../config/database");
-const sequelize = new sequelize_typescript_1.Sequelize(dbConfig);
+const env = process.env.NODE_ENV || "development";
+const config = dbConfig[env];
+const sequelize = new sequelize_typescript_1.Sequelize({
+    database: config.database,
+    username: config.username,
+    password: config.password,
+    host: config.host,
+    port: config.port,
+    dialect: config.dialect,
+    logging: config.logging,
+    pool: config.pool,
+    define: config.define,
+    timezone: config.timezone
+});
 const ListMessagesServiceAll = async ({ companyId, fromMe, dateStart, dateEnd }) => {
     let ticketsCounter;
     if (dateStart && dateEnd) {

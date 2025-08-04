@@ -1,0 +1,34 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "/workspaces/simao"],
+      "env": {},
+      "description": "Servidor MCP para acesso ao sistema de arquivos do Whaticket"
+    },
+    "postgres": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-postgres"],
+      "env": {
+        "POSTGRES_CONNECTION_STRING": "postgresql://whaticket:whaticket@localhost:5432/whaticket"
+      },
+      "description": "Servidor MCP para acesso ao banco de dados PostgreSQL"
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": ["puppeteer-mcp-server"],
+      "env": {},
+      "description": "Servidor MCP para automação de testes e debugging no navegador"
+    }
+  },
+  "development": {
+    "enabled": true,
+    "debug": true,
+    "logLevel": "verbose"
+  },
+  "production": {
+    "enabled": false,
+    "debug": false,
+    "logLevel": "error"
+  }
+}

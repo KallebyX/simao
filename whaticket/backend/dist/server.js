@@ -44,7 +44,7 @@ if (process.env.CERTIFICADOS == "true") {
     });
     process.on("unhandledRejection", (reason, p) => {
         console.error(`${new Date().toUTCString()} unhandledRejection:`, reason, p);
-        process.exit(1);
+        logger_1.default.error("Unhandled rejection occurred, but server will continue running");
     });
     (0, socket_1.initIO)(server);
     (0, http_graceful_shutdown_1.default)(server);
@@ -75,7 +75,7 @@ else {
     });
     process.on("unhandledRejection", (reason, p) => {
         console.error(`${new Date().toUTCString()} unhandledRejection:`, reason, p);
-        process.exit(1);
+        logger_1.default.error("Unhandled rejection occurred, but server will continue running");
     });
     (0, socket_1.initIO)(server);
     (0, http_graceful_shutdown_1.default)(server);

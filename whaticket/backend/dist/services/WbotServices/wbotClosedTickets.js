@@ -172,6 +172,10 @@ const handleNPSTickets = async (companyId, whatsapp) => {
 };
 const ClosedAllOpenTickets = async (companyId) => {
     try {
+        if (!companyId || isNaN(companyId)) {
+            logger_1.default.error(`ClosedAllOpenTickets -> Invalid companyId: ${companyId}`);
+            return;
+        }
         const whatsapps = await Whatsapp_1.default.findAll({
             attributes: ["id", "name", "status", "timeSendQueue", "sendIdQueue", "timeInactiveMessage",
                 "expiresInactiveMessage", "inactiveMessage", "expiresTicket", "expiresTicketNPS", "whenExpiresTicket",

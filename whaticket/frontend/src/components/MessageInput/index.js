@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import "emoji-mart/css/emoji-mart.css";
-import { Picker } from "emoji-mart";
+import data from '@emoji-mart/data'
+import Picker from '@emoji-mart/react'
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import { isNil } from "lodash";
 import {
@@ -511,9 +511,8 @@ const MessageInput = ({ ticketId, ticketStatus, droppedFiles, contactId, ticketC
     setTypeBar(false);
   };
 
-  const handleAddEmoji = (e) => {
-    let emoji = e.native;
-    setInputMessage((prevState) => prevState + emoji);
+  const handleAddEmoji = (emoji) => {
+    setInputMessage((prevState) => prevState + emoji.native);
   };
 
   const [modalCameraOpen, setModalCameraOpen] = useState(false);
@@ -964,12 +963,12 @@ const MessageInput = ({ ticketId, ticketStatus, droppedFiles, contactId, ticketC
                 <div className={classes.emojiBox}>
                   <ClickAwayListener onClickAway={(e) => setShowEmoji(true)}>
                     <Picker
+                      data={data}
                       perLine={16}
-                      theme={"dark"}
-                      i18n={i18n}
-                      showPreview={true}
-                      showSkinTones={false}
-                      onSelect={handleAddEmoji}
+                      theme="dark"
+                      previewPosition="none"
+                      skinTonePosition="none"
+                      onEmojiSelect={handleAddEmoji}
                     />
                   </ClickAwayListener>
                 </div>

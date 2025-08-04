@@ -11,7 +11,21 @@ import { QueryTypes } from "sequelize";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const dbConfig = require("../../config/database");
-const sequelize = new Sequelize(dbConfig);
+const env = process.env.NODE_ENV || "development";
+const config = dbConfig[env];
+
+const sequelize = new Sequelize({
+  database: config.database,
+  username: config.username,
+  password: config.password,
+  host: config.host,
+  port: config.port,
+  dialect: config.dialect,
+  logging: config.logging,
+  pool: config.pool,
+  define: config.define,
+  timezone: config.timezone
+});
 
 interface Request {
   companyId: number;

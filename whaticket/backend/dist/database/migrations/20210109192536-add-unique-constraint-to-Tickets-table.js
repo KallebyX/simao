@@ -2,7 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 module.exports = {
     up: (queryInterface) => {
-        return queryInterface.addConstraint("Tickets", ["id", "contactId", "companyId", "whatsappId"], {
+        return queryInterface.addConstraint("Tickets", {
+            fields: ["id", "contactId", "companyId", "whatsappId"],
             type: "unique",
             name: "contactid_companyid_whatsappid_unique"
         });

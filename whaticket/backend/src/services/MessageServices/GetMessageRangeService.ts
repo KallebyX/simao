@@ -10,7 +10,10 @@ interface Request {
 }
 
 const dbConfig = require("../../config/database");
-const sequelize = new Sequelize(dbConfig);
+const sequelize = new Sequelize({
+    ...dbConfig,
+    dialect: 'postgres'
+});
 
 const GetMessageRangeService = async ({ companyId, startDate, lastDate }: Request): Promise<Message[]> => {
     let messages: any

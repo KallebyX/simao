@@ -804,70 +804,72 @@ async function handleResumeTicketsOutOfHour(job) {
             ]
         });
         companies.map(async (c) => {
-            c.whatsapps.map(async (w) => {
-                if (w.status === "CONNECTED") {
-                    var companyId = c.id;
-                    const moveQueue = w.timeSendQueue ? w.timeSendQueue : 0;
-                    const moveQueueId = w.sendIdQueue;
-                    const moveQueueTime = moveQueue;
-                    const idQueue = moveQueueId;
-                    const timeQueue = moveQueueTime;
-                    if (moveQueue > 0) {
-                        if (!isNaN(idQueue) && Number.isInteger(idQueue) && !isNaN(timeQueue) && Number.isInteger(timeQueue)) {
-                            const tempoPassado = (0, moment_1.default)().subtract(timeQueue, "minutes").utc().format();
-                            const { count, rows: tickets } = await Ticket_1.default.findAndCountAll({
-                                attributes: ["id"],
-                                where: {
-                                    status: "pending",
-                                    queueId: null,
-                                    companyId: companyId,
-                                    whatsappId: w.id,
-                                    updatedAt: {
-                                        [sequelize_1.Op.lt]: tempoPassado
+            if (c.whatsapps && Array.isArray(c.whatsapps)) {
+                c.whatsapps.map(async (w) => {
+                    if (w.status === "CONNECTED") {
+                        var companyId = c.id;
+                        const moveQueue = w.timeSendQueue ? w.timeSendQueue : 0;
+                        const moveQueueId = w.sendIdQueue;
+                        const moveQueueTime = moveQueue;
+                        const idQueue = moveQueueId;
+                        const timeQueue = moveQueueTime;
+                        if (moveQueue > 0) {
+                            if (!isNaN(idQueue) && Number.isInteger(idQueue) && !isNaN(timeQueue) && Number.isInteger(timeQueue)) {
+                                const tempoPassado = (0, moment_1.default)().subtract(timeQueue, "minutes").utc().format();
+                                const { count, rows: tickets } = await Ticket_1.default.findAndCountAll({
+                                    attributes: ["id"],
+                                    where: {
+                                        status: "pending",
+                                        queueId: null,
+                                        companyId: companyId,
+                                        whatsappId: w.id,
+                                        updatedAt: {
+                                            [sequelize_1.Op.lt]: tempoPassado
+                                        },
                                     },
-                                },
-                                include: [
-                                    {
-                                        model: Contact_1.default,
-                                        as: "contact",
-                                        attributes: ["id", "name", "number", "email", "profilePicUrl", "acceptAudioMessage", "active", "disableBot", "urlPicture", "lgpdAcceptedAt", "companyId"],
-                                        include: ["extraInfo", "tags"]
-                                    },
-                                    {
-                                        model: Queue_2.default,
-                                        as: "queue",
-                                        attributes: ["id", "name", "color"]
-                                    },
-                                    {
-                                        model: Whatsapp_1.default,
-                                        as: "whatsapp",
-                                        attributes: ["id", "name", "expiresTicket", "groupAsTicket"]
-                                    }
-                                ]
-                            });
-                            if (count > 0) {
-                                tickets.map(async (ticket) => {
-                                    await ticket.update({
-                                        queueId: idQueue
-                                    });
-                                    await ticket.reload();
-                                    const io = (0, socket_1.getIO)();
-                                    io.of(String(companyId))
-                                        .emit(`company-${companyId}-ticket`, {
-                                        action: "update",
-                                        ticket,
-                                        ticketId: ticket.id
-                                    });
-                                    logger_1.default.info(`Atendimento Perdido: ${ticket.id} - Empresa: ${companyId}`);
+                                    include: [
+                                        {
+                                            model: Contact_1.default,
+                                            as: "contact",
+                                            attributes: ["id", "name", "number", "email", "profilePicUrl", "acceptAudioMessage", "active", "disableBot", "urlPicture", "lgpdAcceptedAt", "companyId"],
+                                            include: ["extraInfo", "tags"]
+                                        },
+                                        {
+                                            model: Queue_2.default,
+                                            as: "queue",
+                                            attributes: ["id", "name", "color"]
+                                        },
+                                        {
+                                            model: Whatsapp_1.default,
+                                            as: "whatsapp",
+                                            attributes: ["id", "name", "expiresTicket", "groupAsTicket"]
+                                        }
+                                    ]
                                 });
+                                if (count > 0) {
+                                    tickets.map(async (ticket) => {
+                                        await ticket.update({
+                                            queueId: idQueue
+                                        });
+                                        await ticket.reload();
+                                        const io = (0, socket_1.getIO)();
+                                        io.of(String(companyId))
+                                            .emit(`company-${companyId}-ticket`, {
+                                            action: "update",
+                                            ticket,
+                                            ticketId: ticket.id
+                                        });
+                                        logger_1.default.info(`Atendimento Perdido: ${ticket.id} - Empresa: ${companyId}`);
+                                    });
+                                }
+                            }
+                            else {
+                                logger_1.default.info(`Condição não respeitada - Empresa: ${companyId}`);
                             }
                         }
-                        else {
-                            logger_1.default.info(`Condição não respeitada - Empresa: ${companyId}`);
-                        }
                     }
-                }
-            });
+                });
+            }
         });
     }
     catch (e) {
@@ -892,76 +894,78 @@ async function handleVerifyQueue(job) {
             ]
         });
         companies.map(async (c) => {
-            c.whatsapps.map(async (w) => {
-                if (w.status === "CONNECTED") {
-                    var companyId = c.id;
-                    const moveQueue = w.timeSendQueue ? w.timeSendQueue : 0;
-                    const moveQueueId = w.sendIdQueue;
-                    const moveQueueTime = moveQueue;
-                    const idQueue = moveQueueId;
-                    const timeQueue = moveQueueTime;
-                    if (moveQueue > 0) {
-                        if (!isNaN(idQueue) && Number.isInteger(idQueue) && !isNaN(timeQueue) && Number.isInteger(timeQueue)) {
-                            const tempoPassado = (0, moment_1.default)().subtract(timeQueue, "minutes").utc().format();
-                            const { count, rows: tickets } = await Ticket_1.default.findAndCountAll({
-                                attributes: ["id"],
-                                where: {
-                                    status: "pending",
-                                    queueId: null,
-                                    companyId: companyId,
-                                    whatsappId: w.id,
-                                    updatedAt: {
-                                        [sequelize_1.Op.lt]: tempoPassado
+            if (c.whatsapps && Array.isArray(c.whatsapps)) {
+                c.whatsapps.map(async (w) => {
+                    if (w.status === "CONNECTED") {
+                        var companyId = c.id;
+                        const moveQueue = w.timeSendQueue ? w.timeSendQueue : 0;
+                        const moveQueueId = w.sendIdQueue;
+                        const moveQueueTime = moveQueue;
+                        const idQueue = moveQueueId;
+                        const timeQueue = moveQueueTime;
+                        if (moveQueue > 0) {
+                            if (!isNaN(idQueue) && Number.isInteger(idQueue) && !isNaN(timeQueue) && Number.isInteger(timeQueue)) {
+                                const tempoPassado = (0, moment_1.default)().subtract(timeQueue, "minutes").utc().format();
+                                const { count, rows: tickets } = await Ticket_1.default.findAndCountAll({
+                                    attributes: ["id"],
+                                    where: {
+                                        status: "pending",
+                                        queueId: null,
+                                        companyId: companyId,
+                                        whatsappId: w.id,
+                                        updatedAt: {
+                                            [sequelize_1.Op.lt]: tempoPassado
+                                        },
                                     },
-                                },
-                                include: [
-                                    {
-                                        model: Contact_1.default,
-                                        as: "contact",
-                                        attributes: ["id", "name", "number", "email", "profilePicUrl", "acceptAudioMessage", "active", "disableBot", "urlPicture", "lgpdAcceptedAt", "companyId"],
-                                        include: ["extraInfo", "tags"]
-                                    },
-                                    {
-                                        model: Queue_2.default,
-                                        as: "queue",
-                                        attributes: ["id", "name", "color"]
-                                    },
-                                    {
-                                        model: Whatsapp_1.default,
-                                        as: "whatsapp",
-                                        attributes: ["id", "name", "expiresTicket", "groupAsTicket"]
-                                    }
-                                ]
-                            });
-                            if (count > 0) {
-                                tickets.map(async (ticket) => {
-                                    await ticket.update({
-                                        queueId: idQueue
-                                    });
-                                    await (0, CreateLogTicketService_1.default)({
-                                        userId: null,
-                                        queueId: idQueue,
-                                        ticketId: ticket.id,
-                                        type: "redirect"
-                                    });
-                                    await ticket.reload();
-                                    const io = (0, socket_1.getIO)();
-                                    io.of(String(companyId))
-                                        .emit(`company-${companyId}-ticket`, {
-                                        action: "update",
-                                        ticket,
-                                        ticketId: ticket.id
-                                    });
-                                    logger_1.default.info(`Atendimento Perdido: ${ticket.id} - Empresa: ${companyId}`);
+                                    include: [
+                                        {
+                                            model: Contact_1.default,
+                                            as: "contact",
+                                            attributes: ["id", "name", "number", "email", "profilePicUrl", "acceptAudioMessage", "active", "disableBot", "urlPicture", "lgpdAcceptedAt", "companyId"],
+                                            include: ["extraInfo", "tags"]
+                                        },
+                                        {
+                                            model: Queue_2.default,
+                                            as: "queue",
+                                            attributes: ["id", "name", "color"]
+                                        },
+                                        {
+                                            model: Whatsapp_1.default,
+                                            as: "whatsapp",
+                                            attributes: ["id", "name", "expiresTicket", "groupAsTicket"]
+                                        }
+                                    ]
                                 });
+                                if (count > 0) {
+                                    tickets.map(async (ticket) => {
+                                        await ticket.update({
+                                            queueId: idQueue
+                                        });
+                                        await (0, CreateLogTicketService_1.default)({
+                                            userId: null,
+                                            queueId: idQueue,
+                                            ticketId: ticket.id,
+                                            type: "redirect"
+                                        });
+                                        await ticket.reload();
+                                        const io = (0, socket_1.getIO)();
+                                        io.of(String(companyId))
+                                            .emit(`company-${companyId}-ticket`, {
+                                            action: "update",
+                                            ticket,
+                                            ticketId: ticket.id
+                                        });
+                                        logger_1.default.info(`Atendimento Perdido: ${ticket.id} - Empresa: ${companyId}`);
+                                    });
+                                }
+                            }
+                            else {
+                                logger_1.default.info(`Condição não respeitada - Empresa: ${companyId}`);
                             }
                         }
-                        else {
-                            logger_1.default.info(`Condição não respeitada - Empresa: ${companyId}`);
-                        }
                     }
-                }
-            });
+                });
+            }
         });
     }
     catch (e) {
@@ -1047,7 +1051,7 @@ async function handleRandomUser() {
                                 const updatedAtV = new Date(ticket.updatedAt);
                                 let settings = await CompaniesSettings_1.default.findOne({
                                     where: {
-                                        companyId: ticket.companyId
+                                        companyId: ticket.companyId || 0
                                     }
                                 });
                                 const sendGreetingMessageOneQueues = settings.sendGreetingMessageOneQueues === "enabled" || false;
@@ -1106,95 +1110,139 @@ async function handleRandomUser() {
     jobR.start();
 }
 async function handleProcessLanes() {
+    let isProcessingLanes = false;
     const job = new CronJob('*/1 * * * *', async () => {
-        const companies = await Company_1.default.findAll({
-            include: [
-                {
-                    model: Plan_1.default,
-                    as: "plan",
-                    attributes: ["id", "name", "useKanban"],
-                    where: {
-                        useKanban: true
+        if (isProcessingLanes) {
+            logger_1.default.warn("Process Lanes -> Previous execution still running, skipping...");
+            return;
+        }
+        isProcessingLanes = true;
+        try {
+            const companies = await Company_1.default.findAll({
+                attributes: ['id', 'name', 'status'],
+                include: [
+                    {
+                        model: Plan_1.default,
+                        as: "plan",
+                        attributes: ["id", "name", "useKanban"],
+                        where: {
+                            useKanban: true
+                        }
+                    },
+                ]
+            });
+            logger_1.default.info(`Process Lanes -> Processing ${companies.length} companies with Kanban enabled`);
+            for (const company of companies) {
+                try {
+                    const companyId = company.get('id') || company.dataValues.id;
+                    const companyName = company.get('name') || company.dataValues.name;
+                    if (!companyId || typeof companyId !== 'number' || isNaN(companyId)) {
+                        logger_1.default.error(`Process Lanes -> Invalid companyId: "${companyId}" for company: ${JSON.stringify(company.dataValues)}`);
+                        continue;
                     }
-                },
-            ]
-        });
-        companies.map(async (c) => {
-            try {
-                const companyId = c.id;
-                const ticketTags = await TicketTag_1.default.findAll({
-                    include: [{
-                            model: Ticket_1.default,
-                            as: "ticket",
-                            where: {
-                                status: "open",
-                                fromMe: true,
-                                companyId
-                            },
-                            attributes: ["id", "contactId", "updatedAt", "whatsappId"]
-                        }, {
-                            model: Tag_1.default,
-                            as: "tag",
-                            attributes: ["id", "timeLane", "nextLaneId", "greetingMessageLane"],
-                            where: {
-                                companyId
-                            }
-                        }]
-                });
-                if (ticketTags.length > 0) {
-                    ticketTags.map(async (t) => {
-                        if (!(0, lodash_1.isNil)(t?.tag.nextLaneId) && t?.tag.nextLaneId > 0 && t?.tag.timeLane > 0) {
-                            const nextTag = await Tag_1.default.findByPk(t?.tag.nextLaneId);
-                            const dataLimite = new Date();
-                            dataLimite.setHours(dataLimite.getHours() - Number(t.tag.timeLane));
-                            const dataUltimaInteracaoChamado = new Date(t.ticket.updatedAt);
-                            if (dataUltimaInteracaoChamado < dataLimite) {
-                                await TicketTag_1.default.destroy({ where: { ticketId: t.ticketId, tagId: t.tagId } });
-                                await TicketTag_1.default.create({ ticketId: t.ticketId, tagId: nextTag.id });
-                                const whatsapp = await Whatsapp_1.default.findByPk(t.ticket.whatsappId);
-                                if (!(0, lodash_1.isNil)(nextTag.greetingMessageLane) && nextTag.greetingMessageLane !== "") {
-                                    const bodyMessage = nextTag.greetingMessageLane;
-                                    const contact = await Contact_1.default.findByPk(t.ticket.contactId);
-                                    const ticketUpdate = await (0, ShowTicketService_1.default)(t.ticketId, companyId);
-                                    await (0, SendMessage_1.SendMessage)(whatsapp, {
-                                        number: contact.number,
-                                        body: `${(0, Mustache_1.default)(bodyMessage, ticketUpdate)}`,
-                                        mediaPath: null,
-                                        companyId: companyId
-                                    }, contact.isGroup);
+                    logger_1.default.debug(`Process Lanes -> Processing company ${companyId} (${companyName})`);
+                    const ticketTags = await TicketTag_1.default.findAll({
+                        include: [{
+                                model: Ticket_1.default,
+                                as: "ticket",
+                                where: {
+                                    status: "open",
+                                    fromMe: true,
+                                    companyId: companyId
+                                },
+                                attributes: ["id", "contactId", "updatedAt", "whatsappId"]
+                            }, {
+                                model: Tag_1.default,
+                                as: "tag",
+                                attributes: ["id", "timeLane", "nextLaneId", "greetingMessageLane"],
+                                where: {
+                                    companyId: companyId
+                                }
+                            }]
+                    });
+                    if (ticketTags.length > 0) {
+                        ticketTags.map(async (t) => {
+                            if (!(0, lodash_1.isNil)(t?.tag.nextLaneId) && t?.tag.nextLaneId > 0 && t?.tag.timeLane > 0) {
+                                const nextTag = await Tag_1.default.findByPk(t?.tag.nextLaneId);
+                                const dataLimite = new Date();
+                                dataLimite.setHours(dataLimite.getHours() - Number(t.tag.timeLane));
+                                const dataUltimaInteracaoChamado = new Date(t.ticket.updatedAt);
+                                if (dataUltimaInteracaoChamado < dataLimite) {
+                                    await TicketTag_1.default.destroy({ where: { ticketId: t.ticketId, tagId: t.tagId } });
+                                    await TicketTag_1.default.create({ ticketId: t.ticketId, tagId: nextTag.id });
+                                    const whatsapp = await Whatsapp_1.default.findByPk(t.ticket.whatsappId);
+                                    if (!(0, lodash_1.isNil)(nextTag.greetingMessageLane) && nextTag.greetingMessageLane !== "") {
+                                        const bodyMessage = nextTag.greetingMessageLane;
+                                        const contact = await Contact_1.default.findByPk(t.ticket.contactId);
+                                        const ticketUpdate = await (0, ShowTicketService_1.default)(t.ticketId, companyId);
+                                        await (0, SendMessage_1.SendMessage)(whatsapp, {
+                                            number: contact.number,
+                                            body: `${(0, Mustache_1.default)(bodyMessage, ticketUpdate)}`,
+                                            mediaPath: null,
+                                            companyId: companyId
+                                        }, contact.isGroup);
+                                    }
                                 }
                             }
-                        }
-                    });
+                        });
+                    }
+                }
+                catch (e) {
+                    Sentry.captureException(e);
+                    logger_1.default.error(`Process Lanes -> Company ${company.id} error: ${e.message}`);
                 }
             }
-            catch (e) {
-                Sentry.captureException(e);
-                logger_1.default.error("Process Lanes -> Verify: error", e.message);
-                throw e;
-            }
-        });
+        }
+        catch (e) {
+            Sentry.captureException(e);
+            logger_1.default.error("Process Lanes -> Global error:", e.message);
+        }
+        finally {
+            isProcessingLanes = false;
+        }
     });
     job.start();
 }
 async function handleCloseTicketsAutomatic() {
+    let isProcessingCloseTickets = false;
     const job = new CronJob('*/1 * * * *', async () => {
-        const companies = await Company_1.default.findAll({
-            where: {
-                status: true
+        if (isProcessingCloseTickets) {
+            logger_1.default.warn("ClosedAllOpenTickets -> Previous execution still running, skipping...");
+            return;
+        }
+        isProcessingCloseTickets = true;
+        try {
+            const companies = await Company_1.default.findAll({
+                where: {
+                    status: true
+                },
+                attributes: ['id', 'name', 'status']
+            });
+            logger_1.default.info(`ClosedAllOpenTickets -> Processing ${companies.length} companies`);
+            for (const company of companies) {
+                try {
+                    const companyId = company.get('id') || company.dataValues.id;
+                    const companyName = company.get('name') || company.dataValues.name;
+                    if (!companyId || typeof companyId !== 'number' || isNaN(companyId)) {
+                        logger_1.default.error(`ClosedAllOpenTickets -> Invalid companyId: "${companyId}" for company: ${JSON.stringify(company.dataValues)}`);
+                        continue;
+                    }
+                    logger_1.default.debug(`ClosedAllOpenTickets -> Processing company ${companyId} (${companyName})`);
+                    await (0, wbotClosedTickets_1.ClosedAllOpenTickets)(companyId);
+                }
+                catch (e) {
+                    Sentry.captureException(e);
+                    logger_1.default.error(`ClosedAllOpenTickets -> Company ${company.id} error: ${e.message}`);
+                }
             }
-        });
-        companies.map(async (c) => {
-            try {
-                const companyId = c.id;
-                await (0, wbotClosedTickets_1.ClosedAllOpenTickets)(companyId);
-            }
-            catch (e) {
-                Sentry.captureException(e);
-                logger_1.default.error("ClosedAllOpenTickets -> Verify: error", e.message);
-                throw e;
-            }
-        });
+        }
+        catch (e) {
+            Sentry.captureException(e);
+            logger_1.default.error("ClosedAllOpenTickets -> Global error:", e.message);
+        }
+        finally {
+            isProcessingCloseTickets = false;
+        }
     });
     job.start();
 }

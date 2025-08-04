@@ -54,7 +54,8 @@ if (process.env.CERTIFICADOS == "true") {
       reason,
       p
     );
-    process.exit(1);
+    // Não terminar o processo, apenas logar o erro
+    logger.error("Unhandled rejection occurred, but server will continue running");
   });
   
   initIO(server);
@@ -97,7 +98,8 @@ if (process.env.CERTIFICADOS == "true") {
       reason,
       p
     );
-    process.exit(1);
+    // Não terminar o processo, apenas logar o erro
+    logger.error("Unhandled rejection occurred, but server will continue running");
   });
   
   initIO(server);
