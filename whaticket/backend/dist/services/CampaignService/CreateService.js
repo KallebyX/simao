@@ -59,7 +59,12 @@ const CreateService = async (data) => {
     if (data.scheduledAt != null && data.scheduledAt != "") {
         data.status = "PROGRAMADA";
     }
-    const record = await Campaign_1.default.create(data);
+    const record = await Campaign_1.default.create({
+        ...data,
+        userId: Number(data.userId),
+        queueId: Number(data.queueId),
+        scheduledAt: data.scheduledAt ? new Date(data.scheduledAt) : undefined
+    });
     await record.reload({
         include: [
             { model: ContactList_1.default },

@@ -29,10 +29,10 @@ class ContactTag extends Model<ContactTag> {
   tags: Tag;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 }
 
 export default ContactTag;

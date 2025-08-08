@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Company_1 = __importDefault(require("./Company"));
 let Announcement = class Announcement extends sequelize_typescript_1.Model {
-    id;
     priority;
     title;
     text;
@@ -28,8 +27,6 @@ let Announcement = class Announcement extends sequelize_typescript_1.Model {
     mediaName;
     companyId;
     status;
-    createdAt;
-    updatedAt;
     company;
 };
 __decorate([

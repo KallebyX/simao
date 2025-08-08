@@ -24,7 +24,6 @@ const Tag_1 = __importDefault(require("./Tag"));
 const TicketTag_1 = __importDefault(require("./TicketTag"));
 const QueueIntegrations_1 = __importDefault(require("./QueueIntegrations"));
 let Ticket = class Ticket extends sequelize_typescript_1.Model {
-    id;
     status;
     unreadMessages;
     flowWebhook;
@@ -35,8 +34,6 @@ let Ticket = class Ticket extends sequelize_typescript_1.Model {
     ;
     lastMessage;
     isGroup;
-    createdAt;
-    updatedAt;
     userId;
     user;
     contactId;

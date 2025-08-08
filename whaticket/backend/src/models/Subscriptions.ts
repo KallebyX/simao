@@ -14,7 +14,7 @@ class Subscriptions extends Model<Subscriptions> {
     @PrimaryKey
     @AutoIncrement
     @Column
-    id: number;
+    declare id: number;
 
     @Column
     isActive: boolean;
@@ -47,10 +47,10 @@ class Subscriptions extends Model<Subscriptions> {
     companyId: number;
 
     @CreatedAt
-    createdAt: Date;
+    declare createdAt: Date;
 
     @UpdatedAt
-    updatedAt: Date;
+    declare updatedAt: Date;
 }
 
 export default Subscriptions;

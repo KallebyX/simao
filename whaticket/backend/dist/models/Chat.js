@@ -19,14 +19,11 @@ const ChatUser_1 = __importDefault(require("./ChatUser"));
 const Company_1 = __importDefault(require("./Company"));
 const User_1 = __importDefault(require("./User"));
 let Chat = class Chat extends sequelize_typescript_1.Model {
-    id;
     uuid;
     title;
     ownerId;
     lastMessage;
     companyId;
-    createdAt;
-    updatedAt;
     company;
     owner;
     users;

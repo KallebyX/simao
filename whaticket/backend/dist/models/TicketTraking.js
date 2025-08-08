@@ -20,7 +20,6 @@ const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 const Message_1 = __importDefault(require("./Message"));
 const Queue_1 = __importDefault(require("./Queue"));
 let TicketTraking = class TicketTraking extends sequelize_typescript_1.Model {
-    id;
     ticketId;
     ticket;
     companyId;
@@ -30,8 +29,6 @@ let TicketTraking = class TicketTraking extends sequelize_typescript_1.Model {
     userId;
     rated;
     user;
-    createdAt;
-    updatedAt;
     startedAt;
     queuedAt;
     closedAt;

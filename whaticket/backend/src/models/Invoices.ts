@@ -18,7 +18,7 @@ class Invoices extends Model<Invoices> {
     @PrimaryKey
     @AutoIncrement
     @Column
-    id: number;
+    declare id: number;
 
     @ForeignKey(() => Company)
     @Column
@@ -67,13 +67,20 @@ class Invoices extends Model<Invoices> {
     useExternalApi: boolean;   
 
     @CreatedAt
-    createdAt: Date;
+    declare createdAt: Date;
 
     @UpdatedAt
-    updatedAt: Date;
+    declare updatedAt: Date;
 
     @Column
     linkInvoice: string;
+
+    // Campos adicionais não definidos no modelo original mas usados no código
+    @Column
+    stripe_id?: string;
+
+    @Column
+    txid?: string;
 }
 
 export default Invoices;

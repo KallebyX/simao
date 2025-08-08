@@ -16,12 +16,9 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const User_1 = __importDefault(require("./User"));
 const Chat_1 = __importDefault(require("./Chat"));
 let ChatUser = class ChatUser extends sequelize_typescript_1.Model {
-    id;
     chatId;
     userId;
     unreads;
-    createdAt;
-    updatedAt;
     chat;
     user;
 };

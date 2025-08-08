@@ -23,7 +23,7 @@ class Schedule extends Model<Schedule> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column(DataType.TEXT)
   body: string;
@@ -54,10 +54,10 @@ class Schedule extends Model<Schedule> {
   status: string;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @BelongsTo(() => Contact, "contactId")
   contact: Contact;

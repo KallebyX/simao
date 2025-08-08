@@ -117,7 +117,10 @@ const CreateWhatsAppService = async ({
       }
     });
 
-    if (whatsappCount >= company.plan.connections) {
+    // Fix: Access connections via dataValues instead of shadowed getters
+    const maxConnections = company.dataValues.plan.dataValues.connections;
+
+    if (whatsappCount >= maxConnections) {
       throw new AppError(
         `Número máximo de conexões já alcançado: ${whatsappCount}`
       );
@@ -209,9 +212,9 @@ const CreateWhatsAppService = async ({
       facebookUserToken,
       facebookPageUserId,
       tokenMeta,
-      maxUseBotQueues,
+      maxUseBotQueues: maxUseBotQueues ? Number(maxUseBotQueues) : undefined,
       timeUseBotQueues,
-      expiresTicket,
+      expiresTicket: expiresTicket ? String(expiresTicket) : undefined,
       allowGroup,
       timeSendQueue,
       sendIdQueue,
@@ -222,13 +225,13 @@ const CreateWhatsAppService = async ({
       whenExpiresTicket,
       expiresInactiveMessage,
       groupAsTicket,
-      importOldMessages,
-      importRecentMessages,
+      importOldMessages: importOldMessages ? new Date(importOldMessages) : undefined,
+      importRecentMessages: importRecentMessages ? new Date(importRecentMessages) : undefined,
       closedTicketsPostImported,
       importOldMessagesGroups,
       timeCreateNewTicket,
       integrationId,
-      schedules,
+      schedules: [],
       promptId,
       collectiveVacationEnd,
       collectiveVacationMessage,

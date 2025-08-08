@@ -56,7 +56,17 @@ const CreatePromptService = async (promptData) => {
     catch (err) {
         throw new AppError_1.default(`${JSON.stringify(err, undefined, 2)}`);
     }
-    let promptTable = await Prompt_1.default.create(promptData);
+    let promptTable = await Prompt_1.default.create({
+        ...promptData,
+        companyId: Number(promptData.companyId),
+        queueId: promptData.queueId ? Number(promptData.queueId) : undefined,
+        maxMessages: promptData.maxMessages ? Number(promptData.maxMessages) : undefined,
+        maxTokens: promptData.maxTokens ? Number(promptData.maxTokens) : undefined,
+        temperature: promptData.temperature ? Number(promptData.temperature) : undefined,
+        promptTokens: promptData.promptTokens ? Number(promptData.promptTokens) : undefined,
+        completionTokens: promptData.completionTokens ? Number(promptData.completionTokens) : undefined,
+        totalTokens: promptData.totalTokens ? Number(promptData.totalTokens) : undefined
+    });
     promptTable = await (0, ShowPromptService_1.default)({ promptId: promptTable.id, companyId });
     return promptTable;
 };

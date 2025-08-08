@@ -19,7 +19,6 @@ const Company_1 = __importDefault(require("./Company"));
 const Queue_1 = __importDefault(require("./Queue"));
 const TicketTraking_1 = __importDefault(require("./TicketTraking"));
 let Message = class Message extends sequelize_typescript_1.Model {
-    id;
     remoteJid;
     participant;
     dataJson;
@@ -35,8 +34,6 @@ let Message = class Message extends sequelize_typescript_1.Model {
     }
     mediaType;
     isDeleted;
-    createdAt;
-    updatedAt;
     quotedMsgId;
     quotedMsg;
     ticketId;

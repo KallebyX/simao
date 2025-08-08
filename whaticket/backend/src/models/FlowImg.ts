@@ -16,7 +16,7 @@ export class FlowImgModel extends Model<FlowImgModel> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   companyId: number;
@@ -28,8 +28,8 @@ export class FlowImgModel extends Model<FlowImgModel> {
   name: string;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 }

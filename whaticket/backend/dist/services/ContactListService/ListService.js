@@ -46,10 +46,10 @@ const ListService = async ({ searchParam = "", pageNumber = "1", companyId }) =>
         ],
         group: ["ContactList.id"]
     });
-    const hasMore = count > offset + records.length;
+    const hasMore = count.length > offset + records.length;
     return {
         records,
-        count,
+        count: count.length,
         hasMore
     };
 };

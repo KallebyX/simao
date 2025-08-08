@@ -1,4 +1,6 @@
 import Setting from "../../models/Setting";
+import { QueryTypes } from "sequelize";
+import sequelize from "../../database";
 
 interface Request {
   key: string;
@@ -27,14 +29,20 @@ const GetPublicSettingService = async ({
     return null;
   }
   
-  const setting = await Setting.findOne({
-    where: {
-      companyId: 1,
-      key
-    }
-  });
+  try {
+    const result = await sequelize.query(
+      'SELECT value FROM "Settings" WHERE "companyId" = 1 AND key = :key LIMIT 1',
+      {
+        replacements: { key },
+        type: QueryTypes.SELECT
+      }
+    );
 
-  return setting?.value;
+    return (result[0] as any)?.value || null;
+  } catch (error) {
+    console.log("Error fetching setting:", error);
+    return null;
+  }
 };
 
 export default GetPublicSettingService;

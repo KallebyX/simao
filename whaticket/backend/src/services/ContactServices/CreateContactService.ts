@@ -11,9 +11,9 @@ interface ExtraInfo extends ContactCustomField {
 }
 
 interface Wallet {
-  walletId: number | string;
-  contactId: number | string;
-  companyId: number | string;
+  walletId: number;
+  contactId: number;
+  companyId: number;
 }
 interface Request {
   name: string;
@@ -88,9 +88,9 @@ const CreateContactService = async ({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     wallets.forEach((wallet: any) => {
       contactWallets.push({
-        walletId: !wallet.id ? wallet : wallet.id,
-        contactId: contact.id,
-        companyId
+        walletId: Number(!wallet.id ? wallet : wallet.id),
+        contactId: Number(contact.id),
+        companyId: Number(companyId)
       });
     });
 

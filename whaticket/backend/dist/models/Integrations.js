@@ -16,7 +16,6 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Queue_1 = __importDefault(require("./Queue"));
 const Company_1 = __importDefault(require("./Company"));
 let Integrations = class Integrations extends sequelize_typescript_1.Model {
-    id;
     companyId;
     type;
     name;
@@ -25,9 +24,6 @@ let Integrations = class Integrations extends sequelize_typescript_1.Model {
     isActive;
     urlN8N;
     language;
-    createdAt;
-    updatedAt;
-    dataValues;
     token;
     foneContact;
     userLogin;

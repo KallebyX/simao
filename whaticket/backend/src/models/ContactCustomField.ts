@@ -16,7 +16,7 @@ class ContactCustomField extends Model<ContactCustomField> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   name: string;
@@ -32,10 +32,10 @@ class ContactCustomField extends Model<ContactCustomField> {
   contact: Contact;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 }
 
 export default ContactCustomField;

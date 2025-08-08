@@ -20,7 +20,6 @@ const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 const User_1 = __importDefault(require("./User"));
 const Queue_1 = __importDefault(require("./Queue"));
 let Campaign = class Campaign extends sequelize_typescript_1.Model {
-    id;
     name;
     message1;
     message2;
@@ -38,8 +37,6 @@ let Campaign = class Campaign extends sequelize_typescript_1.Model {
     mediaName;
     scheduledAt;
     completedAt;
-    createdAt;
-    updatedAt;
     companyId;
     company;
     contactListId;

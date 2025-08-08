@@ -29,7 +29,7 @@ class Contact extends Model<Contact> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   name: string;
@@ -69,10 +69,10 @@ class Contact extends Model<Contact> {
   channel: string;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @HasMany(() => Ticket)
   tickets: Ticket[];

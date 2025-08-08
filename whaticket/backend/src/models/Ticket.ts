@@ -34,7 +34,7 @@ class Ticket extends Model<Ticket> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column({ defaultValue: "pending" })
   status: string;
@@ -65,10 +65,10 @@ class Ticket extends Model<Ticket> {
   isGroup: boolean;
 
   @Column
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @ForeignKey(() => User)
   @Column

@@ -21,7 +21,12 @@ const UpdateContactWalletsService = async ({ wallets, contactId, companyId }) =>
             companyId
         });
     });
-    await ContactWallet_1.default.bulkCreate(contactWallets);
+    await ContactWallet_1.default.bulkCreate(contactWallets.map(wallet => ({
+        ...wallet,
+        contactId: Number(wallet.contactId),
+        walletId: Number(wallet.walletId),
+        companyId: Number(wallet.companyId)
+    })));
     const contact = await Contact_1.default.findOne({
         where: { id: contactId, companyId },
         attributes: ["id", "name", "number", "email", "profilePicUrl", "urlPicture", "companyId"],

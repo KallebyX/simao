@@ -72,9 +72,6 @@ const UpdateUserService = async ({ scheduleData, id, companyId }) => {
         mediaName,
         mensagem,
         companyId,
-        data_envio,
-        scheduledmessages,
-        key
     });
     await schedule.reload();
     return schedule;

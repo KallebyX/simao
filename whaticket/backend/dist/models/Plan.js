@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 let Plan = class Plan extends sequelize_typescript_1.Model {
-    id;
     name;
     users;
     connections;
@@ -24,8 +23,6 @@ let Plan = class Plan extends sequelize_typescript_1.Model {
     useSchedules;
     useInternalChat;
     useExternalApi;
-    createdAt;
-    updatedAt;
     useKanban;
     trial;
     trialDays;

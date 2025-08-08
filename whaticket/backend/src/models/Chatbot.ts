@@ -22,7 +22,7 @@ class Chatbot extends Model<Chatbot> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @AllowNull(false)
   @Column
@@ -52,10 +52,10 @@ class Chatbot extends Model<Chatbot> {
   options: Chatbot[];
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @Column
   queueType: string;

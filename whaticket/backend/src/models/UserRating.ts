@@ -19,7 +19,7 @@ class UserRating extends Model<UserRating> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @ForeignKey(() => Ticket)
   @Column
@@ -43,10 +43,10 @@ class UserRating extends Model<UserRating> {
   user: User;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @Column
   rate: number;

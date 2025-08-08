@@ -20,7 +20,7 @@ import TicketTraking from "./TicketTraking";
 class Message extends Model<Message> {
   @PrimaryKey
   @Column
-  id: number;
+  declare id: number;
 
   @Column(DataType.STRING)
   remoteJid: string;
@@ -64,11 +64,11 @@ class Message extends Model<Message> {
   isDeleted: boolean;
 
   @Column(DataType.DATE(6))
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
   @Column(DataType.DATE(6))
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @ForeignKey(() => Message)
   @Column

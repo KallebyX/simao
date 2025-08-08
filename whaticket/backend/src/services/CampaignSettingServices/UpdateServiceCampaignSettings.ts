@@ -22,7 +22,10 @@ const UpdateServiceCampaignSettings = async (data: Data): Promise<CampaignSettin
     throw new AppError("ERR_NO_CAMPAIGN_FOUND", 404);
   }
 
-  await record.update(data);
+  await record.update({
+    ...data,
+    id: Number(data.id)
+  });
 
   // await record.reload({
   //   include: [

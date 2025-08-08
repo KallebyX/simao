@@ -12,7 +12,7 @@ const UpdateIntegrationsService = async ({ integration, companyId, value }) => {
     if (!integrations) {
         throw new AppError_1.default("ERR_NO_INTEGRATIONS_FOUND", 404);
     }
-    await integrations.update({ token: value, where: { name: integration, companyId: companyId } });
+    await integrations.update({ token: value }, { where: { name: integration, companyId: companyId } });
     return integrations;
 };
 exports.default = UpdateIntegrationsService;

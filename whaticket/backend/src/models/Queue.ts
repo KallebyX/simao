@@ -32,7 +32,7 @@ class Queue extends Model<Queue> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @AllowNull(false)
   @Unique
@@ -69,10 +69,10 @@ class Queue extends Model<Queue> {
   schedules: [];
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @ForeignKey(() => Company)
   @Column

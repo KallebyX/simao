@@ -25,8 +25,13 @@
     "noImplicitThis": false,
     "allowUnreachableCode": true,
     "allowUnusedLabels": true,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "noErrorTruncation": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "public", "**/*.test.ts", "**/*.spec.ts"]
+  "exclude": ["node_modules", "dist", "public", "**/*.test.ts", "**/*.spec.ts"],
+  "ts-node": {
+    "transpileOnly": true,
+    "files": true
+  }
 }

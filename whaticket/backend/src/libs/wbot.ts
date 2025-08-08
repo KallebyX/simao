@@ -12,7 +12,6 @@ import makeWASocket, {
   isJidGroup,
   jidNormalizedUser,
   makeCacheableSignalKeyStore,
-  makeInMemoryStore,
   proto,
 } from "@whiskeysockets/baileys";
 import { FindOptions } from "sequelize/types";
@@ -112,7 +111,7 @@ export const restartWbot = async (
     whatsapp.map(async c => {
       const sessionIndex = sessions.findIndex(s => s.id === c.id);
       if (sessionIndex !== -1) {
-        sessions[sessionIndex].ws.close(undefined);
+        sessions[sessionIndex].ws.close();
       }
 
     });
@@ -168,16 +167,14 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
         let retriesQrCode = 0;
 
         let wsocket: Session = null;
-        const store = makeInMemoryStore({
-          logger: loggerBaileys
-        });
+        // Note: makeInMemoryStore was removed in newer Baileys versions
+        // const store = makeInMemoryStore({ logger: loggerBaileys });
         const { state, saveCreds } = await useMultiFileAuthState(whatsapp);
 
         wsocket = makeWASocket({
           version,
           logger: loggerBaileys,
           printQRInTerminal: false,
-          // auth: state as AuthenticationState,
           auth: {
             creds: state.creds,
             /** caching makes the store faster to send/recv messages */
@@ -185,11 +182,8 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
           },
           generateHighQualityLinkPreview: true,
           linkPreviewImageThumbnailWidth: 192,
-          // shouldIgnoreJid: jid => isJidBroadcast(jid),
-
           shouldIgnoreJid: (jid) => {
-            //   // const isGroupJid = !allowGroup && isJidGroup(jid)
-            return isJidBroadcast(jid) || (!allowGroup && isJidGroup(jid)) //|| jid.includes('newsletter')
+            return isJidBroadcast(jid) || (!allowGroup && isJidGroup(jid))
           },
           browser: Browsers.appropriate("Desktop"),
           defaultQueryTimeoutMs: undefined,
@@ -201,7 +195,6 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
           fireInitQueries: true,
           transactionOpts: { maxCommitRetries: 10, delayBetweenTriesMs: 3000 },
           connectTimeoutMs: 25_000,
-          // keepAliveIntervalMs: 60_000,
           getMessage: msgDB.get,
           patchMessageBeforeSending(message) {
             if (message.deviceSentMessage?.message?.listMessage?.listType === proto.Message.ListMessage.ListType.PRODUCT_LIST) {
@@ -210,10 +203,9 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
             }
             if (message.listMessage?.listType == proto.Message.ListMessage.ListType.PRODUCT_LIST) {
               message = JSON.parse(JSON.stringify(message));
-  
               message.listMessage.listType = proto.Message.ListMessage.ListType.SINGLE_SELECT;
             }
-            return message; // Adicionei este retorno que estava faltando
+            return message;
           }
         });
 
@@ -240,7 +232,7 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
             const statusImportMessages = new Date().getTime();
 
             await wpp.update({
-              statusImportMessages
+              statusImportMessages: String(statusImportMessages)
             });
             wsocket.ev.on("messaging-history.set", async (messageSet: any) => {
               //if(messageSet.isLatest){
@@ -248,7 +240,7 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
               const statusImportMessages = new Date().getTime();
 
               await wpp.update({
-                statusImportMessages
+                statusImportMessages: String(statusImportMessages)
               });
               const whatsappId = whatsapp.id;
               let filteredMessages = messageSet.messages

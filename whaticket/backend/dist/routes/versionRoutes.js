@@ -34,9 +34,9 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const VerssionController = __importStar(require("../controllers/VersionController"));
+const VersionController = __importStar(require("../controllers/VersionController"));
 const versionRouter = (0, express_1.Router)();
-versionRouter.get("/version", VerssionController.index);
-versionRouter.post("/version", VerssionController.store);
+versionRouter.get("/version", VersionController.index);
+versionRouter.post("/version", VersionController.store);
 exports.default = versionRouter;
 //# sourceMappingURL=versionRoutes.js.map

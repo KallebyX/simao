@@ -11,7 +11,12 @@ const UpdateService = async (data) => {
     if (!record) {
         throw new AppError_1.default("ERR_NO_ANNOUNCEMENT_FOUND", 404);
     }
-    await record.update(data);
+    await record.update({
+        ...data,
+        id: Number(data.id),
+        priority: Number(data.priority),
+        status: data.status === 'true' || data.status === '1' || data.status === 'ativo'
+    });
     return record;
 };
 exports.default = UpdateService;

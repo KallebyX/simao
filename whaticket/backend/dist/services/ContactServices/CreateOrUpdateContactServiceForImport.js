@@ -28,9 +28,8 @@ const CreateOrUpdateContactServiceForImport = async ({ name, number: rawNumber, 
             number,
             profilePicUrl,
             email,
-            commandBot,
             isGroup,
-            extraInfo
+            extraInfo: extraInfo
         });
         io.of(String(companyId))
             .emit(`company-${companyId}-contact`, {

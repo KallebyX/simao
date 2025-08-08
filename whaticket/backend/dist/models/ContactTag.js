@@ -20,8 +20,6 @@ let ContactTag = class ContactTag extends sequelize_typescript_1.Model {
     tagId;
     contact;
     tags;
-    createdAt;
-    updatedAt;
 };
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => Contact_1.default),

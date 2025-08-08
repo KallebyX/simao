@@ -261,29 +261,25 @@ const index = async (req, res) => {
                     if (media.mimetype.includes("pdf")) {
                         await exist.update({
                             usedPDF: exist.dataValues["usedPDF"] + 1,
-                            UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                            updatedAt: timestamp
+                            UsedOnDay: exist.dataValues["UsedOnDay"] + 1
                         });
                     }
                     else if (media.mimetype.includes("image")) {
                         await exist.update({
                             usedImage: exist.dataValues["usedImage"] + 1,
-                            UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                            updatedAt: timestamp
+                            UsedOnDay: exist.dataValues["UsedOnDay"] + 1
                         });
                     }
                     else if (media.mimetype.includes("video")) {
                         await exist.update({
                             usedVideo: exist.dataValues["usedVideo"] + 1,
-                            UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                            updatedAt: timestamp
+                            UsedOnDay: exist.dataValues["UsedOnDay"] + 1
                         });
                     }
                     else {
                         await exist.update({
                             usedOther: exist.dataValues["usedOther"] + 1,
-                            UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                            updatedAt: timestamp
+                            UsedOnDay: exist.dataValues["UsedOnDay"] + 1
                         });
                     }
                 }));
@@ -291,8 +287,7 @@ const index = async (req, res) => {
             else {
                 await exist.update({
                     usedText: exist.dataValues["usedText"] + 1,
-                    UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                    updatedAt: timestamp
+                    UsedOnDay: exist.dataValues["UsedOnDay"] + 1
                 });
             }
         }
@@ -307,28 +302,27 @@ const index = async (req, res) => {
                         await exist.update({
                             usedPDF: exist.dataValues["usedPDF"] + 1,
                             UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                            updatedAt: timestamp
+                            updatedAt: new Date()
                         });
                     }
                     else if (media.mimetype.includes("image")) {
                         await exist.update({
                             usedImage: exist.dataValues["usedImage"] + 1,
-                            UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                            updatedAt: timestamp
+                            UsedOnDay: exist.dataValues["UsedOnDay"] + 1
                         });
                     }
                     else if (media.mimetype.includes("video")) {
                         await exist.update({
                             usedVideo: exist.dataValues["usedVideo"] + 1,
                             UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                            updatedAt: timestamp
+                            updatedAt: new Date()
                         });
                     }
                     else {
                         await exist.update({
                             usedOther: exist.dataValues["usedOther"] + 1,
                             UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                            updatedAt: timestamp
+                            updatedAt: new Date()
                         });
                     }
                 }));
@@ -336,8 +330,7 @@ const index = async (req, res) => {
             else {
                 await exist.update({
                     usedText: exist.dataValues["usedText"] + 1,
-                    UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                    updatedAt: timestamp
+                    UsedOnDay: exist.dataValues["UsedOnDay"] + 1
                 });
             }
         }
@@ -392,7 +385,7 @@ const indexImage = async (req, res) => {
             await exist.update({
                 usedImage: exist.dataValues["usedImage"] + 1,
                 UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                updatedAt: timestamp
+                updatedAt: new Date()
             });
         }
         else {
@@ -402,8 +395,7 @@ const indexImage = async (req, res) => {
             });
             await usage.update({
                 usedImage: usage.dataValues["usedImage"] + 1,
-                UsedOnDay: usage.dataValues["UsedOnDay"] + 1,
-                updatedAt: timestamp
+                UsedOnDay: usage.dataValues["UsedOnDay"] + 1
             });
         }
     }, 100);
@@ -436,8 +428,7 @@ const checkNumber = async (req, res) => {
                 if (exist) {
                     await exist.update({
                         usedCheckNumber: exist.dataValues["usedCheckNumber"] + 1,
-                        UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                        updatedAt: timestamp
+                        UsedOnDay: exist.dataValues["UsedOnDay"] + 1
                     });
                 }
                 else {
@@ -447,8 +438,7 @@ const checkNumber = async (req, res) => {
                     });
                     await usage.update({
                         usedCheckNumber: usage.dataValues["usedCheckNumber"] + 1,
-                        UsedOnDay: usage.dataValues["UsedOnDay"] + 1,
-                        updatedAt: timestamp
+                        UsedOnDay: usage.dataValues["UsedOnDay"] + 1
                     });
                 }
             }, 100);

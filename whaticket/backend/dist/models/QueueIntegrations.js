@@ -15,15 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Company_1 = __importDefault(require("./Company"));
 let QueueIntegrations = class QueueIntegrations extends sequelize_typescript_1.Model {
-    id;
     type;
     name;
     projectName;
     jsonContent;
     urlN8N;
     language;
-    createdAt;
-    updatedAt;
     companyId;
     company;
     typebotSlug;

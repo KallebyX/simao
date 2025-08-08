@@ -16,7 +16,7 @@ export class FlowDefaultModel extends Model<FlowDefaultModel> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   companyId: number;
@@ -31,8 +31,8 @@ export class FlowDefaultModel extends Model<FlowDefaultModel> {
   flowIdNotPhrase: number;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 }

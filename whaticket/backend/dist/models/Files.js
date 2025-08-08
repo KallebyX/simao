@@ -16,12 +16,9 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Company_1 = __importDefault(require("./Company"));
 const FilesOptions_1 = __importDefault(require("./FilesOptions"));
 let Files = class Files extends sequelize_typescript_1.Model {
-    id;
     companyId;
     name;
     message;
-    createdAt;
-    updatedAt;
     options;
 };
 __decorate([

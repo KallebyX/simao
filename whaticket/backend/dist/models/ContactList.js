@@ -16,10 +16,7 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Company_1 = __importDefault(require("./Company"));
 const ContactListItem_1 = __importDefault(require("./ContactListItem"));
 let ContactList = class ContactList extends sequelize_typescript_1.Model {
-    id;
     name;
-    createdAt;
-    updatedAt;
     companyId;
     company;
     contacts;

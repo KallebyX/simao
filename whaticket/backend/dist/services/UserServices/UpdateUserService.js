@@ -90,7 +90,6 @@ const UpdateUserService = async ({ userData, userId, companyId, requestUserId })
     if (company.email === oldUserEmail) {
         await company.update({
             email,
-            password
         });
     }
     const serializedUser = {

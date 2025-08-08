@@ -16,7 +16,7 @@ export class FlowBuilderModel extends Model<FlowBuilderModel> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   user_id: number;
@@ -37,8 +37,8 @@ export class FlowBuilderModel extends Model<FlowBuilderModel> {
   variables: {} | null;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 }

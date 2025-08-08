@@ -82,12 +82,18 @@ const UpdateWhatsAppServiceAdmin = async ({ whatsappData, whatsappId, companyId 
         companyId,
         token,
         maxUseBotQueues: maxUseBotQueues || 0,
-        timeUseBotQueues: timeUseBotQueues || 0,
-        expiresTicket: expiresTicket || 0,
+        timeUseBotQueues: (() => {
+            console.log("🔍 [DEBUG] timeUseBotQueues tipo:", typeof timeUseBotQueues, "valor:", timeUseBotQueues);
+            return String(timeUseBotQueues || 0);
+        })(),
+        expiresTicket: (() => {
+            console.log("🔍 [DEBUG] expiresTicket tipo:", typeof expiresTicket, "valor:", expiresTicket);
+            return String(expiresTicket || 0);
+        })(),
         allowGroup,
         timeSendQueue,
         sendIdQueue,
-        timeInactiveMessage,
+        timeInactiveMessage: timeInactiveMessage?.toString(),
         inactiveMessage,
         ratingMessage,
         maxUseBotQueuesNPS,
@@ -95,8 +101,8 @@ const UpdateWhatsAppServiceAdmin = async ({ whatsappData, whatsappId, companyId 
         whenExpiresTicket,
         expiresInactiveMessage,
         groupAsTicket,
-        importOldMessages,
-        importRecentMessages,
+        importOldMessages: importOldMessages ? new Date(importOldMessages) : null,
+        importRecentMessages: importRecentMessages ? new Date(importRecentMessages) : null,
         closedTicketsPostImported,
         importOldMessagesGroups,
         timeCreateNewTicket,

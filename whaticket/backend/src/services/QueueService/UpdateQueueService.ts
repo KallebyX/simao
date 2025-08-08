@@ -98,7 +98,10 @@ const UpdateQueueService = async (
       })
     );
   }
-  await queue.update(queueData);
+  await queue.update({
+    ...queueData,
+    schedules: []
+  });
 
   await queue.reload({
     include: [

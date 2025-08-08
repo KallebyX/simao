@@ -16,7 +16,6 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Campaign_1 = __importDefault(require("./Campaign"));
 const ContactListItem_1 = __importDefault(require("./ContactListItem"));
 let CampaignShipping = class CampaignShipping extends sequelize_typescript_1.Model {
-    id;
     jobId;
     number;
     message;
@@ -27,8 +26,6 @@ let CampaignShipping = class CampaignShipping extends sequelize_typescript_1.Mod
     confirmationRequestedAt;
     confirmedAt;
     deliveredAt;
-    createdAt;
-    updatedAt;
     contact;
     campaign;
 };

@@ -34,11 +34,11 @@ const UpdateCompanyService = async (companyData) => {
     const valuePlan = plan.amount.replace(",", ".");
     if (openInvoice) {
         await openInvoice.update({
-            value: valuePlan,
+            value: Number(valuePlan),
             detail: plan.name,
-            users: plan.users,
-            connections: plan.connections,
-            queues: plan.queues,
+            users: Number(plan.users),
+            connections: Number(plan.connections),
+            queues: Number(plan.queues),
             dueDate: dueDate,
         });
     }

@@ -26,7 +26,7 @@ class TicketTraking extends Model<TicketTraking> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @ForeignKey(() => Ticket)
   @Column
@@ -60,10 +60,10 @@ class TicketTraking extends Model<TicketTraking> {
   user: User;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @Column
   startedAt: Date;

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Login - Whaticket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .button-group {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 15px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 200px;
+        }
+        .btn-admin {
+            background: #2196F3;
+            color: white;
+        }
+        .btn-admin:hover {
+            background: #1976D2;
+        }
+        .btn-test {
+            background: #4CAF50;
+            color: white;
+        }
+        .btn-test:hover {
+            background: #388E3C;
+        }
+        .btn-goto {
+            background: #FF9800;
+            color: white;
+        }
+        .btn-goto:hover {
+            background: #F57C00;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            min-height: 50px;
+        }
+        .status.loading {
+            background: #E3F2FD;
+            color: #1976D2;
+        }
+        .status.success {
+            background: #E8F5E8;
+            color: #2E7D32;
+        }
+        .status.error {
+            background: #FFEBEE;
+            color: #C62828;
+        }
+        .endpoints {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        .endpoint-test {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        .endpoint-status {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .status-ok { background: #4CAF50; }
+        .status-error { background: #F44336; }
+        .status-loading { background: #FF9800; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Teste de Login - Whaticket</h1>
+        
+        <div class="button-group">
+            <button class="btn-admin" onclick="loginAdmin()">
+                👤 Login Admin
+                <br><small>admin@admin.com / 123456</small>
+            </button>
+            <button class="btn-test" onclick="loginTest()">
+                🧪 Login Teste
+                <br><small>teste@teste.com / 123456</small>
+            </button>
+            <button class="btn-goto" onclick="goToApp()">
+                🌐 Ir para App
+                <br><small>http://localhost:3000</small>
+            </button>
+        </div>
+
+        <div id="status" class="status"></div>
+
+        <div class="endpoints">
+            <h3>🔧 Status dos Endpoints</h3>
+            <div id="endpoint-tests"></div>
+            <button onclick="testEndpoints()" style="margin-top: 15px; background: #607D8B; color: white;">
+                🔄 Testar Endpoints
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const BACKEND_URL = 'http://localhost:8081';
+        const FRONTEND_URL = 'http://localhost:3000';
+
+        // Função para mostrar status
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+        }
+
+        // Login Admin
+        async function loginAdmin() {
+            await performLogin('admin@admin.com', '123456', 'Admin');
+        }
+
+        // Login Teste
+        async function loginTest() {
+            await performLogin('teste@teste.com', '123456', 'Teste');
+        }
+
+        // Função genérica de login
+        async function performLogin(email, password, label) {
+            showStatus(`🔄 Fazendo login como ${label}...`, 'loading');
+            
+            try {
+                const response = await fetch(`${BACKEND_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    showStatus(`✅ Login ${label} realizado com sucesso! Token gerado.`, 'success');
+                    
+                    // Salvar no localStorage
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    
+                    // Redirecionar após 2 segundos
+                    setTimeout(() => {
+                        window.location.href = FRONTEND_URL;
+                    }, 2000);
+                } else {
+                    const error = await response.text();
+                    showStatus(`❌ Erro no login ${label}: ${response.status} - ${error}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Erro de conexão: ${error.message}`, 'error');
+            }
+        }
+
+        // Ir para o app
+        function goToApp() {
+            window.location.href = FRONTEND_URL;
+        }
+
+        // Testar endpoints
+        async function testEndpoints() {
+            const endpoints = [
+                { name: 'Backend Health', url: `${BACKEND_URL}/` },
+                { name: 'Public Settings', url: `${BACKEND_URL}/public-settings/allowSignup?token=dev123` },
+                { name: 'Version (pode falhar)', url: `${BACKEND_URL}/version` },
+                { name: 'Frontend', url: FRONTEND_URL }
+            ];
+
+            const container = document.getElementById('endpoint-tests');
+            container.innerHTML = '';
+
+            for (const endpoint of endpoints) {
+                const div = document.createElement('div');
+                div.className = 'endpoint-test';
+                div.innerHTML = `
+                    <span class="endpoint-status status-loading"></span>
+                    <strong>${endpoint.name}</strong>: Testando...
+                `;
+                container.appendChild(div);
+
+                try {
+                    const response = await fetch(endpoint.url);
+                    const status = response.ok ? 'ok' : 'error';
+                    const statusText = response.ok ? `✅ ${response.status}` : `❌ ${response.status}`;
+                    
+                    div.innerHTML = `
+                        <span class="endpoint-status status-${status}"></span>
+                        <strong>${endpoint.name}</strong>: ${statusText}
+                    `;
+                } catch (error) {
+                    div.innerHTML = `
+                        <span class="endpoint-status status-error"></span>
+                        <strong>${endpoint.name}</strong>: ❌ Erro de conexão
+                    `;
+                }
+            }
+        }
+
+        // Testar endpoints ao carregar a página
+        window.onload = () => {
+            showStatus('💡 Clique nos botões acima para fazer login automático.', 'loading');
+            testEndpoints();
+        };
+    </script>
+</body>
+</html>

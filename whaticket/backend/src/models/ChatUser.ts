@@ -17,7 +17,7 @@ class ChatUser extends Model<ChatUser> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @ForeignKey(() => Chat)
   @Column
@@ -31,10 +31,10 @@ class ChatUser extends Model<ChatUser> {
   unreads: number;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @BelongsTo(() => Chat)
   chat: Chat;

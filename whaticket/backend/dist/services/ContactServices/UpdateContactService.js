@@ -45,9 +45,9 @@ const UpdateContactService = async ({ contactData, contactId, companyId }) => {
         const contactWallets = [];
         wallets.forEach((wallet) => {
             contactWallets.push({
-                walletId: !wallet.id ? wallet : wallet.id,
-                contactId,
-                companyId
+                walletId: Number(!wallet.id ? wallet : wallet.id),
+                contactId: Number(contactId),
+                companyId: Number(companyId)
             });
         });
         await ContactWallet_1.default.bulkCreate(contactWallets);

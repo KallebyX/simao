@@ -15,13 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Files_1 = __importDefault(require("./Files"));
 let FilesOptions = class FilesOptions extends sequelize_typescript_1.Model {
-    id;
     fileId;
     name;
     path;
     mediaType;
-    createdAt;
-    updatedAt;
     file;
 };
 __decorate([

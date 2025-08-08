@@ -19,7 +19,7 @@ export class FlowCampaignModel extends Model<FlowCampaignModel> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   companyId: number;
@@ -47,8 +47,8 @@ export class FlowCampaignModel extends Model<FlowCampaignModel> {
   status: boolean;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 }

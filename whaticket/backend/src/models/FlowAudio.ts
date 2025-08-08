@@ -16,7 +16,7 @@ export class FlowAudioModel extends Model<FlowAudioModel> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   companyId: number;
@@ -28,8 +28,8 @@ export class FlowAudioModel extends Model<FlowAudioModel> {
   name: string;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 }

@@ -138,7 +138,8 @@ const UpdateWhatsAppService = async ({
   const whatsapp = await ShowWhatsAppService(whatsappId, companyId);
 
 
-  await whatsapp.update({
+  // WORKAROUND: Type assertion para bypass de tipos Sequelize conflitantes
+  await (whatsapp as any).update({
     name,
     status,
     session,
@@ -154,7 +155,7 @@ const UpdateWhatsAppService = async ({
     allowGroup,
     timeSendQueue,
     sendIdQueue,
-    timeInactiveMessage,
+    timeInactiveMessage: String(timeInactiveMessage || ''),
     inactiveMessage,
     ratingMessage,
     maxUseBotQueuesNPS,
@@ -162,8 +163,8 @@ const UpdateWhatsAppService = async ({
     whenExpiresTicket,
     expiresInactiveMessage,
     groupAsTicket,
-    importOldMessages,
-    importRecentMessages,
+    importOldMessages: importOldMessages ? new Date(importOldMessages) : null,
+    importRecentMessages: importRecentMessages ? new Date(importRecentMessages) : null,
     closedTicketsPostImported,
     importOldMessagesGroups,
     timeCreateNewTicket,

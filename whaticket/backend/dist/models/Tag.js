@@ -19,7 +19,6 @@ const TicketTag_1 = __importDefault(require("./TicketTag"));
 const Contact_1 = __importDefault(require("./Contact"));
 const ContactTag_1 = __importDefault(require("./ContactTag"));
 let Tag = class Tag extends sequelize_typescript_1.Model {
-    id;
     name;
     color;
     kanban;
@@ -29,8 +28,6 @@ let Tag = class Tag extends sequelize_typescript_1.Model {
     contactTags;
     companyId;
     company;
-    createdAt;
-    updatedAt;
     timeLane;
     nextLaneId;
     greetingMessageLane;

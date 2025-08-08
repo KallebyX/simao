@@ -18,7 +18,6 @@ const User_1 = __importDefault(require("./User"));
 const QueueIntegrations_1 = __importDefault(require("./QueueIntegrations"));
 const Files_1 = __importDefault(require("./Files"));
 let Chatbot = class Chatbot extends sequelize_typescript_1.Model {
-    id;
     name;
     greetingMessage;
     queueId;
@@ -27,8 +26,6 @@ let Chatbot = class Chatbot extends sequelize_typescript_1.Model {
     isAgent;
     mainChatbot;
     options;
-    createdAt;
-    updatedAt;
     queueType;
     optQueueId;
     optQueue;

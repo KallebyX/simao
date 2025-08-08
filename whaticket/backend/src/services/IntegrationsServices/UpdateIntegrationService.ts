@@ -21,7 +21,7 @@ const UpdateIntegrationsService = async ({
         throw new AppError("ERR_NO_INTEGRATIONS_FOUND", 404);
     }
 
-    await integrations.update({ token: value, where: { name: integration, companyId: companyId } });
+    await integrations.update({ token: value }, { where: { name: integration, companyId: companyId } });
 
     return integrations;
 };

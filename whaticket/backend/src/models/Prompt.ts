@@ -18,7 +18,7 @@ class Prompt extends Model<Prompt> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @AllowNull(false)
   @Column
@@ -78,10 +78,10 @@ class Prompt extends Model<Prompt> {
   company: Company;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 }
 
 export default Prompt;

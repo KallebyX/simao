@@ -46,9 +46,9 @@ const CreateContactService = async ({ name, number, email = "", acceptAudioMessa
         const contactWallets = [];
         wallets.forEach((wallet) => {
             contactWallets.push({
-                walletId: !wallet.id ? wallet : wallet.id,
-                contactId: contact.id,
-                companyId
+                walletId: Number(!wallet.id ? wallet : wallet.id),
+                contactId: Number(contact.id),
+                companyId: Number(companyId)
             });
         });
         await ContactWallet_1.default.bulkCreate(contactWallets);

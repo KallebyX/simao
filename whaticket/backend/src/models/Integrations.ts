@@ -20,7 +20,7 @@ class Integrations extends Model<Integrations> {
     @PrimaryKey
     @AutoIncrement
     @Column
-    id: number;
+    declare id: number;
 
     @ForeignKey(() => Company)
     @Column
@@ -49,12 +49,11 @@ class Integrations extends Model<Integrations> {
 
     @CreatedAt
     @Column(DataType.DATE(6))
-    createdAt: Date;
+    declare createdAt: Date;
 
     @UpdatedAt
     @Column(DataType.DATE(6))
-    updatedAt: Date;
-    dataValues: string | PromiseLike<string>;
+    declare updatedAt: Date;
 
     @Column(DataType.TEXT)
     token: string;

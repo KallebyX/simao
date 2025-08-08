@@ -18,8 +18,6 @@ const Ticket_1 = __importDefault(require("./Ticket"));
 let TicketTag = class TicketTag extends sequelize_typescript_1.Model {
     ticketId;
     tagId;
-    createdAt;
-    updatedAt;
     ticket;
     tag;
 };

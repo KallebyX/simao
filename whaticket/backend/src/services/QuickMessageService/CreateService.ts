@@ -31,7 +31,11 @@ const CreateService = async (data: Data): Promise<QuickMessage> => {
     throw new AppError(err.message);
   }
 
-  const record = await QuickMessage.create(data);
+  const record = await QuickMessage.create({
+    ...data,
+    companyId: Number(data.companyId),
+    userId: Number(data.userId)
+  });
 
   return record;
 };

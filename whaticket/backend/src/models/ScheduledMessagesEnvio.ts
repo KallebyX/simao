@@ -6,13 +6,13 @@ class ScheduledMessagesEnvio extends Model<ScheduledMessagesEnvio> {
     @PrimaryKey
     @AutoIncrement
     @Column
-    id: number;
+    declare id: number;
 
     @CreatedAt
-    createdAt: Date;
+    declare createdAt: Date;
 
     @UpdatedAt
-    updatedAt: Date;
+    declare updatedAt: Date;
 
     @Column
     mediaPath: string;

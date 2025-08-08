@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 let ApiUsages = class ApiUsages extends sequelize_typescript_1.Model {
-    id;
     companyId;
     dateUsed;
     UsedOnDay;
@@ -21,9 +20,6 @@ let ApiUsages = class ApiUsages extends sequelize_typescript_1.Model {
     usedVideo;
     usedOther;
     usedCheckNumber;
-    createdAt;
-    updatedAt;
-    dataValues;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,

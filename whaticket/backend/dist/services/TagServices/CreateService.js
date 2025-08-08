@@ -50,9 +50,9 @@ const CreateService = async ({ name, color = "#A4CCCC", kanban, companyId, timeL
         throw new AppError_1.default(err.message);
     }
     const [tag] = await Tag_1.default.findOrCreate({
-        where: { name, color, kanban, companyId },
+        where: { name, color, kanban: Number(kanban), companyId },
         defaults: {
-            name, color, kanban, companyId,
+            name, color, kanban: Number(kanban), companyId,
             timeLane,
             nextLaneId: String(nextLaneId) === "" ? null : nextLaneId,
             greetingMessageLane,

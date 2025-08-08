@@ -12,7 +12,7 @@ const CheckIntegrations = async (key, companyId) => {
     if (!integrations) {
         throw new AppError_1.default("ERR_NO_INTEGRATIONS_FOUND", 404);
     }
-    return integrations.dataValues;
+    return integrations;
 };
 exports.default = CheckIntegrations;
 //# sourceMappingURL=ChekIntegrations.js.map

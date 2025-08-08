@@ -17,7 +17,7 @@ class ChatMessage extends Model<ChatMessage> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @ForeignKey(() => Chat)
   @Column
@@ -37,10 +37,10 @@ class ChatMessage extends Model<ChatMessage> {
   mediaName: string;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @BelongsTo(() => Chat)
   chat: Chat;

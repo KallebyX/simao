@@ -20,7 +20,7 @@ class QueueIntegrations extends Model<QueueIntegrations> {
     @PrimaryKey
     @AutoIncrement
     @Column
-    id: number;
+    declare id: number;
 
     @Column(DataType.TEXT)
     type: string;
@@ -42,11 +42,11 @@ class QueueIntegrations extends Model<QueueIntegrations> {
 
     @CreatedAt
     @Column(DataType.DATE(6))
-    createdAt: Date;
+    declare createdAt: Date;
 
     @UpdatedAt
     @Column(DataType.DATE(6))
-    updatedAt: Date;
+    declare updatedAt: Date;
 
     @ForeignKey(() => Company)
     @Column

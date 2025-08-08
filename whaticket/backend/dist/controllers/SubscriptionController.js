@@ -165,7 +165,7 @@ const createSubscription = async (req, res) => {
     }
     if (key_STRIPE_PRIVATE) {
         const stripe = new stripe_1.default(key_STRIPE_PRIVATE, {
-            apiVersion: '2022-11-15',
+            apiVersion: '2023-10-16',
         });
         const sessionStripe = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],

@@ -116,6 +116,7 @@ async function handleSendMessage(job) {
 }
 async function handleVerifySchedules(job) {
     try {
+        logger_1.default.info("SendScheduledMessage -> Verify: iniciando verificação de agendamentos");
         const { count, rows: schedules } = await Schedule_1.default.findAndCountAll({
             where: {
                 status: "PENDENTE",
@@ -129,19 +130,32 @@ async function handleVerifySchedules(job) {
             distinct: true,
             subQuery: false
         });
+        logger_1.default.info(`SendScheduledMessage -> Verify: encontrados ${count} agendamentos pendentes`);
         if (count > 0) {
             schedules.map(async (schedule) => {
-                await schedule.update({
-                    status: "AGENDADA"
-                });
-                exports.sendScheduledMessages.add("SendMessage", { schedule }, { delay: 40000 });
-                logger_1.default.info(`Disparo agendado para: ${schedule.contact.name}`);
+                try {
+                    logger_1.default.info(`SendScheduledMessage -> Verify: processando schedule ID ${schedule.id} para contato ${schedule.contact?.name || 'unknown'}`);
+                    await schedule.update({
+                        status: "AGENDADA"
+                    });
+                    exports.sendScheduledMessages.add("SendMessage", { schedule }, { delay: 40000 });
+                    logger_1.default.info(`Disparo agendado para: ${schedule.contact?.name || 'unknown'} - Schedule ID: ${schedule.id}`);
+                }
+                catch (scheduleError) {
+                    logger_1.default.error(`SendScheduledMessage -> Verify: erro ao processar schedule ${schedule.id}: ${scheduleError.message}`);
+                    Sentry.captureException(scheduleError);
+                }
             });
         }
+        else {
+            logger_1.default.info("SendScheduledMessage -> Verify: nenhum agendamento pendente encontrado");
+        }
+        logger_1.default.info("SendScheduledMessage -> Verify: verificação concluída com sucesso");
     }
     catch (e) {
         Sentry.captureException(e);
-        logger_1.default.error("SendScheduledMessage -> Verify: error", e.message);
+        logger_1.default.error(`SendScheduledMessage -> Verify: error completo - ${e.message}`);
+        logger_1.default.error(`SendScheduledMessage -> Verify: stack trace - ${e.stack}`);
         throw e;
     }
 }
@@ -149,19 +163,28 @@ async function handleSendScheduledMessage(job) {
     const { data: { schedule } } = job;
     let scheduleRecord = null;
     try {
+        logger_1.default.debug(`SendScheduledMessage -> SendMessage: iniciando para schedule ID ${schedule.id}`);
         scheduleRecord = await Schedule_1.default.findByPk(schedule.id);
     }
     catch (e) {
         Sentry.captureException(e);
-        logger_1.default.info(`Erro ao tentar consultar agendamento: ${schedule.id}`);
+        logger_1.default.error(`Erro ao tentar consultar agendamento: ${schedule.id} - ${e.message}`);
+        return;
     }
     try {
         let whatsapp;
         if (!(0, lodash_1.isNil)(schedule.whatsappId)) {
+            logger_1.default.debug(`SendScheduledMessage -> SendMessage: buscando WhatsApp ID ${schedule.whatsappId}`);
             whatsapp = await Whatsapp_1.default.findByPk(schedule.whatsappId);
         }
-        if (!whatsapp)
-            whatsapp = await (0, GetDefaultWhatsApp_1.default)(whatsapp.id, schedule.companyId);
+        if (!whatsapp) {
+            logger_1.default.debug(`SendScheduledMessage -> SendMessage: WhatsApp não encontrado, buscando padrão para company ${schedule.companyId}`);
+            whatsapp = await (0, GetDefaultWhatsApp_1.default)(schedule.companyId);
+        }
+        if (!whatsapp) {
+            logger_1.default.error(`SendScheduledMessage -> SendMessage: Nenhum WhatsApp disponível para company ${schedule.companyId}`);
+            throw new Error(`Nenhum WhatsApp disponível para company ${schedule.companyId}`);
+        }
         let filePath = null;
         if (schedule.mediaPath) {
             filePath = path_1.default.resolve("public", `company${schedule.companyId}`, schedule.mediaPath);

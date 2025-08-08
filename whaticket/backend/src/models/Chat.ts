@@ -25,7 +25,7 @@ class Chat extends Model<Chat> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Default(uuidv4())
   @Column
@@ -46,10 +46,10 @@ class Chat extends Model<Chat> {
   companyId: number;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @BelongsTo(() => Company)
   company: Company;

@@ -66,11 +66,11 @@ const ListService = async ({
     group: ["ContactList.id"]
   });
 
-  const hasMore = count > offset + records.length;
+  const hasMore = count.length > offset + records.length;
 
   return {
     records,
-    count,
+    count: count.length,
     hasMore
   };
 };

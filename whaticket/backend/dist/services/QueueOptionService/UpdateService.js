@@ -6,7 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ShowService_1 = __importDefault(require("./ShowService"));
 const UpdateService = async (queueOptionId, queueOptionData) => {
     const queueOption = await (0, ShowService_1.default)(queueOptionId);
-    await queueOption.update(queueOptionData);
+    await queueOption.update({
+        ...queueOptionData,
+        queueId: queueOptionData.queueId ? Number(queueOptionData.queueId) : undefined,
+        parentId: queueOptionData.parentId ? Number(queueOptionData.parentId) : undefined
+    });
     return queueOption;
 };
 exports.default = UpdateService;

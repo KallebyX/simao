@@ -18,7 +18,7 @@ class QuickMessage extends Model<QuickMessage> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   shortcode: string;
@@ -57,10 +57,10 @@ class QuickMessage extends Model<QuickMessage> {
   user: User;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @Column
   visao: boolean;

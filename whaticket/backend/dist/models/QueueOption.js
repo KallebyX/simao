@@ -15,14 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Queue_1 = __importDefault(require("./Queue"));
 let QueueOption = class QueueOption extends sequelize_typescript_1.Model {
-    id;
     title;
     message;
     option;
     queueId;
     parentId;
-    createdAt;
-    updatedAt;
     queue;
     parent;
 };

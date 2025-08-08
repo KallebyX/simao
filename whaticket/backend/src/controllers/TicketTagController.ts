@@ -11,9 +11,12 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
   const { companyId } = req.user;
 
   try {
-    const ticketTag = await TicketTag.create({ ticketId, tagId });
+    const ticketTag = await TicketTag.create({
+      ticketId: Number(ticketId),
+      tagId: Number(tagId)
+    });
 
-    const ticket = await ShowTicketService(ticketId, companyId);
+    const ticket = await ShowTicketService(Number(ticketId), companyId);
 
     const io = getIO();
     io.of(String(companyId))
@@ -47,13 +50,14 @@ export const remove = async (req: Request, res: Response): Promise<Response> => 
 export const remove = async (req: Request, res: Response): Promise<Response> => {
   const { ticketId } = req.params;
   const { companyId } = req.user;
+  const ticketIdNum = Number(ticketId);
 
   //console.log("remove");
   //console.log(req.params);
 
   try {
     // Retrieve tagIds associated with the provided ticketId from TicketTags
-    const ticketTags = await TicketTag.findAll({ where: { ticketId } });
+    const ticketTags = await TicketTag.findAll({ where: { ticketId: ticketIdNum } });
     const tagIds = ticketTags.map((ticketTag) => ticketTag.tagId);
 
     // Find the tagIds with kanban = 1 in the Tags table
@@ -67,10 +71,10 @@ export const remove = async (req: Request, res: Response): Promise<Response> => 
     // Remove the tagIds with kanban = 1 from TicketTags
     const tagIdsWithKanbanOne = tagsWithKanbanOne.map((tag) => tag.id);
     if (tagIdsWithKanbanOne)
-      await TicketTag.destroy({ where: { ticketId, tagId: tagIdsWithKanbanOne } });
+      await TicketTag.destroy({ where: { ticketId: ticketIdNum, tagId: tagIdsWithKanbanOne } });
 
 
-    const ticket = await ShowTicketService(ticketId, companyId);
+    const ticket = await ShowTicketService(ticketIdNum, companyId);
 
     const io = getIO();
     io.of(String(companyId))

@@ -51,7 +51,11 @@ const CreateService = async (data) => {
     catch (err) {
         throw new AppError_1.default(err.message);
     }
-    const record = await Announcement_1.default.create(data);
+    const record = await Announcement_1.default.create({
+        ...data,
+        priority: Number(data.priority),
+        status: data.status === 'true' || data.status === '1' || data.status === 'ativo'
+    });
     return record;
 };
 exports.default = CreateService;

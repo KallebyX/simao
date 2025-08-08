@@ -17,7 +17,7 @@ class CampaignShipping extends Model<CampaignShipping> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   jobId: string;
@@ -52,10 +52,10 @@ class CampaignShipping extends Model<CampaignShipping> {
   deliveredAt: Date;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @BelongsTo(() => ContactListItem)
   contact: ContactListItem;

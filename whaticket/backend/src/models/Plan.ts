@@ -16,7 +16,7 @@ class Plan extends Model<Plan> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @AllowNull(false)
   @Unique
@@ -57,10 +57,10 @@ class Plan extends Model<Plan> {
   useExternalApi: boolean;   
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @Column
   useKanban: boolean;

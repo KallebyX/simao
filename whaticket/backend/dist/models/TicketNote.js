@@ -17,7 +17,6 @@ const Contact_1 = __importDefault(require("./Contact"));
 const User_1 = __importDefault(require("./User"));
 const Ticket_1 = __importDefault(require("./Ticket"));
 let TicketNote = class TicketNote extends sequelize_typescript_1.Model {
-    id;
     note;
     userId;
     user;
@@ -25,8 +24,6 @@ let TicketNote = class TicketNote extends sequelize_typescript_1.Model {
     contact;
     ticketId;
     ticket;
-    createdAt;
-    updatedAt;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,

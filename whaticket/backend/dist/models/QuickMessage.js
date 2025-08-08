@@ -16,7 +16,6 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Company_1 = __importDefault(require("./Company"));
 const User_1 = __importDefault(require("./User"));
 let QuickMessage = class QuickMessage extends sequelize_typescript_1.Model {
-    id;
     shortcode;
     message;
     get mediaPath() {
@@ -31,8 +30,6 @@ let QuickMessage = class QuickMessage extends sequelize_typescript_1.Model {
     userId;
     company;
     user;
-    createdAt;
-    updatedAt;
     visao;
 };
 __decorate([

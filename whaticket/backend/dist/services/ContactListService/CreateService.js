@@ -52,7 +52,10 @@ const CreateService = async (data) => {
     catch (err) {
         throw new AppError_1.default(err.message);
     }
-    const record = await ContactList_1.default.create(data);
+    const record = await ContactList_1.default.create({
+        ...data,
+        companyId: Number(data.companyId)
+    });
     return record;
 };
 exports.default = CreateService;

@@ -16,14 +16,11 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const User_1 = __importDefault(require("./User"));
 const Chat_1 = __importDefault(require("./Chat"));
 let ChatMessage = class ChatMessage extends sequelize_typescript_1.Model {
-    id;
     chatId;
     senderId;
     message;
     mediaPath;
     mediaName;
-    createdAt;
-    updatedAt;
     chat;
     sender;
 };

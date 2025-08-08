@@ -30,7 +30,7 @@ class User extends Model<User> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   name: string;
@@ -102,10 +102,10 @@ class User extends Model<User> {
   farewellMessage: string;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @ForeignKey(() => Company)
   @Column

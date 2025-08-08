@@ -30,7 +30,7 @@ class Company extends Model<Company> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   name: string;
@@ -72,10 +72,10 @@ class Company extends Model<Company> {
   plan: Plan;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @Column
   folderSize: string;

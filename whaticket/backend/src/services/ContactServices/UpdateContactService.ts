@@ -9,9 +9,9 @@ interface ExtraInfo {
   value: string;
 }
 interface Wallet {
-  walletId: number | string;
-  contactId: number | string;
-  companyId: number | string;
+  walletId: number;
+  contactId: number;
+  companyId: number;
 }
 
 interface ContactData {
@@ -87,9 +87,9 @@ const UpdateContactService = async ({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     wallets.forEach((wallet: any) => {
       contactWallets.push({
-        walletId: !wallet.id ? wallet : wallet.id,
-        contactId,
-        companyId
+        walletId: Number(!wallet.id ? wallet : wallet.id),
+        contactId: Number(contactId),
+        companyId: Number(companyId)
       });
     });
 

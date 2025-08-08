@@ -26,7 +26,6 @@ const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 const CompaniesSettings_1 = __importDefault(require("./CompaniesSettings"));
 const Invoices_1 = __importDefault(require("./Invoices"));
 let Company = class Company extends sequelize_typescript_1.Model {
-    id;
     name;
     phone;
     email;
@@ -39,8 +38,6 @@ let Company = class Company extends sequelize_typescript_1.Model {
     schedules;
     planId;
     plan;
-    createdAt;
-    updatedAt;
     folderSize;
     numberFileFolder;
     updatedAtFolder;

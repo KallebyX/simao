@@ -51,9 +51,8 @@ const CreateOrUpdateContactServiceForImport = async ({
       number,
       profilePicUrl,
       email,
-      commandBot,
       isGroup,
-      extraInfo
+      extraInfo: extraInfo as any
     });
 
     io.of(String(companyId))

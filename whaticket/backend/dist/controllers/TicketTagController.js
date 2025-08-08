@@ -12,8 +12,11 @@ const store = async (req, res) => {
     const { ticketId, tagId } = req.params;
     const { companyId } = req.user;
     try {
-        const ticketTag = await TicketTag_1.default.create({ ticketId, tagId });
-        const ticket = await (0, ShowTicketService_1.default)(ticketId, companyId);
+        const ticketTag = await TicketTag_1.default.create({
+            ticketId: Number(ticketId),
+            tagId: Number(tagId)
+        });
+        const ticket = await (0, ShowTicketService_1.default)(Number(ticketId), companyId);
         const io = (0, socket_1.getIO)();
         io.of(String(companyId))
             .emit(`company-${companyId}-ticket`, {
@@ -30,8 +33,9 @@ exports.store = store;
 const remove = async (req, res) => {
     const { ticketId } = req.params;
     const { companyId } = req.user;
+    const ticketIdNum = Number(ticketId);
     try {
-        const ticketTags = await TicketTag_1.default.findAll({ where: { ticketId } });
+        const ticketTags = await TicketTag_1.default.findAll({ where: { ticketId: ticketIdNum } });
         const tagIds = ticketTags.map((ticketTag) => ticketTag.tagId);
         const tagsWithKanbanOne = await Tag_1.default.findAll({
             where: {
@@ -41,8 +45,8 @@ const remove = async (req, res) => {
         });
         const tagIdsWithKanbanOne = tagsWithKanbanOne.map((tag) => tag.id);
         if (tagIdsWithKanbanOne)
-            await TicketTag_1.default.destroy({ where: { ticketId, tagId: tagIdsWithKanbanOne } });
-        const ticket = await (0, ShowTicketService_1.default)(ticketId, companyId);
+            await TicketTag_1.default.destroy({ where: { ticketId: ticketIdNum, tagId: tagIdsWithKanbanOne } });
+        const ticket = await (0, ShowTicketService_1.default)(ticketIdNum, companyId);
         const io = (0, socket_1.getIO)();
         io.of(String(companyId))
             .emit(`company-${companyId}-ticket`, {

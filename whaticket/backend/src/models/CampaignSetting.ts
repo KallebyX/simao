@@ -16,7 +16,7 @@ class CampaignSetting extends Model<CampaignSetting> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   key: string;
@@ -25,10 +25,10 @@ class CampaignSetting extends Model<CampaignSetting> {
   value: string;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @ForeignKey(() => Company)
   @Column

@@ -28,7 +28,10 @@ const UpdateUserService = async ({ scheduleData, id, mediaPath, mediaName, }) =>
         data.mediaPath = mediaPath;
     }
     console.log(data);
-    await schedule.update(data);
+    await schedule.update({
+        ...data,
+        mostrar_usuario_mensagem: Boolean(data.mostrar_usuario_mensagem)
+    });
     await schedule.reload();
     return schedule;
 };

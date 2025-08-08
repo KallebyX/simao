@@ -23,10 +23,10 @@ class TicketTag extends Model<TicketTag> {
   tagId: number;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @BelongsTo(() => Ticket)
   ticket: Ticket;

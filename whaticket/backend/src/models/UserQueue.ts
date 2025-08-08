@@ -20,10 +20,10 @@ class UserQueue extends Model<UserQueue> {
   queueId: number;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 }
 
 export default UserQueue;

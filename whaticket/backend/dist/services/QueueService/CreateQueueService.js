@@ -99,7 +99,10 @@ const CreateQueueService = async (queueData) => {
     catch (err) {
         throw new AppError_1.default(err.message);
     }
-    const queue = await Queue_1.default.create(queueData, {
+    const queue = await Queue_1.default.create({
+        ...queueData,
+        schedules: []
+    }, {
         include: [
             {
                 model: Chatbot_1.default,

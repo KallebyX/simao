@@ -23,7 +23,14 @@ const UpdateService = async (data) => {
         data.status === "INATIVA") {
         data.status = "PROGRAMADA";
     }
-    await record.update(data);
+    await record.update({
+        ...data,
+        id: Number(data.id),
+        userId: Number(data.userId),
+        queueId: Number(data.queueId),
+        contactListId: Number(data.contactListId),
+        scheduledAt: data.scheduledAt ? new Date(data.scheduledAt) : undefined
+    });
     await record.reload({
         include: [
             { model: ContactList_1.default },

@@ -388,26 +388,22 @@ export const index = async (req: Request, res: Response): Promise<Response> => {
             if (media.mimetype.includes("pdf")) {
               await exist.update({
                 usedPDF: exist.dataValues["usedPDF"] + 1,
-                UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                updatedAt: timestamp
+                UsedOnDay: exist.dataValues["UsedOnDay"] + 1
               });
             } else if (media.mimetype.includes("image")) {
               await exist.update({
                 usedImage: exist.dataValues["usedImage"] + 1,
-                UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                updatedAt: timestamp
+                UsedOnDay: exist.dataValues["UsedOnDay"] + 1
               });
             } else if (media.mimetype.includes("video")) {
               await exist.update({
                 usedVideo: exist.dataValues["usedVideo"] + 1,
-                UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                updatedAt: timestamp
+                UsedOnDay: exist.dataValues["UsedOnDay"] + 1
               });
             } else {
               await exist.update({
                 usedOther: exist.dataValues["usedOther"] + 1,
-                UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                updatedAt: timestamp
+                UsedOnDay: exist.dataValues["UsedOnDay"] + 1
               });
             }
 
@@ -416,8 +412,8 @@ export const index = async (req: Request, res: Response): Promise<Response> => {
       } else {
         await exist.update({
           usedText: exist.dataValues["usedText"] + 1,
-          UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-          updatedAt: timestamp
+          UsedOnDay: exist.dataValues["UsedOnDay"] + 1
+          // Sequelize atualiza updatedAt automaticamente
         });
       }
     } else {
@@ -435,25 +431,24 @@ export const index = async (req: Request, res: Response): Promise<Response> => {
               await exist.update({
                 usedPDF: exist.dataValues["usedPDF"] + 1,
                 UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                updatedAt: timestamp
+                updatedAt: new Date()
               });
             } else if (media.mimetype.includes("image")) {
               await exist.update({
                 usedImage: exist.dataValues["usedImage"] + 1,
-                UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                updatedAt: timestamp
+                UsedOnDay: exist.dataValues["UsedOnDay"] + 1
               });
             } else if (media.mimetype.includes("video")) {
               await exist.update({
                 usedVideo: exist.dataValues["usedVideo"] + 1,
                 UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                updatedAt: timestamp
+                updatedAt: new Date()
               });
             } else {
               await exist.update({
                 usedOther: exist.dataValues["usedOther"] + 1,
                 UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-                updatedAt: timestamp
+                updatedAt: new Date()
               });
             }
 
@@ -462,8 +457,7 @@ export const index = async (req: Request, res: Response): Promise<Response> => {
       } else {
         await exist.update({
           usedText: exist.dataValues["usedText"] + 1,
-          UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-          updatedAt: timestamp
+          UsedOnDay: exist.dataValues["UsedOnDay"] + 1
         });
       }
     }
@@ -530,7 +524,7 @@ export const indexImage = async (req: Request, res: Response): Promise<Response>
       await exist.update({
         usedImage: exist.dataValues["usedImage"] + 1,
         UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-        updatedAt: timestamp
+        updatedAt: new Date()
       });
     } else {
       const usage = await ApiUsages.create({
@@ -540,8 +534,7 @@ export const indexImage = async (req: Request, res: Response): Promise<Response>
 
       await usage.update({
         usedImage: usage.dataValues["usedImage"] + 1,
-        UsedOnDay: usage.dataValues["UsedOnDay"] + 1,
-        updatedAt: timestamp
+        UsedOnDay: usage.dataValues["UsedOnDay"] + 1
       });
     }
 
@@ -588,8 +581,7 @@ export const checkNumber = async (req: Request, res: Response): Promise<Response
         if (exist) {
           await exist.update({
             usedCheckNumber: exist.dataValues["usedCheckNumber"] + 1,
-            UsedOnDay: exist.dataValues["UsedOnDay"] + 1,
-            updatedAt: timestamp
+            UsedOnDay: exist.dataValues["UsedOnDay"] + 1
           });
         } else {
           const usage = await ApiUsages.create({
@@ -599,8 +591,7 @@ export const checkNumber = async (req: Request, res: Response): Promise<Response
 
           await usage.update({
             usedCheckNumber: usage.dataValues["usedCheckNumber"] + 1,
-            UsedOnDay: usage.dataValues["UsedOnDay"] + 1,
-            updatedAt: timestamp
+            UsedOnDay: usage.dataValues["UsedOnDay"] + 1
           });
         }
 

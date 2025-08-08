@@ -14,7 +14,7 @@ class Version extends Model<Version> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   versionFrontend: string;
@@ -24,11 +24,11 @@ class Version extends Model<Version> {
 
   @CreatedAt
   @Column(DataType.DATE(6))
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
   @Column(DataType.DATE(6))
-  updatedAt: Date;
+  declare updatedAt: Date;
 }
 
 export default Version;

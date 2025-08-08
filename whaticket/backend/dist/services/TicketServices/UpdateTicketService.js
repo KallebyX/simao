@@ -405,7 +405,6 @@ const UpdateTicketService = async ({ ticketData, ticketId, companyId }) => {
             queueId,
             userId,
             isBot,
-            queueOptionId,
             amountUsedBotQueues: status === "closed" ? 0 : amountUsedBotQueues ? amountUsedBotQueues : ticket.amountUsedBotQueues,
             lastMessage: lastMessage ? lastMessage : ticket.lastMessage,
             useIntegration,

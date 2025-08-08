@@ -16,7 +16,7 @@ class Baileys extends Model<Baileys> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Default(null)
   @Column
@@ -27,10 +27,10 @@ class Baileys extends Model<Baileys> {
   chats: string;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @ForeignKey(() => Whatsapp)
   @Column

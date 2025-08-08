@@ -15,7 +15,7 @@ const ListService = async ({ queueId, queueOptionId, parentId }) => {
     if (parentId == -1) {
         whereOptions.parentId = null;
     }
-    if (parentId > 0) {
+    if (Number(parentId) > 0) {
         whereOptions.parentId = parentId;
     }
     const queueOptions = await QueueOption_1.default.findAll({

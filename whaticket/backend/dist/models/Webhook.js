@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WebhookModel = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 let WebhookModel = class WebhookModel extends sequelize_typescript_1.Model {
-    id;
     user_id;
     hash_id;
     company_id;
@@ -21,8 +20,6 @@ let WebhookModel = class WebhookModel extends sequelize_typescript_1.Model {
     requestMonth;
     requestAll;
     config;
-    createdAt;
-    updatedAt;
 };
 exports.WebhookModel = WebhookModel;
 __decorate([

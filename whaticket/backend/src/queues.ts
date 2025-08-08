@@ -110,6 +110,8 @@ async function handleSendMessage(job) {
 
 async function handleVerifySchedules(job) {
   try {
+    logger.info("SendScheduledMessage -> Verify: iniciando verificação de agendamentos");
+    
     const { count, rows: schedules } = await Schedule.findAndCountAll({
       where: {
         status: "PENDENTE",
@@ -124,22 +126,38 @@ async function handleVerifySchedules(job) {
       subQuery: false
     });
 
+    logger.info(`SendScheduledMessage -> Verify: encontrados ${count} agendamentos pendentes`);
+
     if (count > 0) {
       schedules.map(async schedule => {
-        await schedule.update({
-          status: "AGENDADA"
-        });
-        sendScheduledMessages.add(
-          "SendMessage",
-          { schedule },
-          { delay: 40000 }
-        );
-        logger.info(`Disparo agendado para: ${schedule.contact.name}`);
+        try {
+          logger.info(`SendScheduledMessage -> Verify: processando schedule ID ${schedule.id} para contato ${schedule.contact?.name || 'unknown'}`);
+          
+          await schedule.update({
+            status: "AGENDADA"
+          });
+          
+          sendScheduledMessages.add(
+            "SendMessage",
+            { schedule },
+            { delay: 40000 }
+          );
+          
+          logger.info(`Disparo agendado para: ${schedule.contact?.name || 'unknown'} - Schedule ID: ${schedule.id}`);
+        } catch (scheduleError: any) {
+          logger.error(`SendScheduledMessage -> Verify: erro ao processar schedule ${schedule.id}: ${scheduleError.message}`);
+          Sentry.captureException(scheduleError);
+        }
       });
+    } else {
+      logger.info("SendScheduledMessage -> Verify: nenhum agendamento pendente encontrado");
     }
+    
+    logger.info("SendScheduledMessage -> Verify: verificação concluída com sucesso");
   } catch (e: any) {
     Sentry.captureException(e);
-    logger.error("SendScheduledMessage -> Verify: error", e.message);
+    logger.error(`SendScheduledMessage -> Verify: error completo - ${e.message}`);
+    logger.error(`SendScheduledMessage -> Verify: stack trace - ${e.stack}`);
     throw e;
   }
 }
@@ -151,21 +169,31 @@ async function handleSendScheduledMessage(job) {
   let scheduleRecord: Schedule | null = null;
 
   try {
+    logger.debug(`SendScheduledMessage -> SendMessage: iniciando para schedule ID ${schedule.id}`);
     scheduleRecord = await Schedule.findByPk(schedule.id);
   } catch (e) {
     Sentry.captureException(e);
-    logger.info(`Erro ao tentar consultar agendamento: ${schedule.id}`);
+    logger.error(`Erro ao tentar consultar agendamento: ${schedule.id} - ${e.message}`);
+    return; // Exit early if schedule not found
   }
 
   try {
     let whatsapp
 
     if (!isNil(schedule.whatsappId)) {
+      logger.debug(`SendScheduledMessage -> SendMessage: buscando WhatsApp ID ${schedule.whatsappId}`);
       whatsapp = await Whatsapp.findByPk(schedule.whatsappId);
     }
 
-    if (!whatsapp)
-      whatsapp = await GetDefaultWhatsApp(whatsapp.id,schedule.companyId);
+    if (!whatsapp) {
+      logger.debug(`SendScheduledMessage -> SendMessage: WhatsApp não encontrado, buscando padrão para company ${schedule.companyId}`);
+      whatsapp = await GetDefaultWhatsApp(schedule.companyId);
+    }
+
+    if (!whatsapp) {
+      logger.error(`SendScheduledMessage -> SendMessage: Nenhum WhatsApp disponível para company ${schedule.companyId}`);
+      throw new Error(`Nenhum WhatsApp disponível para company ${schedule.companyId}`);
+    }
 
 
     // const settings = await CompaniesSettings.findOne({

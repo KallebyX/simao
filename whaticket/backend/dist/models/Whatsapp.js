@@ -21,7 +21,6 @@ const QueueIntegrations_1 = __importDefault(require("./QueueIntegrations"));
 const Prompt_1 = __importDefault(require("./Prompt"));
 const FlowBuilder_1 = require("./FlowBuilder");
 let Whatsapp = class Whatsapp extends sequelize_typescript_1.Model {
-    id;
     name;
     session;
     qrcode;
@@ -38,8 +37,6 @@ let Whatsapp = class Whatsapp extends sequelize_typescript_1.Model {
     provider;
     isDefault;
     allowGroup;
-    createdAt;
-    updatedAt;
     tickets;
     queues;
     whatsappQueues;

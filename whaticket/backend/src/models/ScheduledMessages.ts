@@ -8,7 +8,7 @@ class ScheduledMessages extends Model<ScheduledMessages> {
     @PrimaryKey
     @AutoIncrement
     @Column
-    id: number;
+    declare id: number;
 
     @Column
     data_mensagem_programada: Date;
@@ -49,10 +49,10 @@ class ScheduledMessages extends Model<ScheduledMessages> {
     nome: string;
 
     @CreatedAt
-    createdAt: Date;
+    declare createdAt: Date;
 
     @UpdatedAt
-    updatedAt: Date;
+    declare updatedAt: Date;
 
     @Column
     mediaPath: string;

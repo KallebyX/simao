@@ -23,7 +23,7 @@ import {
     @PrimaryKey
     @AutoIncrement
     @Column
-    id: number;
+    declare id: number;
 
     @ForeignKey(() => Company)
     @Column
@@ -98,10 +98,10 @@ import {
     lgpdMessage: string
 
     @CreatedAt
-    createdAt: Date;
+    declare createdAt: Date;
   
     @UpdatedAt
-    updatedAt: Date;
+    declare updatedAt: Date;
 
     @Default(false)
     @Column

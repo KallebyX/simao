@@ -28,7 +28,7 @@ class Whatsapp extends Model<Whatsapp> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @AllowNull
   @Unique
@@ -89,10 +89,10 @@ class Whatsapp extends Model<Whatsapp> {
   allowGroup: boolean;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @HasMany(() => Ticket)
   tickets: Ticket[];

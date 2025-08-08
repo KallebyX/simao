@@ -55,7 +55,11 @@ const CreateService = async (data) => {
     catch (err) {
         throw new AppError_1.default(err.message);
     }
-    const record = await QuickMessage_1.default.create(data);
+    const record = await QuickMessage_1.default.create({
+        ...data,
+        companyId: Number(data.companyId),
+        userId: Number(data.userId)
+    });
     return record;
 };
 exports.default = CreateService;

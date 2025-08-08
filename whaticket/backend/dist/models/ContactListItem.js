@@ -16,13 +16,10 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Company_1 = __importDefault(require("./Company"));
 const ContactList_1 = __importDefault(require("./ContactList"));
 let ContactListItem = class ContactListItem extends sequelize_typescript_1.Model {
-    id;
     name;
     number;
     email;
     isWhatsappValid;
-    createdAt;
-    updatedAt;
     companyId;
     company;
     contactListId;

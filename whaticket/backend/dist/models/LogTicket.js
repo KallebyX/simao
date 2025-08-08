@@ -17,10 +17,7 @@ const Ticket_1 = __importDefault(require("./Ticket"));
 const User_1 = __importDefault(require("./User"));
 const Queue_1 = __importDefault(require("./Queue"));
 let LogTicket = class LogTicket extends sequelize_typescript_1.Model {
-    id;
     type;
-    createdAt;
-    updatedAt;
     ticketId;
     ticket;
     userId;

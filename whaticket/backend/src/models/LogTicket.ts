@@ -21,18 +21,18 @@ class LogTicket extends Model<LogTicket> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column(DataType.TEXT)
   type: string;
 
   @CreatedAt
   @Column(DataType.DATE(6))
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
   @Column(DataType.DATE(6))
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @ForeignKey(() => Ticket)
   @Column

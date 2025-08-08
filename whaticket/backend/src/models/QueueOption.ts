@@ -17,7 +17,7 @@ class QueueOption extends Model<QueueOption> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   title: string;
@@ -39,10 +39,10 @@ class QueueOption extends Model<QueueOption> {
   parentId: number;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @BelongsTo(() => Queue)
   queue: Queue;

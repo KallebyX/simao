@@ -5,7 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const QueueOption_1 = __importDefault(require("../../models/QueueOption"));
 const CreateService = async (queueOptionData) => {
-    const queueOption = await QueueOption_1.default.create(queueOptionData);
+    const queueOption = await QueueOption_1.default.create({
+        ...queueOptionData,
+        queueId: Number(queueOptionData.queueId),
+        parentId: queueOptionData.parentId ? Number(queueOptionData.parentId) : undefined
+    });
     return queueOption;
 };
 exports.default = CreateService;

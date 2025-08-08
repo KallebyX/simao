@@ -11,7 +11,10 @@ const UpdateService = async (data) => {
     if (!record) {
         throw new AppError_1.default("ERR_NO_PARTNER_FOUND", 404);
     }
-    await record.update(data);
+    await record.update({
+        ...data,
+        id: Number(data.id)
+    });
     return record;
 };
 exports.default = UpdateService;

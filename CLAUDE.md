@@ -14,12 +14,15 @@ Whaticket is a WhatsApp ticketing system with a Node.js/TypeScript backend and R
 - **Queue System**: Bull (Redis-based) for background job processing
 
 ### Key Services
-- WhatsApp integration via @whiskeysockets/baileys
-- Chatbot flows and automation
-- Campaign management and bulk messaging
-- Multi-company/tenant support
-- User management with role-based permissions
-- File handling and media processing
+- **WhatsApp Integration**: @whiskeysockets/baileys for multi-device connections
+- **Real-time Communication**: Socket.io for live updates
+- **Queue Processing**: Bull (Redis) for background jobs and message handling
+- **Chatbot Flows**: Dialog-based automation with flow builder
+- **Campaign Management**: Bulk messaging with scheduling
+- **Multi-tenant Architecture**: Company-based isolation
+- **Authentication**: JWT-based with refresh tokens
+- **File Processing**: Multer + Jimp for media handling
+- **Error Tracking**: Sentry integration for production monitoring
 
 ## Development Commands
 
@@ -42,19 +45,36 @@ Whaticket is a WhatsApp ticketing system with a Node.js/TypeScript backend and R
 ```bash
 cd whaticket/backend
 
-# Development server with hot reload
+# Development server with hot reload (watch mode)
+npm run dev
+
+# Development server (using compiled files)
 npm run dev:server
+
+# Force development mode
+npm run dev:force
 
 # Build TypeScript
 npm run build
 
+# Watch mode for TypeScript compilation
+npm run watch
+
+# Start production server
+npm start
+
 # Database operations
+npm run db:create
 npm run db:migrate
 npm run db:seed
+npm run db:drop
 
 # Testing
 npm run test
 npm run lint
+
+# Single test file
+npm run test -- path/to/test.spec.ts
 ```
 
 ### Frontend Development
@@ -106,9 +126,35 @@ The system uses Sequelize ORM with PostgreSQL. Key models include:
 
 - `whaticket/backend/.env`: Backend environment variables
 - `whaticket/frontend/.env`: Frontend environment variables
-- `whaticket/frontend/src/config.js`: React configuration
-- `docker-compose.yml`: Infrastructure services
+- `whaticket/frontend/src/config.js`: React configuration utilities
+- `whaticket/frontend/config-overrides.js`: Webpack customizations
+- `docker-compose.yml`: Infrastructure services (PostgreSQL/Redis/MailHog)
+- `jest.config.js`: Backend test configuration
 - Database migrations: `whaticket/backend/src/database/migrations/`
+- TypeScript configs: `tsconfig.json` in both backend and frontend
+
+## Server Architecture
+
+### Startup Process
+The backend server (`src/server.ts`) follows this initialization sequence:
+1. Load environment configuration
+2. Initialize database connections
+3. Start all active WhatsApp sessions for each company
+4. Initialize Redis-based queue processing
+5. Setup Socket.io for real-time communication
+6. Start HTTP/HTTPS server based on CERTIFICADOS environment variable
+
+### Queue System
+- **Message Queue**: Handles WhatsApp message processing
+- **Scheduled Messages**: Manages campaign and scheduled message delivery  
+- **Bull Board**: Web UI for queue monitoring at `/admin/queues` (if enabled)
+- **Background Jobs**: File processing, message delivery, session management
+
+### WhatsApp Session Management
+- Multi-instance support with one session per company
+- Automatic session restoration on server restart
+- Session state stored in PostgreSQL with Baileys integration
+- Real-time status updates via Socket.io
 
 ## Development Environment
 
@@ -128,9 +174,33 @@ The system uses Sequelize ORM with PostgreSQL. Key models include:
 
 ## Testing
 
-Backend uses Jest with the following test cycle:
-- `pretest`: Migrate and seed test database
-- `test`: Run Jest tests
-- `posttest`: Clean up test database
+### Backend Testing
+Backend uses Jest with TypeScript support:
+- **Test files**: Located in `**/__tests__/**/*.spec.ts`
+- **Coverage**: Collects coverage from `src/services/**/*.ts`
+- **Test cycle**:
+  - `pretest`: Migrate and seed test database
+  - `test`: Run Jest tests with coverage
+  - `posttest`: Clean up test database
+- **Configuration**: `jest.config.js` with ts-jest preset
 
-Frontend uses React Testing Library with `react-scripts test`.
+### Frontend Testing
+Frontend uses React Testing Library with Create React App:
+- **Test runner**: `react-app-rewired test`
+- **Framework**: Jest + React Testing Library
+- **Watch mode**: Enabled by default in development
+
+### Running Tests
+```bash
+# Backend tests
+cd whaticket/backend
+npm run test
+
+# Frontend tests
+cd whaticket/frontend
+npm test
+
+# Run specific test file
+cd whaticket/backend
+npm run test -- path/to/specific.spec.ts
+```

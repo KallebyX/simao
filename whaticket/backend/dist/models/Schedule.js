@@ -20,7 +20,6 @@ const User_1 = __importDefault(require("./User"));
 const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 const Queue_1 = __importDefault(require("./Queue"));
 let Schedule = class Schedule extends sequelize_typescript_1.Model {
-    id;
     body;
     sendAt;
     sentAt;
@@ -29,8 +28,6 @@ let Schedule = class Schedule extends sequelize_typescript_1.Model {
     userId;
     companyId;
     status;
-    createdAt;
-    updatedAt;
     contact;
     ticket;
     user;

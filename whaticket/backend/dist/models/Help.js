@@ -11,13 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 let Help = class Help extends sequelize_typescript_1.Model {
-    id;
     title;
     description;
     video;
     link;
-    createdAt;
-    updatedAt;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,

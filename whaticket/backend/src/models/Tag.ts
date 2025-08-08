@@ -22,7 +22,7 @@ class Tag extends Model<Tag> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   name: string;
@@ -53,10 +53,10 @@ class Tag extends Model<Tag> {
   company: Company;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @Column
   timeLane: number;

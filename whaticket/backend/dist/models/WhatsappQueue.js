@@ -18,8 +18,6 @@ const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 let WhatsappQueue = class WhatsappQueue extends sequelize_typescript_1.Model {
     whatsappId;
     queueId;
-    createdAt;
-    updatedAt;
     queue;
 };
 __decorate([

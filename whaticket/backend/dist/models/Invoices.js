@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Company_1 = __importDefault(require("./Company"));
 let Invoices = class Invoices extends sequelize_typescript_1.Model {
-    id;
     companyId;
     dueDate;
     detail;
@@ -31,9 +30,9 @@ let Invoices = class Invoices extends sequelize_typescript_1.Model {
     useSchedules;
     useInternalChat;
     useExternalApi;
-    createdAt;
-    updatedAt;
     linkInvoice;
+    stripe_id;
+    txid;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -114,6 +113,14 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
 ], Invoices.prototype, "linkInvoice", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], Invoices.prototype, "stripe_id", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], Invoices.prototype, "txid", void 0);
 Invoices = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "Invoices" })
 ], Invoices);

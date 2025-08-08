@@ -15,7 +15,7 @@ class Partner extends Model<Partner> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   name: string;
@@ -39,10 +39,10 @@ class Partner extends Model<Partner> {
   walletId: string;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 }
 
 export default Partner;

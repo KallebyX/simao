@@ -7,7 +7,7 @@ export class WebhookModel extends Model<WebhookModel> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   user_id: number;
@@ -34,8 +34,8 @@ export class WebhookModel extends Model<WebhookModel> {
   config: {} | null;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 }

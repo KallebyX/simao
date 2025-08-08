@@ -18,8 +18,6 @@ const User_1 = __importDefault(require("./User"));
 let UserQueue = class UserQueue extends sequelize_typescript_1.Model {
     userId;
     queueId;
-    createdAt;
-    updatedAt;
 };
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => User_1.default),

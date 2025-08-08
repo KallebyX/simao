@@ -22,7 +22,6 @@ const QuickMessage_1 = __importDefault(require("./QuickMessage"));
 const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 const Chatbot_1 = __importDefault(require("./Chatbot"));
 let User = class User extends sequelize_typescript_1.Model {
-    id;
     name;
     email;
     password;
@@ -42,8 +41,6 @@ let User = class User extends sequelize_typescript_1.Model {
     defaultTheme;
     defaultMenu;
     farewellMessage;
-    createdAt;
-    updatedAt;
     companyId;
     company;
     tickets;

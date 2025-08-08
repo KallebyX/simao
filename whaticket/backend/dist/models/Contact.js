@@ -23,7 +23,6 @@ const ContactWallet_1 = __importDefault(require("./ContactWallet"));
 const User_1 = __importDefault(require("./User"));
 const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 let Contact = class Contact extends sequelize_typescript_1.Model {
-    id;
     name;
     number;
     email;
@@ -33,8 +32,6 @@ let Contact = class Contact extends sequelize_typescript_1.Model {
     acceptAudioMessage;
     active;
     channel;
-    createdAt;
-    updatedAt;
     tickets;
     extraInfo;
     contactTags;

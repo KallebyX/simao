@@ -1,22 +1,11 @@
 const webpack = require('webpack');
 
 module.exports = function override(config, env) {
-  console.log('🔧 Config-overrides aplicado - mapeamento direto...');
-  
-  // Mapear process/browser diretamente
-  config.resolve.alias = {
-    ...config.resolve.alias,
-    'process/browser': require.resolve('process/browser'),
-    'process': require.resolve('process/browser')
-  };
-  
-  // Configurar fallbacks
+  // Configuração mais simples e compatível
   config.resolve.fallback = {
-    ...config.resolve.fallback,
-    "path": require.resolve("path-browserify"),
+    "process": require.resolve("process/browser.js"),
     "buffer": require.resolve("buffer"),
-    "process": require.resolve("process/browser"),
-    "process/browser": require.resolve("process/browser"),
+    "path": require.resolve("path-browserify"),
     "os": false,
     "crypto": false,
     "stream": false,
@@ -29,14 +18,31 @@ module.exports = function override(config, env) {
     "child_process": false
   };
 
-  // ProvidePlugin
   config.plugins = (config.plugins || []).concat([
     new webpack.ProvidePlugin({
-      process: 'process/browser',
+      process: 'process/browser.js',
       Buffer: ['buffer', 'Buffer'],
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
     })
   ]);
 
-  console.log('✅ Webpack5 mapeamento direto configurado!');
+  // Configurações de build otimizadas
+  config.optimization = {
+    ...config.optimization,
+    minimize: false, // Desabilitar minificação para build mais rápido
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  };
+
   return config;
 };

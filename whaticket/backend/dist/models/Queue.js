@@ -23,7 +23,6 @@ const QueueIntegrations_1 = __importDefault(require("./QueueIntegrations"));
 const Files_1 = __importDefault(require("./Files"));
 const Prompt_1 = __importDefault(require("./Prompt"));
 let Queue = class Queue extends sequelize_typescript_1.Model {
-    id;
     name;
     color;
     greetingMessage;
@@ -32,8 +31,6 @@ let Queue = class Queue extends sequelize_typescript_1.Model {
     tempoRoteador;
     outOfHoursMessage;
     schedules;
-    createdAt;
-    updatedAt;
     companyId;
     company;
     whatsapps;

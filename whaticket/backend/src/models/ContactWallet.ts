@@ -18,7 +18,7 @@ class ContactWallet extends Model<ContactWallet> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @ForeignKey(() => Contact)
   @Column
@@ -42,10 +42,10 @@ class ContactWallet extends Model<ContactWallet> {
   company: Company;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 }
 
 export default ContactWallet;

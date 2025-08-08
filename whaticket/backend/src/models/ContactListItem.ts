@@ -19,7 +19,7 @@ class ContactListItem extends Model<ContactListItem> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @AllowNull(false)
   @Column
@@ -38,10 +38,10 @@ class ContactListItem extends Model<ContactListItem> {
   isWhatsappValid: boolean;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @ForeignKey(() => Company)
   @Column

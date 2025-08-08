@@ -12,12 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FlowAudioModel = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 let FlowAudioModel = class FlowAudioModel extends sequelize_typescript_1.Model {
-    id;
     companyId;
     userId;
     name;
-    createdAt;
-    updatedAt;
 };
 exports.FlowAudioModel = FlowAudioModel;
 __decorate([

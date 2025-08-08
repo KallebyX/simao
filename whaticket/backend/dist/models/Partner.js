@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 let Partner = class Partner extends sequelize_typescript_1.Model {
-    id;
     name;
     phone;
     email;
@@ -19,8 +18,6 @@ let Partner = class Partner extends sequelize_typescript_1.Model {
     commission;
     typeCommission;
     walletId;
-    createdAt;
-    updatedAt;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,

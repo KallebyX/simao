@@ -130,7 +130,6 @@ const UpdateUserService = async ({
   if (company.email === oldUserEmail) {
     await company.update({
       email,
-      password
     })
   }
   

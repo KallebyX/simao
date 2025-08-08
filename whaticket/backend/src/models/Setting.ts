@@ -17,7 +17,7 @@ class Setting extends Model<Setting> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   key: string;
@@ -26,10 +26,10 @@ class Setting extends Model<Setting> {
   value: string;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @ForeignKey(() => Company)
   @Column

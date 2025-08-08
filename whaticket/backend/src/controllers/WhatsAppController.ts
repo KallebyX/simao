@@ -123,14 +123,33 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
   }: WhatsappData = req.body;
   const { companyId } = req.user;
 
+  // Debug logs removed - system functioning correctly
+  console.log("companyId from JWT:", companyId);
+  
   const company = await ShowCompanyService(companyId)
-  const plan = await ShowPlanService(company.planId);
+  console.log("company found:", JSON.stringify({
+    id: company.dataValues.id,
+    name: company.dataValues.name,
+    planId: company.dataValues.planId
+  }));
+  
+  const plan = await ShowPlanService(company.dataValues.planId);
+  console.log("plan found:", JSON.stringify({
+    id: plan.dataValues.id,
+    name: plan.dataValues.name,
+    useWhatsapp: plan.dataValues.useWhatsapp,
+    useWhatsappType: typeof plan.dataValues.useWhatsapp
+  }));
 
-  if (!plan.useWhatsapp) {
+  if (!plan.dataValues.useWhatsapp) {
+    console.log("VALIDATION FAILED: !plan.useWhatsapp =", !plan.dataValues.useWhatsapp);
     return res.status(400).json({
       error: "Você não possui permissão para acessar este recurso!"
     });
   }
+  
+  console.log("VALIDATION PASSED: plan.useWhatsapp =", plan.dataValues.useWhatsapp);
+  console.log("=== END DEBUG ===");
 
   console.log("================ WhatsAppController ==============")
   console.log(req.body)

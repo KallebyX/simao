@@ -16,7 +16,6 @@ exports.FlowCampaignModel = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 let FlowCampaignModel = class FlowCampaignModel extends sequelize_typescript_1.Model {
-    id;
     companyId;
     userId;
     name;
@@ -25,8 +24,6 @@ let FlowCampaignModel = class FlowCampaignModel extends sequelize_typescript_1.M
     whatsappId;
     whatsapp;
     status;
-    createdAt;
-    updatedAt;
 };
 exports.FlowCampaignModel = FlowCampaignModel;
 __decorate([

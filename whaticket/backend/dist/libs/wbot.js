@@ -120,7 +120,7 @@ const restartWbot = async (companyId, session) => {
         whatsapp.map(async (c) => {
             const sessionIndex = sessions.findIndex(s => s.id === c.id);
             if (sessionIndex !== -1) {
-                sessions[sessionIndex].ws.close(undefined);
+                sessions[sessionIndex].ws.close();
             }
         });
     }
@@ -164,9 +164,6 @@ const initWASocket = async (whatsapp) => {
                 logger_1.default.info(`Starting session ${name}`);
                 let retriesQrCode = 0;
                 let wsocket = null;
-                const store = (0, baileys_1.makeInMemoryStore)({
-                    logger: loggerBaileys
-                });
                 const { state, saveCreds } = await (0, useMultiFileAuthState_1.useMultiFileAuthState)(whatsapp);
                 wsocket = (0, baileys_1.default)({
                     version,
@@ -221,12 +218,12 @@ const initWASocket = async (whatsapp) => {
                         });
                         const statusImportMessages = new Date().getTime();
                         await wpp.update({
-                            statusImportMessages
+                            statusImportMessages: String(statusImportMessages)
                         });
                         wsocket.ev.on("messaging-history.set", async (messageSet) => {
                             const statusImportMessages = new Date().getTime();
                             await wpp.update({
-                                statusImportMessages
+                                statusImportMessages: String(statusImportMessages)
                             });
                             const whatsappId = whatsapp.id;
                             let filteredMessages = messageSet.messages;

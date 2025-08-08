@@ -12,12 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FlowImgModel = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 let FlowImgModel = class FlowImgModel extends sequelize_typescript_1.Model {
-    id;
     companyId;
     userId;
     name;
-    createdAt;
-    updatedAt;
 };
 exports.FlowImgModel = FlowImgModel;
 __decorate([

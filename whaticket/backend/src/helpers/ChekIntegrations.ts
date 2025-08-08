@@ -1,7 +1,7 @@
 import AppError from "../errors/AppError";
 import Integrations from "../models/Integrations";
 
-const CheckIntegrations = async (key: string, companyId: number): Promise<string> => {
+const CheckIntegrations = async (key: string, companyId: number): Promise<Integrations> => {
     const integrations = await Integrations.findOne({
         where: { name: key, companyId: companyId }
     });
@@ -10,7 +10,7 @@ const CheckIntegrations = async (key: string, companyId: number): Promise<string
         throw new AppError("ERR_NO_INTEGRATIONS_FOUND", 404);
     }
 
-    return integrations.dataValues;
+    return integrations;
 };
 
 export default CheckIntegrations;

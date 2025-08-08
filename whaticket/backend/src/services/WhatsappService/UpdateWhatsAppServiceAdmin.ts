@@ -125,7 +125,8 @@ const UpdateWhatsAppServiceAdmin = async ({
 
   const whatsapp = await ShowWhatsAppServiceAdmin(whatsappId);
 
-  await whatsapp.update({
+  // WORKAROUND: Type assertion para bypass de tipos Sequelize conflitantes
+  await (whatsapp as any).update({
     name,
     status,
     session,
@@ -136,12 +137,19 @@ const UpdateWhatsAppServiceAdmin = async ({
     companyId,
     token,
     maxUseBotQueues: maxUseBotQueues || 0,
-    timeUseBotQueues: timeUseBotQueues || 0,
-    expiresTicket: expiresTicket || 0,
+    // DEBUG: Verificar tipos dos campos
+    timeUseBotQueues: (() => {
+      console.log("🔍 [DEBUG] timeUseBotQueues tipo:", typeof timeUseBotQueues, "valor:", timeUseBotQueues);
+      return String(timeUseBotQueues || 0);
+    })(),
+    expiresTicket: (() => {
+      console.log("🔍 [DEBUG] expiresTicket tipo:", typeof expiresTicket, "valor:", expiresTicket);
+      return String(expiresTicket || 0);
+    })(),
     allowGroup,
     timeSendQueue,
     sendIdQueue,
-    timeInactiveMessage,
+    timeInactiveMessage: timeInactiveMessage?.toString(),
     inactiveMessage,
     ratingMessage,
     maxUseBotQueuesNPS,
@@ -149,8 +157,8 @@ const UpdateWhatsAppServiceAdmin = async ({
     whenExpiresTicket,
     expiresInactiveMessage,
     groupAsTicket,
-    importOldMessages,
-    importRecentMessages,
+    importOldMessages: importOldMessages ? new Date(importOldMessages) : null,
+    importRecentMessages: importRecentMessages ? new Date(importRecentMessages) : null,
     closedTicketsPostImported,
     importOldMessagesGroups,
     timeCreateNewTicket,

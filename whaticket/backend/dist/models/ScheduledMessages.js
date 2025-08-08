@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 let ScheduledMessages = class ScheduledMessages extends sequelize_typescript_1.Model {
-    id;
     data_mensagem_programada;
     id_conexao;
     intervalo;
@@ -24,8 +23,6 @@ let ScheduledMessages = class ScheduledMessages extends sequelize_typescript_1.M
     tags;
     companyId;
     nome;
-    createdAt;
-    updatedAt;
     mediaPath;
     mediaName;
     tipo_arquivo;

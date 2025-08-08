@@ -19,7 +19,7 @@ class Files extends Model<Files> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @ForeignKey(() => Company)
   @Column
@@ -32,10 +32,10 @@ class Files extends Model<Files> {
   message: string;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @HasMany(() => FilesOptions)
   options: FilesOptions[];

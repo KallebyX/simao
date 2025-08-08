@@ -17,7 +17,7 @@ class Announcement extends Model<Announcement> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   priority: number; //1 - alta, 2 - média, 3 - baixa
@@ -49,10 +49,10 @@ class Announcement extends Model<Announcement> {
   status: boolean;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @BelongsTo(() => Company)
   company: Company;

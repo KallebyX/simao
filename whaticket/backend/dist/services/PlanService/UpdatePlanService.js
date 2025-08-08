@@ -11,7 +11,10 @@ const UpdatePlanService = async (planData) => {
     if (!plan) {
         throw new AppError_1.default("ERR_NO_PLAN_FOUND", 404);
     }
-    await plan.update(planData);
+    await plan.update({
+        ...planData,
+        id: planData.id ? Number(planData.id) : undefined
+    });
     return plan;
 };
 exports.default = UpdatePlanService;

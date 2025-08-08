@@ -17,15 +17,12 @@ const Company_1 = __importDefault(require("./Company"));
 const User_1 = __importDefault(require("./User"));
 const Ticket_1 = __importDefault(require("./Ticket"));
 let UserRating = class UserRating extends sequelize_typescript_1.Model {
-    id;
     ticketId;
     ticket;
     companyId;
     company;
     userId;
     user;
-    createdAt;
-    updatedAt;
     rate;
 };
 __decorate([

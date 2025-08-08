@@ -15,11 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Whatsapp_1 = __importDefault(require("./Whatsapp"));
 let Baileys = class Baileys extends sequelize_typescript_1.Model {
-    id;
     contacts;
     chats;
-    createdAt;
-    updatedAt;
     whatsappId;
 };
 __decorate([

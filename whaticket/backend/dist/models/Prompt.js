@@ -16,7 +16,6 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Queue_1 = __importDefault(require("./Queue"));
 const Company_1 = __importDefault(require("./Company"));
 let Prompt = class Prompt extends sequelize_typescript_1.Model {
-    id;
     name;
     prompt;
     apiKey;
@@ -33,8 +32,6 @@ let Prompt = class Prompt extends sequelize_typescript_1.Model {
     queue;
     companyId;
     company;
-    createdAt;
-    updatedAt;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,

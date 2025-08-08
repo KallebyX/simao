@@ -52,7 +52,12 @@ const CreateTicketNoteService = async (ticketNoteData) => {
     catch (err) {
         throw new AppError_1.default(err.message);
     }
-    const ticketNote = await TicketNote_1.default.create(ticketNoteData);
+    const ticketNote = await TicketNote_1.default.create({
+        ...ticketNoteData,
+        userId: Number(ticketNoteData.userId),
+        contactId: Number(ticketNoteData.contactId),
+        ticketId: Number(ticketNoteData.ticketId)
+    });
     return ticketNote;
 };
 exports.default = CreateTicketNoteService;

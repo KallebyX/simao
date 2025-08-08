@@ -21,10 +21,10 @@ class WhatsappQueue extends Model<WhatsappQueue> {
   queueId: number;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @BelongsTo(() => Queue)
   queue: Queue;

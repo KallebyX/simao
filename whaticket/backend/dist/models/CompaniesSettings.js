@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Company_1 = __importDefault(require("./Company"));
 let CompaniesSettings = class CompaniesSettings extends sequelize_typescript_1.Model {
-    id;
     companyId;
     company;
     hoursCloseTicketsAuto;
@@ -39,8 +38,6 @@ let CompaniesSettings = class CompaniesSettings extends sequelize_typescript_1.M
     lgpdConsent;
     lgpdLink;
     lgpdMessage;
-    createdAt;
-    updatedAt;
     DirectTicketsToWallets;
     closeTicketOnTransfer;
     transferMessage;

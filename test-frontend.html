@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Frontend Whaticket</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        button { padding: 10px 20px; margin: 10px; cursor: pointer; }
+        .result { margin-top: 20px; padding: 15px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Teste Frontend Whaticket</h1>
+        
+        <h2>Teste de Conectividade Backend</h2>
+        <button onclick="testBackend()">Testar Backend</button>
+        <button onclick="testLogin()">Testar Login</button>
+        
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        const BACKEND_URL = 'http://localhost:8081';
+        
+        function showResult(message, isSuccess = true) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `<span class="${isSuccess ? 'success' : 'error'}">${message}</span>`;
+        }
+        
+        async function testBackend() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/public-settings/appName`);
+                const data = await response.text();
+                showResult(`✅ Backend conectado: ${data}`, true);
+            } catch (error) {
+                showResult(`❌ Erro no backend: ${error.message}`, false);
+            }
+        }
+        
+        async function testLogin() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: 'admin@admin.com',
+                        password: 'admin'
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    showResult(`✅ Login funcionando! Token: ${data.token.substring(0, 20)}...`, true);
+                } else {
+                    showResult(`❌ Login falhou: ${response.status}`, false);
+                }
+            } catch (error) {
+                showResult(`❌ Erro no login: ${error.message}`, false);
+            }
+        }
+        
+        // Teste automático ao carregar
+        window.onload = function() {
+            testBackend();
+        };
+    </script>
+</body>
+</html>

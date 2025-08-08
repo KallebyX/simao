@@ -9,7 +9,6 @@ const socket_1 = require("../libs/socket");
 const AuthUserService_1 = __importDefault(require("../services/UserServices/AuthUserService"));
 const SendRefreshToken_1 = require("../helpers/SendRefreshToken");
 const RefreshTokenService_1 = require("../services/AuthServices/RefreshTokenService");
-const FindUserFromToken_1 = __importDefault(require("../services/AuthServices/FindUserFromToken"));
 const User_1 = __importDefault(require("../models/User"));
 const store = async (req, res) => {
     const { email, password } = req.body;
@@ -46,13 +45,20 @@ const update = async (req, res) => {
 };
 exports.update = update;
 const me = async (req, res) => {
-    const token = req.cookies.jrt;
-    const user = await (0, FindUserFromToken_1.default)(token);
-    const { id, profile, super: superAdmin } = user;
-    if (!token) {
-        throw new AppError_1.default("ERR_SESSION_EXPIRED", 401);
+    const { id } = req.user;
+    const user = await User_1.default.findByPk(id, {
+        attributes: ['id', 'profile', 'super']
+    });
+    if (!user) {
+        throw new AppError_1.default("ERR_USER_NOT_FOUND", 404);
     }
-    return res.json({ id, profile, super: superAdmin });
+    const userData = user.toJSON();
+    const result = {
+        id: userData.id,
+        profile: userData.profile,
+        super: userData.super
+    };
+    return res.json(result);
 };
 exports.me = me;
 const remove = async (req, res) => {

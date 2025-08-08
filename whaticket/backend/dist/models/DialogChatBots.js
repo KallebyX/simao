@@ -17,14 +17,11 @@ const Chatbot_1 = __importDefault(require("./Chatbot"));
 const Contact_1 = __importDefault(require("./Contact"));
 const Queue_1 = __importDefault(require("./Queue"));
 let DialogChatBots = class DialogChatBots extends sequelize_typescript_1.Model {
-    id;
     awaiting;
     contactId;
     queueId;
     chatbotId;
     chatbots;
-    createdAt;
-    updatedAt;
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,

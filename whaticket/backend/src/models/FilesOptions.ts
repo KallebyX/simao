@@ -18,7 +18,7 @@ class FilesOptions extends Model<FilesOptions> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @ForeignKey(() => Files)
   @Column
@@ -34,10 +34,10 @@ class FilesOptions extends Model<FilesOptions> {
   mediaType: string;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 
   @BelongsTo(() => Files)
   file: Files;

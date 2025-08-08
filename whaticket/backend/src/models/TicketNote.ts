@@ -19,7 +19,7 @@ class TicketNote extends Model<TicketNote> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   note: string;
@@ -46,10 +46,10 @@ class TicketNote extends Model<TicketNote> {
   ticket: Ticket;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 }
 
 export default TicketNote;

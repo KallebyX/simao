@@ -15,7 +15,7 @@ class Help extends Model<Help> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   title: string;
@@ -30,10 +30,10 @@ class Help extends Model<Help> {
   link: string;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 }
 
 export default Help;

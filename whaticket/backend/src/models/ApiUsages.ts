@@ -14,7 +14,7 @@ class ApiUsages extends Model<ApiUsages> {
     @PrimaryKey
     @AutoIncrement
     @Column
-    id: number;
+    declare id: number;
 
     @Default(0)
     @Column
@@ -53,11 +53,10 @@ class ApiUsages extends Model<ApiUsages> {
     usedCheckNumber: number;
 
     @CreatedAt
-    createdAt: Date;
+    declare createdAt: Date;
 
     @UpdatedAt
-    updatedAt: Date;
-    dataValues: string | PromiseLike<string>;
+    declare updatedAt: Date;
 
 }
 

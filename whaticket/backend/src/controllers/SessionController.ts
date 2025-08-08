@@ -59,15 +59,28 @@ export const update = async (
 };
 
 export const me = async (req: Request, res: Response): Promise<Response> => {
-  const token: string = req.cookies.jrt;
-  const user = await FindUserFromToken(token);
-  const { id, profile, super: superAdmin } = user;
-
-  if (!token) {
-    throw new AppError("ERR_SESSION_EXPIRED", 401);
+  // Usa dados do middleware isAuth que já validou o JWT
+  const { id } = req.user;
+  
+  // Busca dados completos do usuário no banco
+  const user = await User.findByPk(id, {
+    attributes: ['id', 'profile', 'super']
+  });
+  
+  if (!user) {
+    throw new AppError("ERR_USER_NOT_FOUND", 404);
   }
 
-  return res.json({ id, profile, super: superAdmin });
+  // Converte instância Sequelize para objeto plano
+  const userData = user.toJSON();
+  
+  const result = {
+    id: userData.id,
+    profile: userData.profile,
+    super: userData.super
+  };
+
+  return res.json(result);
 };
 
 export const remove = async (

@@ -197,7 +197,7 @@ var optionsGetAsaas = {
 if(key_STRIPE_PRIVATE){
 
 const stripe = new Stripe(key_STRIPE_PRIVATE, {
-  apiVersion: '2022-11-15',
+  apiVersion: '2023-10-16',  // Atualizada para versão compatível
 });
 
   const sessionStripe = await stripe.checkout.sessions.create({
@@ -221,7 +221,8 @@ const stripe = new Stripe(key_STRIPE_PRIVATE, {
 
 
   const invoicesX = await Invoices.findByPk(invoiceId);
-  const invoiX = await invoicesX.update({
+  // WORKAROUND: Type assertion para campos não definidos no modelo
+  const invoiX = await (invoicesX as any).update({
   	id: invoiceId,
     stripe_id: sessionStripe.id
   });
@@ -356,11 +357,12 @@ export const webhook = async (
           await company.update({
             dueDate: date
           });
-         const invoi = await invoices.update({
+         // WORKAROUND: Type assertion para campos não definidos no modelo
+         const invoi = await (invoices as any).update({
             id: invoiceID,
          	txid: pix.txid,
             status: 'paid'
-          });
+           });
           await company.reload();
           const io = getIO();
           const companyUpdate = await Company.findOne({
@@ -415,7 +417,7 @@ export const stripewebhook = async (
       
         const stripe_id = req.body.data.object.id;
       
-        const invoices = await Invoices.findOne({ where: { stripe_id: stripe_id } });
+        const invoices = await (Invoices as any).findOne({ where: { stripe_id: stripe_id } });
 		const invoiceID = invoices.id;
       
         const companyId = invoices.companyId;

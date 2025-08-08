@@ -18,7 +18,7 @@ class DialogChatBots extends Model<DialogChatBots> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   awaiting: number;
@@ -39,10 +39,10 @@ class DialogChatBots extends Model<DialogChatBots> {
   chatbots: Chatbot;
 
   @CreatedAt
-  createdAt: Date;
+  declare createdAt: Date;
 
   @UpdatedAt
-  updatedAt: Date;
+  declare updatedAt: Date;
 }
 
 export default DialogChatBots;
