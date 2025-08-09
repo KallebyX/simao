@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oryum BusinessAI - Sistema de Atendimento</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Theme -->
+  <meta name="theme-color" content="#0284c7" />
+  
+  <style>
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      color: white;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+    
+    .loading-title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    
+    .loading-progress {
+      width: 240px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    
+    .loading-progress-bar {
+      height: 100%;
+      background: white;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    
+    .loading-text {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <h1 class="loading-title">Oryum BusinessAI</h1>
+    <p>Sistema de Atendimento</p>
+    <div class="loading-progress">
+      <div class="loading-progress-bar" id="progress-bar"></div>
+    </div>
+    <p class="loading-text" id="loading-text">Carregando...</p>
+  </div>
+  
+  <!-- App Root -->
+  <div id="root"></div>
+  
+  <!-- Load main application -->
+  <script type="module" src="/src/main.js"></script>
+  
+  <script>
+    console.log('Index.html carregado');
+    
+    // Simple loading progress
+    let progress = 0;
+    const progressBar = document.getElementById('progress-bar');
+    const loadingText = document.getElementById('loading-text');
+    
+    const interval = setInterval(() => {
+      progress += Math.random() * 15;
+      progressBar.style.width = Math.min(progress, 95) + '%';
+      
+      if (progress >= 95) {
+        clearInterval(interval);
+      }
+    }, 100);
+    
+    // Auto-hide loading screen after 3 seconds
+    setTimeout(() => {
+      const loadingScreen = document.getElementById('loading-screen');
+      if (loadingScreen) {
+        loadingScreen.style.opacity = '0';
+        loadingScreen.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => loadingScreen.remove(), 500);
+      }
+    }, 3000);
+  </script>
+</body>
+</html>
