@@ -18,6 +18,7 @@ import useSettings from "./hooks/useSettings";
 const queryClient = new QueryClient();
 
 const App = () => {
+  console.log("=== App Component Starting ===");
   const [locale, setLocale] = useState();
   const appColorLocalStorage = localStorage.getItem("primaryColorLight") || localStorage.getItem("primaryColorDark") || "#065183";
   const appNameLocalStorage = localStorage.getItem("appName") || "";
@@ -119,10 +120,16 @@ const App = () => {
 
   useEffect(() => {
     const i18nlocale = localStorage.getItem("i18nextLng");
-    const browserLocale = i18nlocale.substring(0, 2) + i18nlocale.substring(3, 5);
+    if (i18nlocale) {
+      const browserLocale = i18nlocale.substring(0, 2) + i18nlocale.substring(3, 5);
 
-    if (browserLocale === "ptBR") {
+      if (browserLocale === "ptBR") {
+        setLocale(ptBR);
+      }
+    } else {
+      // Define português como padrão se não houver configuração
       setLocale(ptBR);
+      localStorage.setItem("i18nextLng", "pt-BR");
     }
   }, []);
 
@@ -132,7 +139,8 @@ const App = () => {
 
   useEffect(() => {
     console.log("|=========== handleSaveSetting ==========|")
-    console.log("APP START")
+    console.log("APP START - Fetching settings from backend")
+    console.log("Backend URL:", getBackendUrl())
     console.log("|========================================|")
    
     
@@ -176,7 +184,8 @@ const App = () => {
         setAppName(name || "Chat-flow");
       })
       .catch((error) => {
-        console.log("!==== Erro ao carregar temas: ====!", error);
+        console.error("!==== Erro ao carregar temas: ====!", error);
+        console.error("Error details:", error.response || error.message);
         setAppName("chat-flow");
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -194,9 +203,11 @@ const App = () => {
         const { data } = response;
         window.localStorage.setItem("frontendVersion", data.version);
       } catch (error) {
-        console.log("Error fetching data", error);
+        console.error("Error fetching version data", error);
+        console.error("Error details:", error.response || error.message);
       }
     }
+    console.log("Fetching version data...");
     fetchVersionData();
   }, []);
 

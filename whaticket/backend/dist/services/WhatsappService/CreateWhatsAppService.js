@@ -56,7 +56,8 @@ const CreateWhatsAppService = async ({ name, status = "OPENING", queueIds = [], 
                 channel: channel
             }
         });
-        if (whatsappCount >= company.plan.connections) {
+        const maxConnections = company.dataValues.plan.dataValues.connections;
+        if (whatsappCount >= maxConnections) {
             throw new AppError_1.default(`Número máximo de conexões já alcançado: ${whatsappCount}`);
         }
     }

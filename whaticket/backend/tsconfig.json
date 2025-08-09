@@ -4,6 +4,7 @@
     "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./src",
+    "baseUrl": ".",
     "strict": false,
     "strictPropertyInitialization": false,
     "esModuleInterop": true,
@@ -26,7 +27,14 @@
     "allowUnreachableCode": true,
     "allowUnusedLabels": true,
     "noFallthroughCasesInSwitch": false,
-    "noErrorTruncation": true
+    "noErrorTruncation": true,
+    "noEmitOnError": false,
+    "ignoreDeprecations": "5.0",
+    "types": ["node", "jest"],
+    "typeRoots": ["./node_modules/@types", "./src/@types"],
+    "paths": {
+      "*": ["./node_modules/*", "./src/types/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "public", "**/*.test.ts", "**/*.spec.ts"],

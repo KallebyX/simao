@@ -42,13 +42,28 @@ exports.indexFilter = indexFilter;
 const store = async (req, res) => {
     const { name, status, isDefault, greetingMessage, complationMessage, outOfHoursMessage, queueIds, token, maxUseBotQueues, timeUseBotQueues, expiresTicket, allowGroup, timeSendQueue, sendIdQueue, timeInactiveMessage, inactiveMessage, ratingMessage, maxUseBotQueuesNPS, expiresTicketNPS, whenExpiresTicket, expiresInactiveMessage, importOldMessages, importRecentMessages, closedTicketsPostImported, importOldMessagesGroups, groupAsTicket, timeCreateNewTicket, schedules, promptId, collectiveVacationEnd, collectiveVacationMessage, collectiveVacationStart, queueIdImportMessages, flowIdNotPhrase, flowIdWelcome } = req.body;
     const { companyId } = req.user;
+    console.log("companyId from JWT:", companyId);
     const company = await (0, ShowCompanyService_1.default)(companyId);
-    const plan = await (0, ShowPlanService_1.default)(company.planId);
-    if (!plan.useWhatsapp) {
+    console.log("company found:", JSON.stringify({
+        id: company.dataValues.id,
+        name: company.dataValues.name,
+        planId: company.dataValues.planId
+    }));
+    const plan = await (0, ShowPlanService_1.default)(company.dataValues.planId);
+    console.log("plan found:", JSON.stringify({
+        id: plan.dataValues.id,
+        name: plan.dataValues.name,
+        useWhatsapp: plan.dataValues.useWhatsapp,
+        useWhatsappType: typeof plan.dataValues.useWhatsapp
+    }));
+    if (!plan.dataValues.useWhatsapp) {
+        console.log("VALIDATION FAILED: !plan.useWhatsapp =", !plan.dataValues.useWhatsapp);
         return res.status(400).json({
             error: "Você não possui permissão para acessar este recurso!"
         });
     }
+    console.log("VALIDATION PASSED: plan.useWhatsapp =", plan.dataValues.useWhatsapp);
+    console.log("=== END DEBUG ===");
     console.log("================ WhatsAppController ==============");
     console.log(req.body);
     console.log("==================================================");
